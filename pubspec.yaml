@@ -36,6 +36,7 @@ dependencies:
   firebase_core: ^2.7.0
   flutter:
     sdk: flutter
+  linter: ^1.30.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
