@@ -1,6 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -95,6 +103,22 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            FutureBuilder(
+              future: FirebaseFirestore.instance
+                  .collection('test')
+                  .doc('pamGy1RTkYrwws8LKRJx')
+                  .get(),
+              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Text('Loading...');
+                }
+                if (snapshot.hasData &&
+                    snapshot.connectionState == ConnectionState.done) {
+                  return Text(snapshot.data['test']);
+                }
+                return const Text('Error');
+              },
+            ),
             const Text(
               'You have pushed the button this many times:',
             ),
