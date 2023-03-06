@@ -35,65 +35,69 @@ class SignUpPageBody extends HookWidget {
         SizedBoxes.kSmallBox(),
         BlocBuilder<AccountTypeBloc, AccountTypeState>(
           builder: (context, state) {
+            return MyTextField(
+              controller: nameController,
+              hintText: state.accountType == AccountType.individual
+                  ? '${AppStringContants.name} ${AppStringContants.unique}'
+                  : state.accountType == AccountType.company
+                      ? '${AppStringContants.companyName}'
+                          ' ${AppStringContants.unique}'
+                      : '${AppStringContants.institutionName}'
+                          ' ${AppStringContants.unique}',
+            );
+          },
+        ),
+        SizedBoxes.kSmallBox(),
+        MyTextField(
+          controller: emailController,
+          hintText: AppStringContants.email,
+        ),
+        SizedBoxes.kSmallBox(),
+        MyTextField(
+          controller: passwordController,
+          hintText: AppStringContants.password,
+        ),
+        SizedBoxes.kSmallBox(),
+        MyTextField(
+          controller: confirmPasswordController,
+          hintText: AppStringContants.confirmPassword,
+        ),
+        SizedBoxes.kSmallBox(),
+        MyTextField(
+          controller: addressController,
+          hintText: AppStringContants.address,
+        ),
+        BlocBuilder<AccountTypeBloc, AccountTypeState>(
+          builder: (context, state) {
             return Column(
               children: [
-                MyTextField(
-                  controller: nameController,
-                  hintText: state.accountType == AccountType.individual
-                      ? '${AppStringContants.name} ${AppStringContants.unique}'
-                      : state.accountType == AccountType.company
-                          ? '${AppStringContants.companyName}'
-                              ' ${AppStringContants.unique}'
-                          : '${AppStringContants.institutionName}'
-                              ' ${AppStringContants.unique}',
-                ),
-                SizedBoxes.kSmallBox(),
-                MyTextField(
-                  controller: emailController,
-                  hintText: AppStringContants.email,
-                ),
-                SizedBoxes.kSmallBox(),
-                MyTextField(
-                  controller: passwordController,
-                  hintText: AppStringContants.password,
-                ),
-                SizedBoxes.kSmallBox(),
-                MyTextField(
-                  controller: confirmPasswordController,
-                  hintText: AppStringContants.confirmPassword,
-                ),
-                SizedBoxes.kSmallBox(),
-                MyTextField(
-                  controller: addressController,
-                  hintText: AppStringContants.address,
-                ),
                 if (state.accountType == AccountType.company) ...[
                   SizedBoxes.kSmallBox(),
                   MyTextField(
                     controller: fiscalCodeController,
                     hintText: AppStringContants.fiscalCode,
                   ),
-                ],
-                SizedBox(
-                  height: 5.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    MyTextButton(
-                      text: AppStringContants.login,
-                      onPressed: () {},
-                    ),
-                    MyButton(
-                      text: AppStringContants.signUp,
-                      onPressed: () {},
-                      width: 30.w,
-                    ),
-                  ],
-                ),
+                ]
               ],
             );
           },
+        ),
+        SizedBox(
+          height: 5.h,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            MyTextButton(
+              text: AppStringContants.login,
+              onPressed: () {},
+            ),
+            MyButton(
+              text: AppStringContants.signUp,
+              onPressed: () {},
+              width: 30.w,
+            ),
+          ],
         ),
       ],
     );
