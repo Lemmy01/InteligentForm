@@ -10,4 +10,12 @@ class AppStringContants {
   static const String signUp = 'Sign Up';
 
   static const String login = 'Login';
+
+  static const String name = 'Name';
+
+  static const String confirmPassword = 'Confirm Password';
+
+  static const String address = 'Address';
+
+  static const String fiscalCode = 'Fiscal Code';
 }
