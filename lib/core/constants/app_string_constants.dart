@@ -25,3 +25,9 @@ class AppStringContants {
 
   static const String unique = '(Unique)';
 }
+
+class AppBarStrings {
+  static const String fillForm = 'Fill Form';
+  static const String forms = 'Forms';
+  static const String profile = 'Profile';
+}

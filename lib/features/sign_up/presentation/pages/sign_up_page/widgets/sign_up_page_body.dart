@@ -6,6 +6,7 @@ import 'package:inteligent_forms/core/shared_widgets/my_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
 import 'package:inteligent_forms/core/utils/enums.dart';
+import 'package:inteligent_forms/features/sign_up/presentation/pages/app_bottom_bar.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../../core/shared_widgets/sized_boxes.dart';
@@ -94,7 +95,15 @@ class SignUpPageBody extends HookWidget {
             ),
             MyButton(
               text: AppStringContants.signUp,
-              onPressed: () {},
+              onPressed: () {
+                //TODO George Luta : schimba cu bloc (dummmy acum)
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AppBottomBar(),
+                  ),
+                );
+              },
               width: 30.w,
             ),
           ],
