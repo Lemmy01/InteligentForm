@@ -18,4 +18,10 @@ class AppStringContants {
   static const String address = 'Address';
 
   static const String fiscalCode = 'Fiscal Code';
+
+  static const String companyName = 'Company Name';
+
+  static const String institutionName = 'Institution Name';
+
+  static const String unique = '(Unique)';
 }
