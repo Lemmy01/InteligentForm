@@ -37,6 +37,7 @@ dependencies:
   firebase_core: ^2.7.0
   flutter:
     sdk: flutter
+  linter: ^1.30.0
   sizer: ^2.0.15
 
 dev_dependencies:

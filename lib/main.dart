@@ -36,6 +36,7 @@ class InteligentFrormsApp extends StatelessWidget {
           primarySwatch: Colors.teal,
         ).copyWith(
           primary: const Color(0XFF01949A),
+          secondary: const Color(0XFF004369),
         ),
       ),
       home: const HomePage(),
