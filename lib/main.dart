@@ -5,10 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inteligent_forms/features/sign_up/presentation/pages/home_page/home_page.dart';
 import 'package:sizer/sizer.dart';
 
+import 'bloc_observer.dart';
 import 'features/sign_up/presentation/bloc/account_type_bloc.dart/bloc/account_type_bloc.dart';
 import 'firebase_options.dart';
 
 Future main() async {
+  Bloc.observer = MyBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
