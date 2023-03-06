@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inteligent_forms/core/constants/app_number_constants.dart';
 import 'package:sizer/sizer.dart';
 
 class MyTextField extends StatelessWidget {
@@ -21,7 +22,9 @@ class MyTextField extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(17.sp),
+            borderRadius: BorderRadius.circular(
+              AppNumberConstants.longTilePadding,
+            ),
           ),
           hintText: hintText,
           fillColor: Theme.of(context).colorScheme.onPrimary,
