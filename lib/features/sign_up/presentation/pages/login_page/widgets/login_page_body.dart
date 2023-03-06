@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:inteligent_forms/core/constants/app_string_constants.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_button.dart';
 import 'package:sizer/sizer.dart';
 
-class LoginPageBody extends StatelessWidget {
+import '../../../../../../core/shared_widgets/my_button.dart';
+import '../../../../../../core/shared_widgets/my_text_field.dart';
+import '../../sign_up_page/sign_up_page.dart';
+
+class LoginPageBody extends HookWidget {
   const LoginPageBody({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final emailController = useTextEditingController();
+    final passwordController = useTextEditingController();
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -28,41 +36,30 @@ class LoginPageBody extends StatelessWidget {
           SizedBox(
             height: 20.h,
           ),
-          SizedBox(
-            width: 80.w,
-            child: TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(17.sp),
-                ),
-                hintText: AppStringContants.email,
-                fillColor: Theme.of(context).colorScheme.onPrimary,
-                filled: true,
-              ),
-            ),
+          MyTextField(
+            controller: emailController,
+            hintText: AppStringContants.email,
           ),
           SizedBox(
             height: 2.h,
           ),
-          SizedBox(
-            width: 80.w,
-            child: TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(17.sp),
-                ),
-                hintText: AppStringContants.password,
-                fillColor: Theme.of(context).colorScheme.onPrimary,
-                filled: true,
-              ),
-            ),
+          MyTextField(
+            controller: passwordController,
+            hintText: AppStringContants.password,
           ),
           SizedBox(
             height: 5.h,
           ),
           MyTextButton(
             text: AppStringContants.signUp,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SignUpPage(),
+                ),
+              );
+            },
           ),
           SizedBox(
             height: 5.h,
@@ -74,38 +71,6 @@ class LoginPageBody extends StatelessWidget {
             },
           ),
         ],
-      ),
-    );
-  }
-}
-
-class MyButton extends StatelessWidget {
-  const MyButton({
-    super.key,
-    required this.text,
-    required this.onPressed,
-  });
-
-  final String text;
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialButton(
-      onPressed: onPressed,
-      minWidth: 80.w,
-      padding: EdgeInsets.symmetric(
-        vertical: 1.h,
-      ),
-      color: Theme.of(context).colorScheme.primary,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.sp),
-      ),
-      child: Text(
-        text,
-        style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-              color: Theme.of(context).colorScheme.onPrimary,
-            ),
       ),
     );
   }
