@@ -4,7 +4,7 @@ part 'failures.freezed.dart';
 
 @freezed
 class Failure with _$Failure {
-  const Failure._(); // This constructor is needed to have custom methods in Freezed.
+  const Failure._();
   const factory Failure.noDataFetched({required String failureMessage}) =
       NoDataFetched;
 
