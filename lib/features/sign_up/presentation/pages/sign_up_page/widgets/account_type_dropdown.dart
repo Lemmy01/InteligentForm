@@ -21,6 +21,7 @@ class AccountTypeDropdown extends StatelessWidget {
         return SizedBox(
           width: 80.w,
           child: DropdownButtonFormField<AccountType>(
+            isExpanded: true,
             value: state.accountType,
             decoration: InputDecoration(
               border: OutlineInputBorder(
@@ -36,8 +37,10 @@ class AccountTypeDropdown extends StatelessWidget {
                 .map(
                   (accValue) => DropdownMenuItem(
                     value: accValue,
-                    child: Text(
-                      accountTypeToString(accountType: accValue),
+                    child: Center(
+                      child: Text(
+                        accountTypeToString(accountType: accValue),
+                      ),
                     ),
                   ),
                 )

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/constants/app_string_constants.dart';
+import '../../../../../../core/constants/string_constants.dart';
 import '../../../../../../core/shared_widgets/my_text_button.dart';
 
 class FillFormButton extends StatelessWidget {

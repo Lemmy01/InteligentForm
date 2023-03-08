@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:inteligent_forms/core/constants/app_string_constants.dart';
+import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:inteligent_forms/features/fill_form/presentation/pages/fill_form_page.dart/fill_form_page.dart';
 import 'package:inteligent_forms/features/forms/presentation/pages/forms_page/forms_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';

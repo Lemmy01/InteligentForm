@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$FailureEntity {
+mixin _$Failure {
   String get failureMessage => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -87,23 +87,21 @@ mixin _$FailureEntity {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $FailureEntityCopyWith<FailureEntity> get copyWith =>
-      throw _privateConstructorUsedError;
+  $FailureCopyWith<Failure> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FailureEntityCopyWith<$Res> {
-  factory $FailureEntityCopyWith(
-          FailureEntity value, $Res Function(FailureEntity) then) =
-      _$FailureEntityCopyWithImpl<$Res, FailureEntity>;
+abstract class $FailureCopyWith<$Res> {
+  factory $FailureCopyWith(Failure value, $Res Function(Failure) then) =
+      _$FailureCopyWithImpl<$Res, Failure>;
   @useResult
   $Res call({String failureMessage});
 }
 
 /// @nodoc
-class _$FailureEntityCopyWithImpl<$Res, $Val extends FailureEntity>
-    implements $FailureEntityCopyWith<$Res> {
-  _$FailureEntityCopyWithImpl(this._value, this._then);
+class _$FailureCopyWithImpl<$Res, $Val extends Failure>
+    implements $FailureCopyWith<$Res> {
+  _$FailureCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -126,7 +124,7 @@ class _$FailureEntityCopyWithImpl<$Res, $Val extends FailureEntity>
 
 /// @nodoc
 abstract class _$$NoDataFetchedCopyWith<$Res>
-    implements $FailureEntityCopyWith<$Res> {
+    implements $FailureCopyWith<$Res> {
   factory _$$NoDataFetchedCopyWith(
           _$NoDataFetched value, $Res Function(_$NoDataFetched) then) =
       __$$NoDataFetchedCopyWithImpl<$Res>;
@@ -137,7 +135,7 @@ abstract class _$$NoDataFetchedCopyWith<$Res>
 
 /// @nodoc
 class __$$NoDataFetchedCopyWithImpl<$Res>
-    extends _$FailureEntityCopyWithImpl<$Res, _$NoDataFetched>
+    extends _$FailureCopyWithImpl<$Res, _$NoDataFetched>
     implements _$$NoDataFetchedCopyWith<$Res> {
   __$$NoDataFetchedCopyWithImpl(
       _$NoDataFetched _value, $Res Function(_$NoDataFetched) _then)
@@ -167,7 +165,7 @@ class _$NoDataFetched extends NoDataFetched {
 
   @override
   String toString() {
-    return 'FailureEntity.noDataFetched(failureMessage: $failureMessage)';
+    return 'Failure.noDataFetched(failureMessage: $failureMessage)';
   }
 
   @override
@@ -281,7 +279,7 @@ class _$NoDataFetched extends NoDataFetched {
   }
 }
 
-abstract class NoDataFetched extends FailureEntity {
+abstract class NoDataFetched extends Failure {
   const factory NoDataFetched({required final String failureMessage}) =
       _$NoDataFetched;
   const NoDataFetched._() : super._();
@@ -296,7 +294,7 @@ abstract class NoDataFetched extends FailureEntity {
 
 /// @nodoc
 abstract class _$$ServerFailureCopyWith<$Res>
-    implements $FailureEntityCopyWith<$Res> {
+    implements $FailureCopyWith<$Res> {
   factory _$$ServerFailureCopyWith(
           _$ServerFailure value, $Res Function(_$ServerFailure) then) =
       __$$ServerFailureCopyWithImpl<$Res>;
@@ -307,7 +305,7 @@ abstract class _$$ServerFailureCopyWith<$Res>
 
 /// @nodoc
 class __$$ServerFailureCopyWithImpl<$Res>
-    extends _$FailureEntityCopyWithImpl<$Res, _$ServerFailure>
+    extends _$FailureCopyWithImpl<$Res, _$ServerFailure>
     implements _$$ServerFailureCopyWith<$Res> {
   __$$ServerFailureCopyWithImpl(
       _$ServerFailure _value, $Res Function(_$ServerFailure) _then)
@@ -337,7 +335,7 @@ class _$ServerFailure extends ServerFailure {
 
   @override
   String toString() {
-    return 'FailureEntity.serverFailure(failureMessage: $failureMessage)';
+    return 'Failure.serverFailure(failureMessage: $failureMessage)';
   }
 
   @override
@@ -451,7 +449,7 @@ class _$ServerFailure extends ServerFailure {
   }
 }
 
-abstract class ServerFailure extends FailureEntity {
+abstract class ServerFailure extends Failure {
   const factory ServerFailure({required final String failureMessage}) =
       _$ServerFailure;
   const ServerFailure._() : super._();
@@ -465,8 +463,7 @@ abstract class ServerFailure extends FailureEntity {
 }
 
 /// @nodoc
-abstract class _$$FieldFailureCopyWith<$Res>
-    implements $FailureEntityCopyWith<$Res> {
+abstract class _$$FieldFailureCopyWith<$Res> implements $FailureCopyWith<$Res> {
   factory _$$FieldFailureCopyWith(
           _$FieldFailure value, $Res Function(_$FieldFailure) then) =
       __$$FieldFailureCopyWithImpl<$Res>;
@@ -477,7 +474,7 @@ abstract class _$$FieldFailureCopyWith<$Res>
 
 /// @nodoc
 class __$$FieldFailureCopyWithImpl<$Res>
-    extends _$FailureEntityCopyWithImpl<$Res, _$FieldFailure>
+    extends _$FailureCopyWithImpl<$Res, _$FieldFailure>
     implements _$$FieldFailureCopyWith<$Res> {
   __$$FieldFailureCopyWithImpl(
       _$FieldFailure _value, $Res Function(_$FieldFailure) _then)
@@ -507,7 +504,7 @@ class _$FieldFailure extends FieldFailure {
 
   @override
   String toString() {
-    return 'FailureEntity.fieldFailure(failureMessage: $failureMessage)';
+    return 'Failure.fieldFailure(failureMessage: $failureMessage)';
   }
 
   @override
@@ -621,7 +618,7 @@ class _$FieldFailure extends FieldFailure {
   }
 }
 
-abstract class FieldFailure extends FailureEntity {
+abstract class FieldFailure extends Failure {
   const factory FieldFailure({required final String failureMessage}) =
       _$FieldFailure;
   const FieldFailure._() : super._();
@@ -636,7 +633,7 @@ abstract class FieldFailure extends FailureEntity {
 
 /// @nodoc
 abstract class _$$NetworkFailureCopyWith<$Res>
-    implements $FailureEntityCopyWith<$Res> {
+    implements $FailureCopyWith<$Res> {
   factory _$$NetworkFailureCopyWith(
           _$NetworkFailure value, $Res Function(_$NetworkFailure) then) =
       __$$NetworkFailureCopyWithImpl<$Res>;
@@ -647,7 +644,7 @@ abstract class _$$NetworkFailureCopyWith<$Res>
 
 /// @nodoc
 class __$$NetworkFailureCopyWithImpl<$Res>
-    extends _$FailureEntityCopyWithImpl<$Res, _$NetworkFailure>
+    extends _$FailureCopyWithImpl<$Res, _$NetworkFailure>
     implements _$$NetworkFailureCopyWith<$Res> {
   __$$NetworkFailureCopyWithImpl(
       _$NetworkFailure _value, $Res Function(_$NetworkFailure) _then)
@@ -677,7 +674,7 @@ class _$NetworkFailure extends NetworkFailure {
 
   @override
   String toString() {
-    return 'FailureEntity.networkFailure(failureMessage: $failureMessage)';
+    return 'Failure.networkFailure(failureMessage: $failureMessage)';
   }
 
   @override
@@ -791,7 +788,7 @@ class _$NetworkFailure extends NetworkFailure {
   }
 }
 
-abstract class NetworkFailure extends FailureEntity {
+abstract class NetworkFailure extends Failure {
   const factory NetworkFailure({required final String failureMessage}) =
       _$NetworkFailure;
   const NetworkFailure._() : super._();
@@ -805,8 +802,7 @@ abstract class NetworkFailure extends FailureEntity {
 }
 
 /// @nodoc
-abstract class _$$EasyFailureCopyWith<$Res>
-    implements $FailureEntityCopyWith<$Res> {
+abstract class _$$EasyFailureCopyWith<$Res> implements $FailureCopyWith<$Res> {
   factory _$$EasyFailureCopyWith(
           _$EasyFailure value, $Res Function(_$EasyFailure) then) =
       __$$EasyFailureCopyWithImpl<$Res>;
@@ -817,7 +813,7 @@ abstract class _$$EasyFailureCopyWith<$Res>
 
 /// @nodoc
 class __$$EasyFailureCopyWithImpl<$Res>
-    extends _$FailureEntityCopyWithImpl<$Res, _$EasyFailure>
+    extends _$FailureCopyWithImpl<$Res, _$EasyFailure>
     implements _$$EasyFailureCopyWith<$Res> {
   __$$EasyFailureCopyWithImpl(
       _$EasyFailure _value, $Res Function(_$EasyFailure) _then)
@@ -847,7 +843,7 @@ class _$EasyFailure extends EasyFailure {
 
   @override
   String toString() {
-    return 'FailureEntity.easyImpactFailure(failureMessage: $failureMessage)';
+    return 'Failure.easyImpactFailure(failureMessage: $failureMessage)';
   }
 
   @override
@@ -961,7 +957,7 @@ class _$EasyFailure extends EasyFailure {
   }
 }
 
-abstract class EasyFailure extends FailureEntity {
+abstract class EasyFailure extends Failure {
   const factory EasyFailure({required final String failureMessage}) =
       _$EasyFailure;
   const EasyFailure._() : super._();
@@ -976,7 +972,7 @@ abstract class EasyFailure extends FailureEntity {
 
 /// @nodoc
 abstract class _$$MediumFailureCopyWith<$Res>
-    implements $FailureEntityCopyWith<$Res> {
+    implements $FailureCopyWith<$Res> {
   factory _$$MediumFailureCopyWith(
           _$MediumFailure value, $Res Function(_$MediumFailure) then) =
       __$$MediumFailureCopyWithImpl<$Res>;
@@ -987,7 +983,7 @@ abstract class _$$MediumFailureCopyWith<$Res>
 
 /// @nodoc
 class __$$MediumFailureCopyWithImpl<$Res>
-    extends _$FailureEntityCopyWithImpl<$Res, _$MediumFailure>
+    extends _$FailureCopyWithImpl<$Res, _$MediumFailure>
     implements _$$MediumFailureCopyWith<$Res> {
   __$$MediumFailureCopyWithImpl(
       _$MediumFailure _value, $Res Function(_$MediumFailure) _then)
@@ -1017,7 +1013,7 @@ class _$MediumFailure extends MediumFailure {
 
   @override
   String toString() {
-    return 'FailureEntity.mediumImpactFailure(failureMessage: $failureMessage)';
+    return 'Failure.mediumImpactFailure(failureMessage: $failureMessage)';
   }
 
   @override
@@ -1131,7 +1127,7 @@ class _$MediumFailure extends MediumFailure {
   }
 }
 
-abstract class MediumFailure extends FailureEntity {
+abstract class MediumFailure extends Failure {
   const factory MediumFailure({required final String failureMessage}) =
       _$MediumFailure;
   const MediumFailure._() : super._();
@@ -1145,8 +1141,7 @@ abstract class MediumFailure extends FailureEntity {
 }
 
 /// @nodoc
-abstract class _$$HardFailureCopyWith<$Res>
-    implements $FailureEntityCopyWith<$Res> {
+abstract class _$$HardFailureCopyWith<$Res> implements $FailureCopyWith<$Res> {
   factory _$$HardFailureCopyWith(
           _$HardFailure value, $Res Function(_$HardFailure) then) =
       __$$HardFailureCopyWithImpl<$Res>;
@@ -1157,7 +1152,7 @@ abstract class _$$HardFailureCopyWith<$Res>
 
 /// @nodoc
 class __$$HardFailureCopyWithImpl<$Res>
-    extends _$FailureEntityCopyWithImpl<$Res, _$HardFailure>
+    extends _$FailureCopyWithImpl<$Res, _$HardFailure>
     implements _$$HardFailureCopyWith<$Res> {
   __$$HardFailureCopyWithImpl(
       _$HardFailure _value, $Res Function(_$HardFailure) _then)
@@ -1187,7 +1182,7 @@ class _$HardFailure extends HardFailure {
 
   @override
   String toString() {
-    return 'FailureEntity.hardImpactFailure(failureMessage: $failureMessage)';
+    return 'Failure.hardImpactFailure(failureMessage: $failureMessage)';
   }
 
   @override
@@ -1301,7 +1296,7 @@ class _$HardFailure extends HardFailure {
   }
 }
 
-abstract class HardFailure extends FailureEntity {
+abstract class HardFailure extends Failure {
   const factory HardFailure({required final String failureMessage}) =
       _$HardFailure;
   const HardFailure._() : super._();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:inteligent_forms/core/constants/app_string_constants.dart';
+import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_button.dart';
 import 'package:sizer/sizer.dart';
 
