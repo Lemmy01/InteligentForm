@@ -25,4 +25,5 @@ class AppBarStrings {
 class AppStringFailures {
   static const String unexpectedFailure =
       'Action failed due to unexpected reasons';
+  static const String invalidCredentials = 'Invalid email or password';
 }
