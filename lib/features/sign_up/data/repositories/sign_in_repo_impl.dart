@@ -12,9 +12,29 @@ class SignInRepoImpl extends SignInRepo {
 
   @override
   Future<Either<Failure, void>> login(
-      {required String email, required String password}) {
-    // TODO: implement login
-    throw UnimplementedError();
+      {required String email, required String password}) async {
+    try {
+      await _signInFirestoreApi.login(
+        email: email,
+        password: password,
+      );
+
+      return const Right(null);
+    } on AppException catch (e) {
+      return Left(
+        HardFailure(
+          failureMessage: e.message,
+        ),
+      );
+    } on Exception catch (e) {
+      Logger.error(runtimeType, e.toString());
+
+      return const Left(
+        HardFailure(
+          failureMessage: AppStringFailures.unexpectedFailure,
+        ),
+      );
+    }
   }
 
   @override
