@@ -1,4 +1,5 @@
 class UserModel {
+  final String userId;
   final String name;
   final String accountType;
   final String emailAddress;
@@ -7,6 +8,7 @@ class UserModel {
   final String subscriptionType;
 
   UserModel({
+    required this.userId,
     required this.name,
     required this.accountType,
     required this.emailAddress,
@@ -17,6 +19,7 @@ class UserModel {
 
   Map<String, dynamic> toMap() {
     return {
+      'userId': userId,
       'name': name,
       'accountType': accountType,
       'emailAddress': emailAddress,
@@ -28,6 +31,7 @@ class UserModel {
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
+      userId: map['userId'],
       name: map['name'],
       accountType: map['accountType'],
       emailAddress: map['emailAddress'],
