@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:inteligent_forms/core/errors/exceptions.dart';
+import 'package:inteligent_forms/features/profile/data/datasources/firestore_user_api.dart';
 import 'package:inteligent_forms/features/sign_up/data/models/user_model.dart';
 
 class SignInFirestoreApi {
@@ -17,12 +18,13 @@ class SignInFirestoreApi {
     required String subscriptionType,
   }) async {
     try {
-      final userCredential = _firebaseAuth.createUserWithEmailAndPassword(
+      final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: emailAddress,
         password: password,
       );
 
       UserModel userModel = UserModel(
+        userId: userCredential.user!.uid,
         name: name,
         accountType: type,
         emailAddress: emailAddress,
@@ -30,6 +32,8 @@ class SignInFirestoreApi {
         address: address,
         subscriptionType: subscriptionType,
       );
+
+      await FirestoreUserApi().updateUser(userModel: userModel);
     } on FirebaseAuthException catch (error) {
       throw MediumException(
         runtimeType,
@@ -38,28 +42,20 @@ class SignInFirestoreApi {
     }
   }
 
-  //update user
-  Future<void> updateUser({
-    required UserModel userModel,
+  Future<void> login({
+    required String email,
+    required String password,
   }) async {
     try {
-      await _firebaseFirestore
-          .collection('users')
-          .doc(userModel.emailAddress)
-          .set(
-            userModel.toMap(),
-          );
-
-          
-    } on FirebaseException catch (error) {
+      _firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on FirebaseAuthException catch (error) {
       throw MediumException(
         runtimeType,
         error.toString(),
       );
     }
   }
-
-  //delete user
-
-  //get user
 }
