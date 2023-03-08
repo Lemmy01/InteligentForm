@@ -5,11 +5,11 @@ import 'package:inteligent_forms/features/authentication/domain/validators/auten
 import '../../../../core/errors/failures.dart';
 import '../repositories/authentication _repo.dart';
 
-class AutenticationUsecase {
+class AuthenticationUsecase {
   AuthenticationValidator authenticationValidator;
   AuthenticationRepo authenticationRepo;
 
-  AutenticationUsecase({
+  AuthenticationUsecase({
     required this.authenticationValidator,
     required this.authenticationRepo,
   });

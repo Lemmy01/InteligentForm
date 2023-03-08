@@ -1,13 +1,43 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-part 'authentication_event.dart';
-part 'authentication_state.dart';
+import '../../../domain/usecases/authentication_usecase.dart';
+import 'authentication_state.dart';
 
-class AuthenticationBloc extends Bloc<SignUpEvent, SignUpState> {
-  AuthenticationBloc() : super(SignUpInitial()) {
-    on<SignUpEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+part 'authentication_event.dart';
+
+class AuthenticationBloc
+    extends Bloc<AuthenticationEvent, AuthenticationState> {
+  AuthenticationUsecase authenticationUsecase;
+
+  AuthenticationBloc({
+    required this.authenticationUsecase,
+  }) : super(AuthenticationInitial()) {
+    on<SignUpStarted>(_onSignUpStarted);
+  }
+
+  Future<void> _onSignUpStarted(
+      SignUpStarted event, Emitter<AuthenticationState> emit) async {
+    emit(LoadingState());
+
+    (await authenticationUsecase.signUp(
+      name: event.name,
+      type: event.type,
+      emailAddress: event.emailAddress,
+      password: event.password,
+      fiscalCode: event.fiscalCode,
+      address: event.address,
+      subscriptionType: event.subscriptionType,
+    ))
+        .fold(
+      (error) => emit(
+        SignUpFailure(
+          message: error.failureMessage,
+        ),
+      ),
+      (succes) => SignUpSuccess(),
+    );
   }
 }
