@@ -6,12 +6,12 @@ import 'package:inteligent_forms/core/shared_widgets/my_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
 import 'package:inteligent_forms/core/utils/enums.dart';
-import 'package:inteligent_forms/features/sign_up/presentation/pages/app_bottom_bar.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../../core/shared_widgets/sized_boxes.dart';
 import '../../../bloc/account_type_bloc.dart/bloc/account_type_bloc.dart';
 import '../../../bloc/account_type_bloc.dart/bloc/account_type_state.dart';
+import '../../app_bottom_bar.dart';
 import 'account_type_dropdown.dart';
 
 class SignUpPageBody extends HookWidget {
@@ -39,7 +39,6 @@ class SignUpPageBody extends HookWidget {
             BlocBuilder<AccountTypeBloc, AccountTypeState>(
               builder: (context, state) {
                 return MyTextField(
-                  
                   controller: nameController,
                   hintText: state.accountType == AccountType.individual
                       ? '${AppStringContants.name} ${AppStringContants.unique}'

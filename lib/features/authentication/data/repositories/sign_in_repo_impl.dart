@@ -2,10 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:inteligent_forms/core/errors/exceptions.dart';
 import 'package:inteligent_forms/core/errors/failures.dart';
 import 'package:inteligent_forms/core/utils/logger.dart';
-import 'package:inteligent_forms/features/sign_up/data/datasources/remote/sign_in_firestore_api.dart';
-import 'package:inteligent_forms/features/sign_up/domain/repositories/sign_in_repo.dart';
 
 import '../../../../core/constants/string_constants.dart';
+import '../../domain/repositories/authentication _repo.dart';
+import '../datasources/remote/sign_in_firestore_api.dart';
 
 class SignInRepoImpl extends SignInRepo {
   final _signInFirestoreApi = SignInFirestoreApi();

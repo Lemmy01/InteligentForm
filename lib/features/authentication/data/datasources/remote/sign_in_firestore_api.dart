@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:inteligent_forms/core/errors/exceptions.dart';
 import 'package:inteligent_forms/features/profile/data/datasources/firestore_user_api.dart';
-import 'package:inteligent_forms/features/sign_up/data/models/user_model.dart';
+
+import '../../models/user_model.dart';
 
 class SignInFirestoreApi {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;

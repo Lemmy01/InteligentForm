@@ -2,11 +2,11 @@ import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:inteligent_forms/features/sign_up/presentation/pages/home_page/home_page.dart';
 import 'package:sizer/sizer.dart';
 
 import 'bloc_observer.dart';
-import 'features/sign_up/presentation/bloc/account_type_bloc.dart/bloc/account_type_bloc.dart';
+import 'features/authentication/presentation/bloc/account_type_bloc.dart/bloc/account_type_bloc.dart';
+import 'features/authentication/presentation/pages/home_page/home_page.dart';
 import 'firebase_options.dart';
 
 Future main() async {

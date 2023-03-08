@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inteligent_forms/features/sign_up/presentation/pages/home_page/widgets/sign_in_button.dart';
+import 'package:inteligent_forms/features/authentication/presentation/pages/home_page/widgets/sign_in_button.dart';
 import 'package:sizer/sizer.dart';
 
 import 'fill_form_button.dart';

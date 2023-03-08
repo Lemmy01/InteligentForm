@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:inteligent_forms/features/sign_up/presentation/pages/login_page/login_page.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../../core/constants/string_constants.dart';
+import '../../login_page/login_page.dart';
 
 class SignInButton extends StatelessWidget {
   const SignInButton({
