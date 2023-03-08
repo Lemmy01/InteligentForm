@@ -7,7 +7,7 @@ import '../../../../core/constants/string_constants.dart';
 import '../../domain/repositories/authentication _repo.dart';
 import '../datasources/remote/sign_in_firestore_api.dart';
 
-class SignInRepoImpl extends SignInRepo {
+class SignInRepoImpl extends AuthenticationRepo {
   final _signInFirestoreApi = SignInFirestoreApi();
 
   @override

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:inteligent_forms/core/errors/failures.dart';
 
-abstract class SignInRepo {
+abstract class AuthenticationRepo {
   Future<Either<Failure, void>> signUp({
     required String name,
     required String type,
