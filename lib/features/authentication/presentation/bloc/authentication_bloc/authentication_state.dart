@@ -7,11 +7,20 @@ abstract class AuthenticationState extends Equatable {
   List<Object> get props => [];
 }
 
-class AuthenticationInitial extends AuthenticationState {}
+class AuthenticationInitial extends AuthenticationState {
+  @override
+  List<Object> get props => [];
+}
 
-class LoadingState extends AuthenticationState {}
+class LoadingState extends AuthenticationState {
+  @override
+  List<Object> get props => [];
+}
 
-class SignUpSuccess extends AuthenticationState {}
+class SignUpSuccess extends AuthenticationState {
+  @override
+  List<Object> get props => [];
+}
 
 class SignUpFailure extends AuthenticationState {
   final String message;

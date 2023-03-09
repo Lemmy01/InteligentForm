@@ -9,7 +9,6 @@ abstract class AuthenticationRepo {
     required String password,
     required String? fiscalCode,
     required String address,
-    required String subscriptionType,
   });
 
   Future<Either<Failure, void>> login({

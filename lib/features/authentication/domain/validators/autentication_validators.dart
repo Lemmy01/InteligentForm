@@ -43,7 +43,9 @@ class AuthenticationValidator {
     required String password,
     required String confirmPassword,
   }) {
-    if (password.isEmpty || confirmPassword != password) {
+    if (password.isEmpty ||
+        confirmPassword != password ||
+        password.length < 6) {
       return false;
     }
     return true;

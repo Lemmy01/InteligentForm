@@ -53,7 +53,7 @@ class LoginPageBody extends HookWidget {
           MyTextButton(
             text: AppStringContants.signUp,
             onPressed: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => const SignUpPage(),

@@ -19,6 +19,7 @@ class MyTextField extends StatelessWidget {
     return SizedBox(
       width: width ?? 80.w,
       child: TextField(
+        textInputAction: TextInputAction.next,
         textAlign: TextAlign.center,
         controller: controller,
         decoration: InputDecoration(

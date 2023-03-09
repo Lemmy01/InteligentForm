@@ -5,10 +5,10 @@ import 'package:inteligent_forms/core/utils/logger.dart';
 
 import '../../../../core/constants/string_constants.dart';
 import '../../domain/repositories/authentication _repo.dart';
-import '../datasources/remote/sign_in_firestore_api.dart';
+import '../datasources/remote/authentication_firestore_api.dart';
 
-class SignInRepoImpl extends AuthenticationRepo {
-  final _signInFirestoreApi = SignInFirestoreApi();
+class AuthenticationRepoImpl extends AuthenticationRepo {
+  final _signInFirestoreApi = AuthenticationFirestoreApi();
 
   @override
   Future<Either<Failure, void>> login(
@@ -38,14 +38,14 @@ class SignInRepoImpl extends AuthenticationRepo {
   }
 
   @override
-  Future<Either<Failure, void>> signUp(
-      {required String name,
-      required String type,
-      required String emailAddress,
-      required String password,
-      required String? fiscalCode,
-      required String address,
-      required String subscriptionType}) async {
+  Future<Either<Failure, void>> signUp({
+    required String name,
+    required String type,
+    required String emailAddress,
+    required String password,
+    required String? fiscalCode,
+    required String address,
+  }) async {
     try {
       await _signInFirestoreApi.signUp(
         name: name,
@@ -54,7 +54,6 @@ class SignInRepoImpl extends AuthenticationRepo {
         password: password,
         fiscalCode: fiscalCode,
         address: address,
-        subscriptionType: subscriptionType,
       );
 
       return const Right(null);

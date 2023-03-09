@@ -4,7 +4,7 @@ import 'package:inteligent_forms/features/profile/data/datasources/firestore_use
 
 import '../../models/user_model.dart';
 
-class SignInFirestoreApi {
+class AuthenticationFirestoreApi {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   Future<void> signUp({
@@ -14,7 +14,6 @@ class SignInFirestoreApi {
     required String password,
     required String? fiscalCode,
     required String address,
-    required String subscriptionType,
   }) async {
     try {
       final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
@@ -29,11 +28,15 @@ class SignInFirestoreApi {
         emailAddress: emailAddress,
         fiscalCode: fiscalCode,
         address: address,
-        subscriptionType: subscriptionType,
       );
 
       await FirestoreUserApi().updateUser(userModel: userModel);
     } on FirebaseAuthException catch (error) {
+      throw MediumException(
+        runtimeType,
+        error.toString(),
+      );
+    } on FirebaseException catch (error) {
       throw MediumException(
         runtimeType,
         error.toString(),
@@ -56,5 +59,9 @@ class SignInFirestoreApi {
         error.toString(),
       );
     }
+  }
+
+  Future<void> logout() async {
+    await _firebaseAuth.signOut();
   }
 }

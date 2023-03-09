@@ -21,7 +21,6 @@ class AuthenticationUsecase {
     required String password,
     required String? fiscalCode,
     required String address,
-    required String subscriptionType,
   }) async {
     final Either<Failure, void> areSignUpInformationValid =
         authenticationValidator.areSignUpInformationValid(
@@ -42,7 +41,6 @@ class AuthenticationUsecase {
       password: password,
       fiscalCode: fiscalCode,
       address: address,
-      subscriptionType: subscriptionType,
     );
   }
 }

@@ -5,7 +5,6 @@ class UserModel {
   final String emailAddress;
   final String? fiscalCode;
   final String address;
-  final String subscriptionType;
 
   UserModel({
     required this.userId,
@@ -14,7 +13,6 @@ class UserModel {
     required this.emailAddress,
     required this.fiscalCode,
     required this.address,
-    required this.subscriptionType,
   });
 
   Map<String, dynamic> toMap() {
@@ -25,7 +23,6 @@ class UserModel {
       'emailAddress': emailAddress,
       'fiscalCode': fiscalCode,
       'address': address,
-      'subscriptionType': subscriptionType,
     };
   }
 
@@ -37,7 +34,6 @@ class UserModel {
       emailAddress: map['emailAddress'],
       fiscalCode: map['fiscalCode'],
       address: map['address'],
-      subscriptionType: map['subscriptionType'],
     );
   }
 }

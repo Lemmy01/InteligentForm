@@ -11,7 +11,7 @@ import 'package:sizer/sizer.dart';
 import '../../../../../../core/shared_widgets/sized_boxes.dart';
 import '../../../bloc/account_type_bloc.dart/bloc/account_type_bloc.dart';
 import '../../../bloc/account_type_bloc.dart/bloc/account_type_state.dart';
-import '../../app_bottom_bar.dart';
+import '../../../bloc/authentication_bloc/authentication_bloc.dart';
 import 'account_type_dropdown.dart';
 
 class SignUpPageBody extends HookWidget {
@@ -98,13 +98,17 @@ class SignUpPageBody extends HookWidget {
                 MyButton(
                   text: AppStringContants.signUp,
                   onPressed: () {
-                    //TODO George Luta : schimba cu bloc (dummmy acum)
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const AppBottomBar(),
-                      ),
-                    );
+                    context.read<AuthenticationBloc>().add(
+                          SignUpStarted(
+                            name: nameController.text.trim(),
+                            emailAddress:
+                                emailController.text.toLowerCase().trim(),
+                            password: passwordController.text,
+                            confirmPassword: confirmPasswordController.text,
+                            fiscalCode: fiscalCodeController.text.trim(),
+                            address: addressController.text.trim(),
+                          ),
+                        );
                   },
                   width: 30.w,
                 ),

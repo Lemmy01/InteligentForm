@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../authentication/data/datasources/remote/authentication_firestore_api.dart';
+
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
@@ -12,7 +14,8 @@ class ProfilePage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
-              //TODO George Luta : add sign out logic
+              //TODO George Luta : schimba , nu e ok
+              AuthenticationFirestoreApi().logout();
             },
           )
         ],
