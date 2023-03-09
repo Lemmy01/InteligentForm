@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../../../authentication/data/datasources/remote/authentication_firestore_api.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inteligent_forms/features/authentication/presentation/bloc/authentication_bloc/authentication_bloc.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -14,8 +14,9 @@ class ProfilePage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
-              //TODO George Luta : schimba , nu e ok
-              AuthenticationFirestoreApi().logout();
+              context.read<AuthenticationBloc>().add(
+                    const LogoutEvent(),
+                  );
             },
           )
         ],

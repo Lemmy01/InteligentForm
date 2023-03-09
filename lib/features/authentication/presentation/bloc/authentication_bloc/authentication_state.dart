@@ -60,3 +60,26 @@ class LoginFailureState extends AuthenticationState {
   @override
   List<Object> get props => [message];
 }
+
+class LogoutSuccessState extends AuthenticationState {
+  final String message;
+
+  const LogoutSuccessState({
+    required this.message,
+  });
+
+  @override
+  List<Object> get props => [message];
+}
+
+
+class LogoutFailureState extends AuthenticationState {
+  final String message;
+
+  const LogoutFailureState({
+    required this.message,
+  });
+
+  @override
+  List<Object> get props => [message];
+}

@@ -64,4 +64,8 @@ class AuthenticationUsecase {
       password: password,
     );
   }
+
+  Future<Either<Failure, void>> logout() async {
+    return authenticationRepo.logout();
+  }
 }

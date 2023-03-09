@@ -74,5 +74,26 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
     }
   }
 
-  
+  @override
+  Future<Either<Failure, void>> logout() async {
+    try {
+      _signInFirestoreApi.logout();
+
+      return const Right(null);
+    } on AppException catch (e) {
+      return Left(
+        HardFailure(
+          failureMessage: e.message,
+        ),
+      );
+    } on Exception catch (e) {
+      Logger.error(runtimeType, e.toString());
+
+      return const Left(
+        HardFailure(
+          failureMessage: AppStringFailuresMessages.unexpectedFailure,
+        ),
+      );
+    }
+  }
 }

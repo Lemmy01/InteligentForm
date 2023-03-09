@@ -34,6 +34,7 @@ class AuthenticationBloc
 
     on<SignUpStarted>(_onSignUpStarted);
     on<LoginStarted>(_onLoginStarted);
+    on<LogoutEvent>(_onLogout);
   }
 
   Future<void> _onSignUpStarted(
@@ -86,6 +87,27 @@ class AuthenticationBloc
       (succes) => emit(
         const LoginSuccessState(
           message: AppStringSuccesMessages.loginSuccess,
+        ),
+      ),
+    );
+  }
+
+  Future<void> _onLogout(
+    LogoutEvent event,
+    Emitter<AuthenticationState> emit,
+  ) async {
+    emit(LoadingState());
+
+    (await authenticationUsecase.logout())
+        .fold(
+      (error) => emit(
+        LogoutFailureState(
+          message: error.failureMessage,
+        ),
+      ),
+      (succes) => emit(
+        const LogoutSuccessState(
+          message: AppStringSuccesMessages.logoutSuccess,
         ),
       ),
     );

@@ -22,13 +22,6 @@ class LoginPage extends StatelessWidget {
               ),
             );
           }
-          if (state is SignUpSuccessState) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.message),
-              ),
-            );
-          }
         },
         builder: (context, state) {
           if (state is LoadingState) {

@@ -16,5 +16,5 @@ abstract class AuthenticationRepo {
     required String password,
   });
 
-  
+  Future<Either<Failure, void>> logout();
 }

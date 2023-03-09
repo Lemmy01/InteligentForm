@@ -22,21 +22,8 @@ class SignUpPage extends StatelessWidget {
               ),
             );
           }
-          if (state is SignUpSuccessState) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.message),
-              ),
-            );
-          }
         },
         builder: (context, state) {
-          if (state is LoadingState) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-
           if (state is SignUpSuccessState) {
             return const AppBottomBar();
           }

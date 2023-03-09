@@ -49,3 +49,7 @@ class LoginStarted extends AuthenticationEvent {
         password,
       ];
 }
+
+class LogoutEvent extends AuthenticationEvent {
+  const LogoutEvent();
+}

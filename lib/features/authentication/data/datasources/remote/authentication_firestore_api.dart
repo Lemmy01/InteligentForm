@@ -95,6 +95,13 @@ class AuthenticationFirestoreApi {
   }
 
   Future<void> logout() async {
-    await _firebaseAuth.signOut();
+    try {
+      await _firebaseAuth.signOut();
+    } on FirebaseAuthException catch (error) {
+      throw MediumException(
+        runtimeType,
+        error.toString(),
+      );
+    }
   }
 }
