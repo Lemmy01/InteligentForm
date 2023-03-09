@@ -27,6 +27,26 @@ class AuthenticationValidator {
     return const Right(null);
   }
 
+  Either<Failure, void> areLoginInformationValid({
+    required String emailAddress,
+    required String password,
+  }) {
+    if (!_isEmailValid(
+          email: emailAddress,
+        ) ||
+        !_isPasswordValid(
+          password: password,
+        )) {
+      return const Left(
+        FieldFailure(
+          failureMessage: AppStringFailuresMessages.invalidCredentials,
+        ),
+      );
+    }
+
+    return const Right(null);
+  }
+
   bool _isEmailValid({required String email}) {
     final bool emailValid;
     if (email.isEmpty) {
@@ -41,15 +61,17 @@ class AuthenticationValidator {
 
   bool _isPasswordValid({
     required String password,
-    required String confirmPassword,
+    String? confirmPassword,
   }) {
-    if (password.isEmpty ||
-        confirmPassword != password ||
-        password.length < 6) {
+    if (confirmPassword != null) {
+      if (password != confirmPassword) {
+        return false;
+      }
+    }
+
+    if (password.isEmpty || password.length < 6) {
       return false;
     }
     return true;
   }
-
-  //TODO George Luta : implement fiscal code validator
 }

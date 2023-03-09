@@ -33,6 +33,7 @@ class AuthenticationBloc
     );
 
     on<SignUpStarted>(_onSignUpStarted);
+    on<LoginStarted>(_onLoginStarted);
   }
 
   Future<void> _onSignUpStarted(
@@ -49,11 +50,11 @@ class AuthenticationBloc
       address: event.address,
     ))
         .fold(
-      (error) => emit(SignUpFailure(
+      (error) => emit(SignUpFailureState(
         message: error.failureMessage,
       )),
       (succes) => emit(
-        const SignUpSuccess(
+        const SignUpSuccessState(
           message: AppStringSuccesMessages.signUpSuccess,
         ),
       ),
@@ -64,5 +65,29 @@ class AuthenticationBloc
   Future<void> close() async {
     accountTypeSubscription.cancel();
     super.close();
+  }
+
+  Future<void> _onLoginStarted(
+    LoginStarted event,
+    Emitter<AuthenticationState> emit,
+  ) async {
+    emit(LoadingState());
+
+    (await authenticationUsecase.login(
+      email: event.emailAddress,
+      password: event.password,
+    ))
+        .fold(
+      (error) => emit(
+        LoginFailureState(
+          message: error.failureMessage,
+        ),
+      ),
+      (succes) => emit(
+        const LoginSuccessState(
+          message: AppStringSuccesMessages.loginSuccess,
+        ),
+      ),
+    );
   }
 }

@@ -44,4 +44,24 @@ class AuthenticationUsecase {
       address: address,
     );
   }
+
+  Future<Either<Failure, void>> login({
+    required String email,
+    required String password,
+  }) async {
+    final Either<Failure, void> areLoginInformationValid =
+        authenticationValidator.areLoginInformationValid(
+      emailAddress: email,
+      password: password,
+    );
+
+    if (areLoginInformationValid.isLeft()) {
+      return areLoginInformationValid;
+    }
+
+    return authenticationRepo.login(
+      email: email,
+      password: password,
+    );
+  }
 }

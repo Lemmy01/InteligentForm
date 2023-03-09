@@ -33,3 +33,19 @@ class SignUpStarted extends AuthenticationEvent {
         address,
       ];
 }
+
+class LoginStarted extends AuthenticationEvent {
+  final String emailAddress;
+  final String password;
+
+  const LoginStarted({
+    required this.emailAddress,
+    required this.password,
+  });
+
+  @override
+  List<Object> get props => [
+        emailAddress,
+        password,
+      ];
+}

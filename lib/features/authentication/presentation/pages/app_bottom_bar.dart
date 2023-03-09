@@ -12,10 +12,13 @@ class AppBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PersistentTabView(
-      context,
-      screens: _buildScreens(),
-      items: _navBarsItems(context),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: PersistentTabView(
+        context,
+        screens: _buildScreens(),
+        items: _navBarsItems(context),
+      ),
     );
   }
 

@@ -6,6 +6,7 @@ import 'package:inteligent_forms/core/shared_widgets/my_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
 import 'package:inteligent_forms/core/utils/enums.dart';
+import 'package:inteligent_forms/features/authentication/presentation/pages/login_page/login_page.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../../core/shared_widgets/sized_boxes.dart';
@@ -94,11 +95,19 @@ class SignUpPageBody extends HookWidget {
               children: [
                 MyTextButton(
                   text: AppStringContants.login,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginPage(),
+                      ),
+                    );
+                  },
                 ),
                 BlocBuilder<AuthenticationBloc, AuthenticationState>(
                   buildWhen: (previous, current) {
-                    return current is LoadingState || current is SignUpFailure;
+                    return current is LoadingState ||
+                        current is SignUpFailureState;
                   },
                   builder: (context, state) {
                     return MyButton(

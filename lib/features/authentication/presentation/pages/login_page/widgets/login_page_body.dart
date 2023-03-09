@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_button.dart';
+import 'package:inteligent_forms/features/authentication/presentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../../core/shared_widgets/my_button.dart';
@@ -67,7 +69,12 @@ class LoginPageBody extends HookWidget {
           MyButton(
             text: AppStringContants.login,
             onPressed: () {
-              //TODO George Luta : login logic
+              context.read<AuthenticationBloc>().add(
+                    LoginStarted(
+                      emailAddress: emailController.text.trim(),
+                      password: passwordController.text.trim(),
+                    ),
+                  );
             },
           ),
         ],

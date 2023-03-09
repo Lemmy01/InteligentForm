@@ -17,10 +17,10 @@ class LoadingState extends AuthenticationState {
   List<Object> get props => [];
 }
 
-class SignUpSuccess extends AuthenticationState {
+class SignUpSuccessState extends AuthenticationState {
   final String message;
 
-  const SignUpSuccess({
+  const SignUpSuccessState({
     required this.message,
   });
 
@@ -28,10 +28,32 @@ class SignUpSuccess extends AuthenticationState {
   List<Object> get props => [message];
 }
 
-class SignUpFailure extends AuthenticationState {
+class SignUpFailureState extends AuthenticationState {
   final String message;
 
-  const SignUpFailure({
+  const SignUpFailureState({
+    required this.message,
+  });
+
+  @override
+  List<Object> get props => [message];
+}
+
+class LoginSuccessState extends AuthenticationState {
+  final String message;
+
+  const LoginSuccessState({
+    required this.message,
+  });
+
+  @override
+  List<Object> get props => [message];
+}
+
+class LoginFailureState extends AuthenticationState {
+  final String message;
+
+  const LoginFailureState({
     required this.message,
   });
 
