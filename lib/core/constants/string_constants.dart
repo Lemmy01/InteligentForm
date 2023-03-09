@@ -28,6 +28,8 @@ class AppStringFailuresMessages {
   static const String invalidCredentials = 'Invalid email or password';
   static const String emailAlreadyInUse =
       'The account already exists for that email.';
+  static const String nameAlreadyInUse =
+      'The account already exists for that name.';
 }
 
 class AppStringSuccesMessages {
