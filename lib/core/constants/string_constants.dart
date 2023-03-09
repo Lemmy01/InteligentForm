@@ -22,8 +22,16 @@ class AppBarStrings {
   static const String profile = 'Profile';
 }
 
-class AppStringFailures {
+class AppStringFailuresMessages {
   static const String unexpectedFailure =
       'Action failed due to unexpected reasons';
   static const String invalidCredentials = 'Invalid email or password';
+  static const String emailAlreadyInUse =
+      'The account already exists for that email.';
+}
+
+class AppStringSuccesMessages {
+  static const String signUpSuccess = 'Sign Up Success';
+  static const String loginSuccess = 'Login Success';
+  static const String logoutSuccess = 'Logout Success';
 }

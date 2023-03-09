@@ -19,7 +19,7 @@ class AuthenticationValidator {
         )) {
       return const Left(
         FieldFailure(
-          failureMessage: AppStringFailures.invalidCredentials,
+          failureMessage: AppStringFailuresMessages.invalidCredentials,
         ),
       );
     }

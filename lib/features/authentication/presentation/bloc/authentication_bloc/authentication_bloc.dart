@@ -6,6 +6,7 @@ import 'package:inteligent_forms/core/utils/enums.dart';
 import 'package:inteligent_forms/core/utils/maps.dart';
 import 'package:inteligent_forms/features/authentication/presentation/bloc/account_type_bloc.dart/bloc/account_type_bloc.dart';
 
+import '../../../../../core/constants/string_constants.dart';
 import '../../../domain/usecases/authentication_usecase.dart';
 import 'authentication_state.dart';
 
@@ -50,7 +51,11 @@ class AuthenticationBloc
       (error) => emit(SignUpFailure(
         message: error.failureMessage,
       )),
-      (succes) => emit(SignUpSuccess()),
+      (succes) => emit(
+        const SignUpSuccess(
+          message: AppStringSuccesMessages.signUpSuccess,
+        ),
+      ),
     );
   }
 

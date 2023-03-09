@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:inteligent_forms/core/errors/exceptions.dart';
 import 'package:inteligent_forms/features/profile/data/datasources/firestore_user_api.dart';
 
@@ -32,9 +33,15 @@ class AuthenticationFirestoreApi {
 
       await FirestoreUserApi().updateUser(userModel: userModel);
     } on FirebaseAuthException catch (error) {
+      String errorMessage = error.message!;
+
+      if (error.code == 'email-already-in-use') {
+        errorMessage = AppStringFailuresMessages.emailAlreadyInUse;
+      }
+
       throw MediumException(
         runtimeType,
-        error.toString(),
+        errorMessage,
       );
     } on FirebaseException catch (error) {
       throw MediumException(

@@ -31,7 +31,7 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
 
       return const Left(
         HardFailure(
-          failureMessage: AppStringFailures.unexpectedFailure,
+          failureMessage: AppStringFailuresMessages.unexpectedFailure,
         ),
       );
     }
@@ -68,7 +68,7 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
 
       return const Left(
         HardFailure(
-          failureMessage: AppStringFailures.unexpectedFailure,
+          failureMessage: AppStringFailuresMessages.unexpectedFailure,
         ),
       );
     }
