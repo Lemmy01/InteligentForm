@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inteligent_forms/features/authentication/presentation/pages/home_page/home_page.dart';
 import 'package:inteligent_forms/features/authentication/presentation/pages/login_page/widgets/login_page_body.dart';
 
 class LoginPage extends StatelessWidget {
@@ -6,9 +7,20 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.secondary,
-      body: const LoginPageBody(),
+    return WillPopScope(
+      onWillPop: () async {
+        await Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomePage(),
+          ),
+        );
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        body: const LoginPageBody(),
+      ),
     );
   }
 }
