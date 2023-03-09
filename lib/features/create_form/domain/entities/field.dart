@@ -1,4 +1,5 @@
 class Field {
+  String label;
   String keyWord;
   bool mandatory;
   String fieldType;
@@ -11,5 +12,6 @@ class Field {
     required this.fieldType,
     this.options,
     required this.docKeys,
+    required this.label,
   });
 }

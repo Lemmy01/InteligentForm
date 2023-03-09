@@ -8,6 +8,7 @@ class FieldModel extends Field {
     required super.docKeys,
     required this.sectionId,
     required this.id,
+    required super.label,
   });
   String id;
   String sectionId;
@@ -20,6 +21,7 @@ class FieldModel extends Field {
       docKeys: json['docKeys'],
       sectionId: json['sectionId'],
       id: json['id'],
+      label: '',
     );
   }
 
@@ -31,6 +33,7 @@ class FieldModel extends Field {
       'docKeys': docKeys,
       'sectionId': sectionId,
       'id': id,
+      'label': label,
     };
   }
 
@@ -42,6 +45,7 @@ class FieldModel extends Field {
       docKeys: map['docKeys'],
       sectionId: map['sectionId'],
       id: map['id'],
+      label: map['label'],
     );
   }
 
@@ -53,6 +57,7 @@ class FieldModel extends Field {
       'docKeys': docKeys,
       'sectionId': sectionId,
       'id': id,
+      'label': label,
     };
   }
 }
