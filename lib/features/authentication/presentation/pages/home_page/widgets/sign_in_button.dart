@@ -16,7 +16,7 @@ class SignInButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(22.sp),
       ),
       onPressed: () {
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => const LoginPage(),
