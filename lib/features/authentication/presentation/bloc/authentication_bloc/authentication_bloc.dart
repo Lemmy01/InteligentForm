@@ -44,6 +44,7 @@ class AuthenticationBloc
       type: accountTypeToString(accountType: accountType),
       emailAddress: event.emailAddress,
       password: event.password,
+      confirmPassword: event.confirmPassword,
       fiscalCode: event.fiscalCode,
       address: event.address,
     ))

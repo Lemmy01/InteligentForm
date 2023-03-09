@@ -12,6 +12,7 @@ import '../../../../../../core/shared_widgets/sized_boxes.dart';
 import '../../../bloc/account_type_bloc.dart/bloc/account_type_bloc.dart';
 import '../../../bloc/account_type_bloc.dart/bloc/account_type_state.dart';
 import '../../../bloc/authentication_bloc/authentication_bloc.dart';
+import '../../../bloc/authentication_bloc/authentication_state.dart';
 import 'account_type_dropdown.dart';
 
 class SignUpPageBody extends HookWidget {
@@ -95,22 +96,30 @@ class SignUpPageBody extends HookWidget {
                   text: AppStringContants.login,
                   onPressed: () {},
                 ),
-                MyButton(
-                  text: AppStringContants.signUp,
-                  onPressed: () {
-                    context.read<AuthenticationBloc>().add(
-                          SignUpStarted(
-                            name: nameController.text.trim(),
-                            emailAddress:
-                                emailController.text.toLowerCase().trim(),
-                            password: passwordController.text,
-                            confirmPassword: confirmPasswordController.text,
-                            fiscalCode: fiscalCodeController.text.trim(),
-                            address: addressController.text.trim(),
-                          ),
-                        );
+                BlocBuilder<AuthenticationBloc, AuthenticationState>(
+                  buildWhen: (previous, current) {
+                    return current is LoadingState || current is SignUpFailure;
                   },
-                  width: 30.w,
+                  builder: (context, state) {
+                    return MyButton(
+                      isLoading: state is LoadingState,
+                      text: AppStringContants.signUp,
+                      onPressed: () {
+                        context.read<AuthenticationBloc>().add(
+                              SignUpStarted(
+                                name: nameController.text.trim(),
+                                emailAddress:
+                                    emailController.text.toLowerCase().trim(),
+                                password: passwordController.text,
+                                confirmPassword: confirmPasswordController.text,
+                                fiscalCode: fiscalCodeController.text.trim(),
+                                address: addressController.text.trim(),
+                              ),
+                            );
+                      },
+                      width: 30.w,
+                    );
+                  },
                 ),
               ],
             ),

@@ -7,16 +7,18 @@ class MyButton extends StatelessWidget {
     required this.text,
     required this.onPressed,
     this.width,
+    this.isLoading = false,
   });
 
   final String text;
   final VoidCallback onPressed;
   final double? width;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: onPressed,
+      onPressed: isLoading ? () {} : onPressed,
       minWidth: width ?? 80.w,
       padding: EdgeInsets.symmetric(
         vertical: 1.h,
@@ -25,12 +27,16 @@ class MyButton extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.sp),
       ),
-      child: Text(
-        text,
-        style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-              color: Theme.of(context).colorScheme.onPrimary,
+      child: !isLoading
+          ? Text(
+              text,
+              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
+            )
+          : const Center(
+              child: CircularProgressIndicator(),
             ),
-      ),
     );
   }
 }

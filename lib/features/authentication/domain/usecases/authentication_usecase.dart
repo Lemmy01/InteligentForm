@@ -19,6 +19,7 @@ class AuthenticationUsecase {
     required String type,
     required String emailAddress,
     required String password,
+    required String confirmPassword,
     required String? fiscalCode,
     required String address,
   }) async {
@@ -26,7 +27,7 @@ class AuthenticationUsecase {
         authenticationValidator.areSignUpInformationValid(
       emailAddress: emailAddress,
       password: password,
-      confirmPassword: password,
+      confirmPassword: confirmPassword,
       fiscalCode: fiscalCode,
     );
 
