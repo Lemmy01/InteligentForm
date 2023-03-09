@@ -34,8 +34,10 @@ class MyButton extends StatelessWidget {
                     color: Theme.of(context).colorScheme.onPrimary,
                   ),
             )
-          : const Center(
-              child: CircularProgressIndicator(),
+          : Center(
+              child: CircularProgressIndicator(
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
             ),
     );
   }

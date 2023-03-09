@@ -8,6 +8,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../../../core/shared_widgets/my_button.dart';
 import '../../../../../../core/shared_widgets/my_text_field.dart';
+import '../../../bloc/authentication_bloc/authentication_state.dart';
 import '../../sign_up_page/sign_up_page.dart';
 
 class LoginPageBody extends HookWidget {
@@ -66,15 +67,20 @@ class LoginPageBody extends HookWidget {
           SizedBox(
             height: 5.h,
           ),
-          MyButton(
-            text: AppStringContants.login,
-            onPressed: () {
-              context.read<AuthenticationBloc>().add(
-                    LoginStarted(
-                      emailAddress: emailController.text.trim(),
-                      password: passwordController.text.trim(),
-                    ),
-                  );
+          BlocBuilder<AuthenticationBloc, AuthenticationState>(
+            builder: (context, state) {
+              return MyButton(
+                isLoading: state is LoadingState,
+                text: AppStringContants.login,
+                onPressed: () {
+                  context.read<AuthenticationBloc>().add(
+                        LoginStarted(
+                          emailAddress: emailController.text.trim(),
+                          password: passwordController.text.trim(),
+                        ),
+                      );
+                },
+              );
             },
           ),
         ],
