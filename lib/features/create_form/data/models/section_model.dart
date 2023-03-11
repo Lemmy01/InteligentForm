@@ -5,10 +5,10 @@ class SectionModel extends Section {
     required super.content,
     required super.scanType,
     required super.sectionNumber,
-    required this.id,
+    this.id,
     required this.formId,
   });
-  String id;
+  String? id;
   String formId;
 
   fromJson(Map<String, dynamic> json) {

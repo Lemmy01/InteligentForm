@@ -7,10 +7,10 @@ class FieldModel extends Field {
     required super.fieldType,
     required super.docKeys,
     required this.sectionId,
-    required this.id,
+    this.id,
     required super.label,
   });
-  String id;
+  String? id;
   String sectionId;
 
   fromJson(Map<String, dynamic> json) {
@@ -21,7 +21,7 @@ class FieldModel extends Field {
       docKeys: json['docKeys'],
       sectionId: json['sectionId'],
       id: json['id'],
-      label: '',
+      label: json['label'],
     );
   }
 

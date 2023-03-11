@@ -1,9 +1,9 @@
 class Form {
   String title;
-  int dataRetenrionPeriod;
+  int dataRetentionPeriod;
 
   Form({
     required this.title,
-    required this.dataRetenrionPeriod,
+    required this.dataRetentionPeriod,
   });
 }
