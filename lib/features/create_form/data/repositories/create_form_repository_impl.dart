@@ -22,7 +22,6 @@ class CreateFormRepositoryImpl extends CreateFormRepository {
         dataRetentionPeriod!,
         sections!,
       );
-
       return const Right(null);
     } catch (e) {
       return Left(Failure());

@@ -1,13 +1,16 @@
 import '../../domain/entities/form.dart';
 
 class FormModel extends Form {
+  String? id;
   FormModel({
     required super.title,
     required super.dataRetentionPeriod,
+    this.id,
   });
 
   FormModel fromJson(Map<String, dynamic> json) {
     return FormModel(
+      id: id,
       title: json['title'],
       dataRetentionPeriod: json['dataRetenrionPeriod'],
     );
@@ -15,6 +18,7 @@ class FormModel extends Form {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'title': title,
       'dataRetenrionPeriod': dataRetentionPeriod,
     };
@@ -22,6 +26,7 @@ class FormModel extends Form {
 
   FormModel fromMap(Map<String, dynamic> map) {
     return FormModel(
+      id: id,
       title: map['title'],
       dataRetentionPeriod: map['dataRetenrionPeriod'],
     );
@@ -29,6 +34,7 @@ class FormModel extends Form {
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'title': title,
       'dataRetenrionPeriod': dataRetentionPeriod,
     };

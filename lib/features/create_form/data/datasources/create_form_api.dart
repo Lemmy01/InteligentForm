@@ -23,14 +23,17 @@ class CreateFormApiImpl implements CreateFormApi {
   Future<void> createForm(String title, int dataRetentionPeriod,
       List<SectionWithList> sections) async {
     final CollectionReference forms = firebase.collection('forms');
-    final doc = await forms.add(FormModel(
-      title: title,
-      dataRetentionPeriod: dataRetentionPeriod,
-    ).toMap());
-    forms.doc(doc.id).update({'id': doc.id});
+    final id = forms.doc().id;
+    await forms.add(
+      FormModel(
+        title: title,
+        dataRetentionPeriod: dataRetentionPeriod,
+        id: id,
+      ).toMap(),
+    );
 
     for (final section in sections) {
-      await addSection(section, doc.id);
+      await addSection(section, id);
     }
     return await null;
   }
@@ -40,17 +43,18 @@ class CreateFormApiImpl implements CreateFormApi {
     String formId,
   ) async {
     final CollectionReference sections = firebase.collection('sections');
+    final String id = sections.doc().id;
     final SectionModel sectionModel = SectionModel(
       formId: formId,
+      id: id,
       content: sectionWithList.content,
       scanType: sectionWithList.scanType,
       sectionNumber: sectionWithList.sectionNumber,
     );
-    final doc = await sections.add(sectionModel.toMap());
-    sections.doc(doc.id).update({'id': doc.id});
+    await sections.add(sectionModel.toMap());
 
     for (final field in sectionWithList.fields!) {
-      await addField(field, doc.id);
+      await addField(field, id);
     }
 
     return await null;
@@ -61,7 +65,9 @@ class CreateFormApiImpl implements CreateFormApi {
     String sectionId,
   ) async {
     final CollectionReference fields = firebase.collection('fields');
+    final String id = fields.doc().id;
     final FieldModel fieldModel = FieldModel(
+      id: id,
       sectionId: sectionId,
       docKeys: field.docKeys,
       fieldType: field.fieldType,
@@ -69,8 +75,8 @@ class CreateFormApiImpl implements CreateFormApi {
       keyWord: field.keyWord,
       mandatory: field.mandatory,
     );
-    final doc = await fields.add(fieldModel.toMap());
-    fields.doc(doc.id).update({'id': doc.id});
+    await fields.add(fieldModel.toMap());
+
     return await null;
   }
 }
