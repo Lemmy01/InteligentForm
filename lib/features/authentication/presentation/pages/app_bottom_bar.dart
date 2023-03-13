@@ -29,6 +29,7 @@ class AppBottomBar extends StatelessWidget {
       },
       child: PersistentTabView(
         context,
+        // backgroundColor: Colors.transparent,
         screens: _buildScreens(),
         items: _navBarsItems(context),
       ),

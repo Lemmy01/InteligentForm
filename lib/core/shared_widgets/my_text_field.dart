@@ -11,23 +11,32 @@ class MyTextField extends StatelessWidget {
     required this.hintText,
     this.isPassword = false,
     this.width,
+    this.maxLines,
+    this.textAlign,
+    this.textInputAction,
+    this.keyboardType,
   });
 
   final TextEditingController controller;
   final String hintText;
   final double? width;
   final bool isPassword;
-
+  final int? maxLines;
+  final TextAlign? textAlign;
+  final TextInputAction? textInputAction;
+  final TextInputType? keyboardType;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width ?? 80.w,
       child: TextField(
+        keyboardType: keyboardType ?? TextInputType.multiline,
+        maxLines: maxLines ?? 1,
         style: Theme.of(context).textTheme.headlineSmall!.copyWith(
               fontSize: FontConstants.smallFontSize,
             ),
-        textInputAction: TextInputAction.next,
-        textAlign: TextAlign.center,
+        textInputAction: textInputAction ?? TextInputAction.next,
+        textAlign: textAlign ?? TextAlign.center,
         controller: controller,
         obscureText: isPassword,
         decoration: InputDecoration(

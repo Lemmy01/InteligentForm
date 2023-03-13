@@ -41,3 +41,53 @@ class AppStringSuccesMessages {
   static const String loginSuccess = 'Login Success';
   static const String logoutSuccess = 'Logout Success';
 }
+
+class AppStringDocumentTypes {
+  static const String none = 'None';
+  static const String identityCard = 'Identity Card';
+  static const String passport = 'Passport';
+  static const String birthCertificate = 'Birth Certificate';
+  static const String vehicleIdentityCard = 'Vehicle Identity Card';
+  static const String anyDocument = 'Any Document';
+}
+
+class AppCreateFormString {
+  static const String formName = 'Form Name';
+  static const String formPage = 'Form Page';
+  static const String formDescription = 'Form Description';
+  static const String formType = 'Form Type';
+  static const String formDetailes = 'Form Detailes';
+  static const String formDocumentType = 'Form Document Type';
+  static const String formDocumentNumber = 'Form Document Number';
+  static const String formDocumentDate = 'Form Document Date';
+  static const String formDocumentExpirationDate =
+      'Form Document Expiration Date';
+  static const String scanDocType = 'Scan Document Type';
+  static const String scanDocNumber = 'Scan Document Number';
+  static const String sectionContent = 'Content';
+  static const String dataRetention = 'Data Retention Period(1-60 days)';
+  static const String sectionName = 'Section Name';
+  static const String section = 'Sections';
+  static const String sectionDescription = 'Section Description';
+  static const String sectionType = 'Section Type';
+  static const String sectionDocumentType = 'Section Document Type';
+  static const String createForm = 'Create Form';
+  static const String createSection = 'Create Section';
+  static const String createField = 'Create Field';
+  static const String fieldContent = 'Content';
+  static const String fieldDescription = 'Field Description';
+  static const String fieldType = 'Field Type';
+  static const String fieldDocumentType = 'Field Document Type';
+  static const String fieldDocumentNumber = 'Field Document Number';
+  static const String field = 'Fields';
+  static const String label = "Label";
+  static const String keyWord = "KeyWord";
+  static const String mandatory = "Mandatory";
+  static const List<String> listOfFieldTypes = [
+    'Text',
+    'Number',
+    'Date',
+    'Single Choice',
+    'Multiple Choice',
+  ];
+}
