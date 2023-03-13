@@ -29,6 +29,7 @@ class _ViewSectionsPageState extends State<ViewSectionsPage> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       floatingActionButton: FloatingActionButton(
+        heroTag: 'view_sections_page',
         onPressed: addSection,
         //TODO: Add onPressed (Create Section add to a list of sections models)
         child: const Icon(Icons.add),

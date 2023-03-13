@@ -34,6 +34,7 @@ class _ViewFieldPageState extends State<ViewFieldPage> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       floatingActionButton: FloatingActionButton(
+        heroTag: 'view_fields_page',
         onPressed: addField,
         //TODO: Add onPressed (Create Section add to a list of sections models)
         child: const Icon(Icons.add),

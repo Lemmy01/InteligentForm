@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:inteligent_forms/core/background_widgets/create_field_background_widget.dart';
-import 'package:inteligent_forms/features/create_form/presentation/widgets/outlined_text_field.dart';
+import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../../../core/constants/string_constants.dart';
 
 class CreateFieldPage extends StatefulWidget {
   const CreateFieldPage({super.key});
@@ -13,8 +15,21 @@ class CreateFieldPage extends StatefulWidget {
 class _CreateFieldPageState extends State<CreateFieldPage> {
   TextEditingController labelController = TextEditingController();
   TextEditingController keywordController = TextEditingController();
-  String dropdownValue = 'Text';
-  List<String> fieldTypes = ['Text', 'Number', 'Date', 'Time', 'Image'];
+  late String dropdownValue;
+
+  @override
+  void initState() {
+    super.initState();
+    dropdownValue = AppCreateFormString.listOfFieldTypes.first;
+  }
+
+  @override
+  void dispose() {
+    labelController.dispose();
+    keywordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -24,7 +39,7 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
           appBar: AppBar(
             centerTitle: true,
             backgroundColor: Colors.transparent,
-            title: const Text('Create Field'),
+            title: const Text(AppCreateFormString.createField),
           ),
           body: SingleChildScrollView(
             child: Column(
@@ -32,30 +47,36 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
                 SizedBox(height: 5.h),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
-                  child: OutlinedTextField(
-                    textEditingController: labelController,
-                    hintText: "Label",
+                  child: MyTextField(
+                    controller: labelController,
+                    hintText: AppCreateFormString.label,
+                    textAlign: TextAlign.start,
                   ),
                 ),
                 SizedBox(height: 5.h),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
-                  child: OutlinedTextField(
-                      textEditingController: keywordController,
-                      hintText: "KeyWord"),
+                  child: MyTextField(
+                    controller: keywordController,
+                    hintText: AppCreateFormString.keyWord,
+                    textAlign: TextAlign.start,
+                  ),
                 ),
                 SizedBox(height: 2.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      "Mandatory",
+                      AppCreateFormString.mandatory,
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.white,
                       ),
                     ),
-                    Checkbox(value: false, onChanged: (newValue) {}),
+                    Checkbox(
+                      value: false,
+                      onChanged: (newValue) {},
+                    ),
                   ],
                 ),
                 SizedBox(height: 2.h),
@@ -63,7 +84,7 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     const Text(
-                      "Field Type",
+                      AppCreateFormString.fieldType,
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.white,
@@ -91,7 +112,7 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
                                 dropdownValue = value!;
                               });
                             },
-                            items: fieldTypes
+                            items: AppCreateFormString.listOfFieldTypes
                                 .map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,

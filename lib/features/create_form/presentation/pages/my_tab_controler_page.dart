@@ -3,6 +3,7 @@ import 'package:inteligent_forms/core/background_widgets/create_form_background_
 import 'package:inteligent_forms/features/create_form/presentation/pages/view_fields_page.dart';
 import 'package:inteligent_forms/features/create_form/presentation/pages/view_sections_page.dart';
 
+import '../../../../core/constants/string_constants.dart';
 import 'create_form_page.dart';
 
 class MyTabController extends StatefulWidget {
@@ -21,17 +22,12 @@ class _MyTabControllerState extends State<MyTabController> {
         child: DefaultTabController(
           length: 3,
           child: Scaffold(
-            floatingActionButton: index == 2
-                ? FloatingActionButton(
-                    onPressed: () {},
-                    child: const Icon(Icons.save),
-                  )
-                : null,
+            resizeToAvoidBottomInset: false,
             backgroundColor: Colors.transparent,
             appBar: AppBar(
               centerTitle: true,
               title: Text(
-                'Create Form',
+                AppCreateFormString.createForm,
                 style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -41,13 +37,13 @@ class _MyTabControllerState extends State<MyTabController> {
               bottom: const TabBar(
                 tabs: [
                   Tab(
-                    text: 'Form Details',
+                    text: AppCreateFormString.formDetailes,
                   ),
                   Tab(
-                    text: 'Sections',
+                    text: AppCreateFormString.section,
                   ),
                   Tab(
-                    text: 'Fields',
+                    text: AppCreateFormString.field,
                   ),
                 ],
               ),
