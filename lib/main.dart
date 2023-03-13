@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import 'features/create_form/presentation/pages/create_form_page.dart';
+import 'features/create_form/presentation/pages/my_tab_controler_page.dart';
 import 'firebase_options.dart';
 
 Future main() async {
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
             // is not restarted.
             primarySwatch: Colors.blue,
           ),
-          home: const CreateFormPage(),
+          home: const MyTabController(),
         );
       },
     );
