@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../core/constants/string_constants.dart';
 import '../../../../../../core/shared_widgets/my_text_button.dart';
+import '../../../../../fill_form/presentation/pages/fill_form_page.dart';
 
 class FillFormButton extends StatelessWidget {
   const FillFormButton({
@@ -13,7 +14,12 @@ class FillFormButton extends StatelessWidget {
     return MyTextButton(
       text: AppStringContants.fillForm,
       onPressed: () {
-        //TODO George Luta : navigate to fill form page
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const FillFormPage(),
+          ),
+        );
       },
     );
   }
