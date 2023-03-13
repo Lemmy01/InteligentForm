@@ -7,6 +7,10 @@ class SizedBoxes {
       height: 1.h,
     );
   }
+
+  static SizedBox kMediumBox() {
+    return SizedBox(
+      height: 3.h,
+    );
+  }
 }
-
-

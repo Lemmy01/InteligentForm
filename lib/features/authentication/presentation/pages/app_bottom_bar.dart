@@ -5,7 +5,7 @@ import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:inteligent_forms/features/forms/presentation/pages/forms_page/forms_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
-import '../../../fill_form/presentation/pages/fill_form_page.dart';
+import '../../../fill_form/presentation/pages/fill_form_options_page.dart';
 import '../../../profile/presentation/pages/profile_page/profile_page.dart';
 import '../bloc/authentication_bloc/authentication_bloc.dart';
 import '../bloc/authentication_bloc/authentication_state.dart';
@@ -37,7 +37,7 @@ class AppBottomBar extends StatelessWidget {
 
   List<Widget> _buildScreens() {
     return [
-      const FillFormPage(),
+      const FillFormOptionsPage(),
       const FormsPage(),
       const ProfilePage(),
     ];

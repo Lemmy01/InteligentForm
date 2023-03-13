@@ -19,7 +19,7 @@ class MyButtonWithChild extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: isLoading ? () {} : onPressed,
-      minWidth: width ?? 80.w,
+      minWidth: width ?? double.infinity,
       height: 5.h,
       color: Theme.of(context).colorScheme.primary,
       shape: RoundedRectangleBorder(
