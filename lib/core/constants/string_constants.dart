@@ -19,6 +19,10 @@ class AppStringContants {
   static const String formUrl = 'Form Url';
   static const String threeDots = '...';
   static const String fillFormFromUrl = 'Fill Form From Url';
+
+  static const String previewDocument = 'Preview Document';
+
+  static String fillFormPage = 'Fill Form Page';
 }
 
 class AppBarStrings {

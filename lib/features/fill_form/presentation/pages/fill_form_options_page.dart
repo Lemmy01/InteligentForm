@@ -7,6 +7,7 @@ import 'package:inteligent_forms/core/shared_widgets/my_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_button_with_child.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
 import 'package:inteligent_forms/core/shared_widgets/sized_boxes.dart';
+import 'package:inteligent_forms/features/fill_form/presentation/pages/fill_form_page.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../core/constants/app_number_constants.dart';
@@ -77,7 +78,13 @@ class FillFormOptionsPage extends HookWidget {
                       width: 40.w,
                       text: AppStringContants.fillFormFromUrl,
                       onPressed: () {
-                        //TODO George Luta : verify url
+                        //TODO George Luta : verify url (dummy for now)
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const FillFormPage(),
+                          ),
+                        );
                       },
                     ),
                   ],
