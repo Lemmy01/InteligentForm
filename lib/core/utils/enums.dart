@@ -12,3 +12,10 @@ enum FieldType {
   singleChoice,
   multipleChoice,
 }
+
+enum ScanDocumentType {
+  idCard,
+  passport,
+  drivingLicense,
+  other,
+}
