@@ -23,6 +23,8 @@ class AppStringContants {
   static const String previewDocument = 'Preview Document';
 
   static String fillFormPage = 'Fill Form Page';
+  static const String typeInformationBelow = 'Type information below';
+
 }
 
 class AppBarStrings {

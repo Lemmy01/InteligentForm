@@ -12,6 +12,7 @@ class FillFormPage extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         appBar: AppBar(
           title: Text(
             AppStringContants.fillFormPage,

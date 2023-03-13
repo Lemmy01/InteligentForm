@@ -10,7 +10,7 @@ import 'package:inteligent_forms/features/authentication/presentation/pages/logi
 import 'package:sizer/sizer.dart';
 
 import '../../../../../../core/constants/app_number_constants.dart';
-import '../../../../../../core/shared_widgets/sized_boxes.dart';
+import '../../../../../../core/shared_widgets/app_sized_boxes.dart';
 import '../../../bloc/account_type_bloc.dart/bloc/account_type_bloc.dart';
 import '../../../bloc/account_type_bloc.dart/bloc/account_type_state.dart';
 import '../../../bloc/authentication_bloc/authentication_bloc.dart';
@@ -42,7 +42,7 @@ class SignUpPageBody extends HookWidget {
                 width: double.infinity,
               ),
               const AccountTypeDropdown(),
-              SizedBoxes.kSmallBox(),
+              AppSizedBoxes.kSmallBox(),
               BlocBuilder<AccountTypeBloc, AccountTypeState>(
                 builder: (context, state) {
                   return MyTextField(
@@ -57,24 +57,24 @@ class SignUpPageBody extends HookWidget {
                   );
                 },
               ),
-              SizedBoxes.kSmallBox(),
+              AppSizedBoxes.kSmallBox(),
               MyTextField(
                 controller: emailController,
                 hintText: AppStringContants.email,
               ),
-              SizedBoxes.kSmallBox(),
+              AppSizedBoxes.kSmallBox(),
               MyTextField(
                 controller: passwordController,
                 hintText: AppStringContants.password,
                 isPassword: true,
               ),
-              SizedBoxes.kSmallBox(),
+              AppSizedBoxes.kSmallBox(),
               MyTextField(
                 controller: confirmPasswordController,
                 hintText: AppStringContants.confirmPassword,
                 isPassword: true,
               ),
-              SizedBoxes.kSmallBox(),
+              AppSizedBoxes.kSmallBox(),
               MyTextField(
                 controller: addressController,
                 hintText: AppStringContants.address,
@@ -84,7 +84,7 @@ class SignUpPageBody extends HookWidget {
                   return Column(
                     children: [
                       if (state.accountType == AccountType.company) ...[
-                        SizedBoxes.kSmallBox(),
+                        AppSizedBoxes.kSmallBox(),
                         MyTextField(
                           controller: fiscalCodeController,
                           hintText: AppStringContants.fiscalCode,

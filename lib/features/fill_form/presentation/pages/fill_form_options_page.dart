@@ -3,10 +3,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:inteligent_forms/core/constants/app_icons.dart';
 import 'package:inteligent_forms/core/constants/font_constants.dart';
 import 'package:inteligent_forms/core/constants/string_constants.dart';
+import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_button_with_child.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
-import 'package:inteligent_forms/core/shared_widgets/sized_boxes.dart';
 import 'package:inteligent_forms/features/fill_form/presentation/pages/fill_form_page.dart';
 import 'package:sizer/sizer.dart';
 
@@ -55,7 +55,7 @@ class FillFormOptionsPage extends HookWidget {
                     //TODO George Luta : scan code
                   },
                 ),
-                SizedBoxes.kMediumBox(),
+                AppSizedBoxes.kMediumBox(),
                 Center(
                   child: Text(
                     AppStringContants.or,
@@ -64,13 +64,13 @@ class FillFormOptionsPage extends HookWidget {
                     ),
                   ),
                 ),
-                SizedBoxes.kMediumBox(),
+                AppSizedBoxes.kMediumBox(),
                 MyTextField(
                   controller: urlController,
                   hintText: '${AppStringContants.formUrl}'
                       '${AppStringContants.threeDots}',
                 ),
-                SizedBoxes.kSmallBox(),
+                AppSizedBoxes.kSmallBox(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
