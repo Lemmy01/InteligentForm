@@ -9,12 +9,14 @@ class MyTextField extends StatelessWidget {
     super.key,
     required this.controller,
     required this.hintText,
+    this.isPassword = false,
     this.width,
   });
 
   final TextEditingController controller;
   final String hintText;
   final double? width;
+  final bool isPassword;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class MyTextField extends StatelessWidget {
         textInputAction: TextInputAction.next,
         textAlign: TextAlign.center,
         controller: controller,
+        obscureText: isPassword,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(

@@ -61,11 +61,13 @@ class SignUpPageBody extends HookWidget {
             MyTextField(
               controller: passwordController,
               hintText: AppStringContants.password,
+              isPassword: true,
             ),
             SizedBoxes.kSmallBox(),
             MyTextField(
               controller: confirmPasswordController,
               hintText: AppStringContants.confirmPassword,
+              isPassword: true,
             ),
             SizedBoxes.kSmallBox(),
             MyTextField(

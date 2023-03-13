@@ -20,72 +20,73 @@ class LoginPageBody extends HookWidget {
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
 
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          const SizedBox(
-            width: double.infinity,
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Text(
-            '${AppStringContants.intelligent}\n${AppStringContants.forms}',
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                  color: Theme.of(context).colorScheme.onPrimary,
-                  fontWeight: FontWeight.w500,
-                  fontSize: FontConstants.largeFontSize,
-                ),
-          ),
-          SizedBox(
-            height: 20.h,
-          ),
-          MyTextField(
-            controller: emailController,
-            hintText: AppStringContants.email,
-          ),
-          SizedBox(
-            height: 2.h,
-          ),
-          MyTextField(
-            controller: passwordController,
-            hintText: AppStringContants.password,
-          ),
-          SizedBox(
-            height: 5.h,
-          ),
-          MyTextButton(
-            text: AppStringContants.signUp,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SignUpPage(),
-                ),
-              );
-            },
-          ),
-          SizedBox(
-            height: 5.h,
-          ),
-          BlocBuilder<AuthenticationBloc, AuthenticationState>(
-            builder: (context, state) {
-              return MyButton(
-                isLoading: state is LoadingState,
-                text: AppStringContants.login,
-                onPressed: () {
-                  context.read<AuthenticationBloc>().add(
-                        LoginStarted(
-                          emailAddress: emailController.text.trim(),
-                          password: passwordController.text.trim(),
-                        ),
-                      );
-                },
-              );
-            },
-          ),
-        ],
+    return Center(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            const SizedBox(
+              width: double.infinity,
+            ),
+            Text(
+              '${AppStringContants.intelligent}\n${AppStringContants.forms}',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    fontWeight: FontWeight.w500,
+                    fontSize: FontConstants.largeFontSize,
+                  ),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            MyTextField(
+              controller: emailController,
+              hintText: AppStringContants.email,
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+            MyTextField(
+              controller: passwordController,
+              hintText: AppStringContants.password,
+              isPassword: true,
+            ),
+            SizedBox(
+              height: 5.h,
+            ),
+            MyTextButton(
+              text: AppStringContants.signUp,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SignUpPage(),
+                  ),
+                );
+              },
+            ),
+            SizedBox(
+              height: 5.h,
+            ),
+            BlocBuilder<AuthenticationBloc, AuthenticationState>(
+              builder: (context, state) {
+                return MyButton(
+                  isLoading: state is LoadingState,
+                  text: AppStringContants.login,
+                  onPressed: () {
+                    context.read<AuthenticationBloc>().add(
+                          LoginStarted(
+                            emailAddress: emailController.text.trim(),
+                            password: passwordController.text.trim(),
+                          ),
+                        );
+                  },
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -14,19 +14,20 @@ class HomePageBody extends StatelessWidget {
         color: Theme.of(context).colorScheme.primary,
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(
             width: double.infinity,
-          ),
-          SizedBox(
-            height: 60.h,
           ),
           const SignInButton(),
           SizedBox(
             height: 2.h,
           ),
           const FillFormButton(),
+          SizedBox(
+            height: 20.h,
+          ),
         ],
       ),
     );
