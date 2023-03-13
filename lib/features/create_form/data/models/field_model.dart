@@ -6,20 +6,20 @@ class FieldModel extends Field {
     required super.mandatory,
     required super.fieldType,
     required super.docKeys,
-    required this.sectionId,
+    required this.formId,
     this.id,
     required super.label,
   });
   String? id;
-  String sectionId;
+  String formId;
 
-  fromJson(Map<String, dynamic> json) {
+  factory FieldModel.fromJson(Map<String, dynamic> json) {
     return FieldModel(
       keyWord: json['keyWord'],
       mandatory: json['mandatory'],
       fieldType: json['fieldType'],
       docKeys: json['docKeys'],
-      sectionId: json['sectionId'],
+      formId: json['sectionId'],
       id: json['id'],
       label: json['label'],
     );
@@ -31,19 +31,19 @@ class FieldModel extends Field {
       'mandatory': mandatory,
       'fieldType': fieldType,
       'docKeys': docKeys,
-      'sectionId': sectionId,
+      'sectionId': formId,
       'id': id,
       'label': label,
     };
   }
 
-  fromMap(Map<String, dynamic> map) {
+  factory FieldModel.fromMap(Map<String, dynamic> map) {
     return FieldModel(
       keyWord: map['keyWord'],
       mandatory: map['mandatory'],
       fieldType: map['fieldType'],
       docKeys: map['docKeys'],
-      sectionId: map['sectionId'],
+      formId: map['sectionId'],
       id: map['id'],
       label: map['label'],
     );
@@ -55,7 +55,7 @@ class FieldModel extends Field {
       'mandatory': mandatory,
       'fieldType': fieldType,
       'docKeys': docKeys,
-      'sectionId': sectionId,
+      'sectionId': formId,
       'id': id,
       'label': label,
     };

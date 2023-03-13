@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inteligent_forms/features/create_form/data/models/field_model.dart';
 
-import '../../../../core/helper_class/section_with_field_list_class.dart';
 import '../../domain/entities/field.dart';
+import '../../domain/entities/section.dart';
 import '../models/form_model.dart';
 import '../models/section_model.dart';
 
@@ -10,7 +10,8 @@ abstract class CreateFormApi {
   Future<void> createForm(
     String title,
     int dataRetentionPeriod,
-    List<SectionWithList> sections,
+    List<Section> sections,
+    List<Field> fields,
   );
 }
 
@@ -20,8 +21,12 @@ class CreateFormApiImpl implements CreateFormApi {
   CreateFormApiImpl(this.firebase);
 
   @override
-  Future<void> createForm(String title, int dataRetentionPeriod,
-      List<SectionWithList> sections) async {
+  Future<void> createForm(
+    String title,
+    int dataRetentionPeriod,
+    List<Section> sections,
+    List<Field> fields,
+  ) async {
     final CollectionReference forms = firebase.collection('forms');
     final id = forms.doc().id;
     await forms.add(
@@ -35,11 +40,14 @@ class CreateFormApiImpl implements CreateFormApi {
     for (final section in sections) {
       await addSection(section, id);
     }
+    for (final field in fields) {
+      await addField(field, id);
+    }
     return await null;
   }
 
   Future<void> addSection(
-    SectionWithList sectionWithList,
+    Section section,
     String formId,
   ) async {
     final CollectionReference sections = firebase.collection('sections');
@@ -47,28 +55,24 @@ class CreateFormApiImpl implements CreateFormApi {
     final SectionModel sectionModel = SectionModel(
       formId: formId,
       id: id,
-      content: sectionWithList.content,
-      scanType: sectionWithList.scanType,
-      sectionNumber: sectionWithList.sectionNumber,
+      content: section.content,
+      scanType: section.scanType,
+      sectionNumber: section.sectionNumber,
     );
     await sections.add(sectionModel.toMap());
-
-    for (final field in sectionWithList.fields!) {
-      await addField(field, id);
-    }
 
     return await null;
   }
 
   Future<void> addField(
     Field field,
-    String sectionId,
+    String formId,
   ) async {
     final CollectionReference fields = firebase.collection('fields');
     final String id = fields.doc().id;
     final FieldModel fieldModel = FieldModel(
       id: id,
-      sectionId: sectionId,
+      formId: formId,
       docKeys: field.docKeys,
       fieldType: field.fieldType,
       label: field.label,

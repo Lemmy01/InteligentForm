@@ -11,7 +11,7 @@ class SectionModel extends Section {
   String? id;
   String formId;
 
-  fromJson(Map<String, dynamic> json) {
+  factory SectionModel.fromJson(Map<String, dynamic> json) {
     return SectionModel(
       content: json['content'],
       scanType: json['scanType'],
@@ -31,7 +31,7 @@ class SectionModel extends Section {
     };
   }
 
-  fromMap(Map<String, dynamic> map) {
+  factory SectionModel.fromMap(Map<String, dynamic> map) {
     return SectionModel(
       content: map['content'],
       scanType: map['scanType'],

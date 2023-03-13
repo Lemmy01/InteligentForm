@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/helper_class/section_with_field_list_class.dart';
+
+import '../entities/field.dart';
+import '../entities/section.dart';
 import '../repositories/create_form_repository.dart';
 
 class CreateForm {
@@ -11,12 +13,14 @@ class CreateForm {
   Future<Either<Failure, void>> call({
     String? title,
     int? dataRetentionPeriod,
-    List<SectionWithList>? sections,
+    List<Section>? sections,
+    List<Field>? fields,
   }) async {
     return await repository.createForm(
       title!,
       dataRetentionPeriod!,
       sections!,
+      fields!,
     );
   }
 }

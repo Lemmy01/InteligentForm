@@ -6,7 +6,9 @@
 import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:inteligent_forms/core/helper_class/section_with_field_list_class.dart'
+import 'package:inteligent_forms/features/create_form/domain/entities/field.dart'
+    as _i6;
+import 'package:inteligent_forms/features/create_form/domain/entities/section.dart'
     as _i5;
 import 'package:inteligent_forms/features/create_form/domain/repositories/create_form_repository.dart'
     as _i3;
@@ -42,7 +44,8 @@ class MockCreateFormRepository extends _i1.Mock
   _i4.Future<_i2.Either<_i3.Failure, void>> createForm(
     String? title,
     int? dataRetentionPeriod,
-    List<_i5.SectionWithList>? sections,
+    List<_i5.Section>? sections,
+    List<_i6.Field>? fields,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -51,6 +54,7 @@ class MockCreateFormRepository extends _i1.Mock
             title,
             dataRetentionPeriod,
             sections,
+            fields,
           ],
         ),
         returnValue: _i4.Future<_i2.Either<_i3.Failure, void>>.value(
@@ -62,6 +66,7 @@ class MockCreateFormRepository extends _i1.Mock
               title,
               dataRetentionPeriod,
               sections,
+              fields,
             ],
           ),
         )),
@@ -75,6 +80,7 @@ class MockCreateFormRepository extends _i1.Mock
               title,
               dataRetentionPeriod,
               sections,
+              fields,
             ],
           ),
         )),

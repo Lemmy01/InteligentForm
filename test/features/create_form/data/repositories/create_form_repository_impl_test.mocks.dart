@@ -5,10 +5,12 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
-import 'package:inteligent_forms/core/helper_class/section_with_field_list_class.dart'
-    as _i4;
 import 'package:inteligent_forms/features/create_form/data/datasources/create_form_api.dart'
     as _i2;
+import 'package:inteligent_forms/features/create_form/domain/entities/field.dart'
+    as _i5;
+import 'package:inteligent_forms/features/create_form/domain/entities/section.dart'
+    as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -30,7 +32,8 @@ class MockCreateFormApi extends _i1.Mock implements _i2.CreateFormApi {
   _i3.Future<void> createForm(
     String? title,
     int? dataRetentionPeriod,
-    List<_i4.SectionWithList>? sections,
+    List<_i4.Section>? sections,
+    List<_i5.Field>? fields,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -39,6 +42,7 @@ class MockCreateFormApi extends _i1.Mock implements _i2.CreateFormApi {
             title,
             dataRetentionPeriod,
             sections,
+            fields,
           ],
         ),
         returnValue: _i3.Future<void>.value(),

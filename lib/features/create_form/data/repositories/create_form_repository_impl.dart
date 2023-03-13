@@ -1,7 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/helper_class/section_with_field_list_class.dart';
+
+import '../../domain/entities/field.dart';
+import '../../domain/entities/section.dart';
 import '../../domain/repositories/create_form_repository.dart';
 import '../datasources/create_form_api.dart';
 
@@ -14,13 +16,15 @@ class CreateFormRepositoryImpl extends CreateFormRepository {
   Future<Either<Failure, void>> createForm(
     String? title,
     int? dataRetentionPeriod,
-    List<SectionWithList>? sections,
+    List<Section>? sections,
+    List<Field>? fields,
   ) async {
     try {
       await api.createForm(
         title!,
         dataRetentionPeriod!,
         sections!,
+        fields!,
       );
       return const Right(null);
     } catch (e) {

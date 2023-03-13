@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:inteligent_forms/core/helper_class/section_with_field_list_class.dart';
+import 'package:inteligent_forms/features/create_form/domain/entities/field.dart';
+import 'package:inteligent_forms/features/create_form/domain/entities/section.dart';
 import 'package:inteligent_forms/features/create_form/domain/repositories/create_form_repository.dart';
 import 'package:inteligent_forms/features/create_form/domain/usecases/create_form.dart';
 import 'package:mockito/annotations.dart';
@@ -19,23 +20,33 @@ void main() {
   });
   const tTitle = "test";
   int tDataRetentionPeriod = 1;
-  List<SectionWithList> tSections = [
-    SectionWithList(
+  List<Section> tSections = [
+    Section(
       content: 'content',
       scanType: 'scanType',
       sectionNumber: 3,
     )
   ];
+  List<Field> tFields = [
+    Field(
+      docKeys: [],
+      fieldType: 'Text',
+      keyWord: 'CNP',
+      label: 'CNP',
+      mandatory: false,
+    )
+  ];
   test(
     'should call the repository to create a form',
     () async {
-      when(mockCreateFormRepo.createForm(any, any, any))
+      when(mockCreateFormRepo.createForm(any, any, any, any))
           .thenAnswer((realInvocation) async => const Right(null));
 
       final result = await usecase(
         title: tTitle,
         dataRetentionPeriod: tDataRetentionPeriod,
         sections: tSections,
+        fields: tFields,
       );
 
       expect(result, const Right(null));
@@ -45,6 +56,7 @@ void main() {
           tTitle,
           tDataRetentionPeriod,
           tSections,
+          tFields,
         ),
       );
 

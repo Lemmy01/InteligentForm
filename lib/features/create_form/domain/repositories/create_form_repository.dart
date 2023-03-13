@@ -1,12 +1,15 @@
 import 'package:dartz/dartz.dart';
+import 'package:inteligent_forms/features/create_form/domain/entities/field.dart';
 
-import '../../../../core/helper_class/section_with_field_list_class.dart';
+
+import '../entities/section.dart';
 
 abstract class CreateFormRepository {
   Future<Either<Failure, void>> createForm(
     String title,
     int dataRetentionPeriod,
-    List<SectionWithList> sections,
+    List<Section> sections,
+    List<Field> fields,
   );
 }
 
