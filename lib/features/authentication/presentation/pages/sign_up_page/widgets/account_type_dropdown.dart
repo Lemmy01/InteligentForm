@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inteligent_forms/core/constants/app_number_constants.dart';
 import 'package:inteligent_forms/core/constants/font_constants.dart';
+import 'package:inteligent_forms/core/utils/extensions.dart';
 
 import '../../../../../../core/utils/enums.dart';
-import '../../../../../../core/utils/maps.dart';
 import '../../../bloc/account_type_bloc.dart/bloc/account_type_bloc.dart';
 import '../../../bloc/account_type_bloc.dart/bloc/account_type_changed.dart';
 import '../../../bloc/account_type_bloc.dart/bloc/account_type_state.dart';
@@ -37,7 +37,7 @@ class AccountTypeDropdown extends StatelessWidget {
                   value: accValue,
                   child: Center(
                     child: Text(
-                      accountTypeToString(accountType: accValue),
+                      accValue.toShortString(),
                       style: TextStyle(
                         fontSize: FontConstants.smallFontSize,
                       ),
