@@ -14,6 +14,11 @@ class AppStringContants {
   static const String companyName = 'Company Name';
   static const String institutionName = 'Institution Name';
   static const String unique = '(Unique)';
+  static const String scanCode = 'Scan Code';
+  static const String or = 'or';
+  static const String formUrl = 'Form Url';
+  static const String threeDots = '...';
+  static const String fillFormFromUrl = 'Fill Form From Url';
 }
 
 class AppBarStrings {

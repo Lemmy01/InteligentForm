@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:inteligent_forms/core/constants/app_icons.dart';
 import 'package:inteligent_forms/core/constants/font_constants.dart';
+import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_button_with_child.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
@@ -33,13 +35,16 @@ class FillFormOptionsPage extends HookWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Scan code',
+                        AppStringContants.scanCode,
                         style: TextStyle(
                             fontSize: FontConstants.mediumFontSize,
                             color: Theme.of(context).colorScheme.onPrimary),
                       ),
+                      SizedBox(
+                        width: 5.w,
+                      ),
                       Icon(
-                        Icons.qr_code_scanner,
+                        AppIcons.scanCode,
                         size: FontConstants.mediumFontSize,
                         color: Theme.of(context).colorScheme.onPrimary,
                       ),
@@ -52,7 +57,7 @@ class FillFormOptionsPage extends HookWidget {
                 SizedBoxes.kMediumBox(),
                 Center(
                   child: Text(
-                    'or',
+                    AppStringContants.or,
                     style: TextStyle(
                       fontSize: FontConstants.mediumFontSize,
                     ),
@@ -61,7 +66,8 @@ class FillFormOptionsPage extends HookWidget {
                 SizedBoxes.kMediumBox(),
                 MyTextField(
                   controller: urlController,
-                  hintText: 'Form url...',
+                  hintText: '${AppStringContants.formUrl}'
+                      '${AppStringContants.threeDots}',
                 ),
                 SizedBoxes.kSmallBox(),
                 Row(
@@ -69,7 +75,7 @@ class FillFormOptionsPage extends HookWidget {
                   children: [
                     MyButton(
                       width: 40.w,
-                      text: 'Verify url',
+                      text: AppStringContants.fillFormFromUrl,
                       onPressed: () {
                         //TODO George Luta : verify url
                       },
