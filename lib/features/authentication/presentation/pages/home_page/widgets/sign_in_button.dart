@@ -31,7 +31,7 @@ class SignInButton extends StatelessWidget {
           vertical: 1.2.h,
         ),
         child: Text(
-          AppStringContants.signIn,
+          AppStringConstants.signIn,
           style: TextStyle(
             color: Theme.of(context).colorScheme.primary,
             fontSize: FontConstants.mediumFontSize,

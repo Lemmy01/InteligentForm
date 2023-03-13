@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:inteligent_forms/core/constants/font_constants.dart';
 import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:inteligent_forms/core/helpers/dynamic_field_model.dart';
+import 'package:inteligent_forms/core/shared_widgets/app_decoration.dart';
 import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
+import 'package:inteligent_forms/core/shared_widgets/my_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
 
 import '../../../../core/constants/app_number_constants.dart';
@@ -31,7 +33,7 @@ List<SectionModel> listOfSections = [
         fieldType: FieldType.text,
         controller: controller2,
       ),
-      DropdownButtonModel(
+      SingleChoiceModel(
         labelName: 'labelName',
         placeholderKeyWord: 'placeholderKeyWord',
         documentKeyWords: ['documentKeyWords'],
@@ -60,7 +62,7 @@ List<SectionModel> listOfSections = [
         fieldType: FieldType.text,
         controller: controller2,
       ),
-      DropdownButtonModel(
+      SingleChoiceModel(
         labelName: 'labelName',
         placeholderKeyWord: 'placeholderKeyWord',
         documentKeyWords: ['documentKeyWords'],
@@ -68,6 +70,88 @@ List<SectionModel> listOfSections = [
         fieldType: FieldType.singleChoice,
         options: ['option1', 'option2', 'option3'],
       ),
+      MultipleChoiceModel(
+        labelName: 'labelName',
+        placeholderKeyWord: 'placeholderKeyWord',
+        documentKeyWords: ['documentKeyWords'],
+        mandatory: true,
+        fieldType: FieldType.multipleChoice,
+        options: ['option1', 'option2', 'option3'],
+      )
+    ],
+  ),
+  SectionModel(
+    sectionNumber: 2,
+    fields: [
+      TextFieldModel(
+        labelName: 'labelName',
+        placeholderKeyWord: 'placeholderKeyWord',
+        documentKeyWords: ['documentKeyWords'],
+        mandatory: true,
+        fieldType: FieldType.text,
+        controller: controller1,
+      ),
+      TextFieldModel(
+        labelName: 'labelName',
+        placeholderKeyWord: 'placeholderKeyWord',
+        documentKeyWords: ['documentKeyWords'],
+        mandatory: true,
+        fieldType: FieldType.text,
+        controller: controller2,
+      ),
+      SingleChoiceModel(
+        labelName: 'labelName',
+        placeholderKeyWord: 'placeholderKeyWord',
+        documentKeyWords: ['documentKeyWords'],
+        mandatory: true,
+        fieldType: FieldType.singleChoice,
+        options: ['option1', 'option2', 'option3'],
+      ),
+      MultipleChoiceModel(
+        labelName: 'labelName',
+        placeholderKeyWord: 'placeholderKeyWord',
+        documentKeyWords: ['documentKeyWords'],
+        mandatory: true,
+        fieldType: FieldType.multipleChoice,
+        options: ['option1', 'option2', 'option3'],
+      )
+    ],
+  ),
+  SectionModel(
+    sectionNumber: 2,
+    fields: [
+      TextFieldModel(
+        labelName: 'labelName',
+        placeholderKeyWord: 'placeholderKeyWord',
+        documentKeyWords: ['documentKeyWords'],
+        mandatory: true,
+        fieldType: FieldType.text,
+        controller: controller1,
+      ),
+      TextFieldModel(
+        labelName: 'labelName',
+        placeholderKeyWord: 'placeholderKeyWord',
+        documentKeyWords: ['documentKeyWords'],
+        mandatory: true,
+        fieldType: FieldType.text,
+        controller: controller2,
+      ),
+      SingleChoiceModel(
+        labelName: 'labelName',
+        placeholderKeyWord: 'placeholderKeyWord',
+        documentKeyWords: ['documentKeyWords'],
+        mandatory: true,
+        fieldType: FieldType.singleChoice,
+        options: ['option1', 'option2', 'option3'],
+      ),
+      MultipleChoiceModel(
+        labelName: 'labelName',
+        placeholderKeyWord: 'placeholderKeyWord',
+        documentKeyWords: ['documentKeyWords'],
+        mandatory: true,
+        fieldType: FieldType.multipleChoice,
+        options: ['option1', 'option2', 'option3'],
+      )
     ],
   ),
 ];
@@ -109,14 +193,16 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: AppNumberConstants.pageHorizontalPadding,
+        padding: EdgeInsets.only(
+          left: AppNumberConstants.pageHorizontalPadding,
+          right: AppNumberConstants.pageHorizontalPadding,
+          top: AppNumberConstants.pageVerticalPadding,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              AppStringContants.typeInformationBelow,
+              AppStringConstants.typeInformationBelow,
               style: TextStyle(
                 fontSize: FontConstants.mediumFontSize,
                 color: Theme.of(context).colorScheme.onPrimary,
@@ -127,12 +213,21 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Section ${section.sectionNumber}',
-                    style: TextStyle(
-                      fontSize: FontConstants.mediumFontSize,
-                      color: Theme.of(context).colorScheme.onPrimary,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '${AppStringConstants.section} ${section.sectionNumber}',
+                        style: TextStyle(
+                          fontSize: FontConstants.mediumFontSize,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                      ),
+                      MyButton(
+                        text: AppStringConstants.scanDocs,
+                        onPressed: () {},
+                      ),
+                    ],
                   ),
                   AppSizedBoxes.kSmallBox(),
                   for (final field in section.fields)
@@ -143,43 +238,41 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                           Text(
                             field.labelName,
                             style: TextStyle(
-                              fontSize: FontConstants.mediumFontSize,
+                              fontSize: FontConstants.smallFontSize,
                               color: Theme.of(context).colorScheme.onPrimary,
                             ),
                           ),
                           AppSizedBoxes.kSmallBox(),
                           MyTextField(
                             controller: field.controller,
-                            hintText: field.labelName,
+                            hintText:
+                                '${field.labelName}${AppStringConstants.threeDots}',
                           ),
                           AppSizedBoxes.kSmallBox(),
                         ],
                       )
-                    else if (field is DropdownButtonModel)
+                    else if (field is SingleChoiceModel)
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             field.labelName,
                             style: TextStyle(
-                              fontSize: FontConstants.mediumFontSize,
+                              fontSize: FontConstants.smallFontSize,
                               color: Theme.of(context).colorScheme.onPrimary,
                             ),
                           ),
                           AppSizedBoxes.kSmallBox(),
                           DropdownButtonFormField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(
-                                  AppNumberConstants.longTilePadding,
-                                ),
-                              ),
+                            isExpanded: true,
+                            decoration: AppDecoration().inputDecoration(
+                              context,
                             ),
                             items: field.options
                                 .map(
-                                  (option) => DropdownMenuItem(
-                                    value: option,
-                                    child: Text(option),
+                                  (option) => MyDropdownMenuItem(
+                                    text: option,
+                                    value: false,
                                   ),
                                 )
                                 .toList(),
@@ -195,7 +288,7 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                           Text(
                             field.labelName,
                             style: TextStyle(
-                              fontSize: FontConstants.mediumFontSize,
+                              fontSize: FontConstants.smallFontSize,
                               color: Theme.of(context).colorScheme.onPrimary,
                             ),
                           ),
@@ -204,10 +297,22 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                             Row(
                               children: [
                                 Checkbox(
+                                  shape: const CircleBorder(),
                                   value: false,
+                                  side: BorderSide(
+                                    color:
+                                        Theme.of(context).colorScheme.onPrimary,
+                                  ),
                                   onChanged: (value) {},
                                 ),
-                                Text(option),
+                                Text(
+                                  option,
+                                  style: TextStyle(
+                                    fontSize: FontConstants.mediumFontSize,
+                                    color:
+                                        Theme.of(context).colorScheme.onPrimary,
+                                  ),
+                                ),
                               ],
                             ),
                           AppSizedBoxes.kSmallBox(),
@@ -221,4 +326,23 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
       ),
     );
   }
+}
+
+class MyDropdownMenuItem extends DropdownMenuItem {
+  MyDropdownMenuItem({
+    super.key,
+    required this.text,
+    required super.value,
+  }) : super(
+          child: Center(
+            child: Text(
+              text,
+              style: TextStyle(
+                fontSize: FontConstants.smallFontSize,
+              ),
+            ),
+          ),
+        );
+
+  final String text;
 }

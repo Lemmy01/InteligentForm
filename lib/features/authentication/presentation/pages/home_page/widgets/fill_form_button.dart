@@ -12,7 +12,7 @@ class FillFormButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyTextButton(
-      text: AppStringContants.fillForm,
+      text: AppStringConstants.fillForm,
       onPressed: () {
         Navigator.push(
           context,

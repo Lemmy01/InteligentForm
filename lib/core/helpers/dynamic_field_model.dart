@@ -30,8 +30,8 @@ class TextFieldModel extends DynamicFieldModel {
   TextEditingController controller;
 }
 
-class DropdownButtonModel extends DynamicFieldModel {
-  DropdownButtonModel({
+class SingleOrMultipleModel extends DynamicFieldModel {
+  SingleOrMultipleModel({
     required super.labelName,
     required super.placeholderKeyWord,
     required super.documentKeyWords,
@@ -43,7 +43,18 @@ class DropdownButtonModel extends DynamicFieldModel {
   final List<String> options;
 }
 
-class MultipleChoiceModel extends DropdownButtonModel {
+class SingleChoiceModel extends SingleOrMultipleModel {
+  SingleChoiceModel({
+    required super.labelName,
+    required super.placeholderKeyWord,
+    required super.documentKeyWords,
+    required super.mandatory,
+    required super.fieldType,
+    required super.options,
+  });
+}
+
+class MultipleChoiceModel extends SingleOrMultipleModel {
   MultipleChoiceModel({
     required super.labelName,
     required super.placeholderKeyWord,

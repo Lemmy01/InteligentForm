@@ -36,7 +36,7 @@ class FillFormOptionsPage extends HookWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        AppStringContants.scanCode,
+                        AppStringConstants.scanCode,
                         style: TextStyle(
                             fontSize: FontConstants.mediumFontSize,
                             color: Theme.of(context).colorScheme.onPrimary),
@@ -58,7 +58,7 @@ class FillFormOptionsPage extends HookWidget {
                 AppSizedBoxes.kMediumBox(),
                 Center(
                   child: Text(
-                    AppStringContants.or,
+                    AppStringConstants.or,
                     style: TextStyle(
                       fontSize: FontConstants.mediumFontSize,
                     ),
@@ -67,8 +67,8 @@ class FillFormOptionsPage extends HookWidget {
                 AppSizedBoxes.kMediumBox(),
                 MyTextField(
                   controller: urlController,
-                  hintText: '${AppStringContants.formUrl}'
-                      '${AppStringContants.threeDots}',
+                  hintText: '${AppStringConstants.formUrl}'
+                      '${AppStringConstants.threeDots}',
                 ),
                 AppSizedBoxes.kSmallBox(),
                 Row(
@@ -76,7 +76,7 @@ class FillFormOptionsPage extends HookWidget {
                   children: [
                     MyButton(
                       width: 40.w,
-                      text: AppStringContants.fillFormFromUrl,
+                      text: AppStringConstants.fillFormFromUrl,
                       onPressed: () {
                         //TODO George Luta : verify url (dummy for now)
                         Navigator.push(

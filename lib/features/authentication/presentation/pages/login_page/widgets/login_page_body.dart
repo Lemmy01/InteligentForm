@@ -39,7 +39,7 @@ class LoginPageBody extends HookWidget {
                 width: double.infinity,
               ),
               Text(
-                '${AppStringContants.intelligent}\n${AppStringContants.forms}',
+                '${AppStringConstants.intelligent}\n${AppStringConstants.forms}',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                       color: Theme.of(context).colorScheme.onPrimary,
@@ -52,21 +52,21 @@ class LoginPageBody extends HookWidget {
               ),
               MyTextField(
                 controller: emailController,
-                hintText: AppStringContants.email,
+                hintText: AppStringConstants.email,
               ),
               SizedBox(
                 height: 2.h,
               ),
               MyTextField(
                 controller: passwordController,
-                hintText: AppStringContants.password,
+                hintText: AppStringConstants.password,
                 isPassword: true,
               ),
               SizedBox(
                 height: 5.h,
               ),
               MyTextButton(
-                text: AppStringContants.signUp,
+                text: AppStringConstants.signUp,
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -83,7 +83,7 @@ class LoginPageBody extends HookWidget {
                 builder: (context, state) {
                   return MyButton(
                     isLoading: state is LoadingState,
-                    text: AppStringContants.login,
+                    text: AppStringConstants.login,
                     onPressed: () {
                       context.read<AuthenticationBloc>().add(
                             LoginStarted(

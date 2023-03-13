@@ -48,36 +48,36 @@ class SignUpPageBody extends HookWidget {
                   return MyTextField(
                     controller: nameController,
                     hintText: state.accountType == AccountType.individual
-                        ? '${AppStringContants.name} ${AppStringContants.unique}'
+                        ? '${AppStringConstants.name} ${AppStringConstants.unique}'
                         : state.accountType == AccountType.company
-                            ? '${AppStringContants.companyName}'
-                                ' ${AppStringContants.unique}'
-                            : '${AppStringContants.institutionName}'
-                                ' ${AppStringContants.unique}',
+                            ? '${AppStringConstants.companyName}'
+                                ' ${AppStringConstants.unique}'
+                            : '${AppStringConstants.institutionName}'
+                                ' ${AppStringConstants.unique}',
                   );
                 },
               ),
               AppSizedBoxes.kSmallBox(),
               MyTextField(
                 controller: emailController,
-                hintText: AppStringContants.email,
+                hintText: AppStringConstants.email,
               ),
               AppSizedBoxes.kSmallBox(),
               MyTextField(
                 controller: passwordController,
-                hintText: AppStringContants.password,
+                hintText: AppStringConstants.password,
                 isPassword: true,
               ),
               AppSizedBoxes.kSmallBox(),
               MyTextField(
                 controller: confirmPasswordController,
-                hintText: AppStringContants.confirmPassword,
+                hintText: AppStringConstants.confirmPassword,
                 isPassword: true,
               ),
               AppSizedBoxes.kSmallBox(),
               MyTextField(
                 controller: addressController,
-                hintText: AppStringContants.address,
+                hintText: AppStringConstants.address,
               ),
               BlocBuilder<AccountTypeBloc, AccountTypeState>(
                 builder: (context, state) {
@@ -87,7 +87,7 @@ class SignUpPageBody extends HookWidget {
                         AppSizedBoxes.kSmallBox(),
                         MyTextField(
                           controller: fiscalCodeController,
-                          hintText: AppStringContants.fiscalCode,
+                          hintText: AppStringConstants.fiscalCode,
                         ),
                       ]
                     ],
@@ -101,7 +101,7 @@ class SignUpPageBody extends HookWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   MyTextButton(
-                    text: AppStringContants.login,
+                    text: AppStringConstants.login,
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
@@ -119,7 +119,7 @@ class SignUpPageBody extends HookWidget {
                     builder: (context, state) {
                       return MyButton(
                         isLoading: state is LoadingState,
-                        text: AppStringContants.signUp,
+                        text: AppStringConstants.signUp,
                         onPressed: () {
                           context.read<AuthenticationBloc>().add(
                                 SignUpStarted(

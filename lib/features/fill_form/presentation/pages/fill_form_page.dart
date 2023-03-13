@@ -15,7 +15,7 @@ class FillFormPage extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.secondary,
         appBar: AppBar(
           title: Text(
-            AppStringContants.fillFormPage,
+            AppStringConstants.fillFormPage,
           ),
           bottom: const TabBar(
             tabs: [
@@ -23,7 +23,7 @@ class FillFormPage extends StatelessWidget {
                 text: AppBarStrings.fillForm,
               ),
               Tab(
-                text: AppStringContants.previewDocument,
+                text: AppStringConstants.previewDocument,
               ),
             ],
           ),
