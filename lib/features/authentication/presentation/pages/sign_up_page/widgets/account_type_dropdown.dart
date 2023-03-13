@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inteligent_forms/core/constants/app_number_constants.dart';
+import 'package:inteligent_forms/core/constants/font_constants.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../../core/utils/enums.dart';
@@ -40,6 +41,9 @@ class AccountTypeDropdown extends StatelessWidget {
                     child: Center(
                       child: Text(
                         accountTypeToString(accountType: accValue),
+                        style: TextStyle(
+                          fontSize: FontConstants.smallFontSize,
+                        ),
                       ),
                     ),
                   ),

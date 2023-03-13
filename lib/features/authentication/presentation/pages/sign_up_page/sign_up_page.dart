@@ -22,12 +22,15 @@ class SignUpPage extends StatelessWidget {
               ),
             );
           }
+          if (state is SignUpSuccessState) {
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) => const AppBottomBar(),
+                ),
+                (route) => false);
+          }
         },
         builder: (context, state) {
-          if (state is SignUpSuccessState) {
-            return const AppBottomBar();
-          }
-
           return const SignUpPageBody();
         },
       ),
