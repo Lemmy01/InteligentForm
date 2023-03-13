@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inteligent_forms/core/shared_widgets/my_snack_bar.dart';
 import 'package:inteligent_forms/features/authentication/presentation/pages/app_bottom_bar.dart';
 import 'package:inteligent_forms/features/authentication/presentation/pages/login_page/widgets/login_page_body.dart';
 
@@ -16,11 +17,7 @@ class LoginPage extends StatelessWidget {
       body: BlocConsumer<AuthenticationBloc, AuthenticationState>(
         listener: (context, state) {
           if (state is LoginFailureState) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.message),
-              ),
-            );
+            showMySnackBar(context, state.message);
           }
           if (state is LoginSuccessState) {
             Navigator.of(context).pushAndRemoveUntil(

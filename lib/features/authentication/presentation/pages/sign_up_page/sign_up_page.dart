@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inteligent_forms/features/authentication/presentation/pages/sign_up_page/widgets/sign_up_page_body.dart';
 
+import '../../../../../core/shared_widgets/my_snack_bar.dart';
 import '../../bloc/authentication_bloc/authentication_bloc.dart';
 import '../../bloc/authentication_bloc/authentication_state.dart';
 import '../app_bottom_bar.dart';
@@ -16,11 +17,7 @@ class SignUpPage extends StatelessWidget {
       body: BlocConsumer<AuthenticationBloc, AuthenticationState>(
         listener: (context, state) {
           if (state is SignUpFailureState) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.message),
-              ),
-            );
+            showMySnackBar(context, state.message);
           }
           if (state is SignUpSuccessState) {
             Navigator.of(context).pushAndRemoveUntil(
