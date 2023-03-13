@@ -1,44 +1,73 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inteligent_forms/features/authentication/data/repositories/authentication_repo_impl.dart';
+import 'package:inteligent_forms/features/authentication/domain/usecases/authentication_usecase.dart';
+import 'package:inteligent_forms/features/authentication/domain/validators/autentication_validators.dart';
+import 'package:inteligent_forms/features/authentication/presentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:sizer/sizer.dart';
 
-import 'features/create_form/presentation/pages/my_tab_controler_page.dart';
+import 'bloc_observer.dart';
+import 'features/authentication/presentation/bloc/account_type_bloc.dart/bloc/account_type_bloc.dart';
+import 'features/authentication/presentation/pages/home_page/home_page.dart';
 import 'firebase_options.dart';
 
 Future main() async {
+  Bloc.observer = MyBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(
+    DevicePreview(
+      enabled: false,
+      builder: (context) => Sizer(
+        builder: (
+          context,
+          orientation,
+          deviceType,
+        ) {
+          return const InteligentFrormsApp();
+        },
+      ),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class InteligentFrormsApp extends StatelessWidget {
+  const InteligentFrormsApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Sizer(
-      builder: (BuildContext context, Orientation orientation,
-          DeviceType deviceType) {
-        return MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            // This is the theme of your application.
-            //
-            // Try running your application with "flutter run". You'll see the
-            // application has a blue toolbar. Then, without quitting the app, try
-            // changing the primarySwatch below to Colors.green and then invoke
-            // "hot reload" (press "r" in the console where you ran "flutter run",
-            // or simply save your changes to "hot reload" in a Flutter IDE).
-            // Notice that the counter didn't reset back to zero; the application
-            // is not restarted.
-            primarySwatch: Colors.blue,
+    var themeData = ThemeData(
+      colorScheme: ColorScheme.fromSwatch(
+        primarySwatch: Colors.teal,
+      ).copyWith(
+        primary: const Color(0XFF01949A),
+        secondary: const Color(0XFF004369),
+      ),
+    );
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AccountTypeBloc(),
+        ),
+        BlocProvider(
+          lazy: false,
+          create: (context) => AuthenticationBloc(
+            authenticationUsecase: AuthenticationUsecase(
+              authenticationRepo: AuthenticationRepoImpl(),
+              authenticationValidator: AuthenticationValidator(),
+            ),
+            accountTypeBloc: context.read<AccountTypeBloc>(),
           ),
-          home: const MyTabController(),
-        );
-      },
+        ),
+      ],
+      child: MaterialApp(
+        theme: themeData,
+        home: const HomePage(),
+      ),
     );
   }
 }
