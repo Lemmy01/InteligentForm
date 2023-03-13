@@ -3,3 +3,12 @@ enum AccountType {
   company,
   publicInstitution,
 }
+
+enum FieldType {
+  text,
+  number,
+  decimal,
+  date,
+  singleChoice,
+  multipleChoice,
+}
