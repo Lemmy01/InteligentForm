@@ -27,7 +27,7 @@ class TextFieldModel extends DynamicFieldModel {
     required this.controller,
   });
 
-  final TextEditingController controller;
+  TextEditingController controller;
 }
 
 class DropdownButtonModel extends DynamicFieldModel {
@@ -41,6 +41,17 @@ class DropdownButtonModel extends DynamicFieldModel {
   });
 
   final List<String> options;
+}
+
+class MultipleChoiceModel extends DropdownButtonModel {
+  MultipleChoiceModel({
+    required super.labelName,
+    required super.placeholderKeyWord,
+    required super.documentKeyWords,
+    required super.mandatory,
+    required super.fieldType,
+    required super.options,
+  });
 }
 
 class SectionModel {
