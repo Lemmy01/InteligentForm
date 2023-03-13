@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:inteligent_forms/core/constants/app_number_constants.dart';
 import 'package:sizer/sizer.dart';
 
+import '../constants/font_constants.dart';
+
 class MyTextField extends StatelessWidget {
   const MyTextField({
     super.key,
@@ -19,6 +21,9 @@ class MyTextField extends StatelessWidget {
     return SizedBox(
       width: width ?? 80.w,
       child: TextField(
+        style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              fontSize: FontConstants.smallFontSize,
+            ),
         textInputAction: TextInputAction.next,
         textAlign: TextAlign.center,
         controller: controller,

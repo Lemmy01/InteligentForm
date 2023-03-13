@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inteligent_forms/core/constants/font_constants.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../../core/constants/string_constants.dart';
@@ -25,12 +26,15 @@ class SignInButton extends StatelessWidget {
       },
       color: Theme.of(context).colorScheme.onPrimary,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 1.2.h),
+        padding: EdgeInsets.symmetric(
+          horizontal: 5.w,
+          vertical: 1.2.h,
+        ),
         child: Text(
           AppStringContants.signIn,
           style: TextStyle(
             color: Theme.of(context).colorScheme.primary,
-            fontSize: Theme.of(context).textTheme.headlineSmall!.fontSize,
+            fontSize: FontConstants.mediumFontSize,
           ),
         ),
       ),

@@ -98,8 +98,7 @@ class AuthenticationBloc
   ) async {
     emit(LoadingState());
 
-    (await authenticationUsecase.logout())
-        .fold(
+    (await authenticationUsecase.logout()).fold(
       (error) => emit(
         LogoutFailureState(
           message: error.failureMessage,

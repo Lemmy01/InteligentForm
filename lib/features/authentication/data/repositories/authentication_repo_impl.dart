@@ -8,13 +8,15 @@ import '../../domain/repositories/authentication _repo.dart';
 import '../datasources/remote/authentication_firestore_api.dart';
 
 class AuthenticationRepoImpl extends AuthenticationRepo {
-  final _signInFirestoreApi = AuthenticationFirestoreApi();
+  final _authFirestoreApi = AuthenticationFirestoreApi();
 
   @override
-  Future<Either<Failure, void>> login(
-      {required String email, required String password}) async {
+  Future<Either<Failure, void>> login({
+    required String email,
+    required String password,
+  }) async {
     try {
-      await _signInFirestoreApi.login(
+      await _authFirestoreApi.login(
         email: email,
         password: password,
       );
@@ -47,7 +49,7 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
     required String address,
   }) async {
     try {
-      await _signInFirestoreApi.signUp(
+      await _authFirestoreApi.signUp(
         name: name,
         type: type,
         emailAddress: emailAddress,
@@ -77,7 +79,7 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
   @override
   Future<Either<Failure, void>> logout() async {
     try {
-      _signInFirestoreApi.logout();
+      _authFirestoreApi.logout();
 
       return const Right(null);
     } on AppException catch (e) {

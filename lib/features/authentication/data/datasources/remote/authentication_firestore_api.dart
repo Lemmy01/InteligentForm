@@ -82,15 +82,20 @@ class AuthenticationFirestoreApi {
     required String password,
   }) async {
     try {
-      _firebaseAuth.signInWithEmailAndPassword(
+      await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
     } on FirebaseAuthException catch (error) {
-      throw MediumException(
-        runtimeType,
-        error.toString(),
-      );
+      String errorMessage = error.message!;
+
+      if (error.code == 'user-not-found') {
+        errorMessage = AppStringFailuresMessages.userNotFound;
+      } else if (error.code == 'wrong-password') {
+        errorMessage = AppStringFailuresMessages.wrongPassword;
+      }
+
+      throw MediumException(runtimeType, errorMessage);
     }
   }
 

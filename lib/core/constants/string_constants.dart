@@ -30,6 +30,10 @@ class AppStringFailuresMessages {
       'The account already exists for that email.';
   static const String nameAlreadyInUse =
       'The account already exists for that name.';
+
+  static const String userNotFound = 'No user found for that email.';
+
+  static const String wrongPassword = 'Wrong password provided for that user.';
 }
 
 class AppStringSuccesMessages {

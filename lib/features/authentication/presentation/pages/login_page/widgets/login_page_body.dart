@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:inteligent_forms/core/constants/font_constants.dart';
 import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_button.dart';
 import 'package:inteligent_forms/features/authentication/presentation/bloc/authentication_bloc/authentication_bloc.dart';
@@ -34,6 +35,7 @@ class LoginPageBody extends HookWidget {
             style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                   color: Theme.of(context).colorScheme.onPrimary,
                   fontWeight: FontWeight.w500,
+                  fontSize: FontConstants.largeFontSize,
                 ),
           ),
           SizedBox(

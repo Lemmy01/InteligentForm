@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inteligent_forms/core/constants/font_constants.dart';
 import 'package:sizer/sizer.dart';
 
 class MyButton extends StatelessWidget {
@@ -20,9 +21,7 @@ class MyButton extends StatelessWidget {
     return MaterialButton(
       onPressed: isLoading ? () {} : onPressed,
       minWidth: width ?? 80.w,
-      padding: EdgeInsets.symmetric(
-        vertical: 1.h,
-      ),
+      height: 6.h,
       color: Theme.of(context).colorScheme.primary,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.sp),
@@ -32,12 +31,11 @@ class MyButton extends StatelessWidget {
               text,
               style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                     color: Theme.of(context).colorScheme.onPrimary,
+                    fontSize: FontConstants.mediumFontSize,
                   ),
             )
-          : Center(
-              child: CircularProgressIndicator(
-                color: Theme.of(context).colorScheme.onPrimary,
-              ),
+          : CircularProgressIndicator(
+              color: Theme.of(context).colorScheme.onPrimary,
             ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inteligent_forms/core/constants/font_constants.dart';
 
 class MyTextButton extends StatelessWidget {
   const MyTextButton({
@@ -18,6 +19,7 @@ class MyTextButton extends StatelessWidget {
         text,
         style: Theme.of(context).textTheme.headlineSmall!.copyWith(
               color: Theme.of(context).colorScheme.onPrimary,
+              fontSize: FontConstants.smallFontSize,
               fontWeight: FontWeight.w500,
             ),
       ),

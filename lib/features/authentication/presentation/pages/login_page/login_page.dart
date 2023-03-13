@@ -22,18 +22,15 @@ class LoginPage extends StatelessWidget {
               ),
             );
           }
+          if (state is LoginSuccessState) {
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) => const AppBottomBar(),
+                ),
+                (route) => false);
+          }
         },
         builder: (context, state) {
-          if (state is LoadingState) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-
-          if (state is LoginSuccessState) {
-            return const AppBottomBar();
-          }
-
           return const LoginPageBody();
         },
       ),
