@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inteligent_forms/features/create_form/presentation/pages/create_section_page.dart';
 import 'package:inteligent_forms/features/create_form/presentation/widgets/section_card.dart';
 
 import '../../domain/entities/section.dart';
@@ -15,9 +16,11 @@ class _ViewSectionsPageState extends State<ViewSectionsPage> {
   List<Section> sections = [];
   void addSection() {
     setState(() {
-      sections.add(
-          Section(content: '', scanType: "", sectionNumber: sectionNumber));
-      sectionNumber++;
+      // sections.add(
+      //     Section(content: '', scanType: "", sectionNumber: sectionNumber));
+      // sectionNumber++;
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const CreateSectionPage()));
     });
   }
 

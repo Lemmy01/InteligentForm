@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inteligent_forms/features/create_form/presentation/pages/create_field_page.dart';
 import 'package:inteligent_forms/features/create_form/presentation/widgets/field_card.dart';
 import 'package:sizer/sizer.dart';
 
@@ -23,6 +24,8 @@ class _ViewFieldPageState extends State<ViewFieldPage> {
     ),
   ];
   void addField() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const CreateFieldPage()));
     //push to a createFieldPage
   }
 
