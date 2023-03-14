@@ -31,7 +31,7 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
     } on Exception catch (e) {
       Logger.error(runtimeType, e.toString());
 
-      return const Left(
+      return Left(
         HardFailure(
           failureMessage: AppStringFailuresMessages.unexpectedFailure,
         ),
@@ -68,7 +68,7 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
     } on Exception catch (e) {
       Logger.error(runtimeType, e.toString());
 
-      return const Left(
+      return Left(
         HardFailure(
           failureMessage: AppStringFailuresMessages.unexpectedFailure,
         ),
@@ -91,7 +91,7 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
     } on Exception catch (e) {
       Logger.error(runtimeType, e.toString());
 
-      return const Left(
+      return Left(
         HardFailure(
           failureMessage: AppStringFailuresMessages.unexpectedFailure,
         ),

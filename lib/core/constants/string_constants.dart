@@ -48,6 +48,8 @@ class AppStringFailuresMessages {
   static const String userNotFound = 'No user found for that email.';
 
   static const String wrongPassword = 'Wrong password provided for that user.';
+
+  static const String couldNotCreateForm = 'Could not create form';
 }
 
 class AppStringSuccesMessages {
