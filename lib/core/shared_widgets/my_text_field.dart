@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:inteligent_forms/core/constants/app_number_constants.dart';
-import 'package:sizer/sizer.dart';
 
 import '../constants/font_constants.dart';
 
@@ -28,7 +27,7 @@ class MyTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width ?? 80.w,
+      width: width ?? double.infinity,
       child: TextField(
         keyboardType: keyboardType ?? TextInputType.multiline,
         maxLines: maxLines ?? 1,

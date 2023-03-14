@@ -1,4 +1,4 @@
-class AppStringContants {
+class AppStringConstants {
   static const String signIn = 'Sign In';
   static const String fillForm = 'Fill Form';
   static const String intelligent = 'Intelligent';
@@ -14,6 +14,20 @@ class AppStringContants {
   static const String companyName = 'Company Name';
   static const String institutionName = 'Institution Name';
   static const String unique = '(Unique)';
+  static const String scanCode = 'Scan Code';
+  static const String or = 'or';
+  static const String formUrl = 'Form Url';
+  static const String threeDots = '...';
+  static const String fillFormFromUrl = 'Fill Form From Url';
+
+  static const String previewDocument = 'Preview Document';
+
+  static const String fillFormPage = 'Fill Form Page';
+  static const String typeInformationBelow = 'Type information below';
+
+  static const String section = 'Section';
+
+  static const String scanDocs = 'Scan Docs';
 }
 
 class AppBarStrings {
