@@ -56,4 +56,27 @@ class FillFormRepositoryImpl implements FillFormRepository {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, void>> submitForm(
+    String formId,
+    String content,
+    DateTime dateWhenSubmited,
+    DateTime dateToBeDeleted,
+  ) async {
+    try {
+      await datasource.submitForm(
+        formId,
+        content,
+        dateWhenSubmited,
+        dateToBeDeleted,);
+      return const Right(null);
+    } on MediumFailure catch (e) {
+      return Left(
+        MediumFailure(
+          failureMessage: e.failureMessage,
+        ),
+      );
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inteligent_forms/core/errors/exceptions.dart';
+import 'package:inteligent_forms/features/fill_form/data/models/submision_model.dart';
 
 import '../../../../core/constants/firestore_constants.dart';
 import '../../../create_form/data/models/field_model.dart';
@@ -48,6 +49,27 @@ class FillFormApi {
       final listOfModels =
           streamDocs.docs.map((e) => FieldModel.fromJson(e.data())).toList();
       return listOfModels;
+    } on FirebaseException catch (e) {
+      throw MediumException(runtimeType, e.code);
+    }
+  }
+
+  Future<void> submitForm(
+    String formId,
+    String content,
+    DateTime dateWhenSubmited,
+    DateTime dateToBeDeleted,
+  ) async {
+    try {
+      final FormSubmisionModel formSubmisionModel = FormSubmisionModel(
+        formId: formId,
+        content: content,
+        dateWhenSubmited: dateWhenSubmited,
+        dateToBeDeleted: dateToBeDeleted,
+      );
+      await firebase.collection(AppFirestoreCollectionNames.submittedForms).add(
+            formSubmisionModel.toJson(),
+          );
     } on FirebaseException catch (e) {
       throw MediumException(runtimeType, e.code);
     }

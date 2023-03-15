@@ -9,6 +9,7 @@ class AppFirestoreCollectionNames {
   static const String forms = 'forms';
   static const String sections = 'sections';
   static const String fields = 'fields';
+  static const String submittedForms = 'submittedForms';
 }
 
 class AppFirestoreUsersFields {
@@ -43,5 +44,11 @@ class AppFirestoreFieldsFields {
   static const String mandatory = 'mandatory';
   static const String fieldType = 'fieldType';
   static const String docKeys = 'docKeys';
+}
 
-} 
+class AppFirestoreSubmittedFormsFields {
+  static const String formId = 'formId';
+  static const String content = 'content';
+  static const String dateWhenSubmited = 'dateWhenSubmited';
+  static const String dateToBeDeleted = 'dateToBeDeleted';
+}

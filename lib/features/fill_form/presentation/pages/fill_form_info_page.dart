@@ -189,6 +189,7 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
     super.dispose();
   }
 
+  String? firstValue;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -269,14 +270,12 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                             decoration: AppDecoration().inputDecoration(
                               context,
                             ),
-                            items: field.options
-                                .map(
-                                  (option) => MyDropdownMenuItem(
-                                    text: option,
-                                    value: false,
-                                  ),
-                                )
-                                .toList(),
+                            items: field.options.map((option) {
+                              return MyDropdownMenuItem(
+                                text: option,
+                                value: false,
+                              );
+                            }).toList(),
                             onChanged: (value) {},
                           ),
                           AppSizedBoxes.kSmallBox(),

@@ -16,4 +16,10 @@ abstract class FillFormRepository {
     String formId,
     String placeHolder,
   );
+  Future<Either<Failure, void>> submitForm(
+    String formId,
+    String content,
+    DateTime dateWhenSubmited,
+    DateTime dateToBeDeleted,
+  );
 }
