@@ -6,6 +6,9 @@ class AppFirestoreCollectionNames {
   static const String notifications = 'notifications';
   static const String chats = 'chats';
   static const String messages = 'messages';
+  static const String forms = 'forms';
+  static const String sections = 'sections';
+  static const String fields = 'fields';
 }
 
 class AppFirestoreUsersFields {
@@ -16,3 +19,29 @@ class AppFirestoreUsersFields {
   static const String fiscalCode = 'fiscalCode';
   static const String address = 'address';
 }
+
+class AppFirestoreFormsFields {
+  static const String formId = 'formId';
+  static const String title = 'title';
+  static const String dataRetentionPeriod = 'dataRetentionPeriod';
+}
+
+class AppFirestoreSectionsFields {
+  static const String sectionId = 'id';
+  static const String title = 'title';
+  static const String formId = 'formId';
+  static const String content = 'content';
+  static const String scanType = 'scanType';
+  static const String sectionNumber = 'sectionNumber';
+}
+
+class AppFirestoreFieldsFields {
+  static const String fieldId = 'id';
+  static const String label = 'label';
+  static const String formId = 'formId';
+  static const String keyWord = 'keyWord';
+  static const String mandatory = 'mandatory';
+  static const String fieldType = 'fieldType';
+  static const String docKeys = 'docKeys';
+
+} 

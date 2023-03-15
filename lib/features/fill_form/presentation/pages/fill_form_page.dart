@@ -14,7 +14,7 @@ class FillFormPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.secondary,
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             AppStringConstants.fillFormPage,
           ),
           bottom: const TabBar(
