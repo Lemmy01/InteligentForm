@@ -9,6 +9,15 @@ class CreateFieldBloc extends Bloc<CreateFieldEvent, CreateFieldState> {
     on<CreateFieldKeyWordChanged>(_onCreateFieldKeyWordChanged);
     on<CreateFieldIsMandatoryChanged>(_onCreateFieldIsMandatoryChanged);
     on<CreateFieldTypeChanged>(_onCreateFieldFieldTypeChanged);
+    on<CreateFieldShowDocumentKeywordsChanged>(
+      _onCreateFieldShowDocumentKeywordsChanged,
+    );
+    on<CreateFieldDocumentKeywordsChanged>(
+      _onCreateFieldDocumentKeywordsChanged,
+    );
+    on<CreateFieldShowTypesChanged>(
+      _onCreateFieldShowTypesChanged,
+    );
   }
 
   void _onCreateFieldLabelChanged(
@@ -37,5 +46,32 @@ class CreateFieldBloc extends Bloc<CreateFieldEvent, CreateFieldState> {
     Emitter<CreateFieldState> emit,
   ) {
     emit(state.copyWith(fieldType: event.fieldType));
+  }
+
+  void _onCreateFieldShowDocumentKeywordsChanged(
+    CreateFieldShowDocumentKeywordsChanged event,
+    Emitter<CreateFieldState> emit,
+  ) {
+    emit(state.copyWith(
+      showDocumentKeywords: event.showDocumentKeywords,
+    ));
+  }
+
+  void _onCreateFieldDocumentKeywordsChanged(
+    CreateFieldDocumentKeywordsChanged event,
+    Emitter<CreateFieldState> emit,
+  ) {
+    emit(state.copyWith(
+      documentKeywords: event.documentKeywords,
+    ));
+  }
+
+  void _onCreateFieldShowTypesChanged(
+    CreateFieldShowTypesChanged event,
+    Emitter<CreateFieldState> emit,
+  ) {
+    emit(state.copyWith(
+      showTypes: event.showTypes,
+    ));
   }
 }

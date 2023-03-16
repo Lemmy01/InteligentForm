@@ -44,3 +44,32 @@ class CreateFieldTypeChanged extends CreateFieldEvent {
   @override
   List<Object> get props => [fieldType];
 }
+
+class CreateFieldDocumentKeywordsChanged extends CreateFieldEvent {
+  final List<String> documentKeywords;
+
+  const CreateFieldDocumentKeywordsChanged({required this.documentKeywords});
+
+  @override
+  List<Object> get props => [documentKeywords];
+}
+
+class CreateFieldShowDocumentKeywordsChanged extends CreateFieldEvent {
+  final bool showDocumentKeywords;
+
+  const CreateFieldShowDocumentKeywordsChanged({
+    required this.showDocumentKeywords,
+  });
+
+  @override
+  List<Object> get props => [showDocumentKeywords];
+}
+
+class CreateFieldShowTypesChanged extends CreateFieldEvent {
+  final bool showTypes;
+
+  const CreateFieldShowTypesChanged({required this.showTypes});
+
+  @override
+  List<Object> get props => [showTypes];
+}

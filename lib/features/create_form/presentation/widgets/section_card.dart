@@ -26,7 +26,7 @@ class SectionCard extends StatelessWidget {
                 '${AppStringConstants.section} ${section.sectionNumber}',
               ),
               const Spacer(),
-              Text(
+              const Text(
                 AppStringConstants.clickForDetailes,
               ),
             ],

@@ -32,6 +32,10 @@ class AppStringConstants {
   static const String clickForDetailes = 'Click for details';
 
   static const String addField = 'Add Field';
+
+  static const String newKeyword = 'New Keyword';
+
+  static const String add = 'Add';
 }
 
 class AppBarStrings {
@@ -103,4 +107,6 @@ class AppCreateFormString {
   static const String label = "Label";
   static const String keyWord = "KeyWord";
   static const String mandatory = "Mandatory";
+
+  static const String documentKeywords = "Document Keywords";
 }
