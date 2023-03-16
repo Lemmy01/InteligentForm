@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inteligent_forms/core/background_widgets/create_field_background_widget.dart';
+import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
 import 'package:sizer/sizer.dart';
 
@@ -44,7 +45,7 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: 5.h),
+                AppSizedBoxes.kSmallBox(),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
                   child: MyTextField(
@@ -53,7 +54,7 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
                     textAlign: TextAlign.start,
                   ),
                 ),
-                SizedBox(height: 5.h),
+                AppSizedBoxes.kSmallBox(),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
                   child: MyTextField(
@@ -62,7 +63,7 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
                     textAlign: TextAlign.start,
                   ),
                 ),
-                SizedBox(height: 2.h),
+                AppSizedBoxes.kSmallBox(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -79,7 +80,7 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 2.h),
+                AppSizedBoxes.kSmallBox(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

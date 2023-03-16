@@ -24,9 +24,12 @@ class _ViewFieldPageState extends State<ViewFieldPage> {
     ),
   ];
   void addField() {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const CreateFieldPage()));
-    //push to a createFieldPage
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const CreateFieldPage(),
+      ),
+    );
   }
 
   @override
