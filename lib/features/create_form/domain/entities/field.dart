@@ -14,4 +14,15 @@ class Field {
     required this.docKeys,
     required this.label,
   });
+
+  @override
+  String toString() {
+    return 'Field('
+        'label: $label, '
+        'keyWord: $keyWord, '
+        'mandatory: $mandatory, '
+        'fieldType: $fieldType, '
+        'options: $options, '
+        'docKeys: $docKeys)';
+  }
 }

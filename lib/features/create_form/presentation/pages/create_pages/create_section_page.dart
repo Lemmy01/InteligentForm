@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inteligent_forms/core/constants/string_constants.dart';
+import 'package:inteligent_forms/core/shared_widgets/my_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
 import 'package:inteligent_forms/core/utils/extensions.dart';
+import 'package:inteligent_forms/features/create_form/domain/entities/section.dart';
+import 'package:inteligent_forms/features/create_form/presentation/bloc/create_form_bloc/create_form_bloc.dart';
 import 'package:inteligent_forms/features/create_form/presentation/bloc/cubit/document_type_cubit.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../core/background_widgets/create_field_background_widget.dart';
 import '../../../../../core/constants/font_constants.dart';
 import '../../../../../core/utils/enums.dart';
+import '../../bloc/create_form_bloc/create_form_event.dart';
 import '../../bloc/cubit/document_type_state.dart';
 
 class CreateSectionPage extends StatefulWidget {
@@ -126,29 +130,29 @@ class _CreateSectionPageState extends State<CreateSectionPage> {
                   height: 20.h,
                 ),
                 Center(
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF0011A9),
-                      borderRadius: BorderRadius.circular(10.w),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black,
-                          offset: Offset(1, 1),
-                        ),
-                      ],
-                    ),
-                    child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20.w, vertical: 1.h),
-                      child: GestureDetector(
-                        child: Text(
-                          AppCreateFormString.createSection,
-                          style: TextStyle(
-                              fontSize: FontConstants.largeFontSize,
-                              color: Colors.white),
-                        ),
-                      ),
-                    ),
+                  child: MyButton(
+                    text: AppCreateFormString.createSection,
+                    color: Theme.of(context).colorScheme.secondary,
+                    width: 90.w,
+                    onPressed: () {
+                      context.read<CreateFormBloc>().add(
+                            AddSection(
+                              section: Section(
+                                content: requestController.text.trim(),
+                                scanType: context
+                                    .read<DocumentTypeCubit>()
+                                    .state
+                                    .dropdownValue,
+                                sectionNumber: context
+                                    .read<CreateFormBloc>()
+                                    .state
+                                    .sections
+                                    .length,
+                              ),
+                            ),
+                          );
+                      Navigator.pop(context);
+                    },
                   ),
                 ),
               ],

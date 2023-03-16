@@ -8,4 +8,13 @@ class Section {
     required this.scanType,
     required this.sectionNumber,
   });
+
+  //toString
+  @override
+  String toString() {
+    return 'Section('
+        'content: $content, '
+        'scanType: $scanType,'
+        'sectionNumber: $sectionNumber)';
+  }
 }

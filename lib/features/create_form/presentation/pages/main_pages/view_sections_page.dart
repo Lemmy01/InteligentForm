@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inteligent_forms/features/create_form/presentation/pages/create_pages/create_section_page.dart';
 import 'package:inteligent_forms/features/create_form/presentation/widgets/section_card.dart';
 
-import '../../../domain/entities/section.dart';
+import '../../bloc/create_form_bloc/create_form_bloc.dart';
+import '../../bloc/create_form_bloc/create_form_state.dart';
 
 class ViewSectionsPage extends StatefulWidget {
   const ViewSectionsPage({super.key});
@@ -12,16 +14,13 @@ class ViewSectionsPage extends StatefulWidget {
 }
 
 class _ViewSectionsPageState extends State<ViewSectionsPage> {
-  int sectionNumber = 0;
-  List<Section> sections = [];
   void addSection() {
-    // setState(() {
-    // sections.add(
-    //     Section(content: '', scanType: "", sectionNumber: sectionNumber));
-    // sectionNumber++;
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const CreateSectionPage()));
-    // });
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const CreateSectionPage(),
+      ),
+    );
   }
 
   @override
@@ -31,15 +30,18 @@ class _ViewSectionsPageState extends State<ViewSectionsPage> {
       floatingActionButton: FloatingActionButton(
         heroTag: 'view_sections_page',
         onPressed: addSection,
-        //TODO: Add onPressed (Create Section add to a list of sections models)
         child: const Icon(Icons.add),
       ),
-      body: ListView.builder(
-        //Should be a list of sections
-        itemCount: sections.length,
-        itemBuilder: (BuildContext context, int index) {
-          return SectionCard(
-            section: sections[index],
+      body: BlocBuilder<CreateFormBloc, CreateFormState>(
+        builder: (context, state) {
+          return ListView.builder(
+            //Should be a list of sections
+            itemCount: state.sections.length,
+            itemBuilder: (BuildContext context, int index) {
+              return SectionCard(
+                section: state.sections[index],
+              );
+            },
           );
         },
       ),

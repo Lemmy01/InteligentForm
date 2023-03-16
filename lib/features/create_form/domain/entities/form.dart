@@ -6,4 +6,11 @@ class Form {
     required this.title,
     required this.dataRetentionPeriod,
   });
+
+  @override
+  String toString() {
+    return 'Form('
+        'title: $title, '
+        'dataRetentionPeriod: $dataRetentionPeriod)';
+  }
 }

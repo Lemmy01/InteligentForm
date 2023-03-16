@@ -66,7 +66,8 @@ class _CreateFormPageState extends State<CreateFormPage> {
             keyboardType: TextInputType.number,
             onChanged: (textFieldValue) => context.read<CreateFormBloc>().add(
                   ChangeDataRetentionPeriod(
-                      dataRetentionPeriod: int.parse(textFieldValue)),
+                    dataRetentionPeriod: int.parse(textFieldValue),
+                  ),
                 ),
           ),
           AppSizedBoxes.kMediumBox(),
