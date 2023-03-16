@@ -8,12 +8,14 @@ class MyButtonWithChild extends StatelessWidget {
     required this.onPressed,
     this.width,
     this.isLoading = false,
+    this.color,
   });
 
   final Widget child;
   final VoidCallback onPressed;
   final double? width;
   final bool isLoading;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class MyButtonWithChild extends StatelessWidget {
       onPressed: isLoading ? () {} : onPressed,
       minWidth: width ?? double.infinity,
       height: 5.h,
-      color: Theme.of(context).colorScheme.primary,
+      color: color ?? Theme.of(context).colorScheme.primary,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.sp),
       ),

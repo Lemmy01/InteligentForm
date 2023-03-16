@@ -224,6 +224,7 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                         ),
                       ),
                       MyButton(
+                        width: 0,
                         text: AppStringConstants.scanDocs,
                         onPressed: () {},
                       ),

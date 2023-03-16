@@ -19,7 +19,7 @@ class MyTextButton extends StatelessWidget {
         text,
         style: Theme.of(context).textTheme.headlineSmall!.copyWith(
               color: Theme.of(context).colorScheme.onPrimary,
-              fontSize: FontConstants.smallFontSize,
+              fontSize: FontConstants.mediumFontSize,
               fontWeight: FontWeight.w500,
             ),
       ),
