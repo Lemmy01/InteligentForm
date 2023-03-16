@@ -29,7 +29,7 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
   TextEditingController labelController = TextEditingController();
   TextEditingController keywordController = TextEditingController();
   TextEditingController docsKeywordsController = TextEditingController();
-  TextEditingController typesKeywordsController = TextEditingController();
+  TextEditingController optionsKeywordsController = TextEditingController();
 
   @override
   void dispose() {
@@ -53,7 +53,9 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
           body: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(
-                  horizontal: AppNumberConstants.pageHorizontalPadding),
+                horizontal: AppNumberConstants.pageHorizontalPadding,
+                vertical: AppNumberConstants.pageVerticalPadding,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -130,6 +132,7 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
                       builder: (context, state) {
                         return DropdownButtonHideUnderline(
                           child: DropdownButton<FieldType>(
+                              isExpanded: true,
                               menuMaxHeight: 30.h,
                               value: state.fieldType,
                               icon: const Icon(Icons.arrow_drop_down),
@@ -145,7 +148,8 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
                                       (FieldType value) {
                                 return DropdownMenuItem<FieldType>(
                                   value: value,
-                                  child: Text(value.toShortString()),
+                                  child: Center(
+                                      child: Text(value.toShortString())),
                                 );
                               }).toList()),
                         );
@@ -153,6 +157,49 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
                     ),
                   ),
                   AppSizedBoxes.kMediumBox(),
+                  BlocBuilder<CreateFieldBloc, CreateFieldState>(
+                    builder: (context, state) {
+                      if (state.fieldType != FieldType.singleChoice &&
+                          state.fieldType != FieldType.multipleChoice) {
+                        return const SizedBox();
+                      }
+                      return TextFieldWithChips(
+                        title: AppCreateFormString.options,
+                        controller: optionsKeywordsController,
+                        onAdd: () {
+                          context.read<CreateFieldBloc>().add(
+                                OptionsChanged(
+                                  options: [
+                                    ...state.options,
+                                    optionsKeywordsController.text.trim()
+                                  ],
+                                ),
+                              );
+                          optionsKeywordsController.clear();
+                        },
+                        onMinimaze: () {
+                          context.read<CreateFieldBloc>().add(
+                                ShowOptionsChanged(
+                                  showOptions: !state.showOptions,
+                                ),
+                              );
+                        },
+                        contentInChips: state.options,
+                        onDeleteChip: (value) {
+                          context.read<CreateFieldBloc>().add(
+                                OptionsChanged(
+                                  options: [
+                                    ...state.options
+                                        .where((element) => element != value)
+                                  ],
+                                ),
+                              );
+                        },
+                        showAllContainer: state.showOptions,
+                      );
+                    },
+                  ),
+                  AppSizedBoxes.kSmallBox(),
                   BlocBuilder<CreateFieldBloc, CreateFieldState>(
                     buildWhen: (previous, current) =>
                         previous.showDocumentKeywords !=
@@ -164,7 +211,7 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
                         controller: docsKeywordsController,
                         onAdd: () {
                           context.read<CreateFieldBloc>().add(
-                                CreateFieldDocumentKeywordsChanged(
+                                DocumentKeywordsChanged(
                                   documentKeywords: [
                                     ...state.documentKeywords,
                                     docsKeywordsController.text.trim()
@@ -176,7 +223,7 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
                         contentInChips: state.documentKeywords,
                         onDeleteChip: (value) {
                           context.read<CreateFieldBloc>().add(
-                                CreateFieldDocumentKeywordsChanged(
+                                DocumentKeywordsChanged(
                                   documentKeywords: [
                                     ...state.documentKeywords
                                         .where((element) => element != value)
@@ -186,7 +233,7 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
                         },
                         onMinimaze: () {
                           context.read<CreateFieldBloc>().add(
-                                CreateFieldShowDocumentKeywordsChanged(
+                                ShowDocumentKeywordsChanged(
                                   showDocumentKeywords:
                                       !state.showDocumentKeywords,
                                 ),

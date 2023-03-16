@@ -10,7 +10,8 @@ class CreateFieldState extends Equatable {
   final List<String> documentKeywords;
 
   final bool showDocumentKeywords;
-  final bool showTypes;
+  final bool showOptions;
+  final List<String> options;
 
   const CreateFieldState({
     required this.label,
@@ -19,7 +20,8 @@ class CreateFieldState extends Equatable {
     required this.fieldType,
     required this.documentKeywords,
     required this.showDocumentKeywords,
-    required this.showTypes,
+    required this.showOptions,
+    required this.options,
   });
 
   factory CreateFieldState.initial() => const CreateFieldState(
@@ -29,7 +31,8 @@ class CreateFieldState extends Equatable {
         fieldType: FieldType.text,
         documentKeywords: [],
         showDocumentKeywords: false,
-        showTypes: false,
+        showOptions: false,
+        options: [],
       );
 
   @override
@@ -40,7 +43,8 @@ class CreateFieldState extends Equatable {
         fieldType,
         documentKeywords,
         showDocumentKeywords,
-        showTypes
+        showOptions,
+        options,
       ];
 
   CreateFieldState copyWith({
@@ -51,6 +55,7 @@ class CreateFieldState extends Equatable {
     List<String>? documentKeywords,
     bool? showDocumentKeywords,
     bool? showTypes,
+    List<String>? options,
   }) {
     return CreateFieldState(
       label: label ?? this.label,
@@ -59,7 +64,8 @@ class CreateFieldState extends Equatable {
       fieldType: fieldType ?? this.fieldType,
       documentKeywords: documentKeywords ?? this.documentKeywords,
       showDocumentKeywords: showDocumentKeywords ?? this.showDocumentKeywords,
-      showTypes: showTypes ?? this.showTypes,
+      showOptions: showTypes ?? this.showOptions,
+      options: options ?? this.options,
     );
   }
 
@@ -72,6 +78,7 @@ class CreateFieldState extends Equatable {
         '\nfieldType: $fieldType,'
         '\ndocumentKeywords: $documentKeywords,'
         '\nshowDocumentKeywords: $showDocumentKeywords,'
-        '\nshowTypes: $showTypes';
+        '\nshowTypes: $showOptions'
+        '\noptions: $options';
   }
 }

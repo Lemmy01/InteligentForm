@@ -109,4 +109,6 @@ class AppCreateFormString {
   static const String mandatory = "Mandatory";
 
   static const String documentKeywords = "Document Keywords";
+
+  static const String options = "Options";
 }

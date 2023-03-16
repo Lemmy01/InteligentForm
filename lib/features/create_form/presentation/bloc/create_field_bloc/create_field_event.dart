@@ -45,19 +45,19 @@ class CreateFieldTypeChanged extends CreateFieldEvent {
   List<Object> get props => [fieldType];
 }
 
-class CreateFieldDocumentKeywordsChanged extends CreateFieldEvent {
+class DocumentKeywordsChanged extends CreateFieldEvent {
   final List<String> documentKeywords;
 
-  const CreateFieldDocumentKeywordsChanged({required this.documentKeywords});
+  const DocumentKeywordsChanged({required this.documentKeywords});
 
   @override
   List<Object> get props => [documentKeywords];
 }
 
-class CreateFieldShowDocumentKeywordsChanged extends CreateFieldEvent {
+class ShowDocumentKeywordsChanged extends CreateFieldEvent {
   final bool showDocumentKeywords;
 
-  const CreateFieldShowDocumentKeywordsChanged({
+  const ShowDocumentKeywordsChanged({
     required this.showDocumentKeywords,
   });
 
@@ -65,11 +65,20 @@ class CreateFieldShowDocumentKeywordsChanged extends CreateFieldEvent {
   List<Object> get props => [showDocumentKeywords];
 }
 
-class CreateFieldShowTypesChanged extends CreateFieldEvent {
-  final bool showTypes;
+class ShowOptionsChanged extends CreateFieldEvent {
+  final bool showOptions;
 
-  const CreateFieldShowTypesChanged({required this.showTypes});
+  const ShowOptionsChanged({required this.showOptions});
 
   @override
-  List<Object> get props => [showTypes];
+  List<Object> get props => [showOptions];
+}
+
+class OptionsChanged extends CreateFieldEvent {
+  final List<String> options;
+
+  const OptionsChanged({required this.options});
+
+  @override
+  List<Object> get props => [options];
 }
