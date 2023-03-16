@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
+import 'package:inteligent_forms/core/utils/extensions.dart';
+import 'package:inteligent_forms/features/create_form/presentation/bloc/cubit/document_type_cubit.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../core/background_widgets/create_field_background_widget.dart';
 import '../../../../../core/constants/font_constants.dart';
+import '../../../../../core/utils/enums.dart';
+import '../../bloc/cubit/document_type_state.dart';
 
 class CreateSectionPage extends StatefulWidget {
   const CreateSectionPage({super.key});
@@ -14,19 +19,9 @@ class CreateSectionPage extends StatefulWidget {
 }
 
 class _CreateSectionPageState extends State<CreateSectionPage> {
-  late String dropdownValue;
   TextEditingController requestController = TextEditingController();
-  List<String> list = [
-    AppStringDocumentTypes.none,
-    AppStringDocumentTypes.identityCard,
-    AppStringDocumentTypes.birthCertificate,
-    AppStringDocumentTypes.passport,
-    AppStringDocumentTypes.vehicleIdentityCard,
-    AppStringDocumentTypes.anyDocument,
-  ];
   @override
   void initState() {
-    dropdownValue = list.first;
     super.initState();
   }
 
@@ -77,25 +72,29 @@ class _CreateSectionPageState extends State<CreateSectionPage> {
                         borderRadius: BorderRadius.circular(10.w),
                       ),
                     ),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                        menuMaxHeight: 30.h,
-                        value: dropdownValue,
-                        icon: const Icon(Icons.arrow_downward),
-                        onChanged: (String? value) {
-                          setState(() {
-                            //TODO: add logic
-                            dropdownValue = value!;
-                          });
-                        },
-                        items:
-                            list.map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                      ),
+                    child: BlocBuilder<DocumentTypeCubit, DocumentTypeState>(
+                      builder: (context, state) {
+                        return DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            menuMaxHeight: 30.h,
+                            value: state.dropdownValue,
+                            icon: const Icon(Icons.arrow_downward),
+                            onChanged: (String? value) {
+                              context
+                                  .read<DocumentTypeCubit>()
+                                  .changeDropdownValue(value!);
+                            },
+                            items: ScanDocumentType.values
+                                .map<DropdownMenuItem<String>>(
+                                    (ScanDocumentType value) {
+                              return DropdownMenuItem<String>(
+                                value: value.toShortString(),
+                                child: Text(value.toShortString()),
+                              );
+                            }).toList(),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ),

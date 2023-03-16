@@ -1,4 +1,7 @@
-part of 'create_form_bloc.dart';
+import 'package:equatable/equatable.dart';
+
+import '../../../domain/entities/field.dart';
+import '../../../domain/entities/section.dart';
 
 abstract class CreateFormEvent extends Equatable {
   @override

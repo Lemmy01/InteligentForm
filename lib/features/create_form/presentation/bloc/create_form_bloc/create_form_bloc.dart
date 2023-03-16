@@ -1,12 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-import 'package:inteligent_forms/features/create_form/presentation/bloc/create_form_state.dart';
 
-import '../../domain/entities/field.dart';
-import '../../domain/entities/section.dart';
-import '../../domain/usecases/create_form.dart';
-
-part 'create_form_event.dart';
+import '../../../domain/usecases/create_form.dart';
+import 'create_form_event.dart';
+import 'create_form_state.dart';
 
 class CreateFormBloc extends Bloc<CreateFormEvent, CreateFormState> {
   final CreateForm createFormUseCase;

@@ -9,16 +9,18 @@ extension EmailPassIfDebug on String {
 extension ScanDocumentTypetoString on ScanDocumentType {
   String toShortString() {
     switch (this) {
-      case ScanDocumentType.idCard:
-        return 'ID Card';
+      case ScanDocumentType.identityCard:
+        return 'Identity Card';
+      case ScanDocumentType.birthCertificate:
+        return 'Birth Certificate';
       case ScanDocumentType.passport:
         return 'Passport';
-      case ScanDocumentType.drivingLicense:
-        return 'Driving License';
-      case ScanDocumentType.other:
-        return 'Other';
+      case ScanDocumentType.vehicleIdentityCard:
+        return 'Vehicle Identity Card';
+      case ScanDocumentType.anyDocument:
+        return 'Any Document';
       default:
-        return 'Other';
+        return 'Any Document';
     }
   }
 }
