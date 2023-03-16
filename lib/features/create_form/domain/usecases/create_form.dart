@@ -11,9 +11,10 @@ class CreateForm {
   CreateForm(this.repository);
 
   Future<Either<Failure, void>> call({
+    
     String? title,
-    int? dataRetentionPeriod,
     List<Section>? sections,
+    int? dataRetentionPeriod,
     List<Field>? fields,
   }) async {
     return await repository.createForm(

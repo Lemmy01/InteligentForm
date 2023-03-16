@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inteligent_forms/features/create_form/data/models/field_model.dart';
 
+import '../../../../core/errors/exceptions.dart';
 import '../../domain/entities/field.dart';
 import '../../domain/entities/section.dart';
 import '../models/form_model.dart';
@@ -27,23 +28,30 @@ class CreateFormApiImpl implements CreateFormApi {
     List<Section> sections,
     List<Field> fields,
   ) async {
-    final CollectionReference forms = firebase.collection('forms');
-    final id = forms.doc().id;
-    await forms.add(
-      FormModel(
-        title: title,
-        dataRetentionPeriod: dataRetentionPeriod,
-        id: id,
-      ).toMap(),
-    );
+    try {
+      final CollectionReference forms = firebase.collection('forms');
+      final id = forms.doc().id;
+      await forms.add(
+        FormModel(
+          title: title,
+          dataRetentionPeriod: dataRetentionPeriod,
+          id: id,
+        ).toMap(),
+      );
 
-    for (final section in sections) {
-      await addSection(section, id);
+      for (final section in sections) {
+        await addSection(section, id);
+      }
+      for (final field in fields) {
+        await addField(field, id);
+      }
+      return await null;
+    } on FirebaseException catch (error) {
+      throw MediumException(
+        runtimeType,
+        error.toString(),
+      );
     }
-    for (final field in fields) {
-      await addField(field, id);
-    }
-    return await null;
   }
 
   Future<void> addSection(
