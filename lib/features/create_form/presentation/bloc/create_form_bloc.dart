@@ -14,13 +14,13 @@ class CreateFormBloc extends Bloc<CreateFormEvent, CreateFormState> {
   CreateFormBloc({
     required this.createFormUseCase,
   }) : super(const CreateFormState()) {
-    on<CreateFormSubmitted>(_onCreateFormSubmitted);
     on<ChangeTitle>(_onChangeTitle);
     on<ChangeDataRetentionPeriod>(_onChangeDataRetentionPeriod);
     on<AddSection>(_onAddSection);
     on<RemoveSection>(_onRemoveSection);
     on<AddField>(_onAddField);
     on<RemoveField>(_onRemoveField);
+    on<CreateFormSubmitted>(_onCreateFormSubmitted);
   }
 
   void _onChangeTitle(

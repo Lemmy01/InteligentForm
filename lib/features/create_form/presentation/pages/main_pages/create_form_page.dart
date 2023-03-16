@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inteligent_forms/core/constants/app_number_constants.dart';
 import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
 
 import '../../../../../core/constants/string_constants.dart';
+import '../../bloc/create_form_bloc.dart';
 
 class CreateFormPage extends StatefulWidget {
   const CreateFormPage({super.key});
@@ -14,9 +16,21 @@ class CreateFormPage extends StatefulWidget {
 }
 
 class _CreateFormPageState extends State<CreateFormPage> {
-  final TextEditingController _nameEditingController = TextEditingController();
-  final TextEditingController _dataRetentionController =
-      TextEditingController();
+  late final TextEditingController _nameEditingController;
+  late final TextEditingController _dataRetentionController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _nameEditingController = TextEditingController(
+      text: context.read<CreateFormBloc>().state.title,
+    );
+
+    _dataRetentionController = TextEditingController(
+      text: context.read<CreateFormBloc>().state.dataRetentionPeriod.toString(),
+    );
+  }
 
   @override
   void dispose() {
@@ -39,6 +53,9 @@ class _CreateFormPageState extends State<CreateFormPage> {
             hintText: AppCreateFormString.formName,
             controller: _nameEditingController,
             textAlign: TextAlign.start,
+            onChanged: (textFieldValue) => context.read<CreateFormBloc>().add(
+                  ChangeTitle(title: textFieldValue),
+                ),
           ),
           AppSizedBoxes.kSmallBox(),
           MyTextField(
@@ -46,11 +63,17 @@ class _CreateFormPageState extends State<CreateFormPage> {
             controller: _dataRetentionController,
             textAlign: TextAlign.start,
             keyboardType: TextInputType.number,
+            onChanged: (textFieldValue) => context.read<CreateFormBloc>().add(
+                  ChangeDataRetentionPeriod(
+                      dataRetentionPeriod: int.parse(textFieldValue)),
+                ),
           ),
           AppSizedBoxes.kMediumBox(),
           MyButton(
             text: AppCreateFormString.createForm,
-            onPressed: () {},
+            onPressed: () {
+              context.read<CreateFormBloc>().add(CreateFormSubmitted());
+            },
             color: Theme.of(context).colorScheme.secondary,
           ),
         ],
