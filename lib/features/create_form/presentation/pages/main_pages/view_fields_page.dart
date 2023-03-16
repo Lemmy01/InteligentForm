@@ -36,13 +36,11 @@ class _ViewFieldPageState extends State<ViewFieldPage> {
       floatingActionButton: FloatingActionButton(
         heroTag: 'view_fields_page',
         onPressed: addField,
-        //TODO: Add onPressed (Create Section add to a list of sections models)
         child: const Icon(Icons.add),
       ),
       body: Padding(
         padding: EdgeInsets.only(top: 1.h),
         child: ListView.builder(
-          //Should be a list of sections
           itemCount: fields.length,
           itemBuilder: (BuildContext context, int index) {
             return FieldCard(

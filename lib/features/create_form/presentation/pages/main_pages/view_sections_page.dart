@@ -15,13 +15,13 @@ class _ViewSectionsPageState extends State<ViewSectionsPage> {
   int sectionNumber = 0;
   List<Section> sections = [];
   void addSection() {
-    setState(() {
-      // sections.add(
-      //     Section(content: '', scanType: "", sectionNumber: sectionNumber));
-      // sectionNumber++;
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const CreateSectionPage()));
-    });
+    // setState(() {
+    // sections.add(
+    //     Section(content: '', scanType: "", sectionNumber: sectionNumber));
+    // sectionNumber++;
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const CreateSectionPage()));
+    // });
   }
 
   @override

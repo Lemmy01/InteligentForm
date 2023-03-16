@@ -1,22 +1,42 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
-abstract class CreateFormState extends Equatable {
+import '../../domain/entities/field.dart';
+import '../../domain/entities/section.dart';
+
+enum CreateFormStatus { initial, loading, success, failure }
+
+class CreateFormState extends Equatable {
+  final CreateFormStatus status;
+  final String title;
+  final int dataRetentionPeriod;
+  final List<Section> sections;
+  final List<Field> fields;
+  const CreateFormState({
+    this.title = '',
+    this.dataRetentionPeriod = 0,
+    this.sections = const [],
+    this.fields = const [],
+    this.status = CreateFormStatus.initial,
+  });
+
   @override
-  List<Object> get props => [];
-}
+  List<Object> get props =>
+      [title, dataRetentionPeriod, sections, fields, status];
 
-class CreateFormInitial extends CreateFormState {}
-
-//aici sa nu lasi utilizatorul sa apese pe butonul de submit daca e deja in proces
-class CreateFormLoading extends CreateFormState {}
-
-class CreateFormSuccess extends CreateFormState {}
-
-class CreateFormFailure extends CreateFormState {
-  final String message;
-
-  CreateFormFailure({required this.message});
-
-  @override
-  List<Object> get props => [message];
+  CreateFormState copyWith({
+    String? title,
+    int? dataRetentionPeriod,
+    List<Section>? sections,
+    List<Field>? fields,
+    CreateFormStatus? status,
+  }) {
+    return CreateFormState(
+      title: title ?? this.title,
+      dataRetentionPeriod: dataRetentionPeriod ?? this.dataRetentionPeriod,
+      sections: sections ?? this.sections,
+      fields: fields ?? this.fields,
+      status: status ?? this.status,
+    );
+  }
 }
