@@ -13,27 +13,27 @@ class FieldCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Slidable(
-      endActionPane: const ActionPane(
-        motion: DrawerMotion(),
+      endActionPane: ActionPane(
+        motion: const DrawerMotion(),
         children: [
           SlidableAction(
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(10),
               topLeft: Radius.circular(10),
             ),
             onPressed: null,
-            backgroundColor: Color(0xFF7BC043),
-            foregroundColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.tertiary,
+            foregroundColor: Theme.of(context).colorScheme.onTertiary,
             icon: Icons.edit,
           ),
           SlidableAction(
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               bottomRight: Radius.circular(10),
               topRight: Radius.circular(10),
             ),
             onPressed: null,
-            backgroundColor: Color(0xFF0392CF),
-            foregroundColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.secondary,
+            foregroundColor: Theme.of(context).colorScheme.onSecondary,
             icon: Icons.delete,
           ),
         ],
@@ -42,7 +42,7 @@ class FieldCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        color: const Color(0xFFE5DDC8),
+        color: Theme.of(context).colorScheme.onPrimary,
         child: Padding(
           padding: EdgeInsets.all(2.w),
           child: GestureDetector(

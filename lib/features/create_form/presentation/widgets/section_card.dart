@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../domain/entities/section.dart';
@@ -15,19 +16,19 @@ class SectionCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      color: const Color(0xFFE5DDC8),
+      color: Theme.of(context).colorScheme.onPrimary,
       child: Padding(
-        padding: EdgeInsets.all(2.w),
+        padding: EdgeInsets.all(3.5.w),
         child: GestureDetector(
           child: Row(
             children: [
-              const Icon(Icons.drag_handle),
-              const SizedBox(
-                width: 10,
+              Text(
+                '${AppStringConstants.section} ${section.sectionNumber}',
               ),
-              Text('Section ${section.sectionNumber}'),
               const Spacer(),
-              const Text("Click for details"),
+              Text(
+                AppStringConstants.clickForDetailes,
+              ),
             ],
           ),
           onTap: () {

@@ -28,6 +28,8 @@ class AppStringConstants {
   static const String section = 'Section';
 
   static const String scanDocs = 'Scan Docs';
+
+  static String clickForDetailes = 'Click for details';
 }
 
 class AppBarStrings {
