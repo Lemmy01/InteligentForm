@@ -3,8 +3,8 @@ import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../core/background_widgets/create_field_background_widget.dart';
-import '../../../../core/constants/font_constants.dart';
+import '../../../../../core/background_widgets/create_field_background_widget.dart';
+import '../../../../../core/constants/font_constants.dart';
 
 class CreateSectionPage extends StatefulWidget {
   const CreateSectionPage({super.key});

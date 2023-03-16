@@ -4,7 +4,7 @@ import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
 
-import '../../../../core/constants/string_constants.dart';
+import '../../../../../core/constants/string_constants.dart';
 
 class CreateFormPage extends StatefulWidget {
   const CreateFormPage({super.key});

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:inteligent_forms/core/background_widgets/create_form_background_widget.dart';
-import 'package:inteligent_forms/features/create_form/presentation/pages/view_fields_page.dart';
-import 'package:inteligent_forms/features/create_form/presentation/pages/view_sections_page.dart';
+import 'package:inteligent_forms/features/create_form/presentation/pages/main_pages/view_fields_page.dart';
+import 'package:inteligent_forms/features/create_form/presentation/pages/main_pages/view_sections_page.dart';
 
 import '../../../../core/constants/string_constants.dart';
-import 'create_form_page.dart';
+import 'main_pages/create_form_page.dart';
 
-class MyTabController extends StatefulWidget {
-  const MyTabController({super.key});
+class FormTabController extends StatefulWidget {
+  const FormTabController({super.key});
 
   @override
-  State<MyTabController> createState() => _MyTabControllerState();
+  State<FormTabController> createState() => _FormTabControllerState();
 }
 
-class _MyTabControllerState extends State<MyTabController> {
+class _FormTabControllerState extends State<FormTabController> {
   final index = 1;
   @override
   Widget build(BuildContext context) {

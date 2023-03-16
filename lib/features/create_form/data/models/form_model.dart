@@ -8,22 +8,6 @@ class FormModel extends Form {
     this.id,
   });
 
-  factory FormModel.fromJson(Map<String, dynamic> json) {
-    return FormModel(
-      id: json['id'],
-      title: json['title'],
-      dataRetentionPeriod: json['dataRetenrionPeriod'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'title': title,
-      'dataRetenrionPeriod': dataRetentionPeriod,
-    };
-  }
-
   factory FormModel.fromMap(Map<String, dynamic> map) {
     return FormModel(
       id: map['id'],

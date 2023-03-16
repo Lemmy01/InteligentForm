@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/string_constants.dart';
-import '../../../../create_form/presentation/pages/my_tab_controler_page.dart';
+import '../../../../create_form/presentation/pages/form_tab_controler_page.dart';
 
 class FormsPage extends StatelessWidget {
   const FormsPage({super.key});
@@ -11,8 +11,8 @@ class FormsPage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const MyTabController()));
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const FormTabController()));
         },
         child: const Icon(
           Icons.add,

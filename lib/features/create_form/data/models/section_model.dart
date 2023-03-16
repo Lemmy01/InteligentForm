@@ -11,26 +11,6 @@ class SectionModel extends Section {
   String? id;
   String formId;
 
-  factory SectionModel.fromJson(Map<String, dynamic> json) {
-    return SectionModel(
-      content: json['content'],
-      scanType: json['scanType'],
-      sectionNumber: json['sectionNumber'],
-      id: json['id'],
-      formId: json['formId'],
-    );
-  }
-
-  toJson() {
-    return {
-      'content': content,
-      'scanType': scanType,
-      'sectionNumber': sectionNumber,
-      'id': id,
-      'formId': formId,
-    };
-  }
-
   factory SectionModel.fromMap(Map<String, dynamic> map) {
     return SectionModel(
       content: map['content'],
@@ -41,7 +21,7 @@ class SectionModel extends Section {
     );
   }
 
-  toMap() {
+  Map<String, dynamic> toMap() {
     return {
       'content': content,
       'scanType': scanType,

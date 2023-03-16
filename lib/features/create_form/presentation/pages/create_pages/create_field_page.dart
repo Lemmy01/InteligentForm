@@ -3,7 +3,7 @@ import 'package:inteligent_forms/core/background_widgets/create_field_background
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../core/constants/string_constants.dart';
+import '../../../../../core/constants/string_constants.dart';
 
 class CreateFieldPage extends StatefulWidget {
   const CreateFieldPage({super.key});

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:inteligent_forms/features/create_form/presentation/pages/create_field_page.dart';
+import 'package:inteligent_forms/features/create_form/presentation/pages/create_pages/create_field_page.dart';
 import 'package:inteligent_forms/features/create_form/presentation/widgets/field_card.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../domain/entities/field.dart';
+import '../../../domain/entities/field.dart';
 
 class ViewFieldPage extends StatefulWidget {
   const ViewFieldPage({super.key});
