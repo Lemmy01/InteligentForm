@@ -4,12 +4,17 @@ import 'package:inteligent_forms/features/create_form/presentation/bloc/create_f
 
 import '../../domain/entities/field.dart';
 import '../../domain/entities/section.dart';
+import '../../domain/usecases/create_form.dart';
 
 part 'create_form_event.dart';
 
 class CreateFormBloc extends Bloc<CreateFormEvent, CreateFormState> {
-  CreateFormBloc() : super(const CreateFormState()) {
-    // on<CreateFormSubmitted>(_onCreateFormSubmitted);
+  final CreateForm createFormUseCase;
+
+  CreateFormBloc({
+    required this.createFormUseCase,
+  }) : super(const CreateFormState()) {
+    on<CreateFormSubmitted>(_onCreateFormSubmitted);
     on<ChangeTitle>(_onChangeTitle);
     on<ChangeDataRetentionPeriod>(_onChangeDataRetentionPeriod);
     on<AddSection>(_onAddSection);
@@ -88,21 +93,25 @@ class CreateFormBloc extends Bloc<CreateFormEvent, CreateFormState> {
     );
   }
 
-  // void _onCreateFormSubmitted(
-  //   CreateFormSubmitted event,
-  //   Emitter<CreateFormState> emit,
-  // ) async {
-  //   emit(state.copyWith(status: CreateFormStatus.loading));
-  //   try {
-  //     await _createFormRepository.createForm(
-  //       title: state.title,
-  //       dataRetentionPeriod: state.dataRetentionPeriod,
-  //       sections: state.sections,
-  //       fields: state.fields,
-  //     );
-  //     emit(state.copyWith(status: CreateFormStatus.success));
-  //   } on Exception {
-  //     emit(state.copyWith(status: CreateFormStatus.error));
-  //   }
-  // }
+  void _onCreateFormSubmitted(
+    CreateFormSubmitted event,
+    Emitter<CreateFormState> emit,
+  ) async {
+    emit(state.copyWith(status: CreateFormStatus.loading));
+
+    (await createFormUseCase(
+      title: state.title,
+      dataRetentionPeriod: state.dataRetentionPeriod,
+      sections: state.sections,
+      fields: state.fields,
+    ))
+        .fold(
+      (l) => emit(
+        state.copyWith(status: CreateFormStatus.error),
+      ),
+      (r) => emit(
+        state.copyWith(status: CreateFormStatus.success),
+      ),
+    );
+  }
 }
