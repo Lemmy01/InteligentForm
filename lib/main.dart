@@ -15,6 +15,7 @@ import 'features/authentication/presentation/bloc/account_type_bloc.dart/bloc/ac
 import 'features/authentication/presentation/pages/home_page/home_page.dart';
 import 'features/create_form/data/datasources/create_form_api.dart';
 import 'features/create_form/domain/usecases/create_form.dart';
+import 'features/create_form/presentation/bloc/create_field_bloc/create_field_bloc.dart';
 import 'features/create_form/presentation/bloc/create_form_bloc/create_form_bloc.dart';
 import 'features/create_form/presentation/bloc/cubit/document_type_cubit.dart';
 import 'firebase_options.dart';
@@ -79,11 +80,12 @@ class InteligentFrormsApp extends StatelessWidget {
               ),
             ),
           ),
-          child: Container(),
         ),
         BlocProvider(
           create: (context) => DocumentTypeCubit(),
-          child: Container(),
+        ),
+        BlocProvider(
+          create: (context) => CreateFieldBloc(),
         )
       ],
       child: MaterialApp(

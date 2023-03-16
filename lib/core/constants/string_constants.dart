@@ -29,7 +29,9 @@ class AppStringConstants {
 
   static const String scanDocs = 'Scan Docs';
 
-  static String clickForDetailes = 'Click for details';
+  static const String clickForDetailes = 'Click for details';
+
+  static const String addField = 'Add Field';
 }
 
 class AppBarStrings {
@@ -101,11 +103,4 @@ class AppCreateFormString {
   static const String label = "Label";
   static const String keyWord = "KeyWord";
   static const String mandatory = "Mandatory";
-  static const List<String> listOfFieldTypes = [
-    'Text',
-    'Number',
-    'Date',
-    'Single Choice',
-    'Multiple Choice',
-  ];
 }

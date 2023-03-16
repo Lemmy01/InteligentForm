@@ -36,10 +36,10 @@ class CreateFieldIsMandatoryChanged extends CreateFieldEvent {
   List<Object> get props => [isMandatory];
 }
 
-class CreateFieldFieldTypeChanged extends CreateFieldEvent {
+class CreateFieldTypeChanged extends CreateFieldEvent {
   final FieldType fieldType;
 
-  const CreateFieldFieldTypeChanged({required this.fieldType});
+  const CreateFieldTypeChanged({required this.fieldType});
 
   @override
   List<Object> get props => [fieldType];

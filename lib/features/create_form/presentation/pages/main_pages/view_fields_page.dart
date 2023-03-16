@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inteligent_forms/features/create_form/presentation/pages/create_pages/create_field_page.dart';
 import 'package:inteligent_forms/features/create_form/presentation/widgets/field_card.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../domain/entities/field.dart';
+import '../../bloc/create_form_bloc/create_form_bloc.dart';
+import '../../bloc/create_form_bloc/create_form_state.dart';
 
 class ViewFieldPage extends StatefulWidget {
   const ViewFieldPage({super.key});
@@ -13,16 +15,6 @@ class ViewFieldPage extends StatefulWidget {
 }
 
 class _ViewFieldPageState extends State<ViewFieldPage> {
-  int sectionNumber = 0;
-  List<Field> fields = [
-    Field(
-      keyWord: 'keyWord',
-      mandatory: false,
-      fieldType: 'fieldType',
-      docKeys: [],
-      label: 'label',
-    ),
-  ];
   void addField() {
     Navigator.push(
       context,
@@ -41,16 +33,20 @@ class _ViewFieldPageState extends State<ViewFieldPage> {
         onPressed: addField,
         child: const Icon(Icons.add),
       ),
-      body: Padding(
-        padding: EdgeInsets.only(top: 1.h),
-        child: ListView.builder(
-          itemCount: fields.length,
-          itemBuilder: (BuildContext context, int index) {
-            return FieldCard(
-              field: fields[index],
-            );
-          },
-        ),
+      body: BlocBuilder<CreateFormBloc, CreateFormState>(
+        builder: (context, state) {
+          return Padding(
+            padding: EdgeInsets.only(top: 1.h),
+            child: ListView.builder(
+              itemCount: state.fields.length,
+              itemBuilder: (BuildContext context, int index) {
+                return FieldCard(
+                  field: state.fields[index],
+                );
+              },
+            ),
+          );
+        },
       ),
     );
   }
