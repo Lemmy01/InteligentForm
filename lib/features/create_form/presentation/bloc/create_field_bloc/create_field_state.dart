@@ -3,19 +3,16 @@ import 'package:equatable/equatable.dart';
 import '../../../../../core/utils/enums.dart';
 
 class CreateFieldState extends Equatable {
-  final String label;
-  final String keyWord;
   final bool isMandatory;
   final FieldType fieldType;
-  final List<String> documentKeywords;
 
   final bool showDocumentKeywords;
+  final List<String> documentKeywords;
+
   final bool showOptions;
   final List<String> options;
 
   const CreateFieldState({
-    required this.label,
-    required this.keyWord,
     required this.isMandatory,
     required this.fieldType,
     required this.documentKeywords,
@@ -25,8 +22,6 @@ class CreateFieldState extends Equatable {
   });
 
   factory CreateFieldState.initial() => const CreateFieldState(
-        label: '',
-        keyWord: '',
         isMandatory: false,
         fieldType: FieldType.text,
         documentKeywords: [],
@@ -37,8 +32,6 @@ class CreateFieldState extends Equatable {
 
   @override
   List<Object?> get props => [
-        label,
-        keyWord,
         isMandatory,
         fieldType,
         documentKeywords,
@@ -48,8 +41,6 @@ class CreateFieldState extends Equatable {
       ];
 
   CreateFieldState copyWith({
-    String? label,
-    String? keyWord,
     bool? isMandatory,
     FieldType? fieldType,
     List<String>? documentKeywords,
@@ -58,27 +49,23 @@ class CreateFieldState extends Equatable {
     List<String>? options,
   }) {
     return CreateFieldState(
-      label: label ?? this.label,
-      keyWord: keyWord ?? this.keyWord,
       isMandatory: isMandatory ?? this.isMandatory,
       fieldType: fieldType ?? this.fieldType,
       documentKeywords: documentKeywords ?? this.documentKeywords,
       showDocumentKeywords: showDocumentKeywords ?? this.showDocumentKeywords,
-      showOptions: showTypes ?? this.showOptions,
+      showOptions: showTypes ?? showOptions,
       options: options ?? this.options,
     );
   }
 
   @override
   String toString() {
-    return 'CreateFieldState :'
-        '\nlabel: $label,'
-        '\nkeyWord: $keyWord,'
+    return '\n\nCreateFieldState :'
         '\nisMandatory: $isMandatory,'
         '\nfieldType: $fieldType,'
         '\ndocumentKeywords: $documentKeywords,'
         '\nshowDocumentKeywords: $showDocumentKeywords,'
         '\nshowTypes: $showOptions'
-        '\noptions: $options';
+        '\noptions: $options\n\n';
   }
 }

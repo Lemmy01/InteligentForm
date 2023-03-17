@@ -5,8 +5,6 @@ import 'create_field_state.dart';
 
 class CreateFieldBloc extends Bloc<CreateFieldEvent, CreateFieldState> {
   CreateFieldBloc() : super(CreateFieldState.initial()) {
-    on<CreateFieldLabelChanged>(_onCreateFieldLabelChanged);
-    on<CreateFieldKeyWordChanged>(_onCreateFieldKeyWordChanged);
     on<CreateFieldIsMandatoryChanged>(_onCreateFieldIsMandatoryChanged);
     on<CreateFieldTypeChanged>(_onCreateFieldFieldTypeChanged);
     on<ShowDocumentKeywordsChanged>(
@@ -22,20 +20,6 @@ class CreateFieldBloc extends Bloc<CreateFieldEvent, CreateFieldState> {
     on<OptionsChanged>(
       _onCreateFieldOptionsChanged,
     );
-  }
-
-  void _onCreateFieldLabelChanged(
-    CreateFieldLabelChanged event,
-    Emitter<CreateFieldState> emit,
-  ) {
-    emit(state.copyWith(label: event.label));
-  }
-
-  void _onCreateFieldKeyWordChanged(
-    CreateFieldKeyWordChanged event,
-    Emitter<CreateFieldState> emit,
-  ) {
-    emit(state.copyWith(keyWord: event.keyWord));
   }
 
   void _onCreateFieldIsMandatoryChanged(
