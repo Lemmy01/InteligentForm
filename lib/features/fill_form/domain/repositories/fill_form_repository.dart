@@ -12,7 +12,7 @@ abstract class FillFormRepository {
   Future<Either<Failure, List<Section>>> getFormSections(
     String formId,
   );
-  Future<Either<Failure, List<Field>>> getFormFields(
+  Future<Either<Failure, Field>> getFormFields(
     String formId,
     String placeHolder,
   );

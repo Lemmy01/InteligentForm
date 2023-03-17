@@ -39,16 +39,15 @@ class FillFormApi {
     }
   }
 
-  Future<List<FieldModel>> getFields(String formId, String placeholder) async {
+  Future<FieldModel> getFields(String formId, String placeholder) async {
     try {
-      final streamDocs = await firebase
+      final doc = await firebase
           .collection(AppFirestoreCollectionNames.fields)
           .where(AppFirestoreFieldsFields.formId, isEqualTo: formId)
           .where(AppFirestoreFieldsFields.keyWord, isEqualTo: placeholder)
           .get();
-      final listOfModels =
-          streamDocs.docs.map((e) => FieldModel.fromJson(e.data())).toList();
-      return listOfModels;
+ 
+      return FieldModel.fromJson(doc.docs.first.data());
     } on FirebaseException catch (e) {
       throw MediumException(runtimeType, e.code);
     }

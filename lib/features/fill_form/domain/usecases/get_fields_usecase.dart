@@ -9,8 +9,7 @@ class GetFormUsecase {
 
   GetFormUsecase(this.repository);
 
-  Future<Either<Failure, List<Field>>> call(
-      String formId, String placeHolder) async {
+  Future<Either<Failure, Field>> call(String formId, String placeHolder) async {
     return await repository.getFormFields(
       formId,
       placeHolder,

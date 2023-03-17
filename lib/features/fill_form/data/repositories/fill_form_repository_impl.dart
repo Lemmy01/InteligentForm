@@ -29,7 +29,7 @@ class FillFormRepositoryImpl implements FillFormRepository {
   }
 
   @override
-  Future<Either<Failure, List<Field>>> getFormFields(
+  Future<Either<Failure, Field>> getFormFields(
       String formId, String placeHolder) async {
     try {
       final result = await datasource.getFields(formId, placeHolder);
@@ -69,7 +69,8 @@ class FillFormRepositoryImpl implements FillFormRepository {
         formId,
         content,
         dateWhenSubmited,
-        dateToBeDeleted,);
+        dateToBeDeleted,
+      );
       return const Right(null);
     } on MediumFailure catch (e) {
       return Left(
