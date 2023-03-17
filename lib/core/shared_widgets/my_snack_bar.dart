@@ -19,6 +19,7 @@ class MySnackBar extends SnackBar {
 }
 
 showMySnackBar(BuildContext context, String text) {
+  ScaffoldMessenger.of(context).hideCurrentSnackBar();
   ScaffoldMessenger.of(context).showSnackBar(
     MySnackBar(text: text),
   );

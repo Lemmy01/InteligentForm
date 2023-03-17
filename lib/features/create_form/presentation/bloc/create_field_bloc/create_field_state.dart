@@ -25,8 +25,8 @@ class CreateFieldState extends Equatable {
         isMandatory: false,
         fieldType: FieldType.text,
         documentKeywords: [],
-        showDocumentKeywords: false,
-        showOptions: false,
+        showDocumentKeywords: true,
+        showOptions: true,
         options: [],
       );
 

@@ -80,12 +80,13 @@ class AppStringFailuresMessages {
   static const String chooseAnotherKeyword =
       'Choose another keyword, this one is already in use';
 
-  static const String numberOfFieldsEmpty = 'Number of fields cannot be empty';
+  static const String numberOfFieldsEmpty =
+      'Add at least one field to the form';
 
   static const String formNameEmptyField = 'Form name cannot be empty';
 
   static const String numberOfSectionsEmpty =
-      'Number of sections cannot be empty';
+      'Add at least one section to the form';
 
   static var choseADataRetentionPeriodBetween1_60 =
       'Chose a data retention period between 1 and 60';

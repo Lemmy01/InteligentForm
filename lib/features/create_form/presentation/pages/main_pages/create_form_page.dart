@@ -9,6 +9,7 @@ import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
 import '../../../../../core/constants/string_constants.dart';
 import '../../bloc/create_form_bloc/create_form_bloc.dart';
 import '../../bloc/create_form_bloc/create_form_event.dart';
+import '../../bloc/create_form_bloc/create_form_state.dart';
 
 class CreateFormPage extends StatefulWidget {
   const CreateFormPage({super.key});
@@ -69,7 +70,7 @@ class _CreateFormPageState extends State<CreateFormPage> {
             keyboardType: TextInputType.number,
             onChanged: (textFieldValue) => context.read<CreateFormBloc>().add(
                   ChangeDataRetentionPeriod(
-                    dataRetentionPeriod: int.parse(textFieldValue),
+                    dataRetentionPeriod: (int.tryParse(textFieldValue) ?? 0),
                   ),
                 ),
           ),
@@ -113,12 +114,19 @@ class _CreateFormPageState extends State<CreateFormPage> {
             ],
           ),
           AppSizedBoxes.kMediumBox(),
-          MyButton(
-            text: AppCreateFormString.createForm,
-            onPressed: () {
-              context.read<CreateFormBloc>().add(CreateFormSubmitted());
+          BlocBuilder<CreateFormBloc, CreateFormState>(
+            builder: (context, state) {
+              return MyButton(
+                isLoading: state.status == CreateFormStatus.loading,
+                text: AppCreateFormString.createForm,
+                onPressed: () {
+                  context.read<CreateFormBloc>().add(
+                        CreateFormSubmitted(),
+                      );
+                },
+                color: Theme.of(context).colorScheme.secondary,
+              );
             },
-            color: Theme.of(context).colorScheme.secondary,
           ),
         ],
       ),

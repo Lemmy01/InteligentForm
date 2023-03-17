@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inteligent_forms/core/background_widgets/create_form_background_widget.dart';
+import 'package:inteligent_forms/core/shared_widgets/my_snack_bar.dart';
+import 'package:inteligent_forms/features/create_form/presentation/bloc/create_form_bloc/create_form_event.dart';
 import 'package:inteligent_forms/features/create_form/presentation/pages/main_pages/view_fields_page.dart';
 import 'package:inteligent_forms/features/create_form/presentation/pages/main_pages/view_sections_page.dart';
 
 import '../../../../core/constants/string_constants.dart';
+import '../bloc/create_form_bloc/create_form_bloc.dart';
+import '../bloc/create_form_bloc/create_form_state.dart';
 import 'main_pages/create_form_page.dart';
 
 class FormTabController extends StatefulWidget {
@@ -48,12 +53,36 @@ class _FormTabControllerState extends State<FormTabController> {
                 ],
               ),
             ),
-            body: const TabBarView(
-              children: [
-                CreateFormPage(),
-                ViewSectionsPage(),
-                ViewFieldPage(),
-              ],
+            body: BlocListener<CreateFormBloc, CreateFormState>(
+              listenWhen: (previous, current) =>
+                  previous.error != current.error,
+              listener: (context, state) {
+                showMySnackBar(
+                  context,
+                  state.error,
+                );
+              },
+              child: BlocListener<CreateFormBloc, CreateFormState>(
+                listenWhen: (previous, current) =>
+                    previous.status != current.status &&
+                    current.status == CreateFormStatus.success,
+                listener: (context, state) {
+                  if (state.status == CreateFormStatus.success) {
+                    context.read<CreateFormBloc>().add(
+                          ResetCreateForm(),
+                        );
+
+                    Navigator.of(context).pop();
+                  }
+                },
+                child: const TabBarView(
+                  children: [
+                    CreateFormPage(),
+                    ViewSectionsPage(),
+                    ViewFieldPage(),
+                  ],
+                ),
+              ),
             ),
           ),
         ),

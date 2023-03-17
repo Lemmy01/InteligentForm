@@ -18,23 +18,41 @@ class CreateForm {
     required List<Section> sections,
     required List<Field> fields,
   }) async {
-    CreateFieldValidators.createVormValidate(
+    final val = CreateFieldValidators.createVormValidate(
       formName: title,
       dataRetentionPeriod: dataRetentionPeriod,
       numberOfFields: fields.length,
       numberOfSections: sections.length,
-    ).fold(
+    );
+
+    if (val.isLeft()) {
+      return val;
+    }
+
+    (await repository.createForm(
+      title,
+      dataRetentionPeriod,
+      sections,
+      fields,
+    ))
+        .fold(
       (l) => l,
-      (r) async {
-        return await repository.createForm(
-          title,
-          dataRetentionPeriod,
-          sections,
-          fields,
-        );
-      },
+      (r) => const Right(
+        AppStringConstants.formCreated,
+      ),
     );
 
     return const Right(AppStringConstants.formCreated);
   }
 }
+
+//  final val = CreateFieldValidators.createVormValidate(
+//       formName: title,
+//       dataRetentionPeriod: dataRetentionPeriod,
+//       numberOfFields: fields.length,
+//       numberOfSections: sections.length,
+//     );
+
+//     if (val.isLeft()){
+//       return val;
+//     }

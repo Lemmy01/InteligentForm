@@ -16,8 +16,9 @@ class CreateFormBloc extends Bloc<CreateFormEvent, CreateFormState> {
     on<RemoveSection>(_onRemoveSection);
     on<AddField>(_onAddField);
     on<RemoveField>(_onRemoveField);
-    on<CreateFormSubmitted>(_onCreateFormSubmitted);
     on<DeleteSectionEvent>(_onDeleteSectionEvent);
+    on<CreateFormSubmitted>(_onCreateFormSubmitted);
+    on<ResetCreateForm>(_onResetForm);
   }
 
   void _onChangeTitle(
@@ -97,7 +98,7 @@ class CreateFormBloc extends Bloc<CreateFormEvent, CreateFormState> {
   ) async {
     emit(state.copyWith(status: CreateFormStatus.loading));
 
-    (await createFormUseCase(
+    (await createFormUseCase.call(
       title: state.title,
       dataRetentionPeriod: state.dataRetentionPeriod,
       sections: state.sections,
@@ -105,7 +106,10 @@ class CreateFormBloc extends Bloc<CreateFormEvent, CreateFormState> {
     ))
         .fold(
       (l) => emit(
-        state.copyWith(status: CreateFormStatus.error),
+        state.copyWith(
+          error: l.failureMessage,
+          status: CreateFormStatus.initial,
+        ),
       ),
       (r) => emit(
         state.copyWith(status: CreateFormStatus.success),
@@ -124,5 +128,12 @@ class CreateFormBloc extends Bloc<CreateFormEvent, CreateFormState> {
             .toList(),
       ),
     );
+  }
+
+  void _onResetForm(
+    ResetCreateForm event,
+    Emitter<CreateFormState> emit,
+  ) {
+    emit(const CreateFormState());
   }
 }

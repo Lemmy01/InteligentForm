@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import '../../../domain/entities/field.dart';
 import '../../../domain/entities/section.dart';
 
-enum CreateFormStatus { initial, loading, success, error }
+enum CreateFormStatus { initial, loading, success }
 
 class CreateFormState extends Equatable {
   final CreateFormStatus status;
@@ -12,17 +12,19 @@ class CreateFormState extends Equatable {
   final int dataRetentionPeriod;
   final List<Section> sections;
   final List<Field> fields;
+  final String error;
   const CreateFormState({
     this.title = '',
     this.dataRetentionPeriod = 0,
     this.sections = const [],
     this.fields = const [],
     this.status = CreateFormStatus.initial,
+    this.error = '',
   });
 
   @override
   List<Object> get props =>
-      [title, dataRetentionPeriod, sections, fields, status];
+      [title, dataRetentionPeriod, sections, fields, status, error];
 
   CreateFormState copyWith({
     String? title,
@@ -30,6 +32,7 @@ class CreateFormState extends Equatable {
     List<Section>? sections,
     List<Field>? fields,
     CreateFormStatus? status,
+    String? error,
   }) {
     return CreateFormState(
       title: title ?? this.title,
@@ -37,6 +40,7 @@ class CreateFormState extends Equatable {
       sections: sections ?? this.sections,
       fields: fields ?? this.fields,
       status: status ?? this.status,
+      error: error ?? this.error,
     );
   }
 }

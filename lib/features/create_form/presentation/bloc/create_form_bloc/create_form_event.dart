@@ -72,3 +72,8 @@ class DeleteSectionEvent extends CreateFormEvent {
 }
 
 class CreateFormSubmitted extends CreateFormEvent {}
+
+class ResetCreateForm extends CreateFormEvent {
+  @override
+  List<Object> get props => [];
+}
