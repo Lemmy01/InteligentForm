@@ -40,6 +40,8 @@ class AppStringConstants {
   static const String valueAdded = 'Value added';
 
   static const String fieldCreated = 'Field created';
+
+  static const String fieldAdded = 'Field added';
 }
 
 class AppBarStrings {

@@ -9,6 +9,7 @@ import '../../../../core/constants/string_constants.dart';
 import '../../../../core/shared_widgets/my_button.dart';
 import '../../domain/entities/field.dart';
 import '../bloc/create_field_bloc/create_field_bloc.dart';
+import '../bloc/create_field_bloc/create_field_event.dart';
 import '../bloc/create_form_bloc/create_form_bloc.dart';
 import '../bloc/create_form_bloc/create_form_event.dart';
 
@@ -57,6 +58,10 @@ class CreateFieldButton extends StatelessWidget {
                     ),
                   ),
                 );
+            context.read<CreateFieldBloc>().add(
+                  CreateFieldSubmitted(),
+                );
+            showMySnackBar(context, AppStringConstants.fieldAdded);
             Navigator.pop(context);
           },
         );

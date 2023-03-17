@@ -64,3 +64,8 @@ class OptionsChanged extends CreateFieldEvent {
   @override
   List<Object> get props => [options];
 }
+
+class CreateFieldSubmitted extends CreateFieldEvent {
+  @override
+  List<Object> get props => [];
+}

@@ -20,6 +20,7 @@ class CreateFieldBloc extends Bloc<CreateFieldEvent, CreateFieldState> {
     on<OptionsChanged>(
       _onCreateFieldOptionsChanged,
     );
+    on<CreateFieldSubmitted>(_onCreateFieldSubmitted);
   }
 
   void _onCreateFieldIsMandatoryChanged(
@@ -70,5 +71,14 @@ class CreateFieldBloc extends Bloc<CreateFieldEvent, CreateFieldState> {
     emit(state.copyWith(
       options: event.options,
     ));
+  }
+
+  void _onCreateFieldSubmitted(
+    CreateFieldSubmitted event,
+    Emitter<CreateFieldState> emit,
+  ) {
+    emit(
+      CreateFieldState.initial(),
+    );
   }
 }
