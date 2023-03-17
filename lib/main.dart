@@ -48,6 +48,10 @@ class InteligentFrormsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var themeData = ThemeData(
+      checkboxTheme: CheckboxThemeData(
+        fillColor: MaterialStateProperty.all(Colors.white),
+        checkColor: MaterialStateProperty.all(const Color(0XFF004369)),
+      ),
       colorScheme: ColorScheme.fromSwatch(
         primarySwatch: Colors.teal,
       ).copyWith(
