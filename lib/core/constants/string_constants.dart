@@ -58,6 +58,8 @@ class AppStringFailuresMessages {
   static const String wrongPassword = 'Wrong password provided for that user.';
 
   static const String couldNotCreateForm = 'Could not create form';
+
+  static const String emptyField = 'Field cannot be empty';
 }
 
 class AppStringSuccesMessages {
