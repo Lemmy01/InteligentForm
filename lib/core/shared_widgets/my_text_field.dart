@@ -42,7 +42,8 @@ class MyTextField extends StatelessWidget {
         style: Theme.of(context).textTheme.headlineSmall!.copyWith(
               fontSize: FontConstants.smallFontSize,
             ),
-        textInputAction: textInputAction ?? TextInputAction.next,
+        textInputAction: textInputAction ?? TextInputAction.done,
+        //?? TextInputAction.next,
         textAlign: textAlign ?? TextAlign.center,
         controller: controller,
         obscureText: isPassword,

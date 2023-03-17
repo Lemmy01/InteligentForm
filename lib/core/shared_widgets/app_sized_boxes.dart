@@ -13,4 +13,16 @@ class AppSizedBoxes {
       height: 3.h,
     );
   }
+
+  static SizedBox kHSmallBox() {
+    return SizedBox(
+      height: 1.w,
+    );
+  }
+
+  static SizedBox kHMediumBox() {
+    return SizedBox(
+      height: 2.w,
+    );
+  }
 }

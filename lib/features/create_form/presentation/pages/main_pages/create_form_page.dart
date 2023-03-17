@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inteligent_forms/core/constants/app_number_constants.dart';
+import 'package:inteligent_forms/core/constants/font_constants.dart';
 import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
@@ -71,6 +72,45 @@ class _CreateFormPageState extends State<CreateFormPage> {
                     dataRetentionPeriod: int.parse(textFieldValue),
                   ),
                 ),
+          ),
+          AppSizedBoxes.kMediumBox(),
+          Row(
+            children: [
+              Text(
+                '${AppCreateFormString.numberOfSections} : ',
+                style: TextStyle(
+                  fontSize: FontConstants.mediumFontSize,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+              ),
+              AppSizedBoxes.kHSmallBox(),
+              Text(
+                context.read<CreateFormBloc>().state.sections.length.toString(),
+                style: TextStyle(
+                  fontSize: FontConstants.mediumFontSize,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Text(
+                '${AppCreateFormString.numberOfDynamicFields} : ',
+                style: TextStyle(
+                  fontSize: FontConstants.mediumFontSize,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+              ),
+              AppSizedBoxes.kHSmallBox(),
+              Text(
+                context.read<CreateFormBloc>().state.fields.length.toString(),
+                style: TextStyle(
+                  fontSize: FontConstants.mediumFontSize,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+              ),
+            ],
           ),
           AppSizedBoxes.kMediumBox(),
           MyButton(

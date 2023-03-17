@@ -90,4 +90,39 @@ class CreateFieldValidators {
     }
     return const Right(AppStringConstants.fieldCreated);
   }
+
+  static Either<Failure, String> createVormValidate({
+    required String formName,
+    required int dataRetentionPeriod,
+    required int numberOfFields,
+    required int numberOfSections,
+  }) {
+    if (formName.isEmpty) {
+      return Left(
+        EmptyFieldFailure(
+          failureMessage: AppStringFailuresMessages.formNameEmptyField,
+        ),
+      );
+    } else if (dataRetentionPeriod < 1 || dataRetentionPeriod > 60) {
+      return Left(
+        EmptyFieldFailure(
+          failureMessage:
+              AppStringFailuresMessages.choseADataRetentionPeriodBetween1_60,
+        ),
+      );
+    } else if (numberOfFields == 0) {
+      return Left(
+        EmptyFieldFailure(
+          failureMessage: AppStringFailuresMessages.numberOfFieldsEmpty,
+        ),
+      );
+    } else if (numberOfSections == 0) {
+      return Left(
+        EmptyFieldFailure(
+          failureMessage: AppStringFailuresMessages.numberOfSectionsEmpty,
+        ),
+      );
+    }
+    return const Right(AppStringConstants.fieldAdded);
+  }
 }

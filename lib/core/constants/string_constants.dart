@@ -42,6 +42,8 @@ class AppStringConstants {
   static const String fieldCreated = 'Field created';
 
   static const String fieldAdded = 'Field added';
+
+  static const String formCreated = 'Form created';
 }
 
 class AppBarStrings {
@@ -77,6 +79,16 @@ class AppStringFailuresMessages {
 
   static const String chooseAnotherKeyword =
       'Choose another keyword, this one is already in use';
+
+  static const String numberOfFieldsEmpty = 'Number of fields cannot be empty';
+
+  static const String formNameEmptyField = 'Form name cannot be empty';
+
+  static const String numberOfSectionsEmpty =
+      'Number of sections cannot be empty';
+
+  static var choseADataRetentionPeriodBetween1_60 =
+      'Chose a data retention period between 1 and 60';
 }
 
 class AppStringSuccesMessages {
@@ -131,5 +143,9 @@ class AppCreateFormString {
 
   static const String options = "Options";
 
-  static var newOption = "New Option";
+  static const String newOption = "New Option";
+
+  static const String numberOfSections = "Number of Sections";
+
+  static const String numberOfDynamicFields = "Number of Dynamic Fields";
 }
