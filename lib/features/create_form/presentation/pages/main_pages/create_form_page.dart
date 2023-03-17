@@ -29,7 +29,9 @@ class _CreateFormPageState extends State<CreateFormPage> {
     );
 
     _dataRetentionController = TextEditingController(
-      text: context.read<CreateFormBloc>().state.dataRetentionPeriod.toString(),
+      text: (context.read<CreateFormBloc>().state.dataRetentionPeriod != 0)
+          ? context.read<CreateFormBloc>().state.dataRetentionPeriod.toString()
+          : null,
     );
   }
 
