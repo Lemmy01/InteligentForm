@@ -17,6 +17,7 @@ class CreateFormBloc extends Bloc<CreateFormEvent, CreateFormState> {
     on<AddField>(_onAddField);
     on<RemoveField>(_onRemoveField);
     on<CreateFormSubmitted>(_onCreateFormSubmitted);
+    on<EditField>(_onEditField);
   }
 
   void _onChangeTitle(
@@ -108,6 +109,24 @@ class CreateFormBloc extends Bloc<CreateFormEvent, CreateFormState> {
       ),
       (r) => emit(
         state.copyWith(status: CreateFormStatus.success),
+      ),
+    );
+  }
+
+  void _onEditField(
+    EditField event,
+    Emitter<CreateFormState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        fields: state.fields
+            .map(
+              (field) =>
+                  field.placeholderKeyWord == event.field.placeholderKeyWord
+                      ? event.field
+                      : field,
+            )
+            .toList(),
       ),
     );
   }

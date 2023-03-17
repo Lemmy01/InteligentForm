@@ -14,7 +14,9 @@ import '../../widgets/label_text_field.dart';
 import '../../widgets/new_options_chips.dart';
 
 class CreateFieldPage extends StatefulWidget {
-  const CreateFieldPage({super.key});
+  const CreateFieldPage({
+    super.key,
+  });
 
   @override
   State<CreateFieldPage> createState() => _CreateFieldPageState();

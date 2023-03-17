@@ -17,18 +17,19 @@ class FieldCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Slidable(
       endActionPane: ActionPane(
+        extentRatio: .25,
         motion: const DrawerMotion(),
         children: [
-          SlidableAction(
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(10),
-              topLeft: Radius.circular(10),
-            ),
-            backgroundColor: Theme.of(context).colorScheme.tertiary,
-            foregroundColor: Theme.of(context).colorScheme.onTertiary,
-            icon: Icons.edit,
-            onPressed: (context) {},
-          ),
+          // SlidableAction(
+          //   borderRadius: const BorderRadius.only(
+          //     bottomLeft: Radius.circular(10),
+          //     topLeft: Radius.circular(10),
+          //   ),
+          //   backgroundColor: Theme.of(context).colorScheme.tertiary,
+          //   foregroundColor: Theme.of(context).colorScheme.onTertiary,
+          //   icon: Icons.edit,
+          //   onPressed: (context) {},
+          // ),
           SlidableAction(
             borderRadius: const BorderRadius.only(
               bottomRight: Radius.circular(10),

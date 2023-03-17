@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inteligent_forms/features/create_form/presentation/pages/create_pages/create_field_page.dart';
 import 'package:inteligent_forms/features/create_form/presentation/widgets/field_card.dart';
-import 'package:sizer/sizer.dart';
 
+import '../../../../../core/constants/app_number_constants.dart';
 import '../../bloc/create_form_bloc/create_form_bloc.dart';
 import '../../bloc/create_form_bloc/create_form_state.dart';
 
@@ -36,7 +36,9 @@ class _ViewFieldPageState extends State<ViewFieldPage> {
       body: BlocBuilder<CreateFormBloc, CreateFormState>(
         builder: (context, state) {
           return Padding(
-            padding: EdgeInsets.only(top: 1.h),
+            padding: EdgeInsets.only(
+              top: AppNumberConstants.pageVerticalPadding,
+            ),
             child: ListView.builder(
               itemCount: state.fields.length,
               itemBuilder: (BuildContext context, int index) {

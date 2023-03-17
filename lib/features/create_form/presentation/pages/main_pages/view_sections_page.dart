@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inteligent_forms/features/create_form/presentation/pages/create_pages/create_section_page.dart';
 import 'package:inteligent_forms/features/create_form/presentation/widgets/section_card.dart';
 
+import '../../../../../core/constants/app_number_constants.dart';
 import '../../bloc/create_form_bloc/create_form_bloc.dart';
 import '../../bloc/create_form_bloc/create_form_state.dart';
 
@@ -32,18 +33,23 @@ class _ViewSectionsPageState extends State<ViewSectionsPage> {
         onPressed: addSection,
         child: const Icon(Icons.add),
       ),
-      body: BlocBuilder<CreateFormBloc, CreateFormState>(
-        builder: (context, state) {
-          return ListView.builder(
-            //Should be a list of sections
-            itemCount: state.sections.length,
-            itemBuilder: (BuildContext context, int index) {
-              return SectionCard(
-                section: state.sections[index],
-              );
-            },
-          );
-        },
+      body: Padding(
+        padding: EdgeInsets.only(
+          top: AppNumberConstants.pageVerticalPadding,
+        ),
+        child: BlocBuilder<CreateFormBloc, CreateFormState>(
+          builder: (context, state) {
+            return ListView.builder(
+              //Should be a list of sections
+              itemCount: state.sections.length,
+              itemBuilder: (BuildContext context, int index) {
+                return SectionCard(
+                  section: state.sections[index],
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }
