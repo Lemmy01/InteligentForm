@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../core/shared_widgets/my_delete_slidable.dart';
+import '../../../../core/shared_widgets/my_slidable.dart';
 import '../../domain/entities/field.dart';
 import '../bloc/create_form_bloc/create_form_bloc.dart';
 import '../bloc/create_form_bloc/create_form_event.dart';
@@ -15,39 +16,28 @@ class FieldCard extends StatelessWidget {
   final Field field;
   @override
   Widget build(BuildContext context) {
-    return Slidable(
-      endActionPane: ActionPane(
-        extentRatio: .25,
-        motion: const DrawerMotion(),
-        children: [
-          // SlidableAction(
-          //   borderRadius: const BorderRadius.only(
-          //     bottomLeft: Radius.circular(10),
-          //     topLeft: Radius.circular(10),
-          //   ),
-          //   backgroundColor: Theme.of(context).colorScheme.tertiary,
-          //   foregroundColor: Theme.of(context).colorScheme.onTertiary,
-          //   icon: Icons.edit,
-          //   onPressed: (context) {},
-          // ),
-          SlidableAction(
-            borderRadius: const BorderRadius.only(
-              bottomRight: Radius.circular(10),
-              topRight: Radius.circular(10),
-            ),
-            onPressed: (context) {
-              context.read<CreateFormBloc>().add(
-                    RemoveField(
-                      placeholderKeyWord: field.placeholderKeyWord,
-                    ),
-                  );
-            },
-            backgroundColor: Theme.of(context).colorScheme.secondary,
-            foregroundColor: Theme.of(context).colorScheme.onSecondary,
-            icon: Icons.delete,
-          ),
-        ],
-      ),
+    return MySlidable(
+      actions: [
+        // SlidableAction(
+        //   borderRadius: const BorderRadius.only(
+        //     bottomLeft: Radius.circular(10),
+        //     topLeft: Radius.circular(10),
+        //   ),
+        //   backgroundColor: Theme.of(context).colorScheme.tertiary,
+        //   foregroundColor: Theme.of(context).colorScheme.onTertiary,
+        //   icon: Icons.edit,
+        //   onPressed: (context) {},
+        // ),
+        MyDeleteSlidable(
+          onPressed: () {
+            context.read<CreateFormBloc>().add(
+                  RemoveField(
+                    placeholderKeyWord: field.placeholderKeyWord,
+                  ),
+                );
+          },
+        ),
+      ],
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
