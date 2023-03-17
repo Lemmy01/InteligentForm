@@ -4,7 +4,10 @@ import 'package:inteligent_forms/features/create_form/presentation/pages/create_
 import 'package:inteligent_forms/features/create_form/presentation/widgets/section_card.dart';
 
 import '../../../../../core/constants/app_number_constants.dart';
+import '../../../../../core/shared_widgets/my_delete_slidable.dart';
+import '../../../../../core/shared_widgets/my_slidable.dart';
 import '../../bloc/create_form_bloc/create_form_bloc.dart';
+import '../../bloc/create_form_bloc/create_form_event.dart';
 import '../../bloc/create_form_bloc/create_form_state.dart';
 
 class ViewSectionsPage extends StatefulWidget {
@@ -43,8 +46,21 @@ class _ViewSectionsPageState extends State<ViewSectionsPage> {
               //Should be a list of sections
               itemCount: state.sections.length,
               itemBuilder: (BuildContext context, int index) {
-                return SectionCard(
-                  section: state.sections[index],
+                return MySlidable(
+                  actions: [
+                    MyDeleteSlidable(
+                      onPressed: () {
+                        context.read<CreateFormBloc>().add(
+                              DeleteSectionEvent(
+                                sectionNumber: index,
+                              ),
+                            );
+                      },
+                    )
+                  ],
+                  child: SectionCard(
+                    section: state.sections[index],
+                  ),
                 );
               },
             );

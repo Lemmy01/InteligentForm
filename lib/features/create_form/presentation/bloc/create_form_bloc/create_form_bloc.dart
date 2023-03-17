@@ -17,6 +17,7 @@ class CreateFormBloc extends Bloc<CreateFormEvent, CreateFormState> {
     on<AddField>(_onAddField);
     on<RemoveField>(_onRemoveField);
     on<CreateFormSubmitted>(_onCreateFormSubmitted);
+    on<DeleteSectionEvent>(_onDeleteSectionEvent);
   }
 
   void _onChangeTitle(
@@ -108,6 +109,19 @@ class CreateFormBloc extends Bloc<CreateFormEvent, CreateFormState> {
       ),
       (r) => emit(
         state.copyWith(status: CreateFormStatus.success),
+      ),
+    );
+  }
+
+  void _onDeleteSectionEvent(
+    DeleteSectionEvent event,
+    Emitter<CreateFormState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        sections: state.sections
+            .where((section) => section.sectionNumber != event.sectionNumber)
+            .toList(),
       ),
     );
   }

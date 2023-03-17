@@ -62,4 +62,13 @@ class RemoveField extends CreateFormEvent {
   List<Object> get props => [placeholderKeyWord];
 }
 
+class DeleteSectionEvent extends CreateFormEvent {
+  final int sectionNumber;
+
+  DeleteSectionEvent({required this.sectionNumber});
+
+  @override
+  List<Object> get props => [sectionNumber];
+}
+
 class CreateFormSubmitted extends CreateFormEvent {}
