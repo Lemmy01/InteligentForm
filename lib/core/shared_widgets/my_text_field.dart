@@ -15,6 +15,7 @@ class MyTextField extends StatelessWidget {
     this.textInputAction,
     this.keyboardType,
     this.onChanged,
+    this.onEditingComplete,
   });
 
   final TextEditingController controller;
@@ -26,12 +27,15 @@ class MyTextField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final TextInputType? keyboardType;
   final Function(String)? onChanged;
+  final Function(String)? onEditingComplete;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width ?? double.infinity,
       child: TextField(
+        onEditingComplete: () => onEditingComplete,
+        // onSubmitted: onSubmitted,
         onChanged: onChanged,
         keyboardType: keyboardType ?? TextInputType.multiline,
         maxLines: maxLines ?? 1,

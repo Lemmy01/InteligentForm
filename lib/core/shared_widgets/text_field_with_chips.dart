@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:inteligent_forms/core/shared_widgets/my_snack_bar.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../features/create_form/domain/validators/text_field_with_chips_validator.dart';
+import '../../features/create_form/domain/validators/create_field_validators.dart';
 import '../constants/app_number_constants.dart';
 import '../constants/font_constants.dart';
 import '../constants/string_constants.dart';
@@ -19,9 +20,11 @@ class TextFieldWithChips extends StatelessWidget {
     required this.contentInChips,
     required this.onDeleteChip,
     required this.showAllContainer,
+    required this.hintText,
   });
 
   final String title;
+  final String hintText;
   final TextEditingController controller;
 
   final VoidCallback onAdd;
@@ -78,7 +81,8 @@ class TextFieldWithChips extends StatelessWidget {
                       flex: 5,
                       child: MyTextField(
                         controller: controller,
-                        hintText: AppStringConstants.newKeyword,
+                        hintText: hintText,
+                        onEditingComplete: (_) => onAdd(),
                       ),
                     ),
                     SizedBox(
@@ -89,13 +93,23 @@ class TextFieldWithChips extends StatelessWidget {
                       child: MyButton(
                         text: AppStringConstants.add,
                         onPressed: () {
-                          TextFieldWithChipsValidator.validate(
+                          CreateFieldValidators.addChipValidate(
                             controller.text,
                             contentInChips,
-                          ).fold(
-                            (failure) => failure.failureMessage,
-                            (r) => onAdd(),
-                          );
+                          ).fold((failure) {
+                            FocusScope.of(context).unfocus();
+                            showMySnackBar(
+                              context,
+                              failure.failureMessage,
+                            );
+                          }, (succesmessage) {
+                            FocusScope.of(context).unfocus();
+                            showMySnackBar(
+                              context,
+                              succesmessage,
+                            );
+                            onAdd();
+                          });
                         },
                       ),
                     ),

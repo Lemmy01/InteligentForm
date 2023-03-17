@@ -36,6 +36,10 @@ class AppStringConstants {
   static const String newKeyword = 'New Keyword';
 
   static const String add = 'Add';
+
+  static const String valueAdded = 'Value added';
+
+  static const String fieldCreated = 'Field created';
 }
 
 class AppBarStrings {
@@ -60,6 +64,13 @@ class AppStringFailuresMessages {
   static const String couldNotCreateForm = 'Could not create form';
 
   static const String emptyField = 'Field cannot be empty';
+  static const String fieldAlreadyExists = 'Field already exists';
+
+  static const String labelEmptyField = 'Label cannot be empty';
+  static const String keywordEmptyField = 'Keyword cannot be empty';
+  static const String optionsEmptyField = 'Options cannot be empty';
+  static const String documentKeywordsEmptyField =
+      'Document keywords cannot be empty';
 }
 
 class AppStringSuccesMessages {
@@ -113,4 +124,6 @@ class AppCreateFormString {
   static const String documentKeywords = "Document Keywords";
 
   static const String options = "Options";
+
+  static var newOption = "New Option";
 }

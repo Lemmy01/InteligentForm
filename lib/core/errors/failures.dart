@@ -35,3 +35,9 @@ class EmptyFieldFailure extends Failure {
     required super.failureMessage,
   });
 }
+
+class InvalidFieldFailure extends Failure {
+  InvalidFieldFailure({
+    required super.failureMessage,
+  });
+}
