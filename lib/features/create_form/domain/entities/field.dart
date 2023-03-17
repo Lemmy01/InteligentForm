@@ -1,13 +1,13 @@
 class Field {
   String label;
-  String keyWord;
+  String placeholderKeyWord;
   bool mandatory;
   String fieldType;
   List<String>? options;
   List<String> docKeys;
 
   Field({
-    required this.keyWord,
+    required this.placeholderKeyWord,
     required this.mandatory,
     required this.fieldType,
     this.options,
@@ -19,7 +19,7 @@ class Field {
   String toString() {
     return 'Field('
         'label: $label, '
-        'keyWord: $keyWord, '
+        'placeholderKeyWord: $placeholderKeyWord, '
         'mandatory: $mandatory, '
         'fieldType: $fieldType, '
         'options: $options, '

@@ -32,7 +32,13 @@ class CreateFieldButton extends StatelessWidget {
       onPressed: () {
         CreateFieldValidators.createFieldValidate(
           label: labelController.text.trim(),
-          keyWord: keywordController.text.trim(),
+          placeholderkeyWord: keywordController.text.trim(),
+          allPlaceholderkeyWords: context
+              .read<CreateFormBloc>()
+              .state
+              .fields
+              .map((e) => e.placeholderKeyWord)
+              .toList(),
           fieldType: context.read<CreateFieldBloc>().state.fieldType,
           options: context.read<CreateFieldBloc>().state.options,
           documentKeywords:
@@ -45,7 +51,7 @@ class CreateFieldButton extends StatelessWidget {
             context.read<CreateFormBloc>().add(
                   AddField(
                     field: Field(
-                      keyWord: keywordController.text.trim(),
+                      placeholderKeyWord: keywordController.text.trim(),
                       mandatory:
                           context.read<CreateFieldBloc>().state.isMandatory,
                       fieldType: context

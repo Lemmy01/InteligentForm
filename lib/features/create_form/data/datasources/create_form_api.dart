@@ -84,7 +84,7 @@ class CreateFormApiImpl implements CreateFormApi {
       docKeys: field.docKeys,
       fieldType: field.fieldType,
       label: field.label,
-      keyWord: field.keyWord,
+      placeholderKeyWord: field.placeholderKeyWord,
       mandatory: field.mandatory,
     );
     await fields.add(fieldModel.toMap());

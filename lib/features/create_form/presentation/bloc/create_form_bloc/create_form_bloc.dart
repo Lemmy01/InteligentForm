@@ -83,7 +83,8 @@ class CreateFormBloc extends Bloc<CreateFormEvent, CreateFormState> {
     emit(
       state.copyWith(
         fields: state.fields
-            .where((field) => field.keyWord != event.keyWord)
+            .where(
+                (field) => field.placeholderKeyWord != event.placeholderKeyWord)
             .toList(),
       ),
     );

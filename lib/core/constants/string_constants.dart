@@ -33,7 +33,7 @@ class AppStringConstants {
 
   static const String addField = 'Add Field';
 
-  static const String newKeyword = 'New Keyword';
+  static const String newDocKeyword = 'New Document Keyword';
 
   static const String add = 'Add';
 
@@ -69,10 +69,14 @@ class AppStringFailuresMessages {
   static const String fieldAlreadyExists = 'Field already exists';
 
   static const String labelEmptyField = 'Label cannot be empty';
-  static const String keywordEmptyField = 'Keyword cannot be empty';
+  static const String placeholderKeywordEmptyField =
+      'Placeholder keyword cannot be empty';
   static const String optionsEmptyField = 'Options cannot be empty';
   static const String documentKeywordsEmptyField =
       'Document keywords cannot be empty';
+
+  static const String chooseAnotherKeyword =
+      'Choose another keyword, this one is already in use';
 }
 
 class AppStringSuccesMessages {
@@ -120,7 +124,7 @@ class AppCreateFormString {
   static const String fieldDocumentNumber = 'Field Document Number';
   static const String field = 'Fields';
   static const String label = "Label";
-  static const String keyWord = "KeyWord";
+  static const String placeholderKeyWord = "Placeholder Keyword";
   static const String mandatory = "Mandatory";
 
   static const String documentKeywords = "Document Keywords";

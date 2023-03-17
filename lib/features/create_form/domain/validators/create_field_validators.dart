@@ -40,7 +40,8 @@ class CreateFieldValidators {
 
   static Either<Failure, String> createFieldValidate({
     required String label,
-    required String keyWord,
+    required String placeholderkeyWord,
+    required List<String> allPlaceholderkeyWords,
     required FieldType fieldType,
     required List<String> options,
     required List<String> documentKeywords,
@@ -51,10 +52,11 @@ class CreateFieldValidators {
           failureMessage: AppStringFailuresMessages.labelEmptyField,
         ),
       );
-    } else if (keyWord.isEmpty) {
+    } else if (placeholderkeyWord.isEmpty) {
       return Left(
         EmptyFieldFailure(
-          failureMessage: AppStringFailuresMessages.keywordEmptyField,
+          failureMessage:
+              AppStringFailuresMessages.placeholderKeywordEmptyField,
         ),
       );
     } else if (fieldType == FieldType.singleChoice ||
@@ -77,6 +79,12 @@ class CreateFieldValidators {
       return Left(
         EmptyFieldFailure(
           failureMessage: AppStringFailuresMessages.documentKeywordsEmptyField,
+        ),
+      );
+    } else if (allPlaceholderkeyWords.contains(placeholderkeyWord)) {
+      return Left(
+        InvalidFieldFailure(
+          failureMessage: AppStringFailuresMessages.chooseAnotherKeyword,
         ),
       );
     }

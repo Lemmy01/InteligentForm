@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../domain/entities/field.dart';
+import '../bloc/create_form_bloc/create_form_bloc.dart';
+import '../bloc/create_form_bloc/create_form_event.dart';
 
 class FieldCard extends StatelessWidget {
   const FieldCard({
@@ -21,17 +24,23 @@ class FieldCard extends StatelessWidget {
               bottomLeft: Radius.circular(10),
               topLeft: Radius.circular(10),
             ),
-            onPressed: null,
             backgroundColor: Theme.of(context).colorScheme.tertiary,
             foregroundColor: Theme.of(context).colorScheme.onTertiary,
             icon: Icons.edit,
+            onPressed: (context) {},
           ),
           SlidableAction(
             borderRadius: const BorderRadius.only(
               bottomRight: Radius.circular(10),
               topRight: Radius.circular(10),
             ),
-            onPressed: null,
+            onPressed: (context) {
+              context.read<CreateFormBloc>().add(
+                    RemoveField(
+                      placeholderKeyWord: field.placeholderKeyWord,
+                    ),
+                  );
+            },
             backgroundColor: Theme.of(context).colorScheme.secondary,
             foregroundColor: Theme.of(context).colorScheme.onSecondary,
             icon: Icons.delete,

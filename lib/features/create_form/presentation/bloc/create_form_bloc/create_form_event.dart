@@ -54,12 +54,12 @@ class AddField extends CreateFormEvent {
 }
 
 class RemoveField extends CreateFormEvent {
-  final String keyWord;
+  final String placeholderKeyWord;
 
-  RemoveField({required this.keyWord});
+  RemoveField({required this.placeholderKeyWord});
 
   @override
-  List<Object> get props => [keyWord];
+  List<Object> get props => [placeholderKeyWord];
 }
 
 class CreateFormSubmitted extends CreateFormEvent {}

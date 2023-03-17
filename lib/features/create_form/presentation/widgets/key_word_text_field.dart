@@ -15,7 +15,7 @@ class KeyWordTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return MyTextField(
       controller: keywordController,
-      hintText: AppCreateFormString.keyWord,
+      hintText: AppCreateFormString.placeholderKeyWord,
       textAlign: TextAlign.start,
     );
   }

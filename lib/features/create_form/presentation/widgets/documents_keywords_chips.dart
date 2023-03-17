@@ -23,7 +23,7 @@ class DocumentKeywordsChips extends StatelessWidget {
           previous.documentKeywords != current.documentKeywords,
       builder: (context, state) {
         return TextFieldWithChips(
-          hintText: AppStringConstants.newKeyword,
+          hintText: AppStringConstants.newDocKeyword,
           title: AppCreateFormString.documentKeywords,
           controller: docsKeywordsController,
           onAdd: () {
