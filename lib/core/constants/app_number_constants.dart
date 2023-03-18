@@ -6,4 +6,5 @@ class AppNumberConstants {
 
   static double pageHorizontalPadding = 8.w;
   static double pageVerticalPadding = 4.w;
+  static double bottomPadding = 6.h;
 }

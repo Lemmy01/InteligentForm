@@ -46,6 +46,7 @@ class SignUpPageBody extends HookWidget {
               BlocBuilder<AccountTypeBloc, AccountTypeState>(
                 builder: (context, state) {
                   return MyTextField(
+                    textInputAction: TextInputAction.next,
                     controller: nameController,
                     hintText: state.accountType == AccountType.individual
                         ? '${AppStringConstants.name} ${AppStringConstants.unique}'

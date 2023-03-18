@@ -55,7 +55,7 @@ class _FormTabControllerState extends State<FormTabController> {
             ),
             body: BlocListener<CreateFormBloc, CreateFormState>(
               listenWhen: (previous, current) =>
-                  previous.error != current.error,
+                  current.status == CreateFormStatus.error,
               listener: (context, state) {
                 showMySnackBar(
                   context,

@@ -108,7 +108,7 @@ class CreateFormBloc extends Bloc<CreateFormEvent, CreateFormState> {
       (l) => emit(
         state.copyWith(
           error: l.failureMessage,
-          status: CreateFormStatus.initial,
+          status: CreateFormStatus.error,
         ),
       ),
       (r) => emit(

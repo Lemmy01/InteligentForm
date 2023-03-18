@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_snack_bar.dart';
-import 'package:inteligent_forms/core/utils/extensions.dart';
 import 'package:inteligent_forms/features/create_form/domain/validators/create_field_validators.dart';
 import 'package:sizer/sizer.dart';
 
@@ -58,8 +57,11 @@ class CreateFieldButton extends StatelessWidget {
                           .read<CreateFieldBloc>()
                           .state
                           .fieldType
-                          .toShortString(),
-                      docKeys: [],
+                          .toString(),
+                      docKeys: context
+                          .read<CreateFieldBloc>()
+                          .state
+                          .documentKeywords,
                       label: labelController.text.trim(),
                     ),
                   ),

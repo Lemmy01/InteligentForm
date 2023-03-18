@@ -53,6 +53,7 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
                 left: AppNumberConstants.pageHorizontalPadding,
                 right: AppNumberConstants.pageHorizontalPadding,
                 top: AppNumberConstants.pageVerticalPadding,
+                bottom: AppNumberConstants.bottomPadding,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

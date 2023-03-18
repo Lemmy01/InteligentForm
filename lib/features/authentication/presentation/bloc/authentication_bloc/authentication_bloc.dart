@@ -43,7 +43,7 @@ class AuthenticationBloc
 
     (await authenticationUsecase.signUp(
       name: event.name,
-      type: accountType.toShortString(),
+      type: accountType.toString(),
       emailAddress: event.emailAddress,
       password: event.password,
       confirmPassword: event.confirmPassword,

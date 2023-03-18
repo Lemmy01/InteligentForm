@@ -82,7 +82,7 @@ class TextFieldWithChips extends StatelessWidget {
                       child: MyTextField(
                         controller: controller,
                         hintText: hintText,
-                        onEditingComplete: (_) => onAdd(),
+                        onSubmitted: (_) => onAdd(),
                       ),
                     ),
                     SizedBox(

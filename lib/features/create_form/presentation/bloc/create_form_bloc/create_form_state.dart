@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import '../../../domain/entities/field.dart';
 import '../../../domain/entities/section.dart';
 
-enum CreateFormStatus { initial, loading, success }
+enum CreateFormStatus { initial, loading, success, error }
 
 class CreateFormState extends Equatable {
   final CreateFormStatus status;
