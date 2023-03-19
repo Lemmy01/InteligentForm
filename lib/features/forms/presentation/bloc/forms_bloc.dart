@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../../create_form/data/models/form_model.dart';
+
 part 'forms_event.dart';
 part 'forms_state.dart';
 

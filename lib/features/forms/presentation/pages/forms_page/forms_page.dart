@@ -11,8 +11,11 @@ class FormsPage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const FormTabController()));
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const FormTabController(),
+            ),
+          );
         },
         child: const Icon(
           Icons.add,
