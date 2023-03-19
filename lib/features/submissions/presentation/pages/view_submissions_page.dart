@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:inteligent_forms/core/background_widgets/form_background.dart';
 import 'package:inteligent_forms/core/constants/app_number_constants.dart';
 import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
 import 'package:inteligent_forms/features/submissions/domain/entities/Submission.dart';
+import 'package:inteligent_forms/features/submissions/presentation/widgets/filter_dialog.dart';
 import 'package:inteligent_forms/features/submissions/presentation/widgets/submission_widget.dart';
 
 import '../../../../core/constants/font_constants.dart';
@@ -16,6 +19,7 @@ class ViewSubmissionsPage extends StatefulWidget {
 }
 
 class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
+  DateTime? dateSelected = DateTime.now();
   TextEditingController controller = TextEditingController();
 
   @override
@@ -48,7 +52,7 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
         dateWhenToBeDeleted: DateTime.now()),
     Submission(
         content: 'content',
-        dateWhenSubmitted: DateTime.now(),
+        dateWhenSubmitted: DateTime(2023, 03, 17),
         dateWhenToBeDeleted: DateTime.now()),
     Submission(
         content: 'content',
@@ -94,8 +98,11 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
                       Icons.filter_list,
                       color: Theme.of(context).colorScheme.onPrimary,
                     ),
-                    onTap: () {
-                      //TODO: Add Filters And Functionality
+                    onTap: () async {
+                      dateSelected =
+                          await _filtersDialog(context, dateSelected!);
+                      setState(() {});
+                      //todo: add filter with block suiii
                     },
                   ),
                 ],
@@ -111,10 +118,20 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
                 itemCount: submissionList.length,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return SubmissionCard(
-                    submission: submissionList[index],
-                    number: index,
-                  );
+                  if (dateSelected != null) {
+                    if (submissionList[index].dateWhenSubmitted.day ==
+                            dateSelected!.day &&
+                        submissionList[index].dateWhenSubmitted.month ==
+                            dateSelected!.month &&
+                        submissionList[index].dateWhenSubmitted.year ==
+                            dateSelected!.year) {
+                      return SubmissionCard(
+                        submission: submissionList[index],
+                      );
+                    }
+                  }
+
+                  return SizedBox();
                 },
               )
             ],
@@ -123,4 +140,13 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
       ),
     );
   }
+}
+
+Future<DateTime?> _filtersDialog(BuildContext context, DateTime dateSelected) {
+  return showDatePicker(
+    context: context,
+    firstDate: DateTime(2000),
+    initialDate: dateSelected,
+    lastDate: DateTime(2100),
+  );
 }

@@ -16,6 +16,7 @@ class SubmissionApi {
     final snapshot = _firestore
         .collection('submissions')
         .where('formId', isEqualTo: formId)
+        .orderBy('dateWhenSubmitted', descending: true)
         .snapshots();
 
     List<SubmissionModel> submissions = [];
