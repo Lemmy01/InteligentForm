@@ -128,7 +128,8 @@ class _CreateFormPageState extends State<CreateFormPage> {
                   isLoading: state.status == CreateFormStatus.loading,
                   text: AppCreateFormString.createForm,
                   onPressed: () {
-                    
+                    FocusScope.of(context).unfocus();
+
                     context.read<CreateFormBloc>().add(
                           CreateFormSubmitted(),
                         );
