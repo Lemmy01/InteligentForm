@@ -34,12 +34,14 @@ class FormTile extends StatelessWidget {
                 formEntity.title,
                 style: TextStyle(
                   fontSize: FontConstants.mediumFontSize,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),
             AppSizedBoxes.kSmallBox(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   child: Wrap(

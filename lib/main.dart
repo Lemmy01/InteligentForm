@@ -8,6 +8,7 @@ import 'package:inteligent_forms/features/authentication/domain/usecases/authent
 import 'package:inteligent_forms/features/authentication/domain/validators/autentication_validators.dart';
 import 'package:inteligent_forms/features/authentication/presentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:inteligent_forms/features/create_form/data/repositories/create_form_repository_impl.dart';
+import 'package:inteligent_forms/features/forms/domain/usecases/forms_usecase.dart';
 import 'package:sizer/sizer.dart';
 
 import 'bloc_observer.dart';
@@ -18,6 +19,7 @@ import 'features/create_form/domain/usecases/create_form.dart';
 import 'features/create_form/presentation/bloc/create_field_bloc/create_field_bloc.dart';
 import 'features/create_form/presentation/bloc/create_form_bloc/create_form_bloc.dart';
 import 'features/create_form/presentation/bloc/cubit/document_type_cubit.dart';
+import 'features/forms/presentation/bloc/forms_bloc.dart';
 import 'firebase_options.dart';
 
 Future main() async {
@@ -90,7 +92,12 @@ class InteligentFrormsApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CreateFieldBloc(),
-        )
+        ),
+        BlocProvider(
+          create: (context) => FormsBloc(
+            formsUseCase: FormsUseCase(),
+          )..add(FormsLoadStarted()),
+        ),
       ],
       child: MaterialApp(
         theme: themeData,
