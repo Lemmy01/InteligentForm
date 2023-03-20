@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inteligent_forms/core/shared_widgets/my_delete_slidable.dart';
+import 'package:inteligent_forms/core/shared_widgets/my_edit_slidable.dart';
+import 'package:inteligent_forms/core/shared_widgets/my_slidable.dart';
 import 'package:inteligent_forms/features/create_form/presentation/pages/create_pages/create_field_page.dart';
 import 'package:inteligent_forms/features/create_form/presentation/widgets/field_card.dart';
 
 import '../../../../../core/constants/app_number_constants.dart';
 import '../../bloc/create_form_bloc/create_form_bloc.dart';
+import '../../bloc/create_form_bloc/create_form_event.dart';
 import '../../bloc/create_form_bloc/create_form_state.dart';
 
 class ViewFieldPage extends StatefulWidget {
@@ -42,8 +46,25 @@ class _ViewFieldPageState extends State<ViewFieldPage> {
             child: ListView.builder(
               itemCount: state.fields.length,
               itemBuilder: (BuildContext context, int index) {
-                return FieldCard(
-                  field: state.fields[index],
+                return MySlidable(
+                  actions: [
+                    MyEditSlidable(
+                      onPressed: () {},
+                    ),
+                    MyDeleteSlidable(
+                      onPressed: () {
+                        context.read<CreateFormBloc>().add(
+                              RemoveFieldEvent(
+                                placeholderKeyWord:
+                                    state.fields[index].placeholderKeyWord,
+                              ),
+                            );
+                      },
+                    )
+                  ],
+                  child: FieldCard(
+                    field: state.fields[index],
+                  ),
                 );
               },
             ),

@@ -109,10 +109,8 @@ class FormsUseCase {
 
   Future<Either<Failure, void>> deleteForm(
     FormEntity formEntity,
-  ) {
+  ) async {
     //TODO George Luta : dummy
-    return Future.delayed(const Duration(seconds: 2)).then(
-      (value) => const Right(null),
-    );
+    return const Right(null);
   }
 }

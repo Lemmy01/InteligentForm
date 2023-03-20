@@ -61,13 +61,11 @@ class _CreateSectionPageState extends State<CreateSectionPage> {
                   SizedBox(
                     height: 5.h,
                   ),
-                  Center(
-                    child: Text(
-                      AppCreateFormString.scanDocType,
-                      style: TextStyle(
-                          fontSize: FontConstants.largeFontSize,
-                          color: Colors.white),
-                    ),
+                  Text(
+                    AppCreateFormString.scanDocType,
+                    style: TextStyle(
+                        fontSize: FontConstants.largeFontSize,
+                        color: Colors.white),
                   ),
                   SizedBox(
                     height: 2.h,
@@ -110,13 +108,11 @@ class _CreateSectionPageState extends State<CreateSectionPage> {
                   SizedBox(
                     height: 5.h,
                   ),
-                  Center(
-                    child: Text(
-                      AppCreateFormString.sectionContent,
-                      style: TextStyle(
-                          fontSize: FontConstants.largeFontSize,
-                          color: Colors.white),
-                    ),
+                  Text(
+                    AppCreateFormString.sectionContent,
+                    style: TextStyle(
+                        fontSize: FontConstants.largeFontSize,
+                        color: Colors.white),
                   ),
                   SizedBox(
                     height: 2.h,

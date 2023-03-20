@@ -76,7 +76,7 @@ class FormsPage extends StatelessWidget {
                                             ),
                                           );
                                     },
-                                  )
+                                  ),
                                 ],
                                 child: FormTile(
                                   formEntity: formEntity,

@@ -11,7 +11,7 @@ class DocumentTypeState extends Equatable {
   });
 
   factory DocumentTypeState.initial() => DocumentTypeState(
-        dropdownValue: ScanDocumentType.anyDocument.toShortString(),
+        dropdownValue: ScanDocumentType.none.toShortString(),
       );
 
   @override

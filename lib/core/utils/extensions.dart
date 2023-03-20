@@ -19,6 +19,9 @@ extension ScanDocumentTypetoString on ScanDocumentType {
         return 'Vehicle Identity Card';
       case ScanDocumentType.anyDocument:
         return 'Any Document';
+      case ScanDocumentType.none:
+        return 'None';
+
       default:
         return 'Any Document';
     }

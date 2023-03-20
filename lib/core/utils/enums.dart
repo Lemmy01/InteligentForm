@@ -14,6 +14,7 @@ enum FieldType {
 }
 
 enum ScanDocumentType {
+  none,
   identityCard,
   birthCertificate,
   passport,

@@ -15,7 +15,7 @@ class CreateFormBloc extends Bloc<CreateFormEvent, CreateFormState> {
     on<AddSection>(_onAddSection);
     on<RemoveSection>(_onRemoveSection);
     on<AddField>(_onAddField);
-    on<RemoveField>(_onRemoveField);
+    on<RemoveFieldEvent>(_onRemoveField);
     on<DeleteSectionEvent>(_onDeleteSectionEvent);
     on<CreateFormSubmitted>(_onCreateFormSubmitted);
     on<ResetCreateForm>(_onResetForm);
@@ -79,7 +79,7 @@ class CreateFormBloc extends Bloc<CreateFormEvent, CreateFormState> {
   }
 
   void _onRemoveField(
-    RemoveField event,
+    RemoveFieldEvent event,
     Emitter<CreateFormState> emit,
   ) {
     emit(

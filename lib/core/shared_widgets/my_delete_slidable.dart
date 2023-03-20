@@ -1,23 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
+
+import 'my_slidable_action.dart';
 
 class MyDeleteSlidable extends StatelessWidget {
-  const MyDeleteSlidable({
-    super.key,
-    required this.onPressed,
-  });
+  const MyDeleteSlidable({super.key, required this.onPressed});
 
   final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return SlidableAction(
-      borderRadius: const BorderRadius.all(
-        Radius.circular(10),
-      ),
-      onPressed: (context) {
-        onPressed();
-      },
+    return MySlidableAction(
+      onPressed: onPressed,
       backgroundColor: Theme.of(context).colorScheme.secondary,
       foregroundColor: Theme.of(context).colorScheme.onSecondary,
       icon: Icons.delete,
