@@ -43,8 +43,8 @@ class CreateFieldButton extends StatelessWidget {
           documentKeywords:
               context.read<CreateFieldBloc>().state.documentKeywords,
         ).fold(
-          (l) {
-            showMySnackBar(context, l.failureMessage);
+          (failure) {
+            showMySnackBar(context, failure.failureMessage);
           },
           (r) {
             context.read<CreateFormBloc>().add(

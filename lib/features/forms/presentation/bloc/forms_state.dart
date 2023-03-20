@@ -1,24 +1,24 @@
 part of 'forms_bloc.dart';
 
 abstract class FormsState extends Equatable {
-  const FormsState();  
+  const FormsState();
 
   @override
   List<Object> get props => [];
 }
+
 class FormsInitial extends FormsState {}
 
 class FormsLoading extends FormsState {}
 
 class FormsLoaded extends FormsState {
-  final List<FormModel> forms;
+  final List<FormEntity> formEntities;
 
-  const FormsLoaded({required this.forms});
+  const FormsLoaded({required this.formEntities});
 
   @override
-  List<Object> get props => [forms];
+  List<Object> get props => [formEntities];
 }
-
 
 class FormsError extends FormsState {
   final String message;

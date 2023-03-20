@@ -36,7 +36,7 @@ class CreateForm {
       fields,
     ))
         .fold(
-      (l) => l,
+      (failure) => failure,
       (r) => const Right(
         AppStringConstants.formCreated,
       ),
