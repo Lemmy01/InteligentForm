@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inteligent_forms/core/constants/app_number_constants.dart';
 import 'package:inteligent_forms/core/constants/font_constants.dart';
+import 'package:inteligent_forms/core/constants/string_constants.dart';
+import 'package:inteligent_forms/core/shared_widgets/my_snack_bar.dart';
 import 'package:inteligent_forms/features/authentication/presentation/bloc/authentication_bloc/authentication_bloc.dart';
 
 import '../../../../../core/background_widgets/create_field_background_widget.dart';
 import '../../../../../core/constants/other_constants.dart';
 import '../../../../../core/shared_widgets/app_sized_boxes.dart';
+import '../../bloc/profile_bloc.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -33,67 +36,79 @@ class ProfilePage extends StatelessWidget {
             horizontal: AppNumberConstants.pageHorizontalPadding,
             vertical: AppNumberConstants.pageVerticalPadding,
           ),
-          child: Column(
-            children: [
-              Card(
-                child: Padding(
-                  padding: EdgeInsets.all(AppNumberConstants.mediumTilePadding),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        width: double.infinity,
-                      ),
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 27,
-                            backgroundColor:
-                                Theme.of(context).colorScheme.secondary,
-                            child: const CircleAvatar(
-                              radius: 25,
-                              backgroundImage: AssetImage(
-                                OtherConstants.formImage,
+          child: BlocConsumer<ProfileBloc, ProfileState>(
+            listener: (context, state) {
+              if (state is ProfileError) showMySnackBar(context, state.message);
+            },
+            builder: (context, state) {
+              return Column(
+                children: [
+                  if (state is ProfileLoading)
+                    CircularProgressIndicator(
+                      color: Theme.of(context).colorScheme.onSecondary,
+                    ),
+                  if (state is ProfileLoaded)
+                    Card(
+                      child: Padding(
+                        padding: EdgeInsets.all(
+                            AppNumberConstants.mediumTilePadding),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(
+                              width: double.infinity,
+                            ),
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 27,
+                                  backgroundColor:
+                                      Theme.of(context).colorScheme.secondary,
+                                  child: const CircleAvatar(
+                                    radius: 25,
+                                    backgroundImage: AssetImage(
+                                      OtherConstants.formImage,
+                                    ),
+                                  ),
+                                ),
+                                AppSizedBoxes.kHSmallBox(),
+                                Text(
+                                  '${AppStringConstants.name} ${AppStringConstants.colon} ${state.profileEntity.name}',
+                                  style: TextStyle(
+                                    fontSize: FontConstants.largeFontSize,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Divider(
+                              thickness: 1,
+                            ),
+                            AppSizedBoxes.kSmallBox(),
+                            Text(
+                              '${AppStringConstants.accountType}${AppStringConstants.colon} ${state.profileEntity.accountType}',
+                              style: TextStyle(
+                                fontSize: FontConstants.smallFontSize,
                               ),
                             ),
-                          ),
-                          AppSizedBoxes.kHSmallBox(),
-                          Text(
-                            //TODO George Luta :
-                            'Name : George Luta',
-                            style: TextStyle(
-                              fontSize: FontConstants.largeFontSize,
+                            Text(
+                              '${AppStringConstants.address} ${AppStringConstants.colon} ${state.profileEntity.address}',
+                              style: TextStyle(
+                                fontSize: FontConstants.smallFontSize,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      const Divider(
-                        thickness: 1,
-                      ),
-                      AppSizedBoxes.kSmallBox(),
-                      Text(
-                        'Account Type: Admin',
-                        style: TextStyle(
-                          fontSize: FontConstants.smallFontSize,
+                            Text(
+                              '${AppStringConstants.email}${AppStringConstants.colon} ${state.profileEntity.email}',
+                              style: TextStyle(
+                                fontSize: FontConstants.smallFontSize,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Text(
-                        'Address : 1234, 5th Avenue, New York, USA',
-                        style: TextStyle(
-                          fontSize: FontConstants.smallFontSize,
-                        ),
-                      ),
-                      Text(
-                        'Email Address: djktdkj@kub.drr',
-                        style: TextStyle(
-                          fontSize: FontConstants.smallFontSize,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+                    ),
+                ],
+              );
+            },
           ),
         ),
       ),

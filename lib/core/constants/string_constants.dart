@@ -44,6 +44,10 @@ class AppStringConstants {
   static const String fieldAdded = 'Field added';
 
   static const String formCreated = 'Form created';
+
+  static const String accountType = 'Account Type';
+
+  static const String colon = ':';
 }
 
 class AppBarStrings {

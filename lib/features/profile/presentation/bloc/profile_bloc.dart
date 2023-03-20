@@ -22,12 +22,12 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     emit(ProfileLoading());
 
     (await profileUsecase.getProfileEntity()).fold(
-      (failure) => ProfileError(
+      (failure) => emit(ProfileError(
         failure.failureMessage,
-      ),
-      (profileEntity) => ProfileLoaded(
+      )),
+      (profileEntity) => emit(ProfileLoaded(
         profileEntity,
-      ),
+      )),
     );
   }
 }
