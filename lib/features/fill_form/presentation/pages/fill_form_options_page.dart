@@ -21,6 +21,7 @@ class FillFormOptionsPage extends HookWidget {
     final urlController = useTextEditingController();
 
     return Scaffold(
+      backgroundColor: Colors.transparent,
       body: Center(
         child: SingleChildScrollView(
           child: Padding(

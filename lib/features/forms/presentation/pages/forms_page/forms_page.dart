@@ -9,6 +9,7 @@ class FormsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
