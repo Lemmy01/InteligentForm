@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inteligent_forms/core/background_widgets/create_field_background_widget.dart';
 import 'package:inteligent_forms/core/constants/app_number_constants.dart';
 import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
+import 'package:inteligent_forms/features/create_form/domain/entities/field.dart';
 
 import '../../../../../core/constants/font_constants.dart';
 import '../../../../../core/constants/string_constants.dart';
@@ -16,7 +17,10 @@ import '../../widgets/new_options_chips.dart';
 class CreateFieldPage extends StatefulWidget {
   const CreateFieldPage({
     super.key,
+    this.field,
   });
+
+  final Field? field;
 
   @override
   State<CreateFieldPage> createState() => _CreateFieldPageState();
@@ -24,14 +28,20 @@ class CreateFieldPage extends StatefulWidget {
 
 class _CreateFieldPageState extends State<CreateFieldPage> {
   TextEditingController labelController = TextEditingController();
-  TextEditingController keywordController = TextEditingController();
+  TextEditingController placeholderKeywordController = TextEditingController();
   TextEditingController docsKeywordsController = TextEditingController();
   TextEditingController optionsKeywordsController = TextEditingController();
 
   @override
+  void initState() {
+    
+    super.initState();
+  }
+
+  @override
   void dispose() {
     labelController.dispose();
-    keywordController.dispose();
+    placeholderKeywordController.dispose();
     docsKeywordsController.dispose();
     super.dispose();
   }
@@ -65,7 +75,7 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
                   ),
                   AppSizedBoxes.kSmallBox(),
                   KeyWordTextField(
-                    keywordController: keywordController,
+                    keywordController: placeholderKeywordController,
                   ),
                   AppSizedBoxes.kSmallBox(),
                   const IsMandatoryCheckbox(),
@@ -89,7 +99,7 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
                   ),
                   AppSizedBoxes.kMediumBox(),
                   CreateFieldButton(
-                    keywordController: keywordController,
+                    keywordController: placeholderKeywordController,
                     labelController: labelController,
                   ),
                 ],

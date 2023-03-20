@@ -49,7 +49,16 @@ class _ViewFieldPageState extends State<ViewFieldPage> {
                 return MySlidable(
                   actions: [
                     MyEditSlidable(
-                      onPressed: () {},
+                      onPressed: () {
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => CreateFieldPage(
+                        //       field: state.fields[index],
+                        //     ),
+                        //   ),
+                        // );
+                      },
                     ),
                     MyDeleteSlidable(
                       onPressed: () {

@@ -21,6 +21,8 @@ class CreateFieldBloc extends Bloc<CreateFieldEvent, CreateFieldState> {
       _onCreateFieldOptionsChanged,
     );
     on<CreateFieldSubmitted>(_onCreateFieldSubmitted);
+
+    on<CreateFieldEdit>(_onCreateFieldEdit);
   }
 
   void _onCreateFieldIsMandatoryChanged(
@@ -80,5 +82,21 @@ class CreateFieldBloc extends Bloc<CreateFieldEvent, CreateFieldState> {
     emit(
       CreateFieldState.initial(),
     );
+  }
+
+  void _onCreateFieldEdit(
+    CreateFieldEdit event,
+    Emitter<CreateFieldState> emit,
+  ) {
+    // emit(
+    //   state.copyWith(
+    //     isMandatory: event.field.mandatory,
+    //     fieldType: event.field.fieldType,
+    //     documentKeywords: event.field.docKeys,
+    //     options: event.field.options,
+    //     showDocumentKeywords: true,
+    //     showTypes: true,
+    //   ),
+    // );
   }
 }

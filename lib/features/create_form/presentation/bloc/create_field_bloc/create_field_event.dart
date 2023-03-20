@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:inteligent_forms/features/create_form/domain/entities/field.dart';
 
 import '../../../../../core/utils/enums.dart';
 
@@ -68,4 +69,13 @@ class OptionsChanged extends CreateFieldEvent {
 class CreateFieldSubmitted extends CreateFieldEvent {
   @override
   List<Object> get props => [];
+}
+
+class CreateFieldEdit extends CreateFieldEvent {
+  final Field field;
+
+  const CreateFieldEdit({required this.field});
+
+  @override
+  List<Object> get props => [field];
 }
