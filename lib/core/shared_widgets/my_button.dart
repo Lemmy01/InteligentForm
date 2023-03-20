@@ -10,16 +10,19 @@ class MyButton extends StatelessWidget {
     required this.onPressed,
     this.width,
     this.isLoading = false,
+    this.color,
   });
 
   final String text;
   final VoidCallback onPressed;
   final double? width;
   final bool isLoading;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return MyButtonWithChild(
+      color: color,
       onPressed: onPressed,
       width: width,
       isLoading: isLoading,

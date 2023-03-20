@@ -14,8 +14,10 @@ enum FieldType {
 }
 
 enum ScanDocumentType {
-  idCard,
+  none,
+  identityCard,
+  birthCertificate,
   passport,
-  drivingLicense,
-  other,
+  vehicleIdentityCard,
+  anyDocument,
 }

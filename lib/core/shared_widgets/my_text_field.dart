@@ -14,6 +14,9 @@ class MyTextField extends StatelessWidget {
     this.textAlign,
     this.textInputAction,
     this.keyboardType,
+    this.onChanged,
+    this.onSubmitted,
+    // this.onEditingComplete,
   });
 
   final TextEditingController controller;
@@ -24,11 +27,18 @@ class MyTextField extends StatelessWidget {
   final TextAlign? textAlign;
   final TextInputAction? textInputAction;
   final TextInputType? keyboardType;
+  final Function(String)? onChanged;
+  // final Function(String)? onEditingComplete;
+  final Function(String)? onSubmitted;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width ?? double.infinity,
       child: TextField(
+        // onEditingComplete: () => onEditingComplete,
+        onSubmitted: onSubmitted,
+        onChanged: onChanged,
         keyboardType: keyboardType ?? TextInputType.multiline,
         maxLines: maxLines ?? 1,
         style: Theme.of(context).textTheme.headlineSmall!.copyWith(
@@ -41,7 +51,7 @@ class MyTextField extends StatelessWidget {
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(
-              AppNumberConstants.longTilePadding,
+              AppNumberConstants.longTileRadius,
             ),
           ),
           hintText: hintText,

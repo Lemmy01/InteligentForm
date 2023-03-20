@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:inteligent_forms/features/authentication/domain/validators/autentication_validators.dart';
 
 import '../../../../core/errors/failures.dart';
-import '../repositories/authentication _repo.dart';
+import '../repositories/authentication_repo.dart';
 
 class AuthenticationUsecase {
   AuthenticationValidator authenticationValidator;

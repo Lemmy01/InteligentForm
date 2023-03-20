@@ -31,7 +31,7 @@ void main() {
     Field(
       docKeys: [],
       fieldType: 'Text',
-      keyWord: 'CNP',
+      placeholderKeyWord: 'CNP',
       label: 'CNP',
       mandatory: false,
     )

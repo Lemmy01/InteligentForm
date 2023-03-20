@@ -2,7 +2,7 @@ class AppStringConstants {
   static const String signIn = 'Sign In';
   static const String fillForm = 'Fill Form';
   static const String intelligent = 'Intelligent';
-  static const String forms = 'forms';
+  static const String forms = 'Forms';
   static const String email = 'Email';
   static const String password = 'Password';
   static const String signUp = 'Sign Up';
@@ -28,6 +28,26 @@ class AppStringConstants {
   static const String section = 'Section';
 
   static const String scanDocs = 'Scan Docs';
+
+  static const String clickForDetailes = 'Click for details';
+
+  static const String addField = 'Add Field';
+
+  static const String newDocKeyword = 'New Document Keyword';
+
+  static const String add = 'Add';
+
+  static const String valueAdded = 'Value added';
+
+  static const String fieldCreated = 'Field created';
+
+  static const String fieldAdded = 'Field added';
+
+  static const String formCreated = 'Form created';
+
+  static const String accountType = 'Account Type';
+
+  static const String colon = ':';
   static const String submit = 'Submit';
 }
 
@@ -49,6 +69,32 @@ class AppStringFailuresMessages {
   static const String userNotFound = 'No user found for that email.';
 
   static const String wrongPassword = 'Wrong password provided for that user.';
+
+  static const String couldNotCreateForm = 'Could not create form';
+
+  static const String emptyField = 'Field cannot be empty';
+  static const String fieldAlreadyExists = 'Field already exists';
+
+  static const String labelEmptyField = 'Label cannot be empty';
+  static const String placeholderKeywordEmptyField =
+      'Placeholder keyword cannot be empty';
+  static const String optionsEmptyField = 'Options cannot be empty';
+  static const String documentKeywordsEmptyField =
+      'Document keywords cannot be empty';
+
+  static const String chooseAnotherKeyword =
+      'Choose another keyword, this one is already in use';
+
+  static const String numberOfFieldsEmpty =
+      'Add at least one field to the form';
+
+  static const String formNameEmptyField = 'Form name cannot be empty';
+
+  static const String numberOfSectionsEmpty =
+      'Add at least one section to the form';
+
+  static var choseADataRetentionPeriodBetween1_60 =
+      'Chose a data retention period between 1 and 60';
 }
 
 class AppStringSuccesMessages {
@@ -96,13 +142,16 @@ class AppCreateFormString {
   static const String fieldDocumentNumber = 'Field Document Number';
   static const String field = 'Fields';
   static const String label = "Label";
-  static const String keyWord = "KeyWord";
+  static const String placeholderKeyWord = "Placeholder Keyword";
   static const String mandatory = "Mandatory";
-  static const List<String> listOfFieldTypes = [
-    'Text',
-    'Number',
-    'Date',
-    'Single Choice',
-    'Multiple Choice',
-  ];
+
+  static const String documentKeywords = "Document Keywords";
+
+  static const String options = "Options";
+
+  static const String newOption = "New Option";
+
+  static const String numberOfSections = "Number of Sections";
+
+  static const String numberOfDynamicFields = "Number of Dynamic Fields";
 }

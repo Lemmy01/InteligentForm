@@ -1,42 +1,31 @@
-import '../../domain/entities/form.dart';
-
-class FormModel extends Form {
+class FormModel {
   String? id;
+  String title;
+  int dataRetentionPeriod;
+  DateTime? dateAdded;
+  String userId;
+
   FormModel({
-    required super.title,
-    required super.dataRetentionPeriod,
     this.id,
+    required this.title,
+    required this.dataRetentionPeriod,
+    required this.userId,
   });
 
-  factory FormModel.fromJson(Map<String, dynamic> json) {
-    return FormModel(
-      id: json['id'],
-      title: json['title'],
-      dataRetentionPeriod: json['dataRetenrionPeriod'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'title': title,
-      'dataRetenrionPeriod': dataRetentionPeriod,
-    };
-  }
-
-  factory FormModel.fromMap(Map<String, dynamic> map) {
-    return FormModel(
-      id: map['id'],
-      title: map['title'],
-      dataRetentionPeriod: map['dataRetenrionPeriod'],
-    );
-  }
+  FormModel.fromMap(Map<String, dynamic> map)
+      : id = map['id'],
+        title = map['title'],
+        dataRetentionPeriod = map['dataRetentionPeriod'],
+        dateAdded = map['dateAdded'],
+        userId = map['userId'];
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
       'title': title,
       'dataRetenrionPeriod': dataRetentionPeriod,
+      'dateAdded': DateTime.now(),
+      'userId': userId,
     };
   }
 }

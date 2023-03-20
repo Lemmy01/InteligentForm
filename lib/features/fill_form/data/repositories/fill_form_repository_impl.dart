@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:inteligent_forms/features/create_form/data/models/form_model.dart';
 import 'package:inteligent_forms/features/create_form/domain/entities/field.dart';
-import 'package:inteligent_forms/features/create_form/domain/entities/form.dart';
 import 'package:inteligent_forms/features/create_form/domain/entities/section.dart';
 import 'package:inteligent_forms/features/fill_form/domain/entities/section_with_field.dart';
 
@@ -17,7 +17,7 @@ class FillFormRepositoryImpl implements FillFormRepository {
   });
 
   @override
-  Future<Either<Failure, Form>> getForm(String formId) async {
+  Future<Either<Failure, FormModel>> getForm(String formId) async {
     try {
       final result = await datasource.getForm(formId);
       return Right(result);
@@ -86,7 +86,8 @@ class FillFormRepositoryImpl implements FillFormRepository {
       );
     }
     for (final section in sections) {
-      final result = (await getFields(section.content, formId, datasource)).fold(
+      final result =
+          (await getFields(section.content, formId, datasource)).fold(
         (l) => l,
         (r) => r,
       );
@@ -108,4 +109,3 @@ class FillFormRepositoryImpl implements FillFormRepository {
     return Right(sectionWithFields);
   }
 }
-

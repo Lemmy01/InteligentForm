@@ -19,7 +19,7 @@ class FillFormApi {
           .doc(formId)
           .get();
 
-      return FormModel.fromJson(doc.data()!);
+      return FormModel.fromMap(doc.data()!);
     } on FirebaseException catch (e) {
       throw MediumException(runtimeType, e.code);
     }
@@ -32,7 +32,7 @@ class FillFormApi {
           .where(AppFirestoreCollectionNames.forms, isEqualTo: formId)
           .get();
       final listOfModels =
-          streamDocs.docs.map((e) => SectionModel.fromJson(e.data())).toList();
+          streamDocs.docs.map((e) => SectionModel.fromMap(e.data())).toList();
       return listOfModels;
     } on FirebaseException catch (e) {
       throw MediumException(runtimeType, e.code);
@@ -46,8 +46,8 @@ class FillFormApi {
           .where(AppFirestoreFieldsFields.formId, isEqualTo: formId)
           .where(AppFirestoreFieldsFields.keyWord, isEqualTo: placeholder)
           .get();
- 
-      return FieldModel.fromJson(doc.docs.first.data());
+
+      return FieldModel.fromMap(doc.docs.first.data());
     } on FirebaseException catch (e) {
       throw MediumException(runtimeType, e.code);
     }

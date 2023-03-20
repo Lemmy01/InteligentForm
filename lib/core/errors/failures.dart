@@ -1,28 +1,43 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+abstract class Failure {
+  final String failureMessage;
 
-part 'failures.freezed.dart';
+  Failure({
+    required this.failureMessage,
+  });
+}
 
-@freezed
-class Failure with _$Failure {
-  const Failure._();
-  const factory Failure.noDataFetched({required String failureMessage}) =
-      NoDataFetched;
+class HardFailure extends Failure {
+  HardFailure({
+    required super.failureMessage,
+  });
+}
 
-  const factory Failure.serverFailure({required String failureMessage}) =
-      ServerFailure;
+class EasyFailure extends Failure {
+  EasyFailure({
+    required super.failureMessage,
+  });
+}
 
-  const factory Failure.fieldFailure({required String failureMessage}) =
-      FieldFailure;
+class MediumFailure extends Failure {
+  MediumFailure({
+    required super.failureMessage,
+  });
+}
 
-  const factory Failure.networkFailure({required String failureMessage}) =
-      NetworkFailure;
+class FieldFailure extends Failure {
+  FieldFailure({
+    required super.failureMessage,
+  });
+}
 
-  const factory Failure.easyImpactFailure({required String failureMessage}) =
-      EasyFailure;
+class EmptyFieldFailure extends Failure {
+  EmptyFieldFailure({
+    required super.failureMessage,
+  });
+}
 
-  const factory Failure.mediumImpactFailure({required String failureMessage}) =
-      MediumFailure;
-
-  const factory Failure.hardImpactFailure({required String failureMessage}) =
-      HardFailure;
+class InvalidFieldFailure extends Failure {
+  InvalidFieldFailure({
+    required super.failureMessage,
+  });
 }

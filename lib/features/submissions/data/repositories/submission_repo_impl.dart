@@ -21,7 +21,7 @@ class SubmissionRepoImpl implements SubmissionRepository {
       return const Right(null);
     } on Exception catch (e) {
       Logger.error(runtimeType, e.toString());
-      return const Left(
+      return Left(
         MediumFailure(
           failureMessage: AppStringFailuresMessages.unexpectedFailure,
         ),
@@ -42,7 +42,7 @@ class SubmissionRepoImpl implements SubmissionRepository {
       return Right(submissionsList);
     } on Exception catch (e) {
       Logger.error(runtimeType, e.toString());
-      return const Left(
+      return Left(
         MediumFailure(
           failureMessage: AppStringFailuresMessages.unexpectedFailure,
         ),

@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
-import 'package:inteligent_forms/core/errors/exceptions.dart';
+import 'package:inteligent_forms/core/constants/string_constants.dart';
 
 import '../../../../core/errors/failures.dart';
 import '../../domain/entities/field.dart';
@@ -28,8 +28,12 @@ class CreateFormRepositoryImpl extends CreateFormRepository {
         fields!,
       );
       return const Right(null);
-    } on MediumException catch (e) {
-      return Left(MediumFailure(failureMessage: e.message));
+    } catch (e) {
+      return Left(
+        MediumFailure(
+          failureMessage: AppStringFailuresMessages.couldNotCreateForm,
+        ),
+      );
     }
   }
 }

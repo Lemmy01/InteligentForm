@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:inteligent_forms/features/create_form/data/models/field_model.dart';
 
+import '../../../../core/errors/exceptions.dart';
 import '../../domain/entities/field.dart';
 import '../../domain/entities/section.dart';
 import '../models/form_model.dart';
@@ -17,6 +19,7 @@ abstract class CreateFormApi {
 
 class CreateFormApiImpl implements CreateFormApi {
   final FirebaseFirestore firebase;
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   CreateFormApiImpl(this.firebase);
 
@@ -27,23 +30,33 @@ class CreateFormApiImpl implements CreateFormApi {
     List<Section> sections,
     List<Field> fields,
   ) async {
-    final CollectionReference forms = firebase.collection('forms');
-    final id = forms.doc().id;
-    await forms.add(
-      FormModel(
-        title: title,
-        dataRetentionPeriod: dataRetentionPeriod,
-        id: id,
-      ).toMap(),
-    );
+    try {
+      final CollectionReference forms = firebase.collection('forms');
+      final String userId = auth.currentUser!.uid;
 
-    for (final section in sections) {
-      await addSection(section, id);
+      final id = forms.doc().id;
+      await forms.add(
+        FormModel(
+          title: title,
+          dataRetentionPeriod: dataRetentionPeriod,
+          id: id,
+          userId: userId,
+        ).toMap(),
+      );
+
+      for (final section in sections) {
+        await addSection(section, id);
+      }
+      for (final field in fields) {
+        await addField(field, id);
+      }
+      return await null;
+    } on FirebaseException catch (error) {
+      throw MediumException(
+        runtimeType,
+        error.toString(),
+      );
     }
-    for (final field in fields) {
-      await addField(field, id);
-    }
-    return await null;
   }
 
   Future<void> addSection(
@@ -76,7 +89,7 @@ class CreateFormApiImpl implements CreateFormApi {
       docKeys: field.docKeys,
       fieldType: field.fieldType,
       label: field.label,
-      keyWord: field.keyWord,
+      placeholderKeyWord: field.placeholderKeyWord,
       mandatory: field.mandatory,
     );
     await fields.add(fieldModel.toMap());

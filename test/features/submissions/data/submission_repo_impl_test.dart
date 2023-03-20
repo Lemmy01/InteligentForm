@@ -18,7 +18,7 @@ void main() {
     mockSubmissionApi = MockSubmissionApi();
     submissionRepoImpl = SubmissionRepoImpl(submissionApi: mockSubmissionApi);
   });
-  MediumFailure mediumFailure = const MediumFailure(
+  MediumFailure mediumFailure = MediumFailure(
       failureMessage: AppStringFailuresMessages.unexpectedFailure);
 
   group("delete", () {
@@ -38,20 +38,20 @@ void main() {
     });
 
     //test(
-      //   "Should call the delete function from SubmissionApi and throw exception",
-      //   () async {
-      // // arrange
-      // when(() => mockSubmissionApi.deleteSubmission(any()))
-      //     .thenAnswer((invocation) async => throwsA(Exception));
+    //   "Should call the delete function from SubmissionApi and throw exception",
+    //   () async {
+    // // arrange
+    // when(() => mockSubmissionApi.deleteSubmission(any()))
+    //     .thenAnswer((invocation) async => throwsA(Exception));
 
-      // // act
-      // final result = await submissionRepoImpl.deleteSubmission("id");
+    // // act
+    // final result = await submissionRepoImpl.deleteSubmission("id");
 
-      // //assert
-      // expect(mockSubmissionApi.deleteSubmission("id"), throwsA(Exception));
-      // expect(result, Left(mediumFailure));
-      // verify(() => mockSubmissionApi.deleteSubmission("id")).called(1);
-      // verifyNoMoreInteractions(mockSubmissionApi);
+    // //assert
+    // expect(mockSubmissionApi.deleteSubmission("id"), throwsA(Exception));
+    // expect(result, Left(mediumFailure));
+    // verify(() => mockSubmissionApi.deleteSubmission("id")).called(1);
+    // verifyNoMoreInteractions(mockSubmissionApi);
     //});
   });
 }

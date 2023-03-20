@@ -12,7 +12,6 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../core/constants/app_number_constants.dart';
 
-//TODO George Luta : add to constants
 class FillFormOptionsPage extends HookWidget {
   const FillFormOptionsPage({super.key});
 

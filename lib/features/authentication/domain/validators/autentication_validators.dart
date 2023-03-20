@@ -17,7 +17,7 @@ class AuthenticationValidator {
           password: password,
           confirmPassword: confirmPassword,
         )) {
-      return const Left(
+      return Left(
         FieldFailure(
           failureMessage: AppStringFailuresMessages.invalidCredentials,
         ),
@@ -37,7 +37,7 @@ class AuthenticationValidator {
         !_isPasswordValid(
           password: password,
         )) {
-      return const Left(
+      return Left(
         FieldFailure(
           failureMessage: AppStringFailuresMessages.invalidCredentials,
         ),

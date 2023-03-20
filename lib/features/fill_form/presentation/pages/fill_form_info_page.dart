@@ -6,6 +6,8 @@ import 'package:inteligent_forms/features/fill_form/domain/entities/section_with
 
 import '../../../../core/constants/app_number_constants.dart';
 import '../../../../core/constants/font_constants.dart';
+import '../../../../core/constants/string_constants.dart';
+import '../../../../core/shared_widgets/my_button.dart';
 
 TextEditingController controller1 = TextEditingController();
 TextEditingController controller2 = TextEditingController();
@@ -16,91 +18,24 @@ List<SectionWithField> listOfSections = [
     fields: [
       Field(
         label: 'labelName',
-        keyWord: 'placeholderKeyWord',
         docKeys: ['documentKeyWords'],
         mandatory: true,
         fieldType: 'Text',
+        placeholderKeyWord: 'placeholderKeyWord',
       ),
       Field(
         label: 'labelName',
-        keyWord: 'placeholderKeyWord',
         docKeys: ['documentKeyWords'],
         mandatory: true,
         fieldType: 'Text',
+        placeholderKeyWord: 'placeholderKeyWord',
       ),
       Field(
         label: 'labelName',
-        keyWord: 'placeholderKeyWord',
-        docKeys: ['documentKeyWords'],
-        mandatory: true,
-        fieldType: 'SingleChoice',
-        options: ['option1', 'option2', 'option3'],
-      ),
-    ],
-    content: 'content',
-    scanType: 'Identification',
-  ),
-  SectionWithField(
-    sectionNumber: 2,
-    fields: [
-      Field(
-        label: 'labelName',
-        keyWord: 'placeholderKeyWord',
         docKeys: ['documentKeyWords'],
         mandatory: true,
         fieldType: 'Text',
-      ),
-      Field(
-        label: 'labelName',
-        keyWord: 'placeholderKeyWord',
-        docKeys: ['documentKeyWords'],
-        mandatory: true,
-        fieldType: 'Text',
-      ),
-      Field(
-        label: 'labelName',
-        keyWord: 'placeholderKeyWord',
-        docKeys: ['documentKeyWords'],
-        mandatory: true,
-        fieldType: 'SingleChoice',
-        options: ['option1', 'option2', 'option3'],
-      ),
-    ],
-    content: 'content',
-    scanType: 'Identification',
-  ),
-  SectionWithField(
-    sectionNumber: 2,
-    fields: [
-      Field(
-        label: 'labelName 2',
-        keyWord: 'placeholderKeyWord',
-        docKeys: ['documentKeyWords'],
-        mandatory: true,
-        fieldType: 'Text',
-      ),
-      Field(
-        label: 'labelName 2',
-        keyWord: 'placeholderKeyWord',
-        docKeys: ['documentKeyWords'],
-        mandatory: true,
-        fieldType: 'Text',
-      ),
-      Field(
-        label: 'labelName 2',
-        keyWord: 'placeholderKeyWord',
-        docKeys: ['documentKeyWords'],
-        mandatory: true,
-        fieldType: 'SingleChoice',
-        options: ['option1', 'option2', 'option3'],
-      ),
-      Field(
-        label: 'labelName 2',
-        keyWord: 'placeholderKeyWord',
-        docKeys: ['documentKeyWords'],
-        mandatory: true,
-        fieldType: 'MultipleChoice',
-        options: ['option1', 'option2', 'option3'],
+        placeholderKeyWord: 'placeholderKeyWord',
       ),
     ],
     content: 'content',
@@ -214,6 +149,11 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                             AppSizedBoxes.kSmallBox(),
                           ],
                         ),
+                      MyButton(
+                        width: 0,
+                        text: AppStringConstants.scanDocs,
+                        onPressed: () {},
+                      ),
                     ],
                   ),
               ],

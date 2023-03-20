@@ -4,7 +4,7 @@ import 'package:inteligent_forms/core/errors/failures.dart';
 import 'package:inteligent_forms/core/utils/logger.dart';
 
 import '../../../../core/constants/string_constants.dart';
-import '../../domain/repositories/authentication _repo.dart';
+import '../../domain/repositories/authentication_repo.dart';
 import '../datasources/remote/authentication_firestore_api.dart';
 
 class AuthenticationRepoImpl extends AuthenticationRepo {
@@ -31,7 +31,7 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
     } on Exception catch (e) {
       Logger.error(runtimeType, e.toString());
 
-      return const Left(
+      return Left(
         HardFailure(
           failureMessage: AppStringFailuresMessages.unexpectedFailure,
         ),
@@ -68,7 +68,7 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
     } on Exception catch (e) {
       Logger.error(runtimeType, e.toString());
 
-      return const Left(
+      return Left(
         HardFailure(
           failureMessage: AppStringFailuresMessages.unexpectedFailure,
         ),
@@ -91,7 +91,7 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
     } on Exception catch (e) {
       Logger.error(runtimeType, e.toString());
 
-      return const Left(
+      return Left(
         HardFailure(
           failureMessage: AppStringFailuresMessages.unexpectedFailure,
         ),
