@@ -212,7 +212,6 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                 //todo: add logic to save the form
                 _formKey.currentState!.save();
                 final result = _formKey.currentState!.value;
-                log(result.toString());
               }
             },
           ),

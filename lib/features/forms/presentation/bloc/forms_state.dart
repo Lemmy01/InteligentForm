@@ -12,7 +12,7 @@ class FormsInitial extends FormsState {
   List<Object> get props => [];
 }
 
-class FormsLoading extends FormsState {
+class FormsLoadingState extends FormsState {
   @override
   List<Object> get props => [];
 }

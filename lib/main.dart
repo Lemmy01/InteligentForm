@@ -53,6 +53,16 @@ class InteligentFrormsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final createFormBloc = CreateFormBloc(
+      createFormUseCase: CreateForm(
+        CreateFormRepositoryImpl(
+          api: CreateFormApiImpl(
+            FirebaseFirestore.instance,
+          ),
+        ),
+      ),
+    );
+
     var themeData = ThemeData(
       checkboxTheme: CheckboxThemeData(
         fillColor: MaterialStateProperty.all(Colors.white),
@@ -81,15 +91,7 @@ class InteligentFrormsApp extends StatelessWidget {
           ),
         ),
         BlocProvider(
-          create: (context) => CreateFormBloc(
-            createFormUseCase: CreateForm(
-              CreateFormRepositoryImpl(
-                api: CreateFormApiImpl(
-                  FirebaseFirestore.instance,
-                ),
-              ),
-            ),
-          ),
+          create: (context) => createFormBloc,
         ),
         BlocProvider(
           create: (context) => DocumentTypeCubit(),
@@ -106,9 +108,9 @@ class InteligentFrormsApp extends StatelessWidget {
                 ),
               ),
             ),
-            createFormBloc: context.read<CreateFormBloc>(),
+            createFormBloc: createFormBloc,
           )..add(
-              FormsLoadStarted(),
+              FormsLoadStartedEvent(),
             ),
         ),
         BlocProvider(

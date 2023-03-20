@@ -34,7 +34,6 @@ class AuthenticationFirestoreApi {
           .limit(1)
           .get();
 
-      log('docsThatHaveName.docs.length: ${docsThatHaveName.docs.length}');
 
       if (docsThatHaveName.docs.isNotEmpty) {
         throw MediumException(

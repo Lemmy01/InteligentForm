@@ -51,7 +51,7 @@ class FormsPage extends StatelessWidget {
                 ),
                 child: BlocBuilder<FormsBloc, FormsState>(
                   builder: (context, state) {
-                    if (state is FormsLoading) {
+                    if (state is FormsLoadingState) {
                       return Center(
                         child: CircularProgressIndicator(
                           color: Theme.of(context).colorScheme.onPrimary,
