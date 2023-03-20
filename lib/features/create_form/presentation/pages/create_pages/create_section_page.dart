@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inteligent_forms/core/background_widgets/create_form_background_widget.dart';
+import 'package:inteligent_forms/core/constants/app_number_constants.dart';
 import 'package:inteligent_forms/core/constants/string_constants.dart';
+import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
 import 'package:inteligent_forms/core/utils/extensions.dart';
@@ -9,7 +12,6 @@ import 'package:inteligent_forms/features/create_form/presentation/bloc/create_f
 import 'package:inteligent_forms/features/create_form/presentation/bloc/cubit/document_type_cubit.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../../core/background_widgets/create_field_background_widget.dart';
 import '../../../../../core/constants/font_constants.dart';
 import '../../../../../core/utils/enums.dart';
 import '../../bloc/create_form_bloc/create_form_event.dart';
@@ -37,36 +39,40 @@ class _CreateSectionPageState extends State<CreateSectionPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: CreateFieldBackGroundWidget(
-        child: Scaffold(
+    return Stack(
+      children: [
+        const CreateFormBackGroundWidget(),
+        Scaffold(
+          resizeToAvoidBottomInset: false,
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             centerTitle: true,
-            backgroundColor: Colors.transparent,
+            // backgroundColor: Colors.transparent,
             title: const Text(AppCreateFormString.createSection),
           ),
           body: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 5.h,
-                ),
-                Center(
-                  child: Text(
-                    AppCreateFormString.scanDocType,
-                    style: TextStyle(
-                        fontSize: FontConstants.largeFontSize,
-                        color: Colors.white),
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: AppNumberConstants.pageHorizontalPadding,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 5.h,
                   ),
-                ),
-                SizedBox(
-                  height: 2.h,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.w),
-                  child: InputDecorator(
+                  Center(
+                    child: Text(
+                      AppCreateFormString.scanDocType,
+                      style: TextStyle(
+                          fontSize: FontConstants.largeFontSize,
+                          color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                  InputDecorator(
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -101,23 +107,21 @@ class _CreateSectionPageState extends State<CreateSectionPage> {
                       },
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Center(
-                  child: Text(
-                    AppCreateFormString.sectionContent,
-                    style: TextStyle(
-                        fontSize: FontConstants.largeFontSize,
-                        color: Colors.white),
+                  SizedBox(
+                    height: 5.h,
                   ),
-                ),
-                SizedBox(
-                  height: 2.h,
-                ),
-                Center(
-                  child: MyTextField(
+                  Center(
+                    child: Text(
+                      AppCreateFormString.sectionContent,
+                      style: TextStyle(
+                          fontSize: FontConstants.largeFontSize,
+                          color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                  MyTextField(
                     textInputAction: TextInputAction.newline,
                     textAlign: TextAlign.start,
                     maxLines: 10,
@@ -125,41 +129,39 @@ class _CreateSectionPageState extends State<CreateSectionPage> {
                     controller: requestController,
                     hintText: AppCreateFormString.sectionContent,
                   ),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                Center(
-                  child: MyButton(
-                    text: AppCreateFormString.createSection,
-                    color: Theme.of(context).colorScheme.secondary,
-                    width: 90.w,
-                    onPressed: () {
-                      context.read<CreateFormBloc>().add(
-                            AddSection(
-                              section: Section(
-                                content: requestController.text.trim(),
-                                scanType: context
-                                    .read<DocumentTypeCubit>()
-                                    .state
-                                    .dropdownValue,
-                                sectionNumber: context
-                                    .read<CreateFormBloc>()
-                                    .state
-                                    .sections
-                                    .length,
+                  AppSizedBoxes.kMediumBox(),
+                  Center(
+                    child: MyButton(
+                      text: AppCreateFormString.createSection,
+                      color: Theme.of(context).colorScheme.secondary,
+                      width: 90.w,
+                      onPressed: () {
+                        context.read<CreateFormBloc>().add(
+                              AddSection(
+                                section: Section(
+                                  content: requestController.text.trim(),
+                                  scanType: context
+                                      .read<DocumentTypeCubit>()
+                                      .state
+                                      .dropdownValue,
+                                  sectionNumber: context
+                                      .read<CreateFormBloc>()
+                                      .state
+                                      .sections
+                                      .length,
+                                ),
                               ),
-                            ),
-                          );
-                      Navigator.pop(context);
-                    },
+                            );
+                        Navigator.pop(context);
+                      },
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 }

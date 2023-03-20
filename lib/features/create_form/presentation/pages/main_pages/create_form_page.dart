@@ -45,90 +45,100 @@ class _CreateFormPageState extends State<CreateFormPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        left: AppNumberConstants.pageHorizontalPadding,
-        top: AppNumberConstants.pageVerticalPadding,
-        right: AppNumberConstants.pageHorizontalPadding,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          MyTextField(
-            hintText: AppCreateFormString.formName,
-            controller: _nameEditingController,
-            textAlign: TextAlign.start,
-            onChanged: (textFieldValue) => context.read<CreateFormBloc>().add(
-                  ChangeTitle(title: textFieldValue),
-                ),
-          ),
-          AppSizedBoxes.kSmallBox(),
-          MyTextField(
-            hintText: AppCreateFormString.dataRetention,
-            controller: _dataRetentionController,
-            textAlign: TextAlign.start,
-            keyboardType: TextInputType.number,
-            onChanged: (textFieldValue) => context.read<CreateFormBloc>().add(
-                  ChangeDataRetentionPeriod(
-                    dataRetentionPeriod: (int.tryParse(textFieldValue) ?? 0),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.transparent,
+      body: Padding(
+        padding: EdgeInsets.only(
+          left: AppNumberConstants.pageHorizontalPadding,
+          top: AppNumberConstants.pageVerticalPadding,
+          right: AppNumberConstants.pageHorizontalPadding,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            MyTextField(
+              hintText: AppCreateFormString.formName,
+              controller: _nameEditingController,
+              textAlign: TextAlign.start,
+              onChanged: (textFieldValue) => context.read<CreateFormBloc>().add(
+                    ChangeTitle(title: textFieldValue),
+                  ),
+            ),
+            AppSizedBoxes.kSmallBox(),
+            MyTextField(
+              hintText: AppCreateFormString.dataRetention,
+              controller: _dataRetentionController,
+              textAlign: TextAlign.start,
+              keyboardType: TextInputType.number,
+              onChanged: (textFieldValue) => context.read<CreateFormBloc>().add(
+                    ChangeDataRetentionPeriod(
+                      dataRetentionPeriod: (int.tryParse(textFieldValue) ?? 0),
+                    ),
+                  ),
+            ),
+            AppSizedBoxes.kMediumBox(),
+            Row(
+              children: [
+                Text(
+                  '${AppCreateFormString.numberOfSections} : ',
+                  style: TextStyle(
+                    fontSize: FontConstants.mediumFontSize,
+                    color: Theme.of(context).colorScheme.onPrimary,
                   ),
                 ),
-          ),
-          AppSizedBoxes.kMediumBox(),
-          Row(
-            children: [
-              Text(
-                '${AppCreateFormString.numberOfSections} : ',
-                style: TextStyle(
-                  fontSize: FontConstants.mediumFontSize,
-                  color: Theme.of(context).colorScheme.onPrimary,
+                AppSizedBoxes.kHSmallBox(),
+                Text(
+                  context
+                      .read<CreateFormBloc>()
+                      .state
+                      .sections
+                      .length
+                      .toString(),
+                  style: TextStyle(
+                    fontSize: FontConstants.mediumFontSize,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
                 ),
-              ),
-              AppSizedBoxes.kHSmallBox(),
-              Text(
-                context.read<CreateFormBloc>().state.sections.length.toString(),
-                style: TextStyle(
-                  fontSize: FontConstants.mediumFontSize,
-                  color: Theme.of(context).colorScheme.onPrimary,
+              ],
+            ),
+            Row(
+              children: [
+                Text(
+                  '${AppCreateFormString.numberOfDynamicFields} : ',
+                  style: TextStyle(
+                    fontSize: FontConstants.mediumFontSize,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Text(
-                '${AppCreateFormString.numberOfDynamicFields} : ',
-                style: TextStyle(
-                  fontSize: FontConstants.mediumFontSize,
-                  color: Theme.of(context).colorScheme.onPrimary,
+                AppSizedBoxes.kHSmallBox(),
+                Text(
+                  context.read<CreateFormBloc>().state.fields.length.toString(),
+                  style: TextStyle(
+                    fontSize: FontConstants.mediumFontSize,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
                 ),
-              ),
-              AppSizedBoxes.kHSmallBox(),
-              Text(
-                context.read<CreateFormBloc>().state.fields.length.toString(),
-                style: TextStyle(
-                  fontSize: FontConstants.mediumFontSize,
-                  color: Theme.of(context).colorScheme.onPrimary,
-                ),
-              ),
-            ],
-          ),
-          AppSizedBoxes.kMediumBox(),
-          BlocBuilder<CreateFormBloc, CreateFormState>(
-            builder: (context, state) {
-              return MyButton(
-                isLoading: state.status == CreateFormStatus.loading,
-                text: AppCreateFormString.createForm,
-                onPressed: () {
-                  context.read<CreateFormBloc>().add(
-                        CreateFormSubmitted(),
-                      );
-                },
-                color: Theme.of(context).colorScheme.secondary,
-              );
-            },
-          ),
-        ],
+              ],
+            ),
+            AppSizedBoxes.kMediumBox(),
+            BlocBuilder<CreateFormBloc, CreateFormState>(
+              builder: (context, state) {
+                return MyButton(
+                  isLoading: state.status == CreateFormStatus.loading,
+                  text: AppCreateFormString.createForm,
+                  onPressed: () {
+                    
+                    context.read<CreateFormBloc>().add(
+                          CreateFormSubmitted(),
+                        );
+                  },
+                  color: Theme.of(context).colorScheme.secondary,
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

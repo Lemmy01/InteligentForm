@@ -41,6 +41,7 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
     return SafeArea(
       child: CreateFieldBackGroundWidget(
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             centerTitle: true,

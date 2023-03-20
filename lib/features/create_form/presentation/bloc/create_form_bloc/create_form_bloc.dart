@@ -96,6 +96,8 @@ class CreateFormBloc extends Bloc<CreateFormEvent, CreateFormState> {
     CreateFormSubmitted event,
     Emitter<CreateFormState> emit,
   ) async {
+    if (state.status == CreateFormStatus.loading) return;
+
     emit(state.copyWith(status: CreateFormStatus.loading));
 
     (await createFormUseCase.call(
