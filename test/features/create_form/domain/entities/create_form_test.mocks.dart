@@ -6,10 +6,11 @@
 import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
+import 'package:inteligent_forms/core/errors/failures.dart' as _i5;
 import 'package:inteligent_forms/features/create_form/domain/entities/field.dart'
-    as _i6;
+    as _i7;
 import 'package:inteligent_forms/features/create_form/domain/entities/section.dart'
-    as _i5;
+    as _i6;
 import 'package:inteligent_forms/features/create_form/domain/repositories/create_form_repository.dart'
     as _i3;
 import 'package:mockito/mockito.dart' as _i1;
@@ -41,11 +42,11 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
 class MockCreateFormRepository extends _i1.Mock
     implements _i3.CreateFormRepository {
   @override
-  _i4.Future<_i2.Either<_i3.Failure, void>> createForm(
+  _i4.Future<_i2.Either<_i5.Failure, void>> createForm(
     String? title,
     int? dataRetentionPeriod,
-    List<_i5.Section>? sections,
-    List<_i6.Field>? fields,
+    List<_i6.Section>? sections,
+    List<_i7.Field>? fields,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -57,8 +58,8 @@ class MockCreateFormRepository extends _i1.Mock
             fields,
           ],
         ),
-        returnValue: _i4.Future<_i2.Either<_i3.Failure, void>>.value(
-            _FakeEither_0<_i3.Failure, void>(
+        returnValue: _i4.Future<_i2.Either<_i5.Failure, void>>.value(
+            _FakeEither_0<_i5.Failure, void>(
           this,
           Invocation.method(
             #createForm,
@@ -71,8 +72,8 @@ class MockCreateFormRepository extends _i1.Mock
           ),
         )),
         returnValueForMissingStub:
-            _i4.Future<_i2.Either<_i3.Failure, void>>.value(
-                _FakeEither_0<_i3.Failure, void>(
+            _i4.Future<_i2.Either<_i5.Failure, void>>.value(
+                _FakeEither_0<_i5.Failure, void>(
           this,
           Invocation.method(
             #createForm,
@@ -84,5 +85,5 @@ class MockCreateFormRepository extends _i1.Mock
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i3.Failure, void>>);
+      ) as _i4.Future<_i2.Either<_i5.Failure, void>>);
 }

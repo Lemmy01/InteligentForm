@@ -4,10 +4,10 @@ import '../../../../core/errors/failures.dart';
 import '../entities/Submission.dart';
 import '../repositories/submission_repository.dart';
 
-class SubmissionUscase {
+class SubmissionUsecase {
   final SubmissionRepository _submissionRepository;
 
-  SubmissionUscase(this._submissionRepository);
+  SubmissionUsecase(this._submissionRepository);
 
   Future<Either<Failure, List<Submission>>> getSubmissions(
       String formId) async {

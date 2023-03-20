@@ -4,6 +4,8 @@ import 'package:inteligent_forms/core/errors/failures.dart';
 import 'package:inteligent_forms/features/submissions/domain/entities/Submission.dart';
 import 'package:inteligent_forms/features/submissions/domain/repositories/submission_repository.dart';
 
+import '../../../../core/constants/string_constants.dart';
+import '../../../../core/utils/logger.dart';
 import '../datasources/submission_api.dart';
 import '../models/submission_model.dart';
 
@@ -17,10 +19,11 @@ class SubmissionRepoImpl implements SubmissionRepository {
     try {
       await submissionApi.deleteSubmission(id);
       return const Right(null);
-    } on MediumException catch (e) {
-      return Left(
+    } on Exception catch (e) {
+      Logger.error(runtimeType, e.toString());
+      return const Left(
         MediumFailure(
-          failureMessage: e.message,
+          failureMessage: AppStringFailuresMessages.unexpectedFailure,
         ),
       );
     }
@@ -31,11 +34,17 @@ class SubmissionRepoImpl implements SubmissionRepository {
       String formId) async {
     try {
       final submissions = await submissionApi.getSubmissions(formId);
-      return Right(submissions as List<Submission>);
-    } on MediumException catch (e) {
-      return Left(
+      final List<Submission> submissionsList = submissions
+          .map(
+            (submission) => submission as Submission,
+          )
+          .toList();
+      return Right(submissionsList);
+    } on Exception catch (e) {
+      Logger.error(runtimeType, e.toString());
+      return const Left(
         MediumFailure(
-          failureMessage: e.message,
+          failureMessage: AppStringFailuresMessages.unexpectedFailure,
         ),
       );
     }

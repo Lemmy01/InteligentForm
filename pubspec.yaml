@@ -50,10 +50,11 @@ dependencies:
   intl: ^0.18.0
   linter: ^1.30.0
   mockito: ^5.3.2
+  mocktail: ^0.3.0
   persistent_bottom_nav_bar: ^5.0.2
   sizer: ^2.0.15
 dependency_overrides:
- intl: ^0.17.0-nullsafety.2
+  intl: ^0.17.0-nullsafety.2
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
