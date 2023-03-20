@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:inteligent_forms/features/create_form/data/datasources/create_form_api.dart';
@@ -23,11 +25,11 @@ void main() {
   const List<Section> tSections = [];
   const List<Field> tFields = [];
 
-  test('Should call the create Function from tha CreateApi and return null',
+  test('Should call the create Function from the CreateApi and return null',
       () async {
     // arrange
     when(mockCreateFormApi.createForm(any, any, any, any)).thenAnswer(
-      (realInvocation) async => const Right(null),
+      (realInvocation) async => Void,
     );
     // act
     final result = await mockCreateFormRepositoryImpl.createForm(

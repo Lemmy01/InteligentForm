@@ -48,6 +48,7 @@ class AppStringConstants {
   static const String accountType = 'Account Type';
 
   static const String colon = ':';
+  static const String submit = 'Submit';
 }
 
 class AppBarStrings {
