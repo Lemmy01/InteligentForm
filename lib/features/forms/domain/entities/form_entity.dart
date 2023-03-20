@@ -12,4 +12,11 @@ class FormEntity {
   });
 
   String get formattedDate => DateTimeFunctions.getFormattedDate(dateAdded);
+
+  @override
+  String toString() {
+    return 'FormEntity(title: $title,'
+        ' dynamicFieldNames: $dynamicFieldNames,'
+        ' dateAdded: $formattedDate)';
+  }
 }

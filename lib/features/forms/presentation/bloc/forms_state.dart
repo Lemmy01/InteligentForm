@@ -7,9 +7,15 @@ abstract class FormsState extends Equatable {
   List<Object> get props => [];
 }
 
-class FormsInitial extends FormsState {}
+class FormsInitial extends FormsState {
+  @override
+  List<Object> get props => [];
+}
 
-class FormsLoading extends FormsState {}
+class FormsLoading extends FormsState {
+  @override
+  List<Object> get props => [];
+}
 
 class FormsLoaded extends FormsState {
   final List<FormEntity> formEntities;
