@@ -30,6 +30,7 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
     );
 
     on<FormsLoadStarted>(_onFormsLoadStarted);
+    on<FormsDeleteEvent>(_onFormsDeleteEvent);
   }
 
   Future<void> _onFormsLoadStarted(
@@ -48,6 +49,23 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
         FormsLoaded(
           formEntities: formEntities,
         ),
+      ),
+    );
+  }
+
+  Future<void> _onFormsDeleteEvent(
+    FormsDeleteEvent event,
+    Emitter<FormsState> emit,
+  ) async {
+    (await formsUseCase.deleteForm(event.formEntity)).fold(
+      (failure) => emit(
+        FormsError(
+          message: failure.failureMessage,
+        ),
+      ),
+      //dupa ce se sterge un form, se face reload la lista de forms
+      (formEntities) => add(
+        FormsLoadStarted(),
       ),
     );
   }

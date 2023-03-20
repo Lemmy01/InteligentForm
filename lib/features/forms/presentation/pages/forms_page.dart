@@ -69,7 +69,13 @@ class FormsPage extends StatelessWidget {
                               (formEntity) => MySlidable(
                                 actions: [
                                   MyDeleteSlidable(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      context.read<FormsBloc>().add(
+                                            FormsDeleteEvent(
+                                              formEntity: formEntity,
+                                            ),
+                                          );
+                                    },
                                   )
                                 ],
                                 child: FormTile(

@@ -11,3 +11,14 @@ class FormsLoadStarted extends FormsEvent {
   @override
   List<Object> get props => [];
 }
+
+class FormsDeleteEvent extends FormsEvent {
+  final FormEntity formEntity;
+
+  const FormsDeleteEvent({
+    required this.formEntity,
+  });
+
+  @override
+  List<Object> get props => [formEntity];
+}
