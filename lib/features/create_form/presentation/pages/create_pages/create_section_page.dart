@@ -19,10 +19,7 @@ import '../../bloc/cubit/document_type_state.dart';
 class CreateSectionPage extends StatefulWidget {
   const CreateSectionPage({
     super.key,
-    this.section,
   });
-
-  final Section? section;
 
   @override
   State<CreateSectionPage> createState() => _CreateSectionPageState();
@@ -30,16 +27,6 @@ class CreateSectionPage extends StatefulWidget {
 
 class _CreateSectionPageState extends State<CreateSectionPage> {
   TextEditingController contentController = TextEditingController();
-  @override
-  void initState() {
-    if (widget.section != null) {
-      contentController.text = widget.section!.content;
-      context.read<DocumentTypeCubit>().changeDropdownValue(
-            widget.section!.scanType,
-          );
-    }
-    super.initState();
-  }
 
   @override
   void dispose() {

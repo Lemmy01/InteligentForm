@@ -5,6 +5,7 @@ import 'package:inteligent_forms/core/constants/app_number_constants.dart';
 import 'package:inteligent_forms/core/constants/font_constants.dart';
 import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_button.dart';
+import 'package:inteligent_forms/core/utils/extensions.dart';
 import 'package:inteligent_forms/features/authentication/presentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:sizer/sizer.dart';
 
@@ -18,8 +19,12 @@ class LoginPageBody extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final emailController = useTextEditingController();
-    final passwordController = useTextEditingController();
+    final emailController = useTextEditingController(
+      text: 'georgeluta6@gmail.com'.ifDebug,
+    );
+    final passwordController = useTextEditingController(
+      text: 'parola'.ifDebug,
+    );
 
     return Center(
       child: SingleChildScrollView(
