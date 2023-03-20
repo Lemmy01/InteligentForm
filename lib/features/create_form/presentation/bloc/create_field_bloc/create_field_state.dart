@@ -3,6 +3,9 @@ import 'package:equatable/equatable.dart';
 import '../../../../../core/utils/enums.dart';
 
 class CreateFieldState extends Equatable {
+  final String label;
+  final String placeholderKeyWord;
+
   final bool isMandatory;
   final FieldType fieldType;
 
@@ -19,6 +22,8 @@ class CreateFieldState extends Equatable {
     required this.showDocumentKeywords,
     required this.showOptions,
     required this.options,
+    required this.label,
+    required this.placeholderKeyWord,
   });
 
   factory CreateFieldState.initial() => const CreateFieldState(
@@ -28,6 +33,8 @@ class CreateFieldState extends Equatable {
         showDocumentKeywords: true,
         showOptions: true,
         options: [],
+        label: '',
+        placeholderKeyWord: '',
       );
 
   @override
@@ -38,15 +45,20 @@ class CreateFieldState extends Equatable {
         showDocumentKeywords,
         showOptions,
         options,
+        label,
+        placeholderKeyWord,
       ];
 
   CreateFieldState copyWith({
+    bool? isEditMode,
     bool? isMandatory,
     FieldType? fieldType,
     List<String>? documentKeywords,
     bool? showDocumentKeywords,
     bool? showTypes,
     List<String>? options,
+    String? label,
+    String? placeholderKeyWord,
   }) {
     return CreateFieldState(
       isMandatory: isMandatory ?? this.isMandatory,
@@ -55,6 +67,8 @@ class CreateFieldState extends Equatable {
       showDocumentKeywords: showDocumentKeywords ?? this.showDocumentKeywords,
       showOptions: showTypes ?? showOptions,
       options: options ?? this.options,
+      label: label ?? this.label,
+      placeholderKeyWord: placeholderKeyWord ?? this.placeholderKeyWord,
     );
   }
 
@@ -66,6 +80,8 @@ class CreateFieldState extends Equatable {
         '\ndocumentKeywords: $documentKeywords,'
         '\nshowDocumentKeywords: $showDocumentKeywords,'
         '\nshowTypes: $showOptions'
-        '\noptions: $options\n\n';
+        '\noptions: $options'
+        '\n label: $label'
+        '\n placeholderKeyWord: $placeholderKeyWord';
   }
 }

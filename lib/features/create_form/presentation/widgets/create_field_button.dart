@@ -9,6 +9,7 @@ import '../../../../core/shared_widgets/my_button.dart';
 import '../../domain/entities/field.dart';
 import '../bloc/create_field_bloc/create_field_bloc.dart';
 import '../bloc/create_field_bloc/create_field_event.dart';
+import '../bloc/create_field_bloc/create_field_state.dart';
 import '../bloc/create_form_bloc/create_form_bloc.dart';
 import '../bloc/create_form_bloc/create_form_event.dart';
 
@@ -17,60 +18,71 @@ class CreateFieldButton extends StatelessWidget {
     super.key,
     required this.keywordController,
     required this.labelController,
+    required this.isEditMode,
+    required this.keyToBeDeleted,
   });
 
   final TextEditingController keywordController;
   final TextEditingController labelController;
+  final bool isEditMode;
+  final String? keyToBeDeleted;
 
   @override
   Widget build(BuildContext context) {
-    return MyButton(
-      text: AppStringConstants.addField,
-      color: Theme.of(context).colorScheme.secondary,
-      width: 80.w,
-      onPressed: () {
-        CreateFieldValidators.createFieldValidate(
-          label: labelController.text.trim(),
-          placeholderkeyWord: keywordController.text.trim(),
-          allPlaceholderkeyWords: context
-              .read<CreateFormBloc>()
-              .state
-              .fields
-              .map((e) => e.placeholderKeyWord)
-              .toList(),
-          fieldType: context.read<CreateFieldBloc>().state.fieldType,
-          options: context.read<CreateFieldBloc>().state.options,
-          documentKeywords:
-              context.read<CreateFieldBloc>().state.documentKeywords,
-        ).fold(
-          (failure) {
-            showMySnackBar(context, failure.failureMessage);
-          },
-          (r) {
-            context.read<CreateFormBloc>().add(
-                  AddField(
-                    field: Field(
-                      placeholderKeyWord: keywordController.text.trim(),
-                      mandatory:
-                          context.read<CreateFieldBloc>().state.isMandatory,
-                      fieldType: context
-                          .read<CreateFieldBloc>()
-                          .state
-                          .fieldType
-                          .toString(),
-                      docKeys: context
-                          .read<CreateFieldBloc>()
-                          .state
-                          .documentKeywords,
-                      label: labelController.text.trim(),
-                    ),
-                  ),
-                );
-            context.read<CreateFieldBloc>().add(
-                  CreateFieldSubmitted(),
-                );
-            showMySnackBar(context, AppStringConstants.fieldAdded);
-            Navigator.pop(context);
+    return BlocBuilder<CreateFieldBloc, CreateFieldState>(
+      builder: (context, state) {
+        return MyButton(
+          text: AppStringConstants.addField,
+          color: Theme.of(context).colorScheme.secondary,
+          width: 80.w,
+          onPressed: () {
+            CreateFieldValidators.createFieldValidate(
+              label: labelController.text.trim(),
+              placeholderkeyWord: keywordController.text.trim(),
+              allPlaceholderkeyWords: isEditMode
+                  ? []
+                  : context
+                      .read<CreateFormBloc>()
+                      .state
+                      .fields
+                      .map((e) => e.placeholderKeyWord)
+                      .toList(),
+              fieldType: context.read<CreateFieldBloc>().state.fieldType,
+              options: context.read<CreateFieldBloc>().state.options,
+              documentKeywords:
+                  context.read<CreateFieldBloc>().state.documentKeywords,
+            ).fold(
+              (failure) {
+                showMySnackBar(context, failure.failureMessage);
+              },
+              (r) {
+                if (isEditMode) {
+                  context.read<CreateFormBloc>().add(
+                        RemoveFieldEvent(
+                          placeholderKeyWord: keyToBeDeleted!,
+                        ),
+                      );
+                }
+                context.read<CreateFormBloc>().add(
+                      AddField(
+                        field: Field(
+                          placeholderKeyWord: state.placeholderKeyWord,
+                          mandatory: state.isMandatory,
+                          fieldType: state.fieldType,
+                          docKeys: state.documentKeywords,
+                          label: state.label,
+                          options: state.options,
+                        ),
+                      ),
+                    );
+
+                context.read<CreateFieldBloc>().add(
+                      ResetFields(),
+                    );
+                showMySnackBar(context, AppStringConstants.fieldAdded);
+                Navigator.pop(context);
+              },
+            );
           },
         );
       },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
+import 'package:inteligent_forms/core/utils/enums.dart';
 import 'package:inteligent_forms/features/create_form/domain/entities/field.dart';
 import 'package:inteligent_forms/features/fill_form/domain/entities/section_with_field.dart';
 
@@ -20,21 +21,21 @@ List<SectionWithField> listOfSections = [
         label: 'labelName',
         docKeys: ['documentKeyWords'],
         mandatory: true,
-        fieldType: 'Text',
+        fieldType: FieldType.date,
         placeholderKeyWord: 'placeholderKeyWord',
       ),
       Field(
         label: 'labelName',
         docKeys: ['documentKeyWords'],
         mandatory: true,
-        fieldType: 'Text',
+        fieldType: FieldType.date,
         placeholderKeyWord: 'placeholderKeyWord',
       ),
       Field(
         label: 'labelName',
         docKeys: ['documentKeyWords'],
         mandatory: true,
-        fieldType: 'Text',
+        fieldType: FieldType.date,
         placeholderKeyWord: 'placeholderKeyWord',
       ),
     ],
