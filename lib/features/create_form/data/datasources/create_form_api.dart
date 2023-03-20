@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:inteligent_forms/features/create_form/data/models/field_model.dart';
 
 import '../../../../core/errors/exceptions.dart';
@@ -18,6 +19,7 @@ abstract class CreateFormApi {
 
 class CreateFormApiImpl implements CreateFormApi {
   final FirebaseFirestore firebase;
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   CreateFormApiImpl(this.firebase);
 
@@ -30,12 +32,15 @@ class CreateFormApiImpl implements CreateFormApi {
   ) async {
     try {
       final CollectionReference forms = firebase.collection('forms');
+      final String userId = auth.currentUser!.uid;
+
       final id = forms.doc().id;
       await forms.add(
         FormModel(
           title: title,
           dataRetentionPeriod: dataRetentionPeriod,
           id: id,
+          userId: userId,
         ).toMap(),
       );
 
