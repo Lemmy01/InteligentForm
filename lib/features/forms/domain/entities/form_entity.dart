@@ -2,12 +2,13 @@ import '../../../../core/utils/date_time_functions.dart';
 
 class FormEntity {
   final String title;
-  final List<String> dynamicFieldNames;
   final DateTime dateAdded;
+  final String id;
 
   FormEntity({
+    required this.id,
     required this.title,
-    required this.dynamicFieldNames,
+
     required this.dateAdded,
   });
 
@@ -16,7 +17,7 @@ class FormEntity {
   @override
   String toString() {
     return 'FormEntity(title: $title,'
-        ' dynamicFieldNames: $dynamicFieldNames,'
+       
         ' dateAdded: $formattedDate)';
   }
 }

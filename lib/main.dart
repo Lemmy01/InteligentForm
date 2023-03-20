@@ -20,6 +20,8 @@ import 'features/create_form/domain/usecases/create_form.dart';
 import 'features/create_form/presentation/bloc/create_field_bloc/create_field_bloc.dart';
 import 'features/create_form/presentation/bloc/create_form_bloc/create_form_bloc.dart';
 import 'features/create_form/presentation/bloc/cubit/document_type_cubit.dart';
+import 'features/forms/data/datasource/form_api.dart';
+import 'features/forms/data/repositories/form_repository_impl.dart';
 import 'features/forms/presentation/bloc/forms_bloc.dart';
 import 'features/profile/presentation/bloc/profile_bloc.dart';
 import 'firebase_options.dart';
@@ -97,7 +99,13 @@ class InteligentFrormsApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => FormsBloc(
-            formsUseCase: FormsUseCase(),
+            formsUseCase: FormsUseCase(
+              formRepository: FormRepositoryImpl(
+                formApi: FormApi(
+                  firestore: FirebaseFirestore.instance,
+                ),
+              ),
+            ),
             createFormBloc: context.read<CreateFormBloc>(),
           )..add(
               FormsLoadStarted(),
