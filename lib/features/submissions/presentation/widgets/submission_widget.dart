@@ -8,10 +8,9 @@ class SubmissionCard extends StatelessWidget {
   const SubmissionCard({
     super.key,
     required this.submission,
-    required this.number,
   });
   final Submission submission;
-  final int number;
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -26,18 +25,23 @@ class SubmissionCard extends StatelessWidget {
               const SizedBox(
                 width: 10,
               ),
-              Text("Submission ${number + 1}"),
+              const Text("Submission "),
               const Spacer(),
               Text(
                 submission.getDate,
               ),
             ],
           ),
-          onTap: () {
+          onTap: () async {
             //TODO: Add onTap(Navigate to SectionPages)
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-              return const SubmissionInfoPage();
-            }));
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SubmissionInfoPage(
+                  submission: submission,
+                ),
+              ),
+            );
           },
         ),
       ),

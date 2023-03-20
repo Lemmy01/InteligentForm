@@ -11,7 +11,7 @@ class SubmissionApi {
 
   Future<void> submitSubmission(SubmissionModel submission) async {
     try {
-      await firestore.collection('submissions').add(submission.toJson());
+      await firestore.collection('submissions').add(submission.toMap());
     } on FirebaseException {
       throw MediumException(
           runtimeType, AppStringFailuresMessages.unexpectedFailure);
@@ -25,7 +25,7 @@ class SubmissionApi {
           .where('formId', isEqualTo: formId)
           .get();
       return snapshot.docs
-          .map((doc) => SubmissionModel.fromJson(doc.data()))
+          .map((doc) => SubmissionModel.fromMap(doc.data()))
           .toList();
     } on FirebaseException {
       throw MediumException(
@@ -47,7 +47,7 @@ class SubmissionApi {
       await firestore
           .collection('submissions')
           .doc(submission.id)
-          .update(submission.toJson());
+          .update(submission.toMap());
     } on FirebaseException {
       throw MediumException(
           runtimeType, AppStringFailuresMessages.unexpectedFailure);
