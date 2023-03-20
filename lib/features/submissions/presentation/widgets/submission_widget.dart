@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:inteligent_forms/features/submissions/domain/entities/Submission.dart';
 import 'package:sizer/sizer.dart';
 
+import '../pages/submission_info_page.dart';
+
 class SubmissionCard extends StatelessWidget {
   const SubmissionCard({
     super.key,
@@ -33,6 +35,9 @@ class SubmissionCard extends StatelessWidget {
           ),
           onTap: () {
             //TODO: Add onTap(Navigate to SectionPages)
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+              return const SubmissionInfoPage();
+            }));
           },
         ),
       ),

@@ -14,21 +14,15 @@ class SubmissionUscase {
     return await _submissionRepository.getSubmissions(formId);
   }
 
-  Future<Either<Failure, Submission>> submitSubmission(
-      Submission submission) async {
+  Future<Either<Failure, void>> submitSubmission(Submission submission) async {
     return await _submissionRepository.submitSubmission(submission);
   }
 
-  Future<Either<Failure, Submission>> getSubmission(String id) async {
-    return await _submissionRepository.getSubmission(id);
-  }
-
-  Future<Either<Failure, Submission>> updateSubmission(
-      Submission submission) async {
+  Future<Either<Failure, void>> updateSubmission(Submission submission) async {
     return await _submissionRepository.updateSubmission(submission);
   }
 
-  Future<Either<Failure, Submission>> deleteSubmission(String id) async {
+  Future<Either<Failure, void>> deleteSubmission(String id) async {
     return await _submissionRepository.deleteSubmission(id);
   }
 }
