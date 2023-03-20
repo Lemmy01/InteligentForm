@@ -41,6 +41,7 @@ class CreateFormApiImpl implements CreateFormApi {
           dataRetentionPeriod: dataRetentionPeriod,
           id: id,
           userId: userId,
+          dateAdded: DateTime.now(),
         ).toMap(),
       );
 

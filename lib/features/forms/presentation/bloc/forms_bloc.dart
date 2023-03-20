@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -24,6 +25,7 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
     createFormBlocSubscription = createFormBloc.stream.listen(
       (state) {
         if (state is CreateFormSubmitted) {
+          log('Ar trebui sa fac reload la lista de forms');
           add(FormsLoadStarted());
         }
       },
