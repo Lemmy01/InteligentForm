@@ -8,7 +8,6 @@ class FormEntity {
   FormEntity({
     required this.id,
     required this.title,
-
     required this.dateAdded,
   });
 
@@ -17,7 +16,6 @@ class FormEntity {
   @override
   String toString() {
     return 'FormEntity(title: $title,'
-       
         ' dateAdded: $formattedDate)';
   }
 }

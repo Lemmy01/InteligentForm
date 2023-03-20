@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:inteligent_forms/core/constants/firestore_constants.dart';
+
 import '../../../forms/domain/entities/form_entity.dart';
 
 class FormModel extends FormEntity {
@@ -14,21 +17,21 @@ class FormModel extends FormEntity {
 
   factory FormModel.fromMap(Map<String, dynamic> map) {
     return FormModel(
-      id: map['id'],
-      title: map['title'],
-      dataRetentionPeriod: map['dataRetentionPeriod'],
-      userId: map['userId'],
-      dateAdded: map['dateAdded'],
+      id: map[AppFirestoreFormsFields.id],
+      title: map[AppFirestoreFormsFields.title],
+      dataRetentionPeriod: map[AppFirestoreFormsFields.dataRetentionPeriod],
+      userId: map[AppFirestoreFormsFields.userId],
+      dateAdded: (map[AppFirestoreFormsFields.dateAdded] as Timestamp).toDate(),
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
-      'title': title,
-      'dataRetenrionPeriod': dataRetentionPeriod,
-      'dateAdded': DateTime.now(),
-      'userId': userId,
+      AppFirestoreFormsFields.id: id,
+      AppFirestoreFormsFields.title: title,
+      AppFirestoreFormsFields.dataRetentionPeriod: dataRetentionPeriod,
+      AppFirestoreFormsFields.dateAdded: DateTime.now(),
+      AppFirestoreFormsFields.userId: userId,
     };
   }
 }

@@ -43,52 +43,50 @@ class FormsPage extends StatelessWidget {
                 showMySnackBar(context, state.message);
               }
             },
-            child: Center(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppNumberConstants.pageHorizontalPadding,
-                    vertical: AppNumberConstants.pageVerticalPadding,
-                  ),
-                  child: BlocBuilder<FormsBloc, FormsState>(
-                    builder: (context, state) {
-                      if (state is FormsLoading) {
-                        return Center(
-                          child: CircularProgressIndicator(
-                            color: Theme.of(context).colorScheme.onPrimary,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppNumberConstants.pageHorizontalPadding,
+                  vertical: AppNumberConstants.pageVerticalPadding,
+                ),
+                child: BlocBuilder<FormsBloc, FormsState>(
+                  builder: (context, state) {
+                    if (state is FormsLoading) {
+                      return Center(
+                        child: CircularProgressIndicator(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                      );
+                    }
+                    if (state is FormsLoaded) {
+                      return Column(
+                        children: [
+                          const SizedBox(
+                            width: double.infinity,
                           ),
-                        );
-                      }
-                      if (state is FormsLoaded) {
-                        return Column(
-                          children: [
-                            const SizedBox(
-                              width: double.infinity,
-                            ),
-                            ...state.formEntities.map(
-                              (formEntity) => MySlidable(
-                                actions: [
-                                  MyDeleteSlidable(
-                                    onPressed: () {
-                                      context.read<FormsBloc>().add(
-                                            FormsDeleteEvent(
-                                              formEntity: formEntity,
-                                            ),
-                                          );
-                                    },
-                                  ),
-                                ],
-                                child: FormTile(
-                                  formEntity: formEntity,
+                          ...state.formEntities.map(
+                            (formEntity) => MySlidable(
+                              actions: [
+                                MyDeleteSlidable(
+                                  onPressed: () {
+                                    context.read<FormsBloc>().add(
+                                          FormsDeleteEvent(
+                                            formEntity: formEntity,
+                                          ),
+                                        );
+                                  },
                                 ),
+                              ],
+                              child: FormTile(
+                                formEntity: formEntity,
                               ),
                             ),
-                          ],
-                        );
-                      }
-                      return const SizedBox();
-                    },
-                  ),
+                          ),
+                        ],
+                      );
+                    }
+                    return const SizedBox();
+                  },
                 ),
               ),
             ),

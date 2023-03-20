@@ -16,7 +16,7 @@ void main() {
     mockSubmissionRepository = MockSubmissionRepository();
     usecase = SubmissionUsecase(mockSubmissionRepository);
   });
-
+  final failure = MediumFailure(failureMessage: 'test');
   const tFormId = 'test';
   const tSubmissionId = 'test';
   const content = 'test content';
@@ -41,11 +41,11 @@ void main() {
 
     test("test delete functionality exception", () async {
       when(() => mockSubmissionRepository.deleteSubmission(tSubmissionId))
-          .thenAnswer((_) async => Left(MediumFailure(failureMessage: 'test')));
+          .thenAnswer((_) async => Left(failure));
 
       final result = await usecase.deleteSubmission(tSubmissionId);
 
-      expect(result, Left(MediumFailure(failureMessage: 'test')));
+      expect(result, Left(failure));
 
       verify(() => mockSubmissionRepository.deleteSubmission(tSubmissionId));
       verifyNoMoreInteractions(mockSubmissionRepository);
@@ -67,11 +67,11 @@ void main() {
 
     test("test submit functionality exception", () async {
       when(() => mockSubmissionRepository.submitSubmission(submission))
-          .thenAnswer((_) async => Left(MediumFailure(failureMessage: 'test')));
+          .thenAnswer((_) async => Left(failure));
 
       final result = await usecase.submitSubmission(submission);
 
-      expect(result, Left(MediumFailure(failureMessage: 'test')));
+      expect(result, Left(failure));
 
       verify(() => mockSubmissionRepository.submitSubmission(submission));
       verifyNoMoreInteractions(mockSubmissionRepository);
@@ -92,11 +92,11 @@ void main() {
 
     test("test update functionality exception", () async {
       when(() => mockSubmissionRepository.updateSubmission(submission))
-          .thenAnswer((_) async => Left(MediumFailure(failureMessage: 'test')));
+          .thenAnswer((_) async => Left(failure));
 
       final result = await usecase.updateSubmission(submission);
 
-      expect(result, Left(MediumFailure(failureMessage: 'test')));
+      expect(result, Left(failure));
 
       verify(() => mockSubmissionRepository.updateSubmission(submission));
       verifyNoMoreInteractions(mockSubmissionRepository);
@@ -118,11 +118,11 @@ void main() {
 
     test("test update functionality exception", () async {
       when(() => mockSubmissionRepository.getSubmissions(tFormId))
-          .thenAnswer((_) async => Left(MediumFailure(failureMessage: 'test')));
+          .thenAnswer((_) async => Left(failure));
 
       final result = await usecase.getSubmissions(tFormId);
 
-      expect(result, Left(MediumFailure(failureMessage: 'test')));
+      expect(result, Left(failure));
 
       verify(() => mockSubmissionRepository.getSubmissions(tFormId));
       verifyNoMoreInteractions(mockSubmissionRepository);
