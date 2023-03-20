@@ -5,15 +5,30 @@ import 'package:equatable/equatable.dart';
 import 'package:inteligent_forms/features/forms/domain/entities/form_entity.dart';
 import 'package:inteligent_forms/features/forms/domain/usecases/forms_usecase.dart';
 
+import '../../../create_form/presentation/bloc/create_form_bloc/create_form_bloc.dart';
+import '../../../create_form/presentation/bloc/create_form_bloc/create_form_event.dart';
+
 part 'forms_event.dart';
 part 'forms_state.dart';
 
 class FormsBloc extends Bloc<FormsEvent, FormsState> {
   final FormsUseCase formsUseCase;
+  final CreateFormBloc createFormBloc;
+
+  late StreamSubscription createFormBlocSubscription;
 
   FormsBloc({
     required this.formsUseCase,
+    required this.createFormBloc,
   }) : super(FormsInitial()) {
+    createFormBlocSubscription = createFormBloc.stream.listen(
+      (state) {
+        if (state is CreateFormSubmitted) {
+          add(FormsLoadStarted());
+        }
+      },
+    );
+
     on<FormsLoadStarted>(_onFormsLoadStarted);
   }
 
@@ -35,5 +50,11 @@ class FormsBloc extends Bloc<FormsEvent, FormsState> {
         ),
       ),
     );
+  }
+
+  @override
+  Future<void> close() {
+    createFormBlocSubscription.cancel();
+    return super.close();
   }
 }

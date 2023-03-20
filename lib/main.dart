@@ -96,7 +96,10 @@ class InteligentFrormsApp extends StatelessWidget {
         BlocProvider(
           create: (context) => FormsBloc(
             formsUseCase: FormsUseCase(),
-          )..add(FormsLoadStarted()),
+            createFormBloc: context.read<CreateFormBloc>(),
+          )..add(
+              FormsLoadStarted(),
+            ),
         ),
       ],
       child: MaterialApp(
