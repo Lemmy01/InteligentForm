@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:inteligent_forms/features/create_form/domain/entities/field.dart';
 
 
+import '../../../../core/errors/failures.dart';
 import '../entities/section.dart';
 
 abstract class CreateFormRepository {
@@ -13,4 +14,4 @@ abstract class CreateFormRepository {
   );
 }
 
-class Failure {}
+
