@@ -111,7 +111,9 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
                       isEditMode: widget.field != null,
                       keywordController: placeholderKeywordController,
                       labelController: labelController,
-                      keyToBeDeleted:widget.field != null ? widget.field?.placeholderKeyWord : null,
+                      keyToBeDeleted: widget.field != null
+                          ? widget.field?.placeholderKeyWord
+                          : null,
                     ),
                   ),
                 ],

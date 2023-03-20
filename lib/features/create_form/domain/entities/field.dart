@@ -1,5 +1,3 @@
-import '../../../../core/utils/lists.dart';
-
 class Field {
   String label;
   String placeholderKeyWord;

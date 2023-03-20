@@ -25,6 +25,9 @@ class AppFirestoreFormsFields {
   static const String formId = 'formId';
   static const String title = 'title';
   static const String dataRetentionPeriod = 'dataRetentionPeriod';
+  static const String dateAdded = 'dateAdded';
+  static const String userId = 'userId';
+  static const String id = 'id';
 }
 
 class AppFirestoreSectionsFields {

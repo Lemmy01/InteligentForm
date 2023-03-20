@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
@@ -18,24 +20,53 @@ List<SectionWithField> listOfSections = [
     sectionNumber: 2,
     fields: [
       Field(
-        label: 'labelName',
+        label: 'labelName1',
         docKeys: ['documentKeyWords'],
         mandatory: true,
         fieldType: FieldTypeConstants.date,
         placeholderKeyWord: 'placeholderKeyWord',
       ),
       Field(
-        label: 'labelName',
+        label: 'labelName2',
         docKeys: ['documentKeyWords'],
         mandatory: true,
         fieldType: FieldTypeConstants.date,
         placeholderKeyWord: 'placeholderKeyWord',
       ),
       Field(
-        label: 'labelName',
+        label: 'labelName3',
         docKeys: ['documentKeyWords'],
         mandatory: true,
         fieldType: FieldTypeConstants.date,
+        placeholderKeyWord: 'placeholderKeyWord',
+      ),
+    ],
+    content: 'content',
+    scanType: 'Identification',
+  ),
+  SectionWithField(
+    sectionNumber: 3,
+    fields: [
+      Field(
+        label: 'labelName4',
+        docKeys: ['documentKeyWords'],
+        mandatory: true,
+        fieldType: 'Text',
+        placeholderKeyWord: 'placeholderKeyWord',
+      ),
+      Field(
+        label: 'labelName5',
+        docKeys: ['documentKeyWords'],
+        mandatory: true,
+        fieldType: 'Text',
+        placeholderKeyWord: 'placeholderKeyWord',
+      ),
+      Field(
+        label: 'labelName6',
+        docKeys: ['documentKeyWords'],
+        mandatory: true,
+        fieldType: 'MultipleChoice',
+        options: ['option1', 'option2', 'option3'],
         placeholderKeyWord: 'placeholderKeyWord',
       ),
     ],
@@ -83,6 +114,12 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                             if (field.fieldType == 'Text')
                               FormBuilderTextField(
                                 name: field.label,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please select at least one option';
+                                  }
+                                  return null;
+                                },
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(
@@ -92,7 +129,7 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                                   fillColor:
                                       Theme.of(context).colorScheme.onPrimary,
                                   filled: true,
-                                  labelText: field.label,
+                                  hintText: field.label,
                                 ),
                               ),
                             if (field.fieldType == 'SingleChoice')
@@ -107,8 +144,14 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                                   fillColor:
                                       Theme.of(context).colorScheme.onPrimary,
                                   filled: true,
-                                  labelText: field.label,
+                                  hintText: field.label,
                                 ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please select at least one option';
+                                  }
+                                  return null;
+                                },
                                 items: field.options!
                                     .map((option) => DropdownMenuItem(
                                           value: option,
@@ -119,6 +162,12 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                             if (field.fieldType == 'MultipleChoice')
                               FormBuilderCheckboxGroup(
                                 name: field.label,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please select at least one option';
+                                  }
+                                  return null;
+                                },
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(
                                     left: AppNumberConstants.longTilePadding,
@@ -150,15 +199,22 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                             AppSizedBoxes.kSmallBox(),
                           ],
                         ),
-                      MyButton(
-                        width: 0,
-                        text: AppStringConstants.scanDocs,
-                        onPressed: () {},
-                      ),
                     ],
                   ),
               ],
             ),
+          ),
+          MyButton(
+            width: 0,
+            text: AppStringConstants.scanDocs,
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                //todo: add logic to save the form
+                _formKey.currentState!.save();
+                final result = _formKey.currentState!.value;
+                log(result.toString());
+              }
+            },
           ),
         ],
       ),
