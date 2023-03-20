@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 
-import '../../../../../core/utils/enums.dart';
+import '../../../../../core/utils/lists.dart';
 
 class CreateFieldState extends Equatable {
   final String label;
   final String placeholderKeyWord;
 
   final bool isMandatory;
-  final FieldType fieldType;
+  final String fieldType;
 
   final bool showDocumentKeywords;
   final List<String> documentKeywords;
@@ -28,7 +28,7 @@ class CreateFieldState extends Equatable {
 
   factory CreateFieldState.initial() => const CreateFieldState(
         isMandatory: false,
-        fieldType: FieldType.text,
+        fieldType: FieldTypeConstants.text,
         documentKeywords: [],
         showDocumentKeywords: true,
         showOptions: true,
@@ -52,7 +52,7 @@ class CreateFieldState extends Equatable {
   CreateFieldState copyWith({
     bool? isEditMode,
     bool? isMandatory,
-    FieldType? fieldType,
+    String? fieldType,
     List<String>? documentKeywords,
     bool? showDocumentKeywords,
     bool? showTypes,

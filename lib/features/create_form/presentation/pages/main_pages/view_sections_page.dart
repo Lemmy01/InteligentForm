@@ -5,6 +5,7 @@ import 'package:inteligent_forms/features/create_form/presentation/pages/create_
 import 'package:inteligent_forms/features/create_form/presentation/widgets/section_card.dart';
 
 import '../../../../../core/constants/app_number_constants.dart';
+import '../../../../../core/shared_widgets/my_edit_slidable.dart';
 import '../../../../../core/shared_widgets/my_slidable.dart';
 import '../../bloc/create_form_bloc/create_form_bloc.dart';
 import '../../bloc/create_form_bloc/create_form_event.dart';
@@ -48,6 +49,17 @@ class _ViewSectionsPageState extends State<ViewSectionsPage> {
               itemBuilder: (BuildContext context, int index) {
                 return MySlidable(
                   actions: [
+                    MyEditSlidable(
+                      onPressed: () {
+                        // context.read<>
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const CreateSectionPage()),
+                        );
+                      },
+                    ),
                     MyDeleteSlidable(
                       onPressed: () {
                         context.read<CreateFormBloc>().add(

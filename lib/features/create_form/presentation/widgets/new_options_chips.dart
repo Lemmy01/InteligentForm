@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/constants/string_constants.dart';
 import '../../../../core/shared_widgets/text_field_with_chips.dart';
-import '../../../../core/utils/enums.dart';
+import '../../../../core/utils/lists.dart';
 import '../bloc/create_field_bloc/create_field_bloc.dart';
 import '../bloc/create_field_bloc/create_field_event.dart';
 import '../bloc/create_field_bloc/create_field_state.dart';
@@ -20,8 +20,8 @@ class NewOptionsChips extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CreateFieldBloc, CreateFieldState>(
       builder: (context, state) {
-        if (state.fieldType != FieldType.singleChoice &&
-            state.fieldType != FieldType.multipleChoice) {
+        if (state.fieldType != FieldTypeConstants.singleChoice &&
+            state.fieldType != FieldTypeConstants.multipleChoice) {
           return const SizedBox();
         }
         return TextFieldWithChips(
@@ -29,7 +29,6 @@ class NewOptionsChips extends StatelessWidget {
           title: AppCreateFormString.options,
           controller: optionsKeywordsController,
           onAdd: () {
-            
             context.read<CreateFieldBloc>().add(
                   OptionsChanged(
                     options: [

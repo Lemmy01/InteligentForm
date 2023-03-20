@@ -1,10 +1,10 @@
-import '../../../../core/utils/enums.dart';
+import '../../../../core/utils/lists.dart';
 
 class Field {
   String label;
   String placeholderKeyWord;
   bool mandatory;
-  FieldType fieldType;
+  String fieldType;
   List<String>? options;
   List<String> docKeys;
 

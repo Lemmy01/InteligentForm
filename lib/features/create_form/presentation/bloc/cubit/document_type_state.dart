@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:inteligent_forms/core/utils/extensions.dart';
 
-import '../../../../../core/utils/enums.dart';
+import '../../../../../core/utils/lists.dart';
 
 class DocumentTypeState extends Equatable {
   final String dropdownValue;
@@ -10,8 +9,8 @@ class DocumentTypeState extends Equatable {
     required this.dropdownValue,
   });
 
-  factory DocumentTypeState.initial() => DocumentTypeState(
-        dropdownValue: ScanDocumentType.none.toShortString(),
+  factory DocumentTypeState.initial() => const DocumentTypeState(
+        dropdownValue: ScanDocumentTypeConstants.none,
       );
 
   @override

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:inteligent_forms/core/utils/enums.dart';
 import 'package:inteligent_forms/features/authentication/presentation/bloc/account_type_bloc.dart/bloc/account_type_bloc.dart';
 
 import '../../../../../core/constants/string_constants.dart';
@@ -18,7 +17,7 @@ class AuthenticationBloc
   late StreamSubscription accountTypeSubscription;
   AccountTypeBloc accountTypeBloc;
 
-  AccountType accountType;
+  String accountType;
 
   AuthenticationBloc({
     required this.authenticationUsecase,
@@ -42,7 +41,7 @@ class AuthenticationBloc
 
     (await authenticationUsecase.signUp(
       name: event.name,
-      type: accountType.toString(),
+      type: accountType,
       emailAddress: event.emailAddress,
       password: event.password,
       confirmPassword: event.confirmPassword,

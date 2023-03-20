@@ -6,34 +6,44 @@ import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
-import 'package:inteligent_forms/core/utils/extensions.dart';
 import 'package:inteligent_forms/features/create_form/domain/entities/section.dart';
 import 'package:inteligent_forms/features/create_form/presentation/bloc/create_form_bloc/create_form_bloc.dart';
 import 'package:inteligent_forms/features/create_form/presentation/bloc/cubit/document_type_cubit.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../core/constants/font_constants.dart';
-import '../../../../../core/utils/enums.dart';
+import '../../../../../core/utils/lists.dart';
 import '../../bloc/create_form_bloc/create_form_event.dart';
 import '../../bloc/cubit/document_type_state.dart';
 
 class CreateSectionPage extends StatefulWidget {
-  const CreateSectionPage({super.key});
+  const CreateSectionPage({
+    super.key,
+    this.section,
+  });
+
+  final Section? section;
 
   @override
   State<CreateSectionPage> createState() => _CreateSectionPageState();
 }
 
 class _CreateSectionPageState extends State<CreateSectionPage> {
-  TextEditingController requestController = TextEditingController();
+  TextEditingController contentController = TextEditingController();
   @override
   void initState() {
+    if (widget.section != null) {
+      contentController.text = widget.section!.content;
+      context.read<DocumentTypeCubit>().changeDropdownValue(
+            widget.section!.scanType,
+          );
+    }
     super.initState();
   }
 
   @override
   void dispose() {
-    requestController.dispose();
+    contentController.dispose();
     super.dispose();
   }
 
@@ -92,14 +102,14 @@ class _CreateSectionPageState extends State<CreateSectionPage> {
                                   .read<DocumentTypeCubit>()
                                   .changeDropdownValue(value!);
                             },
-                            items: ScanDocumentType.values
-                                .map<DropdownMenuItem<String>>(
-                                    (ScanDocumentType value) {
-                              return DropdownMenuItem<String>(
-                                value: value.toShortString(),
-                                child: Text(value.toShortString()),
-                              );
-                            }).toList(),
+                            items: scanDocumentTypeList
+                                .map(
+                                  (e) => DropdownMenuItem(
+                                    value: e,
+                                    child: Text(e),
+                                  ),
+                                )
+                                .toList(),
                           ),
                         );
                       },
@@ -122,7 +132,7 @@ class _CreateSectionPageState extends State<CreateSectionPage> {
                     textAlign: TextAlign.start,
                     maxLines: 10,
                     width: 95.w,
-                    controller: requestController,
+                    controller: contentController,
                     hintText: AppCreateFormString.sectionContent,
                   ),
                   AppSizedBoxes.kMediumBox(),
@@ -135,7 +145,7 @@ class _CreateSectionPageState extends State<CreateSectionPage> {
                         context.read<CreateFormBloc>().add(
                               AddSection(
                                 section: Section(
-                                  content: requestController.text.trim(),
+                                  content: contentController.text.trim(),
                                   scanType: context
                                       .read<DocumentTypeCubit>()
                                       .state

@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class FormModel {
   String? id;
   String title;
   int dataRetentionPeriod;
-  DateTime? dateAdded;
   String userId;
+  DateTime? dateAdded;
 
   FormModel({
     this.id,
@@ -15,8 +17,8 @@ class FormModel {
   FormModel.fromMap(Map<String, dynamic> map)
       : id = map['id'],
         title = map['title'],
-        dataRetentionPeriod = map['dataRetentionPeriod'],
-        dateAdded = map['dateAdded'],
+        dataRetentionPeriod = (map['dataRetentionPeriod'] as double).toInt(),
+        dateAdded = (map['dateAdded'] as Timestamp).toDate(),
         userId = map['userId'];
 
   Map<String, dynamic> toMap() {

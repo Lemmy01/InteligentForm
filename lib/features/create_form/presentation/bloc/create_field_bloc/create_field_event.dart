@@ -1,8 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:inteligent_forms/features/create_form/domain/entities/field.dart';
 
-import '../../../../../core/utils/enums.dart';
-
 abstract class CreateFieldEvent extends Equatable {
   const CreateFieldEvent();
 
@@ -20,7 +18,7 @@ class CreateFieldIsMandatoryChanged extends CreateFieldEvent {
 }
 
 class CreateFieldTypeChanged extends CreateFieldEvent {
-  final FieldType fieldType;
+  final String fieldType;
 
   const CreateFieldTypeChanged({required this.fieldType});
 

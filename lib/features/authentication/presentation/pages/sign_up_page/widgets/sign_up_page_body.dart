@@ -5,7 +5,7 @@ import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
-import 'package:inteligent_forms/core/utils/enums.dart';
+import 'package:inteligent_forms/core/utils/lists.dart';
 import 'package:inteligent_forms/features/authentication/presentation/pages/login_page/login_page.dart';
 import 'package:sizer/sizer.dart';
 
@@ -48,9 +48,10 @@ class SignUpPageBody extends HookWidget {
                   return MyTextField(
                     textInputAction: TextInputAction.next,
                     controller: nameController,
-                    hintText: state.accountType == AccountType.individual
+                    hintText: state.accountType ==
+                            AccountTypeConstants.individual
                         ? '${AppStringConstants.name} ${AppStringConstants.unique}'
-                        : state.accountType == AccountType.company
+                        : state.accountType == AccountTypeConstants.company
                             ? '${AppStringConstants.companyName}'
                                 ' ${AppStringConstants.unique}'
                             : '${AppStringConstants.institutionName}'
@@ -84,7 +85,8 @@ class SignUpPageBody extends HookWidget {
                 builder: (context, state) {
                   return Column(
                     children: [
-                      if (state.accountType == AccountType.company) ...[
+                      if (state.accountType ==
+                          AccountTypeConstants.company) ...[
                         AppSizedBoxes.kSmallBox(),
                         MyTextField(
                           controller: fiscalCodeController,

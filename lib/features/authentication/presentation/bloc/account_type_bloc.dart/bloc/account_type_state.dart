@@ -1,15 +1,14 @@
 import 'package:equatable/equatable.dart';
 
-import '../../../../../../core/utils/enums.dart';
+import '../../../../../../core/utils/lists.dart';
 
 class AccountTypeState extends Equatable {
-  final AccountType accountType;
-  final List<AccountType> accountTypes = AccountType.values;
+  final String accountType;
 
   const AccountTypeState({
     required this.accountType,
   });
 
   @override
-  List<Object> get props => [accountType, accountTypes];
+  List<Object> get props => [accountType, ...accountTypeList];
 }
