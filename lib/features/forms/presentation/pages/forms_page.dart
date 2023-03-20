@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inteligent_forms/core/constants/app_number_constants.dart';
+import 'package:inteligent_forms/core/constants/string_constants.dart';
+import 'package:inteligent_forms/core/shared_widgets/my_delete_slidable.dart';
+import 'package:inteligent_forms/core/shared_widgets/my_slidable.dart';
 import 'package:inteligent_forms/features/forms/presentation/widgets/form_tile.dart';
 
 import '../../../../core/background_widgets/create_field_background_widget.dart';
@@ -16,6 +19,10 @@ class FormsPage extends StatelessWidget {
     return SafeArea(
       child: CreateFieldBackGroundWidget(
         child: Scaffold(
+          appBar: AppBar(
+            title: const Text(AppStringConstants.forms),
+            centerTitle: true,
+          ),
           backgroundColor: Colors.transparent,
           floatingActionButton: FloatingActionButton(
             onPressed: () {
@@ -59,8 +66,15 @@ class FormsPage extends StatelessWidget {
                               width: double.infinity,
                             ),
                             ...state.formEntities.map(
-                              (formEntity) => FormTile(
-                                formEntity: formEntity,
+                              (formEntity) => MySlidable(
+                                actions: [
+                                  MyDeleteSlidable(
+                                    onPressed: () {},
+                                  )
+                                ],
+                                child: FormTile(
+                                  formEntity: formEntity,
+                                ),
                               ),
                             ),
                           ],

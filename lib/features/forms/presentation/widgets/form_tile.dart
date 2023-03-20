@@ -3,6 +3,7 @@ import 'package:inteligent_forms/core/constants/font_constants.dart';
 import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
 
 import '../../../../core/constants/app_number_constants.dart';
+import '../../../../core/helpers/concatinate_sctrings.dart';
 import '../../domain/entities/form_entity.dart';
 
 class FormTile extends StatelessWidget {
@@ -29,13 +30,11 @@ class FormTile extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
-              child: Text(
-                formEntity.title,
-                style: TextStyle(
-                  fontSize: FontConstants.mediumFontSize,
-                  fontWeight: FontWeight.w600,
-                ),
+            Text(
+              formEntity.title,
+              style: TextStyle(
+                fontSize: FontConstants.mediumFontSize,
+                fontWeight: FontWeight.w600,
               ),
             ),
             AppSizedBoxes.kSmallBox(),
@@ -46,15 +45,12 @@ class FormTile extends StatelessWidget {
                 Expanded(
                   child: Wrap(
                     children: [
-                      for (int i = 0;
-                          i < formEntity.dynamicFieldNames.length && i < 5;
-                          i++)
-                        Text(
-                          '${formEntity.dynamicFieldNames[i]} ${i < 4 ? ', ' : ''}',
-                          style: TextStyle(
-                            fontSize: FontConstants.smallFontSize,
-                          ),
+                      Text(
+                        concatinateStringsComma(formEntity.dynamicFieldNames),
+                        style: TextStyle(
+                          fontSize: FontConstants.smallFontSize,
                         ),
+                      ),
                     ],
                   ),
                 ),

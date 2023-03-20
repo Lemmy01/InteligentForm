@@ -4,7 +4,7 @@ import 'package:inteligent_forms/features/forms/domain/entities/form_entity.dart
 
 class FormsUseCase {
   Future<Either<Failure, List<FormEntity>>> getForms() async {
-    //TODO George Luta : implement this vasi
+    //TODO George Luta : dummy
     await Future.delayed(const Duration(seconds: 2));
     return Right([
       //dummy list of FormEntity

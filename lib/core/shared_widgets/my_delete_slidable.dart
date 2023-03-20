@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-
 class MyDeleteSlidable extends StatelessWidget {
   const MyDeleteSlidable({
     super.key,
@@ -13,9 +12,8 @@ class MyDeleteSlidable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SlidableAction(
-      borderRadius: const BorderRadius.only(
-        bottomRight: Radius.circular(10),
-        topRight: Radius.circular(10),
+      borderRadius: const BorderRadius.all(
+        Radius.circular(10),
       ),
       onPressed: (context) {
         onPressed();
