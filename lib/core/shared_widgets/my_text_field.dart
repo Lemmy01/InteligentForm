@@ -51,7 +51,7 @@ class MyTextField extends StatelessWidget {
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(
-              AppNumberConstants.longTilePadding,
+              AppNumberConstants.longTileRadius,
             ),
           ),
           hintText: hintText,

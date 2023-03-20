@@ -42,7 +42,7 @@ class TextFieldWithChips extends StatelessWidget {
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.onPrimary,
           borderRadius: BorderRadius.circular(
-            AppNumberConstants.mediumTilePadding,
+            AppNumberConstants.mediumTileRadius,
           ),
         ),
         child: Padding(

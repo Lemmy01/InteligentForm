@@ -6,7 +6,7 @@ class AppDecoration {
   InputDecoration inputDecoration(BuildContext context) => InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(
-            AppNumberConstants.longTilePadding,
+            AppNumberConstants.longTileRadius,
           ),
         ),
         fillColor: Theme.of(context).colorScheme.onPrimary,
