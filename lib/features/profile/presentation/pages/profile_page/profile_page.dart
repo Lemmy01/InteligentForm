@@ -16,112 +16,115 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        title: const Text('Profile'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () {
-              context.read<AuthenticationBloc>().add(
-                    const LogoutEvent(),
-                  );
-            },
-          )
-        ],
-      ),
-      body: CreateFieldBackGroundWidget(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: AppNumberConstants.pageHorizontalPadding,
-            vertical: AppNumberConstants.pageVerticalPadding,
-          ),
-          child: BlocConsumer<ProfileBloc, ProfileState>(
-            listener: (context, state) {
-              if (state is ProfileError) showMySnackBar(context, state.message);
-            },
-            builder: (context, state) {
-              return Column(
-                children: [
-                  if (state is ProfileLoading)
-                    CircularProgressIndicator(
-                      color: Theme.of(context).colorScheme.onSecondary,
-                    ),
-                  if (state is ProfileLoaded)
-                    Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          AppNumberConstants.longTileRadius,
-                        ),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          title: const Text('Profile'),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.logout),
+              onPressed: () {
+                context.read<AuthenticationBloc>().add(
+                      const LogoutEvent(),
+                    );
+              },
+            )
+          ],
+        ),
+        body: CreateFieldBackGroundWidget(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: AppNumberConstants.pageHorizontalPadding,
+              vertical: AppNumberConstants.pageVerticalPadding,
+            ),
+            child: BlocConsumer<ProfileBloc, ProfileState>(
+              listener: (context, state) {
+                if (state is ProfileError)
+                  showMySnackBar(context, state.message);
+              },
+              builder: (context, state) {
+                return Column(
+                  children: [
+                    if (state is ProfileLoading)
+                      CircularProgressIndicator(
+                        color: Theme.of(context).colorScheme.onSecondary,
                       ),
-                      child: Padding(
-                        padding: EdgeInsets.all(
-                            AppNumberConstants.mediumTilePadding),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(
-                              width: double.infinity,
-                            ),
-                            Row(
-                              children: [
-                                CircleAvatar(
-                                  radius: 27,
-                                  backgroundColor:
-                                      Theme.of(context).colorScheme.secondary,
-                                  child: const CircleAvatar(
-                                    radius: 25,
-                                    backgroundImage: AssetImage(
-                                      OtherConstants.formImage,
+                    if (state is ProfileLoaded)
+                      Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                            AppNumberConstants.longTileRadius,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(
+                              AppNumberConstants.mediumTilePadding),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(
+                                width: double.infinity,
+                              ),
+                              Row(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 27,
+                                    backgroundColor:
+                                        Theme.of(context).colorScheme.secondary,
+                                    child: const CircleAvatar(
+                                      radius: 25,
+                                      backgroundImage: AssetImage(
+                                        OtherConstants.formImage,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                AppSizedBoxes.kHSmallBox(),
-                                Text(
-                                  '${AppStringConstants.name} ${AppStringConstants.colon} ${state.profileEntity.name}',
-                                  style: TextStyle(
-                                    fontSize: FontConstants.largeFontSize,
+                                  AppSizedBoxes.kHSmallBox(),
+                                  Text(
+                                    '${AppStringConstants.name} ${AppStringConstants.colon} ${state.profileEntity.name}',
+                                    style: TextStyle(
+                                      fontSize: FontConstants.largeFontSize,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            const Divider(
-                              thickness: 1,
-                            ),
-                            AppSizedBoxes.kSmallBox(),
-                            Text(
-                              '${AppStringConstants.accountType}${AppStringConstants.colon} ${state.profileEntity.accountType}',
-                              style: TextStyle(
-                                fontSize: FontConstants.smallFontSize,
+                                ],
                               ),
-                            ),
-                            Text(
-                              '${AppStringConstants.address} ${AppStringConstants.colon} ${state.profileEntity.address}',
-                              style: TextStyle(
-                                fontSize: FontConstants.smallFontSize,
+                              const Divider(
+                                thickness: 1,
                               ),
-                            ),
-                            Text(
-                              '${AppStringConstants.email}${AppStringConstants.colon} ${state.profileEntity.email}',
-                              style: TextStyle(
-                                fontSize: FontConstants.smallFontSize,
-                              ),
-                            ),
-                            if (state.profileEntity.fiscalCode.isNotEmpty)
+                              AppSizedBoxes.kSmallBox(),
                               Text(
-                                '${AppStringConstants.fiscalCode}${AppStringConstants.colon} ${state.profileEntity.fiscalCode}',
+                                '${AppStringConstants.accountType}${AppStringConstants.colon} ${state.profileEntity.accountType}',
                                 style: TextStyle(
                                   fontSize: FontConstants.smallFontSize,
                                 ),
                               ),
-                          ],
+                              Text(
+                                '${AppStringConstants.address} ${AppStringConstants.colon} ${state.profileEntity.address}',
+                                style: TextStyle(
+                                  fontSize: FontConstants.smallFontSize,
+                                ),
+                              ),
+                              Text(
+                                '${AppStringConstants.email}${AppStringConstants.colon} ${state.profileEntity.email}',
+                                style: TextStyle(
+                                  fontSize: FontConstants.smallFontSize,
+                                ),
+                              ),
+                              if (state.profileEntity.fiscalCode.isNotEmpty)
+                                Text(
+                                  '${AppStringConstants.fiscalCode}${AppStringConstants.colon} ${state.profileEntity.fiscalCode}',
+                                  style: TextStyle(
+                                    fontSize: FontConstants.smallFontSize,
+                                  ),
+                                ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                ],
-              );
-            },
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),
