@@ -62,6 +62,7 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
   Widget build(BuildContext context) {
     return FormsBackGroundWidget(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text(
             widget.form.title,
@@ -102,7 +103,8 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
                       ),
                       onTap: () async {
                         dateSelected =
-                            await _filtersDialog(context, dateSelected!) ?? dateSelected;
+                            await _filtersDialog(context, dateSelected!) ??
+                                dateSelected;
                         setState(() {});
                         //todo: add filter with block suiii
                       },

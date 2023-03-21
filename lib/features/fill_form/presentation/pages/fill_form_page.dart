@@ -3,10 +3,16 @@ import 'package:inteligent_forms/core/background_widgets/fill_form_background_wi
 import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:inteligent_forms/features/fill_form/presentation/pages/preview_document_page.dart';
 
+import '../../domain/entities/section_with_field.dart';
 import 'fill_form_info_page.dart';
 
 class FillFormPage extends StatelessWidget {
-  const FillFormPage({super.key});
+  const FillFormPage({
+    super.key,
+    required this.sections,
+  });
+
+  final List<SectionWithField> sections;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +37,12 @@ class FillFormPage extends StatelessWidget {
               ],
             ),
           ),
-          body: const TabBarView(
+          body: TabBarView(
             children: [
-              FillFormInfoPage(),
-              PreviewDocumentPage(),
+              FillFormInfoPage(
+                listOfSections: sections,
+              ),
+              const PreviewDocumentPage(),
             ],
           ),
         ),

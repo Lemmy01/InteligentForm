@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:inteligent_forms/core/constants/firestore_constants.dart';
@@ -33,7 +31,6 @@ class AuthenticationFirestoreApi {
           )
           .limit(1)
           .get();
-
 
       if (docsThatHaveName.docs.isNotEmpty) {
         throw MediumException(

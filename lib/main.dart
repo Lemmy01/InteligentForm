@@ -8,6 +8,9 @@ import 'package:inteligent_forms/features/authentication/domain/usecases/authent
 import 'package:inteligent_forms/features/authentication/domain/validators/autentication_validators.dart';
 import 'package:inteligent_forms/features/authentication/presentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:inteligent_forms/features/create_form/data/repositories/create_form_repository_impl.dart';
+import 'package:inteligent_forms/features/fill_form/data/datasources/fill_form_api.dart';
+import 'package:inteligent_forms/features/fill_form/data/repositories/fill_form_repository_impl.dart';
+import 'package:inteligent_forms/features/fill_form/domain/usecases/fill_form_usecase.dart';
 import 'package:inteligent_forms/features/forms/domain/usecases/forms_usecase.dart';
 import 'package:inteligent_forms/features/profile/domain/usecases/profile_usecase.dart';
 import 'package:sizer/sizer.dart';
@@ -20,6 +23,7 @@ import 'features/create_form/domain/usecases/create_form.dart';
 import 'features/create_form/presentation/bloc/create_field_bloc/create_field_bloc.dart';
 import 'features/create_form/presentation/bloc/create_form_bloc/create_form_bloc.dart';
 import 'features/create_form/presentation/bloc/cubit/document_type_cubit.dart';
+import 'features/fill_form/presentation/bloc/fill_form_bloc.dart';
 import 'features/forms/data/datasource/form_api.dart';
 import 'features/forms/data/repositories/form_repository_impl.dart';
 import 'features/forms/presentation/bloc/forms_bloc.dart';
@@ -53,6 +57,7 @@ class InteligentFrormsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final firestore = FirebaseFirestore.instance;
     final createFormBloc = CreateFormBloc(
       createFormUseCase: CreateForm(
         CreateFormRepositoryImpl(
@@ -104,7 +109,7 @@ class InteligentFrormsApp extends StatelessWidget {
             formsUseCase: FormsUseCase(
               formRepository: FormRepositoryImpl(
                 formApi: FormApi(
-                  firestore: FirebaseFirestore.instance,
+                  firestore: firestore,
                 ),
               ),
             ),
@@ -120,6 +125,17 @@ class InteligentFrormsApp extends StatelessWidget {
               const ProfileLoadEvent(),
             ),
         ),
+        BlocProvider(
+          create: (context) => FillFormBloc(
+            getFormUsecase: GetFormUsecase(
+              FillFormRepositoryImpl(
+                datasource: FillFormApi(
+                  firestore,
+                ),
+              ),
+            ),
+          ),
+        )
       ],
       child: MaterialApp(
         theme: themeData,

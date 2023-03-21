@@ -29,7 +29,7 @@ class FillFormApi {
     try {
       final streamDocs = await firebase
           .collection(AppFirestoreCollectionNames.sections)
-          .where(AppFirestoreCollectionNames.forms, isEqualTo: formId)
+          .where(AppFirestoreFieldsFields.formId, isEqualTo: formId)
           .get();
       final listOfModels =
           streamDocs.docs.map((e) => SectionModel.fromMap(e.data())).toList();
