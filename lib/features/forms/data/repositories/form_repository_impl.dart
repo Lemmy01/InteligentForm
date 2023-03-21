@@ -19,8 +19,11 @@ class FormRepositoryImpl implements FormRepository {
       return const Right(null);
     } on Exception catch (e) {
       Logger.error(runtimeType, e.toString());
-      return Left(MediumFailure(
-          failureMessage: AppStringFailuresMessages.unexpectedFailure));
+      return Left(
+        MediumFailure(
+          failureMessage: AppStringFailuresMessages.unexpectedFailure,
+        ),
+      );
     }
   }
 

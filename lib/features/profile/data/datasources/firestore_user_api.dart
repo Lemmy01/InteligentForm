@@ -25,4 +25,24 @@ class FirestoreUserApi {
       );
     }
   }
+
+  //get user
+  Future<UserModel> getUser({
+    required String userId,
+  }) async {
+    try {
+      final DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
+          await _firebaseFirestore
+              .collection(AppFirestoreCollectionNames.users)
+              .doc(userId)
+              .get();
+
+      return UserModel.fromMap(documentSnapshot.data()!);
+    } on FirebaseException catch (error) {
+      throw MediumException(
+        runtimeType,
+        error.toString(),
+      );
+    }
+  }
 }

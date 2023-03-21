@@ -50,6 +50,11 @@ class ProfilePage extends StatelessWidget {
                     ),
                   if (state is ProfileLoaded)
                     Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          AppNumberConstants.longTileRadius,
+                        ),
+                      ),
                       child: Padding(
                         padding: EdgeInsets.all(
                             AppNumberConstants.mediumTilePadding),
@@ -103,6 +108,13 @@ class ProfilePage extends StatelessWidget {
                                 fontSize: FontConstants.smallFontSize,
                               ),
                             ),
+                            if (state.profileEntity.fiscalCode.isNotEmpty)
+                              Text(
+                                '${AppStringConstants.fiscalCode}${AppStringConstants.colon} ${state.profileEntity.fiscalCode}',
+                                style: TextStyle(
+                                  fontSize: FontConstants.smallFontSize,
+                                ),
+                              ),
                           ],
                         ),
                       ),
