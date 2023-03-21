@@ -5,6 +5,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
 import 'package:inteligent_forms/features/create_form/domain/entities/field.dart';
 import 'package:inteligent_forms/features/fill_form/domain/entities/section_with_field.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../core/constants/app_number_constants.dart';
 import '../../../../core/constants/font_constants.dart';
@@ -13,7 +14,14 @@ import '../../../../core/shared_widgets/my_button.dart';
 
 TextEditingController controller1 = TextEditingController();
 TextEditingController controller2 = TextEditingController();
-
+List<String> fieldTypes = [
+  'Text',
+  'Date',
+  'MultipleChoice',
+  'Number',
+  'SingleChoice',
+  'Decimal'
+];
 List<SectionWithField> listOfSections = [
   SectionWithField(
     sectionNumber: 2,
@@ -110,6 +118,51 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                       for (final Field field in section.fields)
                         Column(
                           children: [
+                            if (field.fieldType == 'Number')
+                              FormBuilderTextField(
+                                name: field.label,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please select at least one option';
+                                  }
+                                  return null;
+                                },
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(
+                                      AppNumberConstants.longTilePadding,
+                                    ),
+                                  ),
+                                  fillColor:
+                                      Theme.of(context).colorScheme.onPrimary,
+                                  filled: true,
+                                  hintText: field.label,
+                                ),
+                                keyboardType: TextInputType.number,
+                              ),
+                            if (field.fieldType == 'Date')
+                              FormBuilderDateTimePicker(
+                                name: field.label,
+                                inputType: InputType.date,
+                                format: DateFormat("yyyy-MM-dd"),
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(
+                                      AppNumberConstants.longTilePadding,
+                                    ),
+                                  ),
+                                  fillColor:
+                                      Theme.of(context).colorScheme.onPrimary,
+                                  filled: true,
+                                  hintText: field.label,
+                                ),
+                                validator: (value) {
+                                  if (value == null) {
+                                    return 'Please select at least one option';
+                                  }
+                                  return null;
+                                },
+                              ),
                             if (field.fieldType == 'Text')
                               FormBuilderTextField(
                                 name: field.label,
