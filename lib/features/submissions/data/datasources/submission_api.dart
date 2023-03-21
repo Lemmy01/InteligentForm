@@ -8,7 +8,7 @@ class SubmissionApi {
 
   SubmissionApi({required this.firestore});
 
-  Future<void> submitSubmission(FormSubmisionModel submission) async {
+  Future<void> submitSubmission(SubmisionModel submission) async {
     try {
       await firestore.collection('submissions').add(submission.toJson());
     } on FirebaseException {
@@ -17,14 +17,14 @@ class SubmissionApi {
     }
   }
 
-  Future<List<FormSubmisionModel>> getSubmissions(String formId) async {
+  Future<List<SubmisionModel>> getSubmissions(String formId) async {
     try {
       final snapshot = await firestore
           .collection('submissions')
           .where('formId', isEqualTo: formId)
           .get();
       return snapshot.docs
-          .map((doc) => FormSubmisionModel.fromJson(doc.data()))
+          .map((doc) => SubmisionModel.fromJson(doc.data()))
           .toList();
     } on FirebaseException {
       throw MediumException(
@@ -41,7 +41,7 @@ class SubmissionApi {
     }
   }
 
-  Future<void> updateSubmission(FormSubmisionModel submission) async {
+  Future<void> updateSubmission(SubmisionModel submission) async {
     try {
       await firestore
           .collection('submissions')

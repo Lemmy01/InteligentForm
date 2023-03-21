@@ -244,6 +244,7 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                       MyButton(
                         text: AppStringConstants.saveFields,
                         onPressed: () {
+                          FocusScope.of(context).unfocus();
                           if (formKey.currentState!.saveAndValidate()) {
                             context.read<FillContentBloc>().add(
                                   ChangeParametersMap(

@@ -67,7 +67,7 @@ class FillFormApi {
     try {
       final id =
           firebase.collection(AppFirestoreCollectionNames.submissions).doc().id;
-      final FormSubmisionModel formSubmisionModel = FormSubmisionModel(
+      final SubmisionModel formSubmisionModel = SubmisionModel(
         id: id,
         formId: formId,
         content: content,

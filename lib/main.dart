@@ -30,6 +30,10 @@ import 'features/forms/data/datasource/form_api.dart';
 import 'features/forms/data/repositories/form_repository_impl.dart';
 import 'features/forms/presentation/bloc/forms_bloc.dart';
 import 'features/profile/presentation/bloc/profile_bloc.dart';
+import 'features/submissions/data/datasources/submission_api.dart';
+import 'features/submissions/data/repositories/submission_repo_impl.dart';
+import 'features/submissions/domain/usecases/submission_usecase.dart';
+import 'features/submissions/presentation/bloc/submissions_bloc.dart';
 import 'firebase_options.dart';
 
 Future main() async {
@@ -141,6 +145,18 @@ class InteligentFrormsApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => FillContentBloc(),
+        ),
+        BlocProvider(
+          create: (context) => SubmissionsBloc(
+            submissionUsecase: SubmissionUsecase(
+              SubmissionRepoImpl(
+                submissionApi: SubmissionApi(
+                  firestore: firestore,
+                ),
+              ),
+            ),
+          ),
+          child: Container(),
         )
       ],
       child: MaterialApp(

@@ -66,6 +66,15 @@ class AppStringConstants {
   static const String submissionAdded = 'Submission added';
 
   static const String saveFields = 'Save Fields';
+
+  static const String submissions = 'Submissions';
+  static const String submission = 'Submission';
+
+  static const String copiedToClipboard = 'Copied to clipboard';
+
+  static const String search = 'Search';
+
+  static const String noSubmissions = 'No submissions';
 }
 
 class AppBarStrings {

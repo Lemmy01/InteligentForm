@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:inteligent_forms/core/constants/font_constants.dart';
+import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
 import 'package:inteligent_forms/features/submissions/domain/entities/Submission.dart';
 import 'package:sizer/sizer.dart';
@@ -40,48 +41,48 @@ class SubmissionCard extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 3.h),
-            child: GestureDetector(
-              child: Expanded(
-                child: Column(
-                  children: [
-                    Text(
-                      "Submission ",
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: FontConstants.smallFontSize,
-                          ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    for (final field in submission.listOfFields)
-                      Text(
-                        field,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    AppSizedBoxes.kSmallBox(),
-                    Text(
-                      submission.getDate,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
-              ),
-              onTap: () async {
-                //TODO: Add onTap(Navigate to SectionPages)
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SubmissionInfoPage(
-                      submission: submission,
-                    ),
+          child: GestureDetector(
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    AppStringConstants.submission,
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontWeight: FontWeight.w800,
+                          fontSize: FontConstants.mediumFontSize,
+                        ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                );
-              },
+                  AppSizedBoxes.kSmallBox(),
+                  for (final field in submission.listOfFields)
+                    Text(
+                      field,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  AppSizedBoxes.kSmallBox(),
+                  Text(
+                    submission.getDate,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
             ),
+            onTap: () async {
+              //TODO: Add onTap(Navigate to SectionPages)
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SubmissionInfoPage(
+                    submission: submission,
+                  ),
+                ),
+              );
+            },
           ),
         ),
       ),

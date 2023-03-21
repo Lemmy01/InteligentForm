@@ -10,7 +10,8 @@ class SubmissionUsecase {
   SubmissionUsecase(this._submissionRepository);
 
   Future<Either<Failure, List<Submission>>> getSubmissions(
-      String formId) async {
+    String formId,
+  ) async {
     return await _submissionRepository.getSubmissions(formId);
   }
 
