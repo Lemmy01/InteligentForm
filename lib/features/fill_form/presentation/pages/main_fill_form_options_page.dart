@@ -16,6 +16,7 @@ import '../../../../core/background_widgets/create_field_background_widget.dart'
 import '../../../../core/constants/app_number_constants.dart';
 import '../../../../core/shared_widgets/my_snack_bar.dart';
 import '../bloc/fill_form_bloc.dart';
+import '../bloc/fill_form_state.dart';
 import 'fill_form_page.dart';
 
 class MainFillFormOptionsPage extends HookWidget {
@@ -25,98 +26,101 @@ class MainFillFormOptionsPage extends HookWidget {
   Widget build(BuildContext context) {
     final urlController = useTextEditingController();
 
-    return CreateFieldBackGroundWidget(
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: BlocListener<FillFormBloc, FillFormState>(
-          listener: (context, state) {
-            if (state is UrlExistsLoadedState) {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => FillFormPage(
-                    sections: state.sections,
+    return SafeArea(
+      child: CreateFieldBackGroundWidget(
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: BlocListener<FillFormBloc, FillFormState>(
+            listener: (context, state) {
+              if (state is UrlExistsLoadedState) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => FillFormPage(
+                      sections: state.sections,
+                    ),
                   ),
-                ),
-              );
-
+                );
+              }
               if (state is UrlExistsErrorState) {
                 log('Ar trebui sa afisez un snackbar aici');
                 showMySnackBar(context, AppStringConstants.noSectionsFound);
               }
-            }
-          },
-          child: Center(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppNumberConstants.pageHorizontalPadding,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    MyButtonWithChild(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            AppStringConstants.scanCode,
-                            style: TextStyle(
-                                fontSize: FontConstants.mediumFontSize,
-                                color: Theme.of(context).colorScheme.onPrimary),
-                          ),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          Icon(
-                            AppIcons.scanCode,
-                            size: FontConstants.mediumFontSize,
+            },
+            child: Center(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppNumberConstants.pageHorizontalPadding,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      MyButtonWithChild(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              AppStringConstants.scanCode,
+                              style: TextStyle(
+                                  fontSize: FontConstants.mediumFontSize,
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary),
+                            ),
+                            SizedBox(
+                              width: 5.w,
+                            ),
+                            Icon(
+                              AppIcons.scanCode,
+                              size: FontConstants.mediumFontSize,
+                              color: Theme.of(context).colorScheme.onPrimary,
+                            ),
+                          ],
+                        ),
+                        onPressed: () {
+                          //TODO George Luta : scan code
+                        },
+                      ),
+                      AppSizedBoxes.kMediumBox(),
+                      Center(
+                        child: Text(
+                          AppStringConstants.or,
+                          style: TextStyle(
+                            fontSize: FontConstants.mediumFontSize,
                             color: Theme.of(context).colorScheme.onPrimary,
+                          ),
+                        ),
+                      ),
+                      AppSizedBoxes.kMediumBox(),
+                      MyTextField(
+                        controller: urlController,
+                        hintText: '${AppStringConstants.formUrl}'
+                            '${AppStringConstants.threeDots}',
+                      ),
+                      AppSizedBoxes.kSmallBox(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          BlocBuilder<FillFormBloc, FillFormState>(
+                            builder: (context, state) {
+                              return MyButton(
+                                isLoading: state is UrlExistsLoadingState,
+                                width: 40.w,
+                                text: AppStringConstants.fillFormFromUrl,
+                                onPressed: () {
+                                  context.read<FillFormBloc>().add(
+                                        CheckIfFormExistsEvent(
+                                          urlController.text.trim(),
+                                        ),
+                                      );
+                                },
+                              );
+                            },
                           ),
                         ],
                       ),
-                      onPressed: () {
-                        //TODO George Luta : scan code
-                      },
-                    ),
-                    AppSizedBoxes.kMediumBox(),
-                    Center(
-                      child: Text(
-                        AppStringConstants.or,
-                        style: TextStyle(
-                          fontSize: FontConstants.mediumFontSize,
-                        ),
-                      ),
-                    ),
-                    AppSizedBoxes.kMediumBox(),
-                    MyTextField(
-                      controller: urlController,
-                      hintText: '${AppStringConstants.formUrl}'
-                          '${AppStringConstants.threeDots}',
-                    ),
-                    AppSizedBoxes.kSmallBox(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        BlocBuilder<FillFormBloc, FillFormState>(
-                          builder: (context, state) {
-                            return MyButton(
-                              isLoading: state is UrlExistsLoadingState,
-                              width: 40.w,
-                              text: AppStringConstants.fillFormFromUrl,
-                              onPressed: () {
-                                context.read<FillFormBloc>().add(
-                                      CheckIfFormExistsEvent(
-                                        urlController.text.trim(),
-                                      ),
-                                    );
-                              },
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

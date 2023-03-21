@@ -1,20 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:inteligent_forms/core/errors/failures.dart';
+import 'package:inteligent_forms/features/profile/data/repositories/profile_repo_impl.dart';
 import 'package:inteligent_forms/features/profile/domain/entities/profile_entity.dart';
 
 class ProfileUsecase {
-  Future<Either<Failure, ProfileEntity>> getProfileEntity() async {
-    Future.delayed(const Duration(seconds: 2));
-    //TODO George Luta : dummy
+  ProfileRepoImpl profileRepoImpl = ProfileRepoImpl();
 
-    return Right(
-      ProfileEntity(
-        name: 'name',
-        email: 'email',
-        accountType: 'accountType',
-        address: 'address',
-        fiscalCode: '',
-      ),
-    );
+  Future<Either<Failure, ProfileEntity>> getProfileEntity() async {
+    return await profileRepoImpl.getProfile();
   }
 }

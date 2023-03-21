@@ -53,6 +53,15 @@ class AppStringConstants {
   static const String noSectionsFound = 'No sections found';
 
   static const String somethingWentWrong = 'Something went wrong';
+
+  static const String yes = 'Yes';
+
+  static const String cancel = 'Cancel';
+
+  static const String deleteForm = 'Delete Form';
+
+  static const String deleteFormContent =
+      'If you delete this form, all submissions will be deleted. Are you sure you want to delete this form?';
 }
 
 class AppBarStrings {
