@@ -22,8 +22,12 @@ class SectionCard extends StatelessWidget {
         child: GestureDetector(
           child: Row(
             children: [
-              Text(
-                '${AppStringConstants.section} ${section.sectionNumber}',
+              Expanded(
+                child: Text(
+                  '${AppStringConstants.section}  ${section.content}...',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
               const Spacer(),
               const Text(
