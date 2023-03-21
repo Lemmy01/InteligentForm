@@ -19,12 +19,14 @@ class GetFormUsecase {
     String content,
     DateTime dateWhenSubmited,
     DateTime dateToBeDeleted,
+    List<String> listOfFields,
   ) async {
     await repository.submitFormSubmission(
       formId,
       content,
       dateWhenSubmited,
       dateToBeDeleted,
+      listOfFields,
     );
   }
 }

@@ -7,8 +7,9 @@ class FormSubmisionModel {
   final String content;
   final DateTime dateWhenSubmited;
   final DateTime dateToBeDeleted;
-
+  final List<String> listOfFields;
   FormSubmisionModel({
+    required this.listOfFields,
     required this.formId,
     required this.content,
     required this.dateWhenSubmited,
@@ -21,6 +22,7 @@ class FormSubmisionModel {
       AppFirestoreSubmittedFormsFields.content: content,
       AppFirestoreSubmittedFormsFields.dateWhenSubmited: dateWhenSubmited,
       AppFirestoreSubmittedFormsFields.dateToBeDeleted: dateToBeDeleted,
+      AppFirestoreSubmittedFormsFields.firstFields: listOfFields,
     };
   }
 
@@ -30,6 +32,7 @@ class FormSubmisionModel {
       content: json[AppFirestoreSubmittedFormsFields.content],
       dateWhenSubmited: json[AppFirestoreSubmittedFormsFields.dateWhenSubmited],
       dateToBeDeleted: json[AppFirestoreSubmittedFormsFields.dateToBeDeleted],
+      listOfFields: json[AppFirestoreSubmittedFormsFields.firstFields],
     );
   }
 }
