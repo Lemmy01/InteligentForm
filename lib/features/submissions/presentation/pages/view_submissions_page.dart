@@ -29,10 +29,17 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
 
   List<Submission> submissionList = [
     Submission(
-        content: 'content',
-        dateWhenSubmitted: DateTime.now(),
-        dateWhenToBeDeleted: DateTime.now(),
-        listOfFields: []),
+      content: 'content',
+      dateWhenSubmitted: DateTime.now(),
+      dateWhenToBeDeleted: DateTime.now(),
+      listOfFields: [
+        'asdas',
+        'asda',
+        'adasd',
+        's',
+        'dasdasdasssssssssssssssssssssssssssssssssssssssssssd'
+      ],
+    ),
     Submission(
         content: 'content',
         dateWhenSubmitted: DateTime.now(),
@@ -51,6 +58,7 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
+          backgroundColor: Colors.transparent,
           title: Text(
             widget.form.title,
             style: TextStyle(
