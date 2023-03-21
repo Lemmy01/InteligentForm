@@ -58,6 +58,7 @@ class FillFormApi {
     String content,
     DateTime dateWhenSubmited,
     DateTime dateToBeDeleted,
+    List<String> listOfFields,
   ) async {
     try {
       final FormSubmisionModel formSubmisionModel = FormSubmisionModel(
@@ -65,6 +66,7 @@ class FillFormApi {
         content: content,
         dateWhenSubmited: dateWhenSubmited,
         dateToBeDeleted: dateToBeDeleted,
+        listOfFields: listOfFields,
       );
       await firebase.collection(AppFirestoreCollectionNames.submittedForms).add(
             formSubmisionModel.toJson(),

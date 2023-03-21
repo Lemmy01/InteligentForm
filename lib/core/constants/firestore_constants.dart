@@ -54,4 +54,5 @@ class AppFirestoreSubmittedFormsFields {
   static const String content = 'content';
   static const String dateWhenSubmited = 'dateWhenSubmited';
   static const String dateToBeDeleted = 'dateToBeDeleted';
-}
+  static const String firstFields = 'firstFields';
+  }

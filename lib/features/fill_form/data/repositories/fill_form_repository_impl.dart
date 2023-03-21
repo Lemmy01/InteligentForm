@@ -51,6 +51,7 @@ class FillFormRepositoryImpl implements FillFormRepository {
     String content,
     DateTime dateWhenSubmited,
     DateTime dateToBeDeleted,
+    List<String> listOfFields,
   ) async {
     try {
       await datasource.submitForm(
@@ -58,6 +59,7 @@ class FillFormRepositoryImpl implements FillFormRepository {
         content,
         dateWhenSubmited,
         dateToBeDeleted,
+        listOfFields,
       );
       return const Right(null);
     } on MediumFailure catch (e) {

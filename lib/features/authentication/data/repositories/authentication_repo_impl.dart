@@ -5,10 +5,11 @@ import 'package:inteligent_forms/core/utils/logger.dart';
 
 import '../../../../core/constants/string_constants.dart';
 import '../../domain/repositories/authentication_repo.dart';
-import '../datasources/remote/authentication_firestore_api.dart';
 
 class AuthenticationRepoImpl extends AuthenticationRepo {
-  final _authFirestoreApi = AuthenticationFirestoreApi();
+  final authFirestoreApi;
+
+  AuthenticationRepoImpl({required this.authFirestoreApi});
 
   @override
   Future<Either<Failure, void>> login({
@@ -16,7 +17,7 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
     required String password,
   }) async {
     try {
-      await _authFirestoreApi.login(
+      await authFirestoreApi.login(
         email: email,
         password: password,
       );
@@ -49,7 +50,7 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
     required String address,
   }) async {
     try {
-      await _authFirestoreApi.signUp(
+      await authFirestoreApi.signUp(
         name: name,
         type: type,
         emailAddress: emailAddress,
@@ -79,7 +80,7 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
   @override
   Future<Either<Failure, void>> logout() async {
     try {
-      _authFirestoreApi.logout();
+      authFirestoreApi.logout();
 
       return const Right(null);
     } on AppException catch (e) {

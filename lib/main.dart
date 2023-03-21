@@ -3,6 +3,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inteligent_forms/features/authentication/data/datasources/remote/authentication_firestore_api.dart';
 import 'package:inteligent_forms/features/authentication/data/repositories/authentication_repo_impl.dart';
 import 'package:inteligent_forms/features/authentication/domain/usecases/authentication_usecase.dart';
 import 'package:inteligent_forms/features/authentication/domain/validators/autentication_validators.dart';
@@ -89,7 +90,8 @@ class InteligentFrormsApp extends StatelessWidget {
           lazy: false,
           create: (context) => AuthenticationBloc(
             authenticationUsecase: AuthenticationUsecase(
-              authenticationRepo: AuthenticationRepoImpl(),
+              authenticationRepo: AuthenticationRepoImpl(
+                  authFirestoreApi: AuthenticationFirestoreApi()),
               authenticationValidator: AuthenticationValidator(),
             ),
             accountTypeBloc: context.read<AccountTypeBloc>(),

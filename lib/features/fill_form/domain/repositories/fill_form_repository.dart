@@ -12,5 +12,6 @@ abstract class FillFormRepository {
     String content,
     DateTime dateWhenSubmited,
     DateTime dateToBeDeleted,
+    List<String> listOfFields,
   );
 }
