@@ -29,30 +29,7 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
     super.dispose();
   }
 
-  List<Submission> submissionList = [
-    Submission(
-      content: 'content',
-      dateWhenSubmitted: DateTime.now(),
-      dateWhenToBeDeleted: DateTime.now(),
-      listOfFields: [
-        'asdas',
-        'asda',
-        'adasd',
-        's',
-        'dasdasdasssssssssssssssssssssssssssssssssssssssssssd'
-      ],
-    ),
-    Submission(
-        content: 'content',
-        dateWhenSubmitted: DateTime.now(),
-        dateWhenToBeDeleted: DateTime.now(),
-        listOfFields: []),
-    Submission(
-        content: 'content',
-        dateWhenSubmitted: DateTime.now(),
-        dateWhenToBeDeleted: DateTime.now(),
-        listOfFields: []),
-  ];
+  List<Submission> submissionList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +67,7 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                               AppSizedBoxes.kMediumBox(),
+                AppSizedBoxes.kMediumBox(),
                 Row(
                   children: [
                     Expanded(
