@@ -1,27 +1,29 @@
 import 'dart:core';
 
 import 'package:inteligent_forms/core/constants/firestore_constants.dart';
+import 'package:inteligent_forms/features/submissions/domain/entities/submission.dart';
 
-class FormSubmisionModel {
+class FormSubmisionModel  extends Submission{
+  final String id;
   final String formId;
-  final String content;
-  final DateTime dateWhenSubmited;
-  final DateTime dateToBeDeleted;
-  final List<String> listOfFields;
+
+
   FormSubmisionModel({
-    required this.listOfFields,
+    required this.id,
     required this.formId,
-    required this.content,
-    required this.dateWhenSubmited,
-    required this.dateToBeDeleted,
+    required super.dateWhenSubmitted, 
+    required super.dateWhenToBeDeleted, 
+    required super.content, 
+    required super.listOfFields,
   });
 
   Map<String, dynamic> toJson() {
     return {
+      AppFirestoreSubmittedFormsFields.id: id,
       AppFirestoreSubmittedFormsFields.formId: formId,
       AppFirestoreSubmittedFormsFields.content: content,
-      AppFirestoreSubmittedFormsFields.dateWhenSubmited: dateWhenSubmited,
-      AppFirestoreSubmittedFormsFields.dateToBeDeleted: dateToBeDeleted,
+      AppFirestoreSubmittedFormsFields.dateWhenSubmited: dateWhenSubmitted,
+      AppFirestoreSubmittedFormsFields.dateToBeDeleted: dateWhenToBeDeleted,
       AppFirestoreSubmittedFormsFields.firstFields: listOfFields,
     };
   }
@@ -30,9 +32,10 @@ class FormSubmisionModel {
     return FormSubmisionModel(
       formId: json[AppFirestoreSubmittedFormsFields.formId],
       content: json[AppFirestoreSubmittedFormsFields.content],
-      dateWhenSubmited: json[AppFirestoreSubmittedFormsFields.dateWhenSubmited],
-      dateToBeDeleted: json[AppFirestoreSubmittedFormsFields.dateToBeDeleted],
+      dateWhenSubmitted: json[AppFirestoreSubmittedFormsFields.dateWhenSubmited],
+      dateWhenToBeDeleted: json[AppFirestoreSubmittedFormsFields.dateToBeDeleted],
       listOfFields: json[AppFirestoreSubmittedFormsFields.firstFields],
+      id: json[AppFirestoreSubmittedFormsFields.id],
     );
   }
 }

@@ -1,5 +1,6 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
-import 'package:inteligent_forms/features/create_form/data/models/form_model.dart';
 import 'package:inteligent_forms/features/create_form/domain/entities/field.dart';
 import 'package:inteligent_forms/features/create_form/domain/entities/section.dart';
 import 'package:inteligent_forms/features/fill_form/domain/entities/section_with_field.dart';
@@ -15,35 +16,6 @@ class FillFormRepositoryImpl implements FillFormRepository {
   FillFormRepositoryImpl({
     required this.datasource,
   });
-
-  @override
-  Future<Either<Failure, FormModel>> getForm(String formId) async {
-    try {
-      final result = await datasource.getForm(formId);
-      return Right(result);
-    } on MediumFailure catch (e) {
-      return Left(
-        MediumFailure(
-          failureMessage: e.failureMessage,
-        ),
-      );
-    }
-  }
-
-  @override
-  Future<Either<Failure, Field>> getFormFields(
-      String formId, String placeHolder) async {
-    try {
-      final result = await datasource.getFields(formId, placeHolder);
-      return Right(result);
-    } on MediumFailure catch (e) {
-      return Left(
-        MediumFailure(
-          failureMessage: e.failureMessage,
-        ),
-      );
-    }
-  }
 
   @override
   Future<Either<Failure, void>> submitFormSubmission(
@@ -106,8 +78,10 @@ class FillFormRepositoryImpl implements FillFormRepository {
           fields: fields,
         ),
       );
+      log(fields.toString());
       fields = [];
     }
+    log(sectionWithFields.toString());
     return Right(sectionWithFields);
   }
 }

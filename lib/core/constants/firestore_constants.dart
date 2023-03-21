@@ -43,7 +43,7 @@ class AppFirestoreFieldsFields {
   static const String fieldId = 'id';
   static const String label = 'label';
   static const String formId = 'formId';
-  static const String keyWord = 'keyWord';
+  static const String keyWord = 'placeholderKeyWord';
   static const String mandatory = 'mandatory';
   static const String fieldType = 'fieldType';
   static const String docKeys = 'docKeys';
@@ -51,8 +51,9 @@ class AppFirestoreFieldsFields {
 
 class AppFirestoreSubmittedFormsFields {
   static const String formId = 'formId';
+  static const String id = 'id';
   static const String content = 'content';
-  static const String dateWhenSubmited = 'dateWhenSubmited';
-  static const String dateToBeDeleted = 'dateToBeDeleted';
+  static const String dateWhenSubmited = 'dateWhenSubmitted';
+  static const String dateToBeDeleted = 'dateWhenToBeDeleted';
   static const String firstFields = 'firstFields';
-  }
+}

@@ -1,22 +1,27 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 
+import '../../features/create_form/data/models/field_model.dart';
 import '../../features/create_form/domain/entities/field.dart';
 import '../../features/fill_form/data/datasources/fill_form_api.dart';
 import '../errors/failures.dart';
 
 Future<Either<Failure, List<Field>>> getFields(
     String string, String formId, FillFormApi datasource) async {
-  List<Field> fields = [];
+  List<FieldModel> fields = [];
   int index1;
   int index2;
   String placeholder;
   while (string.isNotEmpty) {
     index1 = string.indexOf('<');
     index2 = string.indexOf('>');
+    log("string: $string, index1: $index1, index2: $index2");
     if (index1 != -1 && index2 != -1) {
       placeholder = string.substring(index1 + 1, index2);
       try {
         fields.add(await datasource.getFields(formId, placeholder));
+        log('here2');
       } on MediumFailure catch (e) {
         return Left(
           MediumFailure(
@@ -27,7 +32,17 @@ Future<Either<Failure, List<Field>>> getFields(
     } else {
       break;
     }
+    log("string: $string");
     string = string.substring(index2 + 1);
   }
+  log('here');
   return Right(fields);
+}
+
+String replaceWithString(String wordToReplace, String placeholder) {
+  String textToBeEdited = "Hello <name> how are you?";
+
+  textToBeEdited = textToBeEdited.replaceAll('<$placeholder>', wordToReplace);
+  //TODO: add bloc
+  return textToBeEdited;
 }

@@ -25,7 +25,8 @@ void main() {
   Submission submission = Submission(
       content: content,
       dateWhenSubmitted: dateWhenSubmitted,
-      dateWhenToBeDeleted: dateWhenToBeDeleted);
+      dateWhenToBeDeleted: dateWhenToBeDeleted,
+      listOfFields: []);
   List<Submission> submissions = [submission];
   group("delete", () {
     test("test delete functionality", () async {
@@ -48,7 +49,6 @@ void main() {
       expect(result, Left(failure));
 
       verify(() => mockSubmissionRepository.deleteSubmission(tSubmissionId));
-
     });
   });
 

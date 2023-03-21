@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:inteligent_forms/core/errors/failures.dart';
 import 'package:inteligent_forms/features/fill_form/domain/entities/section_with_field.dart';
@@ -14,14 +16,14 @@ class GetFormUsecase {
     return await repository.getSectionWithField(formId);
   }
 
-  Future<void> submitFormSubmission(
+  Future<Either<Failure, void>> submitFormSubmission(
     String formId,
     String content,
     DateTime dateWhenSubmited,
     DateTime dateToBeDeleted,
     List<String> listOfFields,
   ) async {
-    await repository.submitFormSubmission(
+    return await repository.submitFormSubmission(
       formId,
       content,
       dateWhenSubmited,
