@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inteligent_forms/core/errors/exceptions.dart';
 import 'package:inteligent_forms/features/fill_form/data/models/submision_model.dart';
@@ -47,7 +49,9 @@ class FillFormApi {
           .where(AppFirestoreFieldsFields.keyWord, isEqualTo: placeholder)
           .get();
 
-      return FieldModel.fromMap(doc.docs.first.data());
+      final field = FieldModel.fromMap(doc.docs.first.data());
+      log("doc: ${doc.docs.first.data()}");
+      return field;
     } on FirebaseException catch (e) {
       throw MediumException(runtimeType, e.code);
     }

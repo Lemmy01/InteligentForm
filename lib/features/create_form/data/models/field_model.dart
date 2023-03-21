@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../../domain/entities/field.dart';
 
 class FieldModel extends Field {
@@ -9,19 +11,22 @@ class FieldModel extends Field {
     required this.formId,
     this.id,
     required super.label,
+    super.options,
   });
   String? id;
   String formId;
 
   factory FieldModel.fromMap(Map<String, dynamic> map) {
+    log(map['docKeys'].toString());
     return FieldModel(
       placeholderKeyWord: map['placeholderKeyWord'],
       mandatory: map['mandatory'],
       fieldType: map['fieldType'],
-      docKeys: map['docKeys'],
+      docKeys: List<String>.from(map['docKeys']),
       formId: map['formId'],
       id: map['id'],
       label: map['label'],
+      options: List<String>.from(map['options'] ?? []),
     );
   }
 
@@ -34,6 +39,7 @@ class FieldModel extends Field {
       'formId': formId,
       'id': id,
       'label': label,
+      'options': options,
     };
   }
 }

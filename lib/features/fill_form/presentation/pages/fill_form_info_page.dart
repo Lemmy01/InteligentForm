@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
@@ -197,6 +199,7 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                 //todo: add logic to save the form
                 _formKey.currentState!.save();
                 final result = _formKey.currentState!.value;
+                log(result.toString());
               }
             },
           ),
