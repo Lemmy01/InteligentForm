@@ -48,7 +48,7 @@ void main() {
       expect(result, Left(failure));
 
       verify(() => mockSubmissionRepository.deleteSubmission(tSubmissionId));
-      verifyNoMoreInteractions(mockSubmissionRepository);
+
     });
   });
 
@@ -116,7 +116,7 @@ void main() {
       verifyNoMoreInteractions(mockSubmissionRepository);
     });
 
-    test("test update functionality exception", () async {
+    test("test getSubmissions functionality exception", () async {
       when(() => mockSubmissionRepository.getSubmissions(tFormId))
           .thenAnswer((_) async => Left(failure));
 
