@@ -24,6 +24,7 @@ import 'features/create_form/domain/usecases/create_form.dart';
 import 'features/create_form/presentation/bloc/create_field_bloc/create_field_bloc.dart';
 import 'features/create_form/presentation/bloc/create_form_bloc/create_form_bloc.dart';
 import 'features/create_form/presentation/bloc/cubit/document_type_cubit.dart';
+import 'features/fill_form/presentation/bloc/fill_content_bloc/bloc/fill_content_bloc.dart';
 import 'features/fill_form/presentation/bloc/fill_form_bloc.dart';
 import 'features/forms/data/datasource/form_api.dart';
 import 'features/forms/data/repositories/form_repository_impl.dart';
@@ -137,6 +138,9 @@ class InteligentFrormsApp extends StatelessWidget {
               ),
             ),
           ),
+        ),
+        BlocProvider(
+          create: (context) => FillContentBloc(),
         )
       ],
       child: MaterialApp(

@@ -9,7 +9,7 @@ class AppFirestoreCollectionNames {
   static const String forms = 'forms';
   static const String sections = 'sections';
   static const String fields = 'fields';
-  static const String submittedForms = 'submittedForms';
+  static const String submissions = 'submissions';
 }
 
 class AppFirestoreUsersFields {

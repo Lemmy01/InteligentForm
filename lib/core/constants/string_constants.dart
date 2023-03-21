@@ -62,6 +62,10 @@ class AppStringConstants {
 
   static const String deleteFormContent =
       'If you delete this form, all submissions will be deleted. Are you sure you want to delete this form?';
+
+  static const String submissionAdded = 'Submission added';
+
+  static const String saveFields = 'Save Fields';
 }
 
 class AppBarStrings {

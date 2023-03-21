@@ -65,10 +65,8 @@ class FillFormApi {
     List<String> listOfFields,
   ) async {
     try {
-      final id = firebase
-          .collection(AppFirestoreCollectionNames.submittedForms)
-          .doc()
-          .id;
+      final id =
+          firebase.collection(AppFirestoreCollectionNames.submissions).doc().id;
       final FormSubmisionModel formSubmisionModel = FormSubmisionModel(
         id: id,
         formId: formId,
@@ -78,7 +76,7 @@ class FillFormApi {
         listOfFields: listOfFields,
       );
       await firebase
-          .collection(AppFirestoreCollectionNames.submittedForms)
+          .collection(AppFirestoreCollectionNames.submissions)
           .doc(id)
           .set(
             formSubmisionModel.toJson(),

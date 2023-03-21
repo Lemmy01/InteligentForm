@@ -20,8 +20,12 @@ class UrlExistsLoadingState extends FillFormState {
 
 class UrlExistsLoadedState extends FillFormState {
   final List<SectionWithField> sections;
+  final String formId;
 
-  const UrlExistsLoadedState(this.sections);
+  const UrlExistsLoadedState(
+    this.sections,
+    this.formId,
+  );
 
   @override
   List<Object> get props => [sections];
@@ -36,24 +40,22 @@ class UrlExistsErrorState extends FillFormState {
   List<Object> get props => [message];
 }
 
-//
+class FillFormLoadingState extends FillFormState {}
 
-// class FillFormLoading extends FillFormState {}
+class FillFormSuccessState extends FillFormState {
+  final List<SectionWithField> listOfSections;
 
-// class FillFormLoaded extends FillFormState {
-//   final List<SectionWithField> listOfSections;
+  const FillFormSuccessState(this.listOfSections);
 
-//   const FillFormLoaded(this.listOfSections);
+  @override
+  List<Object> get props => [listOfSections];
+}
 
-//   @override
-//   List<Object> get props => [listOfSections];
-// }
+class FillFormErrorState extends FillFormState {
+  final String message;
 
-// class FillFormError extends FillFormState {
-//   final String message;
+  const FillFormErrorState(this.message);
 
-//   const FillFormError(this.message);
-
-//   @override
-//   List<Object> get props => [message];
-// }
+  @override
+  List<Object> get props => [message];
+}

@@ -39,10 +39,13 @@ Future<Either<Failure, List<Field>>> getFields(
   return Right(fields);
 }
 
-String replaceWithString(String wordToReplace, String placeholder) {
-  String textToBeEdited = "Hello <name> how are you?";
-
-  textToBeEdited = textToBeEdited.replaceAll('<$placeholder>', wordToReplace);
-  //TODO: add bloc
-  return textToBeEdited;
+String replaceWithString(
+  Map<String, dynamic> parametersMap,
+  String content,
+) {
+  parametersMap.forEach((key, value) {
+    content = content.replaceAll('<$key>', value);
+  });
+  log("content: $content");
+  return content;
 }

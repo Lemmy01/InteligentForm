@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -14,6 +16,7 @@ class FillFormBloc extends Bloc<FillFormEvent, FillFormState> {
     required this.getFormUsecase,
   }) : super(FillFormInitial()) {
     on<CheckIfFormExistsEvent>(_onCheckIfFormExistsEvent);
+    on<AddSumbisionEvent>(_onAddSumbisionEvent);
   }
 
   Future<void> _onCheckIfFormExistsEvent(
@@ -39,9 +42,39 @@ class FillFormBloc extends Bloc<FillFormEvent, FillFormState> {
           emit(
             UrlExistsLoadedState(
               sections,
+              event.url,
             ),
           );
         }
+      },
+    );
+  }
+
+  Future<void> _onAddSumbisionEvent(
+    AddSumbisionEvent event,
+    Emitter<FillFormState> emit,
+  ) async {
+    emit(const AddSubmissionLoadingState());
+
+    (await getFormUsecase.submitFormSubmission(
+      event.formId,
+      event.content,
+      event.dateWhenSubmited,
+      event.dateToBeDeleted,
+      event.listOfFields,
+    ))
+        .fold(
+      (failure) => emit(
+        const AddSubmissionErrorState(
+          AppStringConstants.somethingWentWrong,
+        ),
+      ),
+      (success) {
+        emit(
+          const AddSubmissionLoadedState(
+            AppStringConstants.submissionAdded,
+          ),
+        );
       },
     );
   }

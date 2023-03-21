@@ -15,8 +15,8 @@ class FieldTypeConstants {
   static const String number = 'Number';
   static const String decimal = 'Decimal';
   static const String date = 'Date';
-  static const String singleChoice = 'Single Choice';
-  static const String multipleChoice = 'Multiple Choice';
+  static const String singleChoice = 'SingleChoice';
+  static const String multipleChoice = 'MultipleChoice';
 }
 
 List<String> fieldTypeList = [
