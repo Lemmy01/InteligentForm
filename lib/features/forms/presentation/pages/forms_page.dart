@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inteligent_forms/core/constants/app_number_constants.dart';
 import 'package:inteligent_forms/core/constants/string_constants.dart';
+import 'package:inteligent_forms/core/shared_widgets/my_alert_dialog.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_delete_slidable.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_slidable.dart';
 import 'package:inteligent_forms/features/forms/presentation/widgets/form_tile.dart';
@@ -69,11 +70,19 @@ class FormsPage extends StatelessWidget {
                               actions: [
                                 MyDeleteSlidable(
                                   onPressed: () {
-                                    context.read<FormsBloc>().add(
-                                          FormsDeleteEvent(
-                                            formEntity: formEntity,
-                                          ),
-                                        );
+                                    showMyDialog(
+                                      context,
+                                      title: AppStringConstants.deleteForm,
+                                      content:
+                                          AppStringConstants.deleteFormContent,
+                                      onPressed: () {
+                                        context.read<FormsBloc>().add(
+                                              FormsDeleteEvent(
+                                                formEntity: formEntity,
+                                              ),
+                                            );
+                                      },
+                                    );
                                   },
                                 ),
                               ],
