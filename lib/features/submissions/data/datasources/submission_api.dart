@@ -1,31 +1,30 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:inteligent_forms/core/errors/exceptions.dart';
-
-import '../models/submission_model.dart';
+import 'package:inteligent_forms/features/fill_form/data/models/submision_model.dart';
 
 class SubmissionApi {
   final FirebaseFirestore firestore;
 
   SubmissionApi({required this.firestore});
 
-  Future<void> submitSubmission(SubmissionModel submission) async {
+  Future<void> submitSubmission(FormSubmisionModel submission) async {
     try {
-      await firestore.collection('submissions').add(submission.toMap());
+      await firestore.collection('submissions').add(submission.toJson());
     } on FirebaseException {
       throw MediumException(
           runtimeType, AppStringFailuresMessages.unexpectedFailure);
     }
   }
 
-  Future<List<SubmissionModel>> getSubmissions(String formId) async {
+  Future<List<FormSubmisionModel>> getSubmissions(String formId) async {
     try {
       final snapshot = await firestore
           .collection('submissions')
           .where('formId', isEqualTo: formId)
           .get();
       return snapshot.docs
-          .map((doc) => SubmissionModel.fromMap(doc.data()))
+          .map((doc) => FormSubmisionModel.fromJson(doc.data()))
           .toList();
     } on FirebaseException {
       throw MediumException(
@@ -42,12 +41,12 @@ class SubmissionApi {
     }
   }
 
-  Future<void> updateSubmission(SubmissionModel submission) async {
+  Future<void> updateSubmission(FormSubmisionModel submission) async {
     try {
       await firestore
           .collection('submissions')
           .doc(submission.id)
-          .update(submission.toMap());
+          .update(submission.toJson());
     } on FirebaseException {
       throw MediumException(
           runtimeType, AppStringFailuresMessages.unexpectedFailure);

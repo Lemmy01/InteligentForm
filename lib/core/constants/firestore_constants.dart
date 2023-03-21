@@ -51,8 +51,9 @@ class AppFirestoreFieldsFields {
 
 class AppFirestoreSubmittedFormsFields {
   static const String formId = 'formId';
+  static const String id = 'id';
   static const String content = 'content';
-  static const String dateWhenSubmited = 'dateWhenSubmited';
-  static const String dateToBeDeleted = 'dateToBeDeleted';
+  static const String dateWhenSubmited = 'dateWhenSubmitted';
+  static const String dateToBeDeleted = 'dateWhenToBeDeleted';
   static const String firstFields = 'firstFields';
-  }
+}

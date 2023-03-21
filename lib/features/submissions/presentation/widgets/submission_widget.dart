@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
 import 'package:inteligent_forms/features/submissions/domain/entities/Submission.dart';
 import 'package:sizer/sizer.dart';
 
@@ -36,15 +37,23 @@ class SubmissionCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: Padding(
-          padding: EdgeInsets.all(3.w),
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
           child: GestureDetector(
-            child: Row(
+            child: Column(
               children: [
                 const SizedBox(
                   width: 10,
                 ),
                 const Text("Submission "),
-                const Spacer(),
+                for (final field in submission.listOfFields)
+                  Column(
+                    children: [
+                      Text(
+                        field,
+                      ),
+                      AppSizedBoxes.kSmallBox(),
+                    ],
+                  ),
                 Text(
                   submission.getDate,
                 ),

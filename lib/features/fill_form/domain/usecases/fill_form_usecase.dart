@@ -14,14 +14,14 @@ class GetFormUsecase {
     return await repository.getSectionWithField(formId);
   }
 
-  Future<void> submitFormSubmission(
+  Future<Either<Failure, void>> submitFormSubmission(
     String formId,
     String content,
     DateTime dateWhenSubmited,
     DateTime dateToBeDeleted,
     List<String> listOfFields,
   ) async {
-    await repository.submitFormSubmission(
+    return await repository.submitFormSubmission(
       formId,
       content,
       dateWhenSubmited,

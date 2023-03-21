@@ -19,7 +19,7 @@ class FieldModel extends Field {
       mandatory: map['mandatory'],
       fieldType: map['fieldType'],
       docKeys: map['docKeys'],
-      formId: map['sectionId'],
+      formId: map['formId'],
       id: map['id'],
       label: map['label'],
     );
@@ -31,7 +31,7 @@ class FieldModel extends Field {
       'mandatory': mandatory,
       'fieldType': fieldType,
       'docKeys': docKeys,
-      'sectionId': formId,
+      'formId': formId,
       'id': id,
       'label': label,
     };
