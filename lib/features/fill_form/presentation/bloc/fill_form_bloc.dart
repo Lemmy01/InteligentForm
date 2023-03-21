@@ -2,11 +2,10 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../core/constants/string_constants.dart';
-import '../../domain/entities/section_with_field.dart';
 import '../../domain/usecases/fill_form_usecase.dart';
+import 'fill_form_state.dart';
 
 part 'fill_form_event.dart';
-part 'fill_form_state.dart';
 
 class FillFormBloc extends Bloc<FillFormEvent, FillFormState> {
   GetFormUsecase getFormUsecase;
@@ -21,7 +20,7 @@ class FillFormBloc extends Bloc<FillFormEvent, FillFormState> {
     CheckIfFormExistsEvent event,
     Emitter<FillFormState> emit,
   ) async {
-    emit(UrlExistsLoadingState());
+    emit(const UrlExistsLoadingState());
 
     (await getFormUsecase.getSectionsWithFields(event.url)).fold(
       (failure) => emit(

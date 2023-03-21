@@ -16,6 +16,7 @@ import '../../../../core/background_widgets/create_field_background_widget.dart'
 import '../../../../core/constants/app_number_constants.dart';
 import '../../../../core/shared_widgets/my_snack_bar.dart';
 import '../bloc/fill_form_bloc.dart';
+import '../bloc/fill_form_state.dart';
 import 'fill_form_page.dart';
 
 class MainFillFormOptionsPage extends HookWidget {
@@ -38,11 +39,10 @@ class MainFillFormOptionsPage extends HookWidget {
                   ),
                 ),
               );
-
-              if (state is UrlExistsErrorState) {
-                log('Ar trebui sa afisez un snackbar aici');
-                showMySnackBar(context, AppStringConstants.noSectionsFound);
-              }
+            }
+            if (state is UrlExistsErrorState) {
+              log('Ar trebui sa afisez un snackbar aici');
+              showMySnackBar(context, AppStringConstants.noSectionsFound);
             }
           },
           child: Center(
