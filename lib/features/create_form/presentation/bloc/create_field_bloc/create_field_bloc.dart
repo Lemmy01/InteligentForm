@@ -20,9 +20,12 @@ class CreateFieldBloc extends Bloc<CreateFieldEvent, CreateFieldState> {
     on<OptionsChanged>(
       _onCreateFieldOptionsChanged,
     );
-    on<CreateFieldSubmitted>(_onCreateFieldSubmitted);
+    on<ResetFields>(_onResetFields);
 
     on<CreateFieldEdit>(_onCreateFieldEdit);
+
+    on<LabelChanged>(_onLabelChanged);
+    on<PlaceholderKeyWordChanged>(_onPlaceholderKeyWordChanged);
   }
 
   void _onCreateFieldIsMandatoryChanged(
@@ -75,8 +78,8 @@ class CreateFieldBloc extends Bloc<CreateFieldEvent, CreateFieldState> {
     ));
   }
 
-  void _onCreateFieldSubmitted(
-    CreateFieldSubmitted event,
+  void _onResetFields(
+    ResetFields event,
     Emitter<CreateFieldState> emit,
   ) {
     emit(
@@ -88,15 +91,36 @@ class CreateFieldBloc extends Bloc<CreateFieldEvent, CreateFieldState> {
     CreateFieldEdit event,
     Emitter<CreateFieldState> emit,
   ) {
-    // emit(
-    //   state.copyWith(
-    //     isMandatory: event.field.mandatory,
-    //     fieldType: event.field.fieldType,
-    //     documentKeywords: event.field.docKeys,
-    //     options: event.field.options,
-    //     showDocumentKeywords: true,
-    //     showTypes: true,
-    //   ),
-    // );
+    emit(
+      state.copyWith(
+        isEditMode: true,
+        isMandatory: event.field.mandatory,
+        fieldType: event.field.fieldType,
+        documentKeywords: event.field.docKeys,
+        options: event.field.options,
+        showDocumentKeywords: true,
+        showTypes: true,
+        label: event.field.label,
+        placeholderKeyWord: event.field.placeholderKeyWord,
+      ),
+    );
+  }
+
+  void _onLabelChanged(
+    LabelChanged event,
+    Emitter<CreateFieldState> emit,
+  ) {
+    emit(state.copyWith(
+      label: event.label,
+    ));
+  }
+
+  void _onPlaceholderKeyWordChanged(
+    PlaceholderKeyWordChanged event,
+    Emitter<CreateFieldState> emit,
+  ) {
+    emit(state.copyWith(
+      placeholderKeyWord: event.placeholderKeyWord,
+    ));
   }
 }

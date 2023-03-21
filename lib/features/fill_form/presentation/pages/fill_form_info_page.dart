@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
@@ -14,76 +12,11 @@ import '../../../../core/shared_widgets/my_button.dart';
 
 TextEditingController controller1 = TextEditingController();
 TextEditingController controller2 = TextEditingController();
-List<String> fieldTypes = [
-  'Text',
-  'Date',
-  'MultipleChoice',
-  'Number',
-  'SingleChoice',
-  'Decimal'
-];
-List<SectionWithField> listOfSections = [
-  SectionWithField(
-    sectionNumber: 2,
-    fields: [
-      Field(
-        label: 'labelName1',
-        docKeys: ['documentKeyWords'],
-        mandatory: true,
-        fieldType: 'Text',
-        placeholderKeyWord: 'placeholderKeyWord',
-      ),
-      Field(
-        label: 'labelName2',
-        docKeys: ['documentKeyWords'],
-        mandatory: true,
-        fieldType: 'Text',
-        placeholderKeyWord: 'placeholderKeyWord',
-      ),
-      Field(
-        label: 'labelName3',
-        docKeys: ['documentKeyWords'],
-        mandatory: true,
-        fieldType: 'Text',
-        placeholderKeyWord: 'placeholderKeyWord',
-      ),
-    ],
-    content: 'content',
-    scanType: 'Identification',
-  ),
-  SectionWithField(
-    sectionNumber: 3,
-    fields: [
-      Field(
-        label: 'labelName4',
-        docKeys: ['documentKeyWords'],
-        mandatory: true,
-        fieldType: 'Text',
-        placeholderKeyWord: 'placeholderKeyWord',
-      ),
-      Field(
-        label: 'labelName5',
-        docKeys: ['documentKeyWords'],
-        mandatory: true,
-        fieldType: 'Text',
-        placeholderKeyWord: 'placeholderKeyWord',
-      ),
-      Field(
-        label: 'labelName6',
-        docKeys: ['documentKeyWords'],
-        mandatory: true,
-        fieldType: 'MultipleChoice',
-        options: ['option1', 'option2', 'option3'],
-        placeholderKeyWord: 'placeholderKeyWord',
-      ),
-    ],
-    content: 'content',
-    scanType: 'Identification',
-  ),
-];
 
 class FillFormInfoPage extends StatefulWidget {
-  const FillFormInfoPage({super.key});
+  const FillFormInfoPage({super.key, required this.listOfSections});
+
+  final List<SectionWithField> listOfSections;
 
   @override
   State<FillFormInfoPage> createState() => _FillFormInfoPageState();
@@ -103,7 +36,7 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
             },
             child: Column(
               children: [
-                for (final SectionWithField section in listOfSections)
+                for (final SectionWithField section in widget.listOfSections)
                   Column(
                     children: [
                       Text(
@@ -264,7 +197,6 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                 //todo: add logic to save the form
                 _formKey.currentState!.save();
                 final result = _formKey.currentState!.value;
-                log(result.toString());
               }
             },
           ),

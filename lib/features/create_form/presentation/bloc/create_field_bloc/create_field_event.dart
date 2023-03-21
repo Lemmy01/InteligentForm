@@ -1,8 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:inteligent_forms/features/create_form/domain/entities/field.dart';
 
-import '../../../../../core/utils/enums.dart';
-
 abstract class CreateFieldEvent extends Equatable {
   const CreateFieldEvent();
 
@@ -20,7 +18,7 @@ class CreateFieldIsMandatoryChanged extends CreateFieldEvent {
 }
 
 class CreateFieldTypeChanged extends CreateFieldEvent {
-  final FieldType fieldType;
+  final String fieldType;
 
   const CreateFieldTypeChanged({required this.fieldType});
 
@@ -66,7 +64,7 @@ class OptionsChanged extends CreateFieldEvent {
   List<Object> get props => [options];
 }
 
-class CreateFieldSubmitted extends CreateFieldEvent {
+class ResetFields extends CreateFieldEvent {
   @override
   List<Object> get props => [];
 }
@@ -74,8 +72,28 @@ class CreateFieldSubmitted extends CreateFieldEvent {
 class CreateFieldEdit extends CreateFieldEvent {
   final Field field;
 
-  const CreateFieldEdit({required this.field});
+  const CreateFieldEdit({
+    required this.field,
+  });
 
   @override
   List<Object> get props => [field];
+}
+
+class LabelChanged extends CreateFieldEvent {
+  final String label;
+
+  const LabelChanged({required this.label});
+
+  @override
+  List<Object> get props => [label];
+}
+
+class PlaceholderKeyWordChanged extends CreateFieldEvent {
+  final String placeholderKeyWord;
+
+  const PlaceholderKeyWordChanged({required this.placeholderKeyWord});
+
+  @override
+  List<Object> get props => [placeholderKeyWord];
 }

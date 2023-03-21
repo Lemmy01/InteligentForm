@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:inteligent_forms/core/constants/string_constants.dart';
+import 'package:inteligent_forms/core/utils/lists.dart';
 import 'package:inteligent_forms/features/create_form/domain/entities/field.dart';
 import 'package:inteligent_forms/features/create_form/domain/entities/section.dart';
 import 'package:inteligent_forms/features/create_form/domain/repositories/create_form_repository.dart';
@@ -31,7 +32,7 @@ void main() {
   List<Field> tFields = [
     Field(
       docKeys: [],
-      fieldType: 'Text',
+      fieldType: FieldTypeConstants.date,
       placeholderKeyWord: 'CNP',
       label: 'CNP',
       mandatory: false,

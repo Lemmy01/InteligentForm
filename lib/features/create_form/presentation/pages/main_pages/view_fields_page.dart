@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_delete_slidable.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_edit_slidable.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_slidable.dart';
+import 'package:inteligent_forms/features/create_form/presentation/bloc/create_field_bloc/create_field_bloc.dart';
 import 'package:inteligent_forms/features/create_form/presentation/pages/create_pages/create_field_page.dart';
 import 'package:inteligent_forms/features/create_form/presentation/widgets/field_card.dart';
 
 import '../../../../../core/constants/app_number_constants.dart';
+import '../../bloc/create_field_bloc/create_field_event.dart';
 import '../../bloc/create_form_bloc/create_form_bloc.dart';
 import '../../bloc/create_form_bloc/create_form_event.dart';
 import '../../bloc/create_form_bloc/create_form_state.dart';
@@ -50,14 +52,20 @@ class _ViewFieldPageState extends State<ViewFieldPage> {
                   actions: [
                     MyEditSlidable(
                       onPressed: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => CreateFieldPage(
-                        //       field: state.fields[index],
-                        //     ),
-                        //   ),
-                        // );
+                        context.read<CreateFieldBloc>().add(
+                              CreateFieldEdit(
+                                field: state.fields[index],
+                              ),
+                            );
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CreateFieldPage(
+                              field: state.fields[index],
+                            ),
+                          ),
+                        );
                       },
                     ),
                     MyDeleteSlidable(

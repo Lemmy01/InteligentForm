@@ -49,6 +49,10 @@ class AppStringConstants {
 
   static const String colon = ':';
   static const String submit = 'Submit';
+
+  static const String noSectionsFound = 'No sections found';
+
+  static const String somethingWentWrong = 'Something went wrong';
 }
 
 class AppBarStrings {

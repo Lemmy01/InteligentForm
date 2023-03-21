@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inteligent_forms/core/background_widgets/create_field_background_widget.dart';
 import 'package:inteligent_forms/core/constants/app_number_constants.dart';
 import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
-import 'package:inteligent_forms/features/create_form/domain/entities/field.dart';
 
 import '../../../../../core/constants/font_constants.dart';
 import '../../../../../core/constants/string_constants.dart';
+import '../../../domain/entities/field.dart';
+import '../../bloc/create_field_bloc/create_field_bloc.dart';
 import '../../widgets/create_field_button.dart';
 import '../../widgets/documents_keywords_chips.dart';
 import '../../widgets/field_type_dropdown.dart';
@@ -27,14 +29,20 @@ class CreateFieldPage extends StatefulWidget {
 }
 
 class _CreateFieldPageState extends State<CreateFieldPage> {
-  TextEditingController labelController = TextEditingController();
-  TextEditingController placeholderKeywordController = TextEditingController();
+  late TextEditingController labelController;
+  late TextEditingController placeholderKeywordController;
   TextEditingController docsKeywordsController = TextEditingController();
   TextEditingController optionsKeywordsController = TextEditingController();
 
   @override
   void initState() {
-    
+    labelController = TextEditingController(
+      text: context.read<CreateFieldBloc>().state.label,
+    );
+    placeholderKeywordController = TextEditingController(
+      text: context.read<CreateFieldBloc>().state.placeholderKeyWord,
+    );
+
     super.initState();
   }
 
@@ -98,9 +106,15 @@ class _CreateFieldPageState extends State<CreateFieldPage> {
                     docsKeywordsController: docsKeywordsController,
                   ),
                   AppSizedBoxes.kMediumBox(),
-                  CreateFieldButton(
-                    keywordController: placeholderKeywordController,
-                    labelController: labelController,
+                  Center(
+                    child: CreateFieldButton(
+                      isEditMode: widget.field != null,
+                      keywordController: placeholderKeywordController,
+                      labelController: labelController,
+                      keyToBeDeleted: widget.field != null
+                          ? widget.field?.placeholderKeyWord
+                          : null,
+                    ),
                   ),
                 ],
               ),

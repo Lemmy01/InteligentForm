@@ -35,15 +35,15 @@ class CreateFormApiImpl implements CreateFormApi {
       final String userId = auth.currentUser!.uid;
 
       final id = forms.doc().id;
-      await forms.add(
-        FormModel(
-          title: title,
-          dataRetentionPeriod: dataRetentionPeriod,
-          id: id,
-          userId: userId,
-          dateAdded: DateTime.now(),
-        ).toMap(),
-      );
+      await forms.doc(id).set(
+            FormModel(
+              title: title,
+              dataRetentionPeriod: dataRetentionPeriod,
+              id: id,
+              userId: userId,
+              dateAdded: DateTime.now(),
+            ).toMap(),
+          );
 
       for (final section in sections) {
         await addSection(section, id);
@@ -73,7 +73,7 @@ class CreateFormApiImpl implements CreateFormApi {
       scanType: section.scanType,
       sectionNumber: section.sectionNumber,
     );
-    await sections.add(sectionModel.toMap());
+    await sections.doc(id).set(sectionModel.toMap());
 
     return await null;
   }
@@ -93,7 +93,7 @@ class CreateFormApiImpl implements CreateFormApi {
       placeholderKeyWord: field.placeholderKeyWord,
       mandatory: field.mandatory,
     );
-    await fields.add(fieldModel.toMap());
+    await fields.doc(id).set(fieldModel.toMap());
 
     return await null;
   }

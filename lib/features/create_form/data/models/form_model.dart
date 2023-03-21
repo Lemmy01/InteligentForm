@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:inteligent_forms/core/constants/firestore_constants.dart';
 
+import '../../../../core/constants/firestore_constants.dart';
 import '../../../forms/domain/entities/form_entity.dart';
 
 class FormModel extends FormEntity {

@@ -43,4 +43,16 @@ class CreateFormState extends Equatable {
       error: error ?? this.error,
     );
   }
+
+  @override
+  String toString() {
+    return '''CreateFormState {
+      title: $title,
+      dataRetentionPeriod: $dataRetentionPeriod,
+      sections: $sections,
+      fields: $fields,
+      status: $status,
+      error: $error,
+    }''';
+  }
 }

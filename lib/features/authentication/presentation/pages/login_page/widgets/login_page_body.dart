@@ -82,7 +82,6 @@ class LoginPageBody extends HookWidget {
               BlocBuilder<AuthenticationBloc, AuthenticationState>(
                 builder: (context, state) {
                   return MyButton(
-                    
                     isLoading: state is LoadingState,
                     text: AppStringConstants.login,
                     onPressed: () {

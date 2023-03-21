@@ -7,7 +7,7 @@ abstract class FormsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class FormsLoadStarted extends FormsEvent {
+class FormsLoadStartedEvent extends FormsEvent {
   @override
   List<Object> get props => [];
 }

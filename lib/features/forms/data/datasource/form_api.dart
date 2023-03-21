@@ -21,29 +21,39 @@ class FormApi {
             isEqualTo: _userId,
           )
           .get();
-      List<FormModel> a = [];
+      List<FormModel> formsList = [];
       for (final doc in forms.docs) {
-        log(doc.data().toString());
-        a.add(FormModel.fromMap(doc.data()));
+        formsList.add(FormModel.fromMap(doc.data()));
       }
 
-      return a;
+      return formsList;
     } on FirebaseException {
       throw MediumException(
-          runtimeType, AppStringFailuresMessages.unexpectedFailure);
+        runtimeType,
+        AppStringFailuresMessages.unexpectedFailure,
+      );
     }
   }
 
   Future<void> deleteForm(String id) async {
     try {
-      await firestore.collection('forms').doc(id).delete();
       await firestore
           .collection('submissions')
-          .where(AppFirestoreFieldsFields.formId, isEqualTo: id)
+          .where(
+            AppFirestoreFieldsFields.formId,
+            isEqualTo: id,
+          )
           .get()
-          .then((value) => value.docs.forEach((element) {
+          .then(
+            (value) => value.docs.forEach(
+              (element) {
                 element.reference.delete();
-              }));
+              },
+            ),
+          );
+      //delete form
+      await firestore.collection('forms').doc(id).delete();
+      log('Form deleted : $id');
     } on FirebaseException {
       throw MediumException(
           runtimeType, AppStringFailuresMessages.unexpectedFailure);

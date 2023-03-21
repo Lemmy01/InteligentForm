@@ -49,6 +49,7 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
   Widget build(BuildContext context) {
     return FormsBackGroundWidget(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text(
             widget.form.title,

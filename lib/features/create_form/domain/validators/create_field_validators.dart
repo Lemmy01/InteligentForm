@@ -3,7 +3,7 @@ import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:inteligent_forms/core/errors/failures.dart';
 import 'package:inteligent_forms/core/utils/logger.dart';
 
-import '../../../../core/utils/enums.dart';
+import '../../../../core/utils/lists.dart';
 
 class CreateFieldValidators {
   static Either<Failure, String> addChipValidate(
@@ -42,7 +42,7 @@ class CreateFieldValidators {
     required String label,
     required String placeholderkeyWord,
     required List<String> allPlaceholderkeyWords,
-    required FieldType fieldType,
+    required String fieldType,
     required List<String> options,
     required List<String> documentKeywords,
   }) {
@@ -59,8 +59,8 @@ class CreateFieldValidators {
               AppStringFailuresMessages.placeholderKeywordEmptyField,
         ),
       );
-    } else if (fieldType == FieldType.singleChoice ||
-        fieldType == FieldType.multipleChoice) {
+    } else if (fieldType == FieldTypeConstants.singleChoice ||
+        fieldType == FieldTypeConstants.multipleChoice) {
       if (options.isEmpty) {
         return Left(
           EmptyFieldFailure(

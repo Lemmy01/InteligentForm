@@ -7,6 +7,7 @@ class MySnackBar extends SnackBar {
     super.key,
     required this.text,
   }) : super(
+          behavior: SnackBarBehavior.fixed,
           content: Text(
             text,
             style: TextStyle(

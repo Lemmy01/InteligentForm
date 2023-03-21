@@ -9,12 +9,19 @@ class Section {
     required this.sectionNumber,
   });
 
-  //toString
   @override
   String toString() {
     return 'Section('
         'content: $content, '
         'scanType: $scanType,'
         'sectionNumber: $sectionNumber)';
+  }
+
+  factory Section.fromMap(Map<String, dynamic> map) {
+    return Section(
+      content: map['content'],
+      scanType: map['scanType'],
+      sectionNumber: map['sectionNumber'],
+    );
   }
 }
