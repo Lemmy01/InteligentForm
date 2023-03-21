@@ -17,35 +17,6 @@ class FillFormRepositoryImpl implements FillFormRepository {
   });
 
   @override
-  Future<Either<Failure, FormModel>> getForm(String formId) async {
-    try {
-      final result = await datasource.getForm(formId);
-      return Right(result);
-    } on MediumFailure catch (e) {
-      return Left(
-        MediumFailure(
-          failureMessage: e.failureMessage,
-        ),
-      );
-    }
-  }
-
-  @override
-  Future<Either<Failure, Field>> getFormFields(
-      String formId, String placeHolder) async {
-    try {
-      final result = await datasource.getFields(formId, placeHolder);
-      return Right(result);
-    } on MediumFailure catch (e) {
-      return Left(
-        MediumFailure(
-          failureMessage: e.failureMessage,
-        ),
-      );
-    }
-  }
-
-  @override
   Future<Either<Failure, void>> submitFormSubmission(
     String formId,
     String content,

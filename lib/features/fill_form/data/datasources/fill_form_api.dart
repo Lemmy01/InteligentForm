@@ -29,7 +29,7 @@ class FillFormApi {
     try {
       final streamDocs = await firebase
           .collection(AppFirestoreCollectionNames.sections)
-          .where(AppFirestoreCollectionNames.forms, isEqualTo: formId)
+          .where(AppFirestoreFieldsFields.formId, isEqualTo: formId)
           .get();
       final listOfModels =
           streamDocs.docs.map((e) => SectionModel.fromMap(e.data())).toList();
@@ -61,14 +61,22 @@ class FillFormApi {
     List<String> listOfFields,
   ) async {
     try {
+      final id = firebase
+          .collection(AppFirestoreCollectionNames.submittedForms)
+          .doc()
+          .id;
       final FormSubmisionModel formSubmisionModel = FormSubmisionModel(
+        id: id,
         formId: formId,
         content: content,
-        dateWhenSubmited: dateWhenSubmited,
-        dateToBeDeleted: dateToBeDeleted,
+        dateWhenSubmitted: dateWhenSubmited,
+        dateWhenToBeDeleted: dateToBeDeleted,
         listOfFields: listOfFields,
       );
-      await firebase.collection(AppFirestoreCollectionNames.submittedForms).add(
+      await firebase
+          .collection(AppFirestoreCollectionNames.submittedForms)
+          .doc(id)
+          .set(
             formSubmisionModel.toJson(),
           );
     } on FirebaseException catch (e) {

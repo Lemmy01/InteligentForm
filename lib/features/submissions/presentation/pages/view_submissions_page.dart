@@ -31,31 +31,18 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
     Submission(
         content: 'content',
         dateWhenSubmitted: DateTime.now(),
-        dateWhenToBeDeleted: DateTime.now()),
+        dateWhenToBeDeleted: DateTime.now(),
+        listOfFields: []),
     Submission(
         content: 'content',
         dateWhenSubmitted: DateTime.now(),
-        dateWhenToBeDeleted: DateTime.now()),
+        dateWhenToBeDeleted: DateTime.now(),
+        listOfFields: []),
     Submission(
         content: 'content',
         dateWhenSubmitted: DateTime.now(),
-        dateWhenToBeDeleted: DateTime.now()),
-    Submission(
-        content: 'content',
-        dateWhenSubmitted: DateTime.now(),
-        dateWhenToBeDeleted: DateTime.now()),
-    Submission(
-        content: 'content',
-        dateWhenSubmitted: DateTime.now(),
-        dateWhenToBeDeleted: DateTime.now()),
-    Submission(
-        content: 'content',
-        dateWhenSubmitted: DateTime(2023, 03, 17),
-        dateWhenToBeDeleted: DateTime.now()),
-    Submission(
-        content: 'content',
-        dateWhenSubmitted: DateTime.now(),
-        dateWhenToBeDeleted: DateTime.now()),
+        dateWhenToBeDeleted: DateTime.now(),
+        listOfFields: []),
   ];
 
   @override
@@ -102,7 +89,8 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
                       ),
                       onTap: () async {
                         dateSelected =
-                            await _filtersDialog(context, dateSelected!) ?? dateSelected;
+                            await _filtersDialog(context, dateSelected!) ??
+                                dateSelected;
                         setState(() {});
                         //todo: add filter with block suiii
                       },
@@ -115,7 +103,7 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
                   hintText: "Search",
                 ),
                 AppSizedBoxes.kMediumBox(),
-                ListView.builder(
+                GridView.builder(
                   shrinkWrap: true,
                   itemCount: submissionList.length,
                   physics: const NeverScrollableScrollPhysics(),
@@ -135,6 +123,9 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
 
                     return const SizedBox();
                   },
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                  ),
                 )
               ],
             ),
