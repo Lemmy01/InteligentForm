@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:inteligent_forms/core/background_widgets/form_background.dart';
 import 'package:inteligent_forms/core/constants/app_number_constants.dart';
 import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
+import 'package:inteligent_forms/core/shared_widgets/my_snack_bar.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
 import 'package:inteligent_forms/features/submissions/domain/entities/Submission.dart';
 import 'package:inteligent_forms/features/submissions/presentation/widgets/submission_widget.dart';
@@ -58,6 +60,16 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
+          actions: [
+            GestureDetector(
+              child: Icon(Icons.copy,
+                  color: Theme.of(context).colorScheme.onPrimary),
+              onTap: () {
+                Clipboard.setData(ClipboardData(text: widget.form.id));
+                showMySnackBar(context, 'Copied to clipboard');
+              },
+            ),
+          ],
           backgroundColor: Colors.transparent,
           title: Text(
             widget.form.title,
@@ -78,7 +90,7 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AppSizedBoxes.kMediumBox(),
+                               AppSizedBoxes.kMediumBox(),
                 Row(
                   children: [
                     Expanded(
