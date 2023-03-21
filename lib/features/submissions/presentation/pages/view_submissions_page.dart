@@ -138,21 +138,22 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
                         itemCount: state.submissions.length,
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
-                          return SubmissionCard(
-                            submission: state.submissions[index],
-                          );
-                          // if (dateSelected != null) {
-                          //   if (submissionList[index].dateWhenSubmitted.day ==
-                          //           dateSelected!.day &&
-                          //       submissionList[index].dateWhenSubmitted.month ==
-                          //           dateSelected!.month &&
-                          //       submissionList[index].dateWhenSubmitted.year ==
-                          //           dateSelected!.year) {
-                          //     return SubmissionCard(
-                          //       submission: submissionList[index],
-                          //     );
-                          //   }
-                          // }
+                          if (dateSelected != null) {
+                            if (state.submissions[index].dateWhenSubmitted
+                                        .day ==
+                                    dateSelected!.day &&
+                                state.submissions[index].dateWhenSubmitted
+                                        .month ==
+                                    dateSelected!.month &&
+                                state.submissions[index].dateWhenSubmitted
+                                        .year ==
+                                    dateSelected!.year) {
+                              return SubmissionCard(
+                                submission: state.submissions[index],
+                              );
+                            }
+                          }
+                          return null;
                         },
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
