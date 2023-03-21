@@ -51,6 +51,20 @@ class FormApi {
               },
             ),
           );
+      await firestore
+          .collection(AppFirestoreCollectionNames.fields)
+          .where(
+            AppFirestoreFieldsFields.formId,
+            isEqualTo: id,
+          )
+          .get()
+          .then(
+            (value) => value.docs.forEach(
+              (element) {
+                element.reference.delete();
+              },
+            ),
+          );
       //delete form
       await firestore.collection('forms').doc(id).delete();
       log('Form deleted : $id');
