@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../../../../data/datasources/fill_form_api.dart';
 import '../../fill_form_bloc.dart';
 import 'fill_content_event.dart';
 import 'fill_content_state.dart';
@@ -70,6 +73,12 @@ class FillContentBloc extends Bloc<FillContentEvent, FillContentState> {
     //pentru fiecare cheie gasita (document keyword)
     //fa o functie care sa adauge in mapa de parametrii cheia si valoarea
     //ceva gen add(ChangeParametersMap(parametersMap: {documentKeyword: scanResult}));
+
+    final a = await FillFormApi(
+      FirebaseFirestore.instance,
+    ).getAutoSection();
+
+    log(a.toString());
   }
 
   @override

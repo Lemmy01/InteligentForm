@@ -44,15 +44,12 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
 
     log('in init concatinatedString $concatinatedString');
 
-    
     context.read<FillContentBloc>().add(
           ChangeSectionsContent(
             sectionsContent: concatinatedString,
           ),
         );
   }
-
-  List<TextEditingController> listOfControllers = [];
 
   final formKey = GlobalKey<FormBuilderState>();
   @override

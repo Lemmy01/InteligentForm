@@ -1,13 +1,16 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:http/http.dart' as http;
 import 'package:inteligent_forms/core/errors/exceptions.dart';
 import 'package:inteligent_forms/features/fill_form/data/models/submision_model.dart';
 
+import '../../../../core/constants/api_constants.dart';
 import '../../../../core/constants/firestore_constants.dart';
 import '../../../create_form/data/models/field_model.dart';
 import '../../../create_form/data/models/form_model.dart';
 import '../../../create_form/data/models/section_model.dart';
+import '../models/section_auto_model.dart';
 
 class FillFormApi {
   final FirebaseFirestore firebase;
@@ -83,5 +86,29 @@ class FillFormApi {
     } on FirebaseException catch (e) {
       throw MediumException(runtimeType, e.code);
     }
+  }
+
+  Future<SectionAutoModel?> getAutoSection() async {
+    try {
+      var url = Uri.parse(ApiConstants.ENDPOINT);
+      var response = await http.get(url);
+
+      log('response: ${response.statusCode}');
+      if (response.statusCode == 200) {
+        log('response: ${response.body}');
+
+        SectionAutoModel model = SectionAutoModel.fromJson(response.body);
+
+        log('model: $model');
+
+        return model;
+      }
+    } catch (e) {
+      throw MediumException(
+        runtimeType,
+        e.toString(),
+      );
+    }
+    return null;
   }
 }
