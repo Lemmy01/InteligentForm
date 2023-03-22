@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 import 'dart:ui';
 
@@ -22,12 +21,10 @@ Future<Either<Failure, List<Field>>> getFields(
   while (string.isNotEmpty) {
     index1 = string.indexOf('<');
     index2 = string.indexOf('>');
-    log("string: $string, index1: $index1, index2: $index2");
     if (index1 != -1 && index2 != -1) {
       placeholder = string.substring(index1 + 1, index2);
       try {
         fields.add(await datasource.getFields(formId, placeholder));
-        log('here2');
       } on MediumFailure catch (e) {
         return Left(
           MediumFailure(
@@ -38,10 +35,8 @@ Future<Either<Failure, List<Field>>> getFields(
     } else {
       break;
     }
-    log("string: $string");
     string = string.substring(index2 + 1);
   }
-  log('here');
   return Right(fields);
 }
 
@@ -78,7 +73,7 @@ Future<void> createPDF() async {
 
   List<int> bytes = await document.save();
   await saveAndLaunchFile(bytes, 'output.pdf');
-  log("here");
+
   document.dispose();
 }
 
