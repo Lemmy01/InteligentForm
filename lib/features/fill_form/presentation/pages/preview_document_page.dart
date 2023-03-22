@@ -79,11 +79,13 @@ class PreviewDocumentPage extends StatelessWidget {
               width: 80.w,
               child: BlocBuilder<FillContentBloc, FillContentState>(
                 builder: (context, state) {
+                  log("state.parametersMap: ${state.parametersMap}");
+                  log("state.sectionsContent: ${state.sectionsContent}");
+
                   content = replaceWithString(
                     state.parametersMap,
                     state.sectionsContent,
                   );
-                  log('parametrii: ${state.parametersMap} ');
 
                   return Text(
                     content,

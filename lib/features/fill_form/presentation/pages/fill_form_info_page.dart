@@ -42,14 +42,14 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
       concatinatedString += "${section.content}\n\n";
     }
 
+    log('in init concatinatedString $concatinatedString');
+
     context.read<FillContentBloc>().add(
           ChangeSectionsContent(
             sectionsContent: concatinatedString,
           ),
         );
   }
-
-  List<TextEditingController> listOfControllers = [];
 
   final formKey = GlobalKey<FormBuilderState>();
   @override
@@ -77,15 +77,31 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                           in widget.listOfSections)
                         Column(
                           children: [
-                            Text(
-                              "Section ${section.sectionNumber}",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineSmall!
-                                  .copyWith(
-                                    fontSize: FontConstants.largeFontSize,
-                                    color: Colors.white,
-                                  ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Section ${section.sectionNumber}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineSmall!
+                                      .copyWith(
+                                        fontSize: FontConstants.largeFontSize,
+                                        color: Colors.white,
+                                      ),
+                                ),
+                                MyButton(
+                                  width: 0,
+                                  text: AppStringConstants.scanCode,
+                                  onPressed: () {
+                                    context.read<FillContentBloc>().add(
+                                          AutoFillContent(
+                                            sectionWithField: section,
+                                          ),
+                                        );
+                                  },
+                                ),
+                              ],
                             ),
                             AppSizedBoxes.kMediumBox(),
                             for (final Field field in section.fields)
@@ -249,6 +265,7 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                       MyButton(
                         text: AppStringConstants.saveFields,
                         onPressed: () {
+                          FocusScope.of(context).unfocus();
                           if (formKey.currentState!.saveAndValidate()) {
                             context.read<FillContentBloc>().add(
                                   ChangeParametersMap(

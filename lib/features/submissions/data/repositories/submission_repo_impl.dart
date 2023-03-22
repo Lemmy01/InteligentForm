@@ -36,7 +36,12 @@ class SubmissionRepoImpl implements SubmissionRepository {
       final submissions = await submissionApi.getSubmissions(formId);
       final List<Submission> submissionsList = submissions
           .map(
-            (submission) => submission as Submission,
+            (SubmisionModel submission) => Submission(
+              content: submission.content,
+              dateWhenSubmitted: submission.dateWhenSubmitted,
+              dateWhenToBeDeleted: submission.dateWhenToBeDeleted,
+              listOfFields: submission.listOfFields,
+            ),
           )
           .toList();
       return Right(submissionsList);
@@ -53,7 +58,7 @@ class SubmissionRepoImpl implements SubmissionRepository {
   @override
   Future<Either<Failure, void>> submitSubmission(Submission submission) async {
     try {
-      await submissionApi.submitSubmission(submission as FormSubmisionModel);
+      await submissionApi.submitSubmission(submission as SubmisionModel);
       return const Right(null);
     } on MediumException catch (e) {
       return Left(
@@ -67,7 +72,7 @@ class SubmissionRepoImpl implements SubmissionRepository {
   @override
   Future<Either<Failure, void>> updateSubmission(Submission submission) async {
     try {
-      await submissionApi.updateSubmission(submission as FormSubmisionModel);
+      await submissionApi.updateSubmission(submission as SubmisionModel);
       return const Right(null);
     } on MediumException catch (e) {
       return Left(

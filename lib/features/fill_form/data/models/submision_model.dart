@@ -1,19 +1,19 @@
 import 'dart:core';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inteligent_forms/core/constants/firestore_constants.dart';
 import 'package:inteligent_forms/features/submissions/domain/entities/submission.dart';
 
-class FormSubmisionModel  extends Submission{
+class SubmisionModel extends Submission {
   final String id;
   final String formId;
 
-
-  FormSubmisionModel({
+  SubmisionModel({
     required this.id,
     required this.formId,
-    required super.dateWhenSubmitted, 
-    required super.dateWhenToBeDeleted, 
-    required super.content, 
+    required super.dateWhenSubmitted,
+    required super.dateWhenToBeDeleted,
+    required super.content,
     required super.listOfFields,
   });
 
@@ -28,14 +28,19 @@ class FormSubmisionModel  extends Submission{
     };
   }
 
-  factory FormSubmisionModel.fromJson(Map<String, dynamic> json) {
-    return FormSubmisionModel(
-      formId: json[AppFirestoreSubmittedFormsFields.formId],
-      content: json[AppFirestoreSubmittedFormsFields.content],
-      dateWhenSubmitted: json[AppFirestoreSubmittedFormsFields.dateWhenSubmited],
-      dateWhenToBeDeleted: json[AppFirestoreSubmittedFormsFields.dateToBeDeleted],
-      listOfFields: json[AppFirestoreSubmittedFormsFields.firstFields],
-      id: json[AppFirestoreSubmittedFormsFields.id],
+  factory SubmisionModel.fromJson(Map<String, dynamic> map) {
+    return SubmisionModel(
+      formId: map[AppFirestoreSubmittedFormsFields.formId],
+      content: map[AppFirestoreSubmittedFormsFields.content],
+      dateWhenSubmitted:
+          (map[AppFirestoreSubmittedFormsFields.dateWhenSubmited] as Timestamp)
+              .toDate(),
+      dateWhenToBeDeleted:
+          (map[AppFirestoreSubmittedFormsFields.dateToBeDeleted] as Timestamp)
+              .toDate(),
+      listOfFields:
+          List<String>.from(map[AppFirestoreSubmittedFormsFields.firstFields]),
+      id: map[AppFirestoreSubmittedFormsFields.id],
     );
   }
 }

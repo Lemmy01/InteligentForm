@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,6 +28,7 @@ class MainFillFormOptionsPage extends HookWidget {
     return SafeArea(
       child: CreateFieldBackGroundWidget(
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           backgroundColor: Colors.transparent,
           body: BlocListener<FillFormBloc, FillFormState>(
             listener: (context, state) {
@@ -44,8 +43,15 @@ class MainFillFormOptionsPage extends HookWidget {
                 );
               }
               if (state is UrlExistsErrorState) {
-                log('Ar trebui sa afisez un snackbar aici');
                 showMySnackBar(context, AppStringConstants.noSectionsFound);
+              }
+
+              if (state is AddSubmissionErrorState) {
+                showMySnackBar(context, AppStringConstants.somethingWentWrong);
+              }
+
+              if (state is AddSubmissionLoadedState) {
+                showMySnackBar(context, AppStringConstants.submissionAdded);
               }
             },
             child: Center(
