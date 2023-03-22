@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inteligent_forms/core/background_widgets/form_background.dart';
+import 'package:inteligent_forms/core/shared_widgets/my_snack_bar.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../core/utils/functions.dart';
@@ -29,8 +30,9 @@ class SubmissionInfoPage extends StatelessWidget {
                   size: 10.w,
                 ),
                 onPressed: () async {
-                  //TODO: Implement PDF generation
-                  await createPDF();
+                  //TODO: Implement PDF generation with block
+                  await createPDF('submission.pdf');
+                  if (context.mounted) showMySnackBar(context, "PDF generated");
                 },
               ),
             ),
