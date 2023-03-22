@@ -16,6 +16,7 @@ import '../../../../core/constants/font_constants.dart';
 import '../../../../core/utils/lists.dart';
 import '../bloc/fill_content_bloc/bloc/fill_content_event.dart';
 import '../bloc/fill_content_bloc/bloc/fill_content_state.dart';
+import '../widgets/picture_or_camera_pop_up.dart';
 
 TextEditingController controller1 = TextEditingController();
 TextEditingController controller2 = TextEditingController();
@@ -93,12 +94,13 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                                 MyButton(
                                   width: 0,
                                   text: AppStringConstants.scanCode,
-                                  onPressed: () {
-                                    context.read<FillContentBloc>().add(
-                                          AutoFillContent(
-                                            sectionWithField: section,
-                                          ),
-                                        );
+                                  onPressed: () async {
+                                    showPictureOrCameraPopUp(context);
+                                    // context.read<FillContentBloc>().add(
+                                    //       AutoFillContent(
+                                    //         sectionWithField: section,
+                                    //       ),
+                                    //     );
                                   },
                                 ),
                               ],

@@ -75,6 +75,12 @@ class AppStringConstants {
   static const String search = 'Search';
 
   static const String noSubmissions = 'No submissions';
+
+  static const String camera = 'Camera';
+
+  static const String photoGallery = 'Photo Gallery';
+
+  static const String chosePictureOrCamera = 'Choose an option to scan';
 }
 
 class AppBarStrings {
