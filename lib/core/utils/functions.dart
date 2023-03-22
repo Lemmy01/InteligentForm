@@ -1,5 +1,11 @@
+import 'dart:developer';
+import 'dart:io';
+import 'dart:ui';
+
 import 'package:dartz/dartz.dart';
 import 'package:inteligent_forms/core/utils/extensions.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 import '../../features/create_form/data/models/field_model.dart';
 import '../../features/create_form/domain/entities/field.dart';
@@ -15,10 +21,12 @@ Future<Either<Failure, List<Field>>> getFields(
   while (string.isNotEmpty) {
     index1 = string.indexOf('<');
     index2 = string.indexOf('>');
+    log("string: $string, index1: $index1, index2: $index2");
     if (index1 != -1 && index2 != -1) {
       placeholder = string.substring(index1 + 1, index2);
       try {
         fields.add(await datasource.getFields(formId, placeholder));
+        log('here2');
       } on MediumFailure catch (e) {
         return Left(
           MediumFailure(
@@ -29,8 +37,10 @@ Future<Either<Failure, List<Field>>> getFields(
     } else {
       break;
     }
+    log("string: $string");
     string = string.substring(index2 + 1);
   }
+  log('here');
   return Right(fields);
 }
 
@@ -55,4 +65,23 @@ String replaceWithString(
     }
   }
   return content;
+}
+
+Future<void> createPDF() async {
+  PdfDocument document = PdfDocument();
+  final page = document.pages.add();
+  page.graphics.drawString(
+      'Hello World!', PdfStandardFont(PdfFontFamily.helvetica, 20),
+      bounds: const Rect.fromLTWH(0, 0, 200, 100));
+
+  List<int> bytes = await document.save();
+  saveAndLaunchFile(bytes, 'output.pdf');
+  document.dispose();
+}
+
+Future<void> saveAndLaunchFile(List<int> bytes, String fileName) async {
+  final tempDir = await getTemporaryDirectory();
+  final file = File('${tempDir.path}/$fileName');
+  await file.writeAsBytes(bytes, flush: true);
+  OpenFile(file.path, true);
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inteligent_forms/core/background_widgets/form_background.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../core/utils/functions.dart';
 import '../../domain/entities/Submission.dart';
 
 class SubmissionInfoPage extends StatelessWidget {
@@ -29,6 +30,7 @@ class SubmissionInfoPage extends StatelessWidget {
                 ),
                 onTap: () {
                   //TODO: Implement PDF generation
+                  createPDF();
                 },
               ),
             ),
