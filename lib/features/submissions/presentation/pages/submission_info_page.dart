@@ -22,15 +22,15 @@ class SubmissionInfoPage extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.all(5.w),
-              child: GestureDetector(
-                child: Icon(
+              child: IconButton(
+                icon: Icon(
                   Icons.picture_as_pdf,
                   color: Colors.white,
                   size: 10.w,
                 ),
-                onTap: () {
+                onPressed: () async {
                   //TODO: Implement PDF generation
-                  createPDF();
+                  await createPDF();
                 },
               ),
             ),

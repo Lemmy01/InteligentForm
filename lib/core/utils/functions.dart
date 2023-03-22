@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:dartz/dartz.dart';
 import 'package:inteligent_forms/core/utils/extensions.dart';
+import 'package:open_file/open_file.dart' as open_file;
 import 'package:path_provider/path_provider.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
@@ -70,18 +71,20 @@ String replaceWithString(
 Future<void> createPDF() async {
   PdfDocument document = PdfDocument();
   final page = document.pages.add();
+
   page.graphics.drawString(
       'Hello World!', PdfStandardFont(PdfFontFamily.helvetica, 20),
       bounds: const Rect.fromLTWH(0, 0, 200, 100));
 
   List<int> bytes = await document.save();
-  saveAndLaunchFile(bytes, 'output.pdf');
+  await saveAndLaunchFile(bytes, 'output.pdf');
+  log("here");
   document.dispose();
 }
 
 Future<void> saveAndLaunchFile(List<int> bytes, String fileName) async {
-  final tempDir = await getTemporaryDirectory();
-  final file = File('${tempDir.path}/$fileName');
+  final dir = (await getExternalStorageDirectory());
+  final file = File('${dir!.path}/$fileName');
   await file.writeAsBytes(bytes, flush: true);
-  OpenFile(file.path, true);
+  open_file.OpenFile.open(file.path);
 }
