@@ -7,8 +7,6 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import '../bloc/fill_form_bloc.dart';
 import '../bloc/fill_form_state.dart';
 
-
-
 class ScanWidget extends StatefulWidget {
   const ScanWidget({super.key});
 
@@ -17,12 +15,12 @@ class ScanWidget extends StatefulWidget {
 }
 
 class _ScanWidgetState extends State<ScanWidget> {
-MobileScannerController cameraController = MobileScannerController();
-@override
-void initState() {
-  super.initState();
-  
-}
+  MobileScannerController cameraController = MobileScannerController();
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +72,6 @@ void initState() {
               final Uint8List? image = capture.image;
 
               debugPrint('Barcode found! ${barcode.rawValue}');
-              //TODO: Add logic to open fill form
 
               context.read<FillFormBloc>().add(
                     CheckIfFormExistsEvent(

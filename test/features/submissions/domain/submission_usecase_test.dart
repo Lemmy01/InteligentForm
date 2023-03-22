@@ -23,10 +23,12 @@ void main() {
   DateTime dateWhenSubmitted = DateTime(2021, 1, 1);
   DateTime dateWhenToBeDeleted = DateTime(2021, 1, 2);
   Submission submission = Submission(
-      content: content,
-      dateWhenSubmitted: dateWhenSubmitted,
-      dateWhenToBeDeleted: dateWhenToBeDeleted,
-      listOfFields: []);
+    content: content,
+    dateWhenSubmitted: dateWhenSubmitted,
+    dateWhenToBeDeleted: dateWhenToBeDeleted,
+    listOfFields: [],
+    id: tSubmissionId,
+  );
   List<Submission> submissions = [submission];
   group("delete", () {
     test("test delete functionality", () async {

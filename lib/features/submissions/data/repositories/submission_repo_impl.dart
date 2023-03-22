@@ -37,6 +37,7 @@ class SubmissionRepoImpl implements SubmissionRepository {
       final List<Submission> submissionsList = submissions
           .map(
             (SubmisionModel submission) => Submission(
+              id: submission.id,
               content: submission.content,
               dateWhenSubmitted: submission.dateWhenSubmitted,
               dateWhenToBeDeleted: submission.dateWhenToBeDeleted,

@@ -132,7 +132,7 @@ class _CreateSectionPageState extends State<CreateSectionPage> {
                         context.read<CreateFormBloc>().add(
                               AddSection(
                                 section: Section(
-                                  content: contentController.text.trim(),
+                                  content: contentController.text,
                                   scanType: context
                                       .read<DocumentTypeCubit>()
                                       .state

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:inteligent_forms/core/background_widgets/form_background.dart';
+import 'package:inteligent_forms/core/shared_widgets/my_snack_bar.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../core/utils/functions.dart';
 import '../../domain/entities/Submission.dart';
 
 class SubmissionInfoPage extends StatelessWidget {
@@ -21,14 +23,15 @@ class SubmissionInfoPage extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.all(5.w),
-              child: GestureDetector(
-                child: Icon(
+              child: IconButton(
+                icon: Icon(
                   Icons.picture_as_pdf,
                   color: Colors.white,
                   size: 10.w,
                 ),
-                onTap: () {
-                  //TODO: Implement PDF generation
+                onPressed: () async {
+                  await createPDF(submission.content);
+                  if (context.mounted) showMySnackBar(context, "PDF generated");
                 },
               ),
             ),

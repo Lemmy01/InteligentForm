@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:inteligent_forms/features/create_form/domain/entities/field.dart';
 import 'package:inteligent_forms/features/create_form/domain/entities/section.dart';
-import 'package:inteligent_forms/features/fill_form/data/models/section_auto_model.dart';
 import 'package:inteligent_forms/features/fill_form/domain/entities/section_with_field.dart';
 
 import '../../../../core/errors/failures.dart';
