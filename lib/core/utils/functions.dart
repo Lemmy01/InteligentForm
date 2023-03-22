@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:dartz/dartz.dart';
 import 'package:document_file_save_plus/document_file_save_plus.dart';
@@ -68,8 +67,9 @@ Future<void> createPDF(String content) async {
   final page = document.pages.add();
 
   page.graphics.drawString(
-      content, PdfStandardFont(PdfFontFamily.helvetica, 20),
-      bounds: const Rect.fromLTWH(0, 0, 200, 100));
+    content, PdfStandardFont(PdfFontFamily.helvetica, 20),
+    //bounds: const Rect.fromLTWH(0, 0, 200, 100)
+  );
 
   List<int> bytes = await document.save();
 

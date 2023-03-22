@@ -22,6 +22,7 @@ class SubmissionApi {
       final snapshot = await firestore
           .collection('submissions')
           .where('formId', isEqualTo: formId)
+          .orderBy('dateWhenSubmitted', descending: true)
           .get();
       return snapshot.docs
           .map((doc) => SubmisionModel.fromJson(doc.data()))

@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import '../../domain/entities/Submission.dart';
+
 abstract class SubmissionsEvent extends Equatable {
   const SubmissionsEvent();
 
@@ -13,4 +15,18 @@ class SubmissionsRequested extends SubmissionsEvent {
 
   @override
   List<Object> get props => [formId];
+}
+
+class SubmissionsUpdateList extends SubmissionsEvent {
+  final DateTime dateSelected;
+  final String text;
+  final List<Submission> submissions;
+  
+  const SubmissionsUpdateList(
+      {required this.submissions,
+      required this.dateSelected,
+      required this.text});
+
+  @override
+  List<Object> get props => [dateSelected];
 }

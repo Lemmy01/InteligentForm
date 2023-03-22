@@ -25,10 +25,12 @@ class SubmissionsLoading extends SubmissionsState {
 
 class SubmissionsLoaded extends SubmissionsState {
   final List<Submission> submissions;
-  const SubmissionsLoaded({required this.submissions});
+  final List<Submission> filteredSubmissions;
+  const SubmissionsLoaded(
+      {required this.submissions, required this.filteredSubmissions});
 
   @override
-  List<Object> get props => [submissions];
+  List<Object> get props => [submissions, filteredSubmissions];
 }
 
 class SubmissionsError extends SubmissionsState {

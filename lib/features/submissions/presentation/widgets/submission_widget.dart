@@ -73,7 +73,6 @@ class SubmissionCard extends StatelessWidget {
               ),
             ),
             onTap: () async {
-              //TODO: Add onTap(Navigate to SectionPages)
               await Navigator.push(
                 context,
                 MaterialPageRoute(

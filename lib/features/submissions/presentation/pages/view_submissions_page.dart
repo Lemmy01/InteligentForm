@@ -37,7 +37,6 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     controller.dispose();
     super.dispose();
   }
@@ -105,25 +104,51 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    GestureDetector(
-                      child: Icon(
-                        Icons.filter_list,
-                        color: Theme.of(context).colorScheme.onPrimary,
-                      ),
-                      onTap: () async {
-                        dateSelected =
-                            await _filtersDialog(context, dateSelected!) ??
-                                dateSelected;
-                        // setState(() {});
-                        //todo: add filter with block suiii
+                    BlocBuilder<SubmissionsBloc, SubmissionsState>(
+                      builder: (context, state) {
+                        return GestureDetector(
+                          child: Icon(
+                            Icons.filter_list,
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
+                          onTap: () async {
+                            dateSelected =
+                                await _filtersDialog(context, dateSelected!) ??
+                                    dateSelected;
+                            if (context.mounted && state is SubmissionsLoaded) {
+                              context.read<SubmissionsBloc>().add(
+                                    SubmissionsUpdateList(
+                                      dateSelected: dateSelected!,
+                                      text: controller.text,
+                                      submissions: state.submissions,
+                                    ),
+                                  );
+                            }
+                          },
+                        );
                       },
                     ),
                   ],
                 ),
                 AppSizedBoxes.kMediumBox(),
-                MyTextField(
-                  controller: controller,
-                  hintText: AppStringConstants.search,
+                BlocBuilder<SubmissionsBloc, SubmissionsState>(
+                  builder: (context, state) {
+                    return MyTextField(
+                      controller: controller,
+                      hintText: AppStringConstants.search,
+                      onChanged: (value) {
+                        if (state is SubmissionsLoaded) {
+                          context.read<SubmissionsBloc>().add(
+                                SubmissionsUpdateList(
+                                  dateSelected: dateSelected!,
+                                  text: controller.text,
+                                  submissions: state.submissions,
+                                ),
+                              );
+                        }
+                      },
+                    );
+                  },
                 ),
                 AppSizedBoxes.kMediumBox(),
                 BlocBuilder<SubmissionsBloc, SubmissionsState>(
@@ -134,7 +159,7 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
                       );
                     }
                     if (state is SubmissionsLoaded) {
-                      if (state.submissions.isEmpty) {
+                      if (state.filteredSubmissions.isEmpty) {
                         return Center(
                           child: Text(
                             AppStringConstants.noSubmissions,
@@ -149,25 +174,12 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
 
                       return GridView.builder(
                         shrinkWrap: true,
-                        itemCount: state.submissions.length,
+                        itemCount: state.filteredSubmissions.length,
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
-                          if (dateSelected != null) {
-                            if (state.submissions[index].dateWhenSubmitted
-                                        .day ==
-                                    dateSelected!.day &&
-                                state.submissions[index].dateWhenSubmitted
-                                        .month ==
-                                    dateSelected!.month &&
-                                state.submissions[index].dateWhenSubmitted
-                                        .year ==
-                                    dateSelected!.year) {
-                              return SubmissionCard(
-                                submission: state.submissions[index],
-                              );
-                            }
-                          }
-                          return null;
+                          return SubmissionCard(
+                            submission: state.filteredSubmissions[index],
+                          );
                         },
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(

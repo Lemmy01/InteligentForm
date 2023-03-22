@@ -46,12 +46,15 @@ class FillFormApi {
 
   Future<FieldModel> getFields(String formId, String placeholder) async {
     try {
+      log(placeholder);
       final doc = await firebase
           .collection(AppFirestoreCollectionNames.fields)
           .where(AppFirestoreFieldsFields.formId, isEqualTo: formId)
           .where(AppFirestoreFieldsFields.keyWord, isEqualTo: placeholder)
           .get();
-
+      if (doc.docs.isEmpty) {
+        throw MediumException(runtimeType, 'No field found');
+      }
       final field = FieldModel.fromMap(doc.docs.first.data());
       return field;
     } on FirebaseException catch (e) {
