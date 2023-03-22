@@ -76,7 +76,7 @@ class FillContentBloc extends Bloc<FillContentEvent, FillContentState> {
 
     final a = await FillFormApi(
       FirebaseFirestore.instance,
-    ).getAutoSection();
+    ).analyzeDocument();
 
     log(a.toString());
   }

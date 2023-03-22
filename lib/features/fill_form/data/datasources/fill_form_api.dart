@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,7 +11,6 @@ import '../../../../core/constants/firestore_constants.dart';
 import '../../../create_form/data/models/field_model.dart';
 import '../../../create_form/data/models/form_model.dart';
 import '../../../create_form/data/models/section_model.dart';
-import '../models/section_auto_model.dart';
 
 class FillFormApi {
   final FirebaseFirestore firebase;
@@ -88,27 +88,62 @@ class FillFormApi {
     }
   }
 
-  Future<SectionAutoModel?> getAutoSection() async {
-    try {
-      var url = Uri.parse(ApiConstants.ENDPOINT);
-      var response = await http.get(url);
+  Future<Map<String, dynamic>> analyzeDocument() async {
+    const String endpoint = ApiConstants.ENDPOINT;
+    const String apiKey = ApiConstants.KEY;
+    //TODO George Luta : schimba
+    const documentUrl = ApiConstants.TempImageLink;
 
-      log('response: ${response.statusCode}');
-      if (response.statusCode == 200) {
-        log('response: ${response.body}');
+    const modelId = ApiConstants.MODEL_ID;
 
-        SectionAutoModel model = SectionAutoModel.fromJson(response.body);
+    final url = Uri.parse(
+        '$endpoint/formrecognizer/documentModels/$modelId:analyze?api-version=2022-08-31');
 
-        log('model: $model');
+    final headers = {
+      'Content-Type': 'application/json',
+      'Ocp-Apim-Subscription-Key': apiKey,
+    };
 
-        return model;
-      }
-    } catch (e) {
-      throw MediumException(
-        runtimeType,
-        e.toString(),
-      );
+    final body = json.encode({'urlSource': documentUrl});
+
+    final response = await http.post(
+      url,
+      headers: headers,
+      body: body,
+    );
+
+    log('Response status: ${response.statusCode}');
+
+    if (response.statusCode == 202) {
+      final resultUrl = response.headers['operation-location'];
+      log('Result url: $resultUrl');
+      return await fetchResult(resultUrl!, headers);
+    } else {
+      throw Exception('Failed to analyze document: ${response.body}');
     }
-    return null;
+  }
+
+  Future<Map<String, dynamic>> fetchResult(
+    String resultUrl,
+    Map<String, String> headers,
+  ) async {
+    final url = Uri.parse(resultUrl);
+
+    log('Fetching result from $url');
+    final response = await http.get(url, headers: headers);
+
+    log('Response status: ${response.statusCode}');
+
+    if (response.statusCode == 200) {
+      while (json.decode(response.body)['status'] == 'notStarted' ||
+          json.decode(response.body)['status'] == 'running') {
+        Future.delayed(const Duration(seconds: 1));
+        return await fetchResult(resultUrl, headers);
+      }
+
+      return json.decode(response.body);
+    } else {
+      throw Exception('Failed to fetch result: ${response.body}');
+    }
   }
 }
