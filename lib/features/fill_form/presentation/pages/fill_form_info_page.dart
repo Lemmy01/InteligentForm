@@ -42,6 +42,9 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
       concatinatedString += "${section.content}\n\n";
     }
 
+    log('in init concatinatedString $concatinatedString');
+
+    
     context.read<FillContentBloc>().add(
           ChangeSectionsContent(
             sectionsContent: concatinatedString,

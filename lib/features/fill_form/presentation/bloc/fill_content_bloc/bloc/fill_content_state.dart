@@ -20,5 +20,5 @@ class FillContentState extends Equatable {
   }
 
   @override
-  List<Object> get props => [parametersMap];
+  List<Object> get props => [parametersMap, sectionsContent];
 }

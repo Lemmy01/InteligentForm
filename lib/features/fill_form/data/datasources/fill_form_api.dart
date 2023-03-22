@@ -50,7 +50,6 @@ class FillFormApi {
           .get();
 
       final field = FieldModel.fromMap(doc.docs.first.data());
-      log("doc: ${doc.docs.first.data()}");
       return field;
     } on FirebaseException catch (e) {
       throw MediumException(runtimeType, e.code);

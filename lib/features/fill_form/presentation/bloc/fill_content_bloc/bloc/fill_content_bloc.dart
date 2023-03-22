@@ -2,14 +2,25 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 
+import '../../fill_form_bloc.dart';
 import 'fill_content_event.dart';
 import 'fill_content_state.dart';
 
 class FillContentBloc extends Bloc<FillContentEvent, FillContentState> {
-  FillContentBloc()
-      : super(
+  final FillFormBloc fillFormBloc;
+  late StreamSubscription fillFormBlocSubscription;
+
+  FillContentBloc({
+    required this.fillFormBloc,
+  }) : super(
           const FillContentState(parametersMap: {}, sectionsContent: ""),
         ) {
+    fillFormBlocSubscription = fillFormBloc.stream.listen((state) {
+      if (state is AddSubmissionLoadedState) {
+        add(ResetFillContent());
+      }
+    });
+
     on<ChangeSectionsContent>(_onChangeSectionsContent);
     on<ChangeParametersMap>(_onChangeParametersMap);
     on<ResetFillContent>(_onResetFillContent);
@@ -59,5 +70,11 @@ class FillContentBloc extends Bloc<FillContentEvent, FillContentState> {
     //pentru fiecare cheie gasita (document keyword)
     //fa o functie care sa adauge in mapa de parametrii cheia si valoarea
     //ceva gen add(ChangeParametersMap(parametersMap: {documentKeyword: scanResult}));
+  }
+
+  @override
+  Future<void> close() {
+    fillFormBlocSubscription.cancel();
+    return super.close();
   }
 }

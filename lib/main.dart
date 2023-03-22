@@ -144,7 +144,9 @@ class InteligentFrormsApp extends StatelessWidget {
           ),
         ),
         BlocProvider(
-          create: (context) => FillContentBloc(),
+          create: (context) => FillContentBloc(
+            fillFormBloc: context.read<FillFormBloc>(),
+          ),
         ),
         BlocProvider(
           create: (context) => SubmissionsBloc(

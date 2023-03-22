@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:inteligent_forms/core/constants/firestore_constants.dart';
@@ -67,7 +65,6 @@ class FormApi {
           );
       //delete form
       await firestore.collection('forms').doc(id).delete();
-      log('Form deleted : $id');
     } on FirebaseException {
       throw MediumException(
           runtimeType, AppStringFailuresMessages.unexpectedFailure);

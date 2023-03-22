@@ -78,10 +78,8 @@ class FillFormRepositoryImpl implements FillFormRepository {
           fields: fields,
         ),
       );
-      log(fields.toString());
       fields = [];
     }
-    log(sectionWithFields.toString());
     return Right(sectionWithFields);
   }
 }

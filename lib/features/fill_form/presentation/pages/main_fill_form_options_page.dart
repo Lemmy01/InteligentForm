@@ -44,6 +44,14 @@ class MainFillFormOptionsPage extends HookWidget {
               if (state is UrlExistsErrorState) {
                 showMySnackBar(context, AppStringConstants.noSectionsFound);
               }
+
+              if (state is AddSubmissionErrorState) {
+                showMySnackBar(context, AppStringConstants.somethingWentWrong);
+              }
+
+              if (state is AddSubmissionLoadedState) {
+                showMySnackBar(context, AppStringConstants.submissionAdded);
+              }
             },
             child: Center(
               child: SingleChildScrollView(
