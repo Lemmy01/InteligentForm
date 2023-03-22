@@ -34,6 +34,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   device_preview: ^1.1.0
+  document_file_save_plus: ^2.0.0
   equatable: ^2.0.5
   fake_cloud_firestore: ^2.4.0
   firebase_auth: ^4.2.9

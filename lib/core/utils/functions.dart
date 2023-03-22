@@ -2,8 +2,8 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:dartz/dartz.dart';
+import 'package:document_file_save_plus/document_file_save_plus.dart';
 import 'package:inteligent_forms/core/utils/extensions.dart';
-import 'package:open_file/open_file.dart' as open_file;
 import 'package:path_provider/path_provider.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
@@ -63,23 +63,25 @@ String replaceWithString(
   return content;
 }
 
-Future<void> createPDF() async {
+Future<void> createPDF(String content) async {
   PdfDocument document = PdfDocument();
   final page = document.pages.add();
 
   page.graphics.drawString(
-      'Hello World!', PdfStandardFont(PdfFontFamily.helvetica, 20),
+      content, PdfStandardFont(PdfFontFamily.helvetica, 20),
       bounds: const Rect.fromLTWH(0, 0, 200, 100));
 
   List<int> bytes = await document.save();
-  await saveAndLaunchFile(bytes, 'output.pdf');
 
+  await saveAndLaunchFile(bytes,
+      'PDF${DateTime.now().toIso8601String().replaceAll('.', '-').replaceAll(':', '-')}');
   document.dispose();
 }
 
 Future<void> saveAndLaunchFile(List<int> bytes, String fileName) async {
   final dir = (await getExternalStorageDirectory());
-  final file = File('${dir!.path}/$fileName');
-  await file.writeAsBytes(bytes, flush: true);
-  open_file.OpenFile.open(file.path);
+  final file1 = File('${dir!.path}/$fileName');
+  final file = await file1.writeAsBytes(bytes, flush: true);
+  final data = file.readAsBytesSync();
+  await DocumentFileSavePlus().saveFile(data, fileName, 'application/pdf');
 }
