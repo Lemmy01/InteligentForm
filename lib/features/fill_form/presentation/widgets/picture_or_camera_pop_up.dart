@@ -5,11 +5,13 @@ import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:sizer/sizer.dart';
 
 Future<void> showPictureOrCameraPopUp(
-  BuildContext context,
-) async {
+  BuildContext context, {
+  required Function() onCameraPressed,
+  required Function() onPhotoGalleryPressed,
+}) async {
   return showDialog<void>(
     context: context,
-    builder: (BuildContext context) {
+    builder: (BuildContext dialogContext) {
       return Dialog(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
@@ -35,7 +37,11 @@ Future<void> showPictureOrCameraPopUp(
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          onCameraPressed();
+
+                          Navigator.of(dialogContext).pop();
+                        },
                         child: const Text(AppStringConstants.camera),
                       ),
                     ),
@@ -44,7 +50,11 @@ Future<void> showPictureOrCameraPopUp(
                     ),
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          onPhotoGalleryPressed();
+
+                          Navigator.of(dialogContext).pop();
+                        },
                         child: const Text(
                           AppStringConstants.photoGallery,
                         ),

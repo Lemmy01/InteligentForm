@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../domain/entities/section_with_field.dart';
 
@@ -31,13 +32,23 @@ class ChangeParametersMap extends FillContentEvent {
 
 class ResetFillContent extends FillContentEvent {}
 
-class AutoFillContent extends FillContentEvent {
-  final SectionWithField sectionWithField;
+// class AutoFillContent extends FillContentEvent {
+//   final SectionWithField sectionWithField;
 
-  const AutoFillContent({
-    required this.sectionWithField,
-  });
+//   const AutoFillContent({
+//     required this.sectionWithField,
+//   });
+
+//   @override
+//   List<Object> get props => [sectionWithField];
+// }
+
+class UploadFileEvent extends FillContentEvent {
+  final ImageSource imageSource;
+  final SectionWithField section;
+
+  const UploadFileEvent(this.imageSource, this.section);
 
   @override
-  List<Object> get props => [sectionWithField];
+  List<Object> get props => [imageSource, section];
 }

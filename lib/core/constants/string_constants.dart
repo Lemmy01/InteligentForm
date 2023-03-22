@@ -81,6 +81,10 @@ class AppStringConstants {
   static const String photoGallery = 'Photo Gallery';
 
   static const String chosePictureOrCamera = 'Choose an option to scan';
+
+  static const String images = 'Images';
+
+  static const String noImageSelected = 'No image selected';
 }
 
 class AppBarStrings {

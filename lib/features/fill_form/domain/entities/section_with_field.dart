@@ -11,4 +11,9 @@ class SectionWithField extends Section {
     required super.sectionNumber,
     required this.fields,
   });
+
+  @override
+  String toString() {
+    return 'SectionWithField(content: $content, scanType: $scanType, sectionNumber: $sectionNumber, fields: $fields)';
+  }
 }
