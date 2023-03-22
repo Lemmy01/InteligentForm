@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import '../../../../domain/entities/section_with_field.dart';
+
 abstract class FillContentEvent extends Equatable {
   const FillContentEvent();
 
@@ -28,3 +30,14 @@ class ChangeParametersMap extends FillContentEvent {
 }
 
 class ResetFillContent extends FillContentEvent {}
+
+class AutoFillContent extends FillContentEvent {
+  final SectionWithField sectionWithField;
+
+  const AutoFillContent({
+    required this.sectionWithField,
+  });
+
+  @override
+  List<Object> get props => [sectionWithField];
+}

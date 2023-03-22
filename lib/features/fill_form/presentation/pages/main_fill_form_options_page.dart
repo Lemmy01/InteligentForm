@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -29,6 +27,7 @@ class MainFillFormOptionsPage extends HookWidget {
     return SafeArea(
       child: CreateFieldBackGroundWidget(
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           backgroundColor: Colors.transparent,
           body: BlocListener<FillFormBloc, FillFormState>(
             listener: (context, state) {
@@ -43,7 +42,6 @@ class MainFillFormOptionsPage extends HookWidget {
                 );
               }
               if (state is UrlExistsErrorState) {
-                log('Ar trebui sa afisez un snackbar aici');
                 showMySnackBar(context, AppStringConstants.noSectionsFound);
               }
             },
