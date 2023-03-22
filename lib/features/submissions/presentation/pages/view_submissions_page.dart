@@ -14,6 +14,7 @@ import '../../../forms/domain/entities/form_entity.dart';
 import '../bloc/submissions_bloc.dart';
 import '../bloc/submissions_event.dart';
 import '../bloc/submissions_state.dart';
+import '../../../forms/presentation/widgets/qr_wifget.dart';
 
 class ViewSubmissionsPage extends StatefulWidget {
   const ViewSubmissionsPage({super.key, required this.form});
@@ -48,6 +49,20 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           actions: [
+            AppSizedBoxes.kSmallBox(),
+            GestureDetector(
+              child: Icon(Icons.qr_code,
+                  color: Theme.of(context).colorScheme.onPrimary),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => QrCode(
+                              formId: widget.form.id,
+                            )));
+              },
+            ),
+            AppSizedBoxes.kMediumBox(),
             GestureDetector(
               child: Icon(Icons.copy,
                   color: Theme.of(context).colorScheme.onPrimary),

@@ -56,6 +56,5 @@ class FillFormErrorState extends FillFormState {
 
   const FillFormErrorState(this.message);
 
-  @override
-  List<Object> get props => [message];
+  
 }

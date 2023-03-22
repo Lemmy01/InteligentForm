@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:inteligent_forms/core/utils/extensions.dart';
 
 import '../../features/create_form/data/models/field_model.dart';
 import '../../features/create_form/domain/entities/field.dart';
@@ -38,7 +39,20 @@ String replaceWithString(
   String content,
 ) {
   parametersMap.forEach((key, value) {
-    content = content.replaceAll('<$key>', value);
+    if (value is String && value.isNotEmpty) {
+      content = content.replaceAll('<$key>', value);
+    } else if (value is DateTime) {
+      content = content.replaceAll('<$key>', value.toDateString());
+    }
   });
+  while (content.isNotEmpty) {
+    int index1 = content.indexOf('<');
+    int index2 = content.indexOf('>');
+    if (index1 != -1 && index2 != -1) {
+      content = content.replaceRange(index1, index2 + 1, '_');
+    } else {
+      break;
+    }
+  }
   return content;
 }
