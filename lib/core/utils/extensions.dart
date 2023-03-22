@@ -6,6 +6,6 @@ extension EmailPassIfDebug on String {
 
 extension DateToString on DateTime {
   String toDateString() {
-    return "${year}-${month}-${day}";
+    return "$year-$month-$day";
   }
 }

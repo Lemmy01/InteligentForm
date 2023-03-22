@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:inteligent_forms/core/constants/app_icons.dart';
@@ -10,7 +11,6 @@ import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_button_with_child.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
-import 'package:inteligent_forms/features/fill_form/presentation/widgets/scan_widget.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../core/background_widgets/create_field_background_widget.dart';
@@ -57,33 +57,50 @@ class MainFillFormOptionsPage extends HookWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      MyButtonWithChild(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              AppStringConstants.scanCode,
-                              style: TextStyle(
-                                  fontSize: FontConstants.mediumFontSize,
+                      BlocBuilder<FillFormBloc, FillFormState>(
+                        builder: (context, state) {
+                          return MyButtonWithChild(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  AppStringConstants.scanCode,
+                                  style: TextStyle(
+                                      fontSize: FontConstants.mediumFontSize,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onPrimary),
+                                ),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                Icon(
+                                  AppIcons.scanCode,
+                                  size: FontConstants.mediumFontSize,
                                   color:
-                                      Theme.of(context).colorScheme.onPrimary),
+                                      Theme.of(context).colorScheme.onPrimary,
+                                ),
+                              ],
                             ),
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            Icon(
-                              AppIcons.scanCode,
-                              size: FontConstants.mediumFontSize,
-                              color: Theme.of(context).colorScheme.onPrimary,
-                            ),
-                          ],
-                        ),
-                        onPressed: () {
-                          //TODO George Luta : scan code
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (context) => const ScanWidget()),
+                            onPressed: () async {
+                              //TODO George Luta : scan code
+                              //   Navigator.of(context).push(
+                              //     MaterialPageRoute(
+                              //         builder: (context) => const ScanWidget()),
+
+                              //   );
+                              String barcodeScanRes =
+                                  await FlutterBarcodeScanner.scanBarcode(
+                                      '#ff6666', 'Cancel', true, ScanMode.QR);
+                              if (context.mounted) {
+                                context.read<FillFormBloc>().add(
+                                      CheckIfFormExistsEvent(
+                                        barcodeScanRes.trim(),
+                                      ),
+                                    );
+                              }
+                            },
                           );
                         },
                       ),

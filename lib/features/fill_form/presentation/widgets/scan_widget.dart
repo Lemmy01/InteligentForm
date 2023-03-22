@@ -7,11 +7,22 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import '../bloc/fill_form_bloc.dart';
 import '../bloc/fill_form_state.dart';
 
-MobileScannerController cameraController = MobileScannerController();
 
-class ScanWidget extends StatelessWidget {
+
+class ScanWidget extends StatefulWidget {
   const ScanWidget({super.key});
 
+  @override
+  State<ScanWidget> createState() => _ScanWidgetState();
+}
+
+class _ScanWidgetState extends State<ScanWidget> {
+MobileScannerController cameraController = MobileScannerController();
+@override
+void initState() {
+  super.initState();
+  
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,18 +68,19 @@ class ScanWidget extends StatelessWidget {
           return MobileScanner(
             // fit: BoxFit.contain,
             controller: cameraController,
-            onDetect: (capture) {
-              final List<Barcode> barcodes = capture.barcodes;
+            onDetect: (capture) async {
+              final Barcode barcode = capture.barcodes
+                  .firstWhere((element) => element.rawValue != null);
               final Uint8List? image = capture.image;
-              for (final barcode in barcodes) {
-                debugPrint('Barcode found! ${barcode.rawValue}');
-                //TODO: Add logic to open fill form
-                context.read<FillFormBloc>().add(
-                      CheckIfFormExistsEvent(
-                        barcode.rawValue!.trim(),
-                      ),
-                    );
-              }
+
+              debugPrint('Barcode found! ${barcode.rawValue}');
+              //TODO: Add logic to open fill form
+
+              context.read<FillFormBloc>().add(
+                    CheckIfFormExistsEvent(
+                      barcode.rawValue!.trim(),
+                    ),
+                  );
             },
           );
         },
