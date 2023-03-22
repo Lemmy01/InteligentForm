@@ -10,6 +10,7 @@ import 'package:inteligent_forms/features/submissions/presentation/widgets/submi
 
 import '../../../../core/constants/font_constants.dart';
 import '../../../forms/domain/entities/form_entity.dart';
+import '../../../forms/presentation/widgets/qr_wifget.dart';
 
 class ViewSubmissionsPage extends StatefulWidget {
   const ViewSubmissionsPage({super.key, required this.form});
@@ -38,6 +39,20 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           actions: [
+            AppSizedBoxes.kSmallBox(),
+            GestureDetector(
+              child: Icon(Icons.qr_code,
+                  color: Theme.of(context).colorScheme.onPrimary),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => QrCode(
+                              formId: widget.form.id,
+                            )));
+              },
+            ),
+            AppSizedBoxes.kMediumBox(),
             GestureDetector(
               child: Icon(Icons.copy,
                   color: Theme.of(context).colorScheme.onPrimary),

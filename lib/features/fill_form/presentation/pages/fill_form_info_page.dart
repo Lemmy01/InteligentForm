@@ -96,7 +96,8 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                                     FormBuilderTextField(
                                       name: field.placeholderKeyWord,
                                       validator: (value) {
-                                        if (value == null || value.isEmpty) {
+                                        if (field.mandatory == true &&
+                                            (value == null || value.isEmpty)) {
                                           return 'Please select at least one option';
                                         }
                                         return null;
@@ -134,7 +135,8 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                                         hintText: field.label,
                                       ),
                                       validator: (value) {
-                                        if (value == null) {
+                                        if (field.mandatory == true &&
+                                            value == null) {
                                           return 'Please select at least one option';
                                         }
                                         return null;
@@ -145,7 +147,8 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                                     FormBuilderTextField(
                                       name: field.placeholderKeyWord,
                                       validator: (value) {
-                                        if (value == null || value.isEmpty) {
+                                        if (field.mandatory == true &&
+                                            (value == null || value.isEmpty)) {
                                           return 'Please select at least one option';
                                         }
                                         return null;
@@ -180,7 +183,8 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                                         hintText: field.label,
                                       ),
                                       validator: (value) {
-                                        if (value == null || value.isEmpty) {
+                                        if (field.mandatory == true &&
+                                            (value == null || value.isEmpty)) {
                                           return 'Please select at least one option';
                                         }
                                         return null;
@@ -197,7 +201,8 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                                     FormBuilderCheckboxGroup(
                                       name: field.placeholderKeyWord,
                                       validator: (value) {
-                                        if (value == null || value.isEmpty) {
+                                        if (field.mandatory == true &&
+                                            (value == null || value.isEmpty)) {
                                           return 'Please select at least one option';
                                         }
                                         return null;

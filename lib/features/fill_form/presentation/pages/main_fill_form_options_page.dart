@@ -10,6 +10,7 @@ import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_button.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_button_with_child.dart';
 import 'package:inteligent_forms/core/shared_widgets/my_text_field.dart';
+import 'package:inteligent_forms/features/fill_form/presentation/widgets/scan_widget.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../core/background_widgets/create_field_background_widget.dart';
@@ -80,6 +81,10 @@ class MainFillFormOptionsPage extends HookWidget {
                         ),
                         onPressed: () {
                           //TODO George Luta : scan code
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => const ScanWidget()),
+                          );
                         },
                       ),
                       AppSizedBoxes.kMediumBox(),
