@@ -18,20 +18,15 @@ class FieldCard extends StatelessWidget {
       color: Theme.of(context).colorScheme.onPrimary,
       child: Padding(
         padding: EdgeInsets.all(2.w),
-        child: GestureDetector(
-          child: Row(
-            children: [
-              const Icon(Icons.drag_handle),
-              const SizedBox(
-                width: 10,
-              ),
-              Text(field.label),
-              const Spacer(),
-            ],
-          ),
-          onTap: () {
-            //TODO: Add onTap(Navigate to SectionPages)
-          },
+        child: Row(
+          children: [
+            const Icon(Icons.drag_handle),
+            const SizedBox(
+              width: 10,
+            ),
+            Text(field.label),
+            const Spacer(),
+          ],
         ),
       ),
     );

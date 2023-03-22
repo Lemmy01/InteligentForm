@@ -8,4 +8,6 @@ class ApiConstants {
 
   static const String TempImageLink =
       'https://i.pinimg.com/originals/1e/71/af/1e71afc91f1054ac997722554f909c32.jpg';
+
+  static const String MODEL_ID = 'prebuilt-document';
 }

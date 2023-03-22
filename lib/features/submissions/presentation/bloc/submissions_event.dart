@@ -21,7 +21,7 @@ class SubmissionsUpdateList extends SubmissionsEvent {
   final DateTime dateSelected;
   final String text;
   final List<Submission> submissions;
-  
+
   const SubmissionsUpdateList(
       {required this.submissions,
       required this.dateSelected,
@@ -29,4 +29,13 @@ class SubmissionsUpdateList extends SubmissionsEvent {
 
   @override
   List<Object> get props => [dateSelected];
+}
+
+class SubmissionDelete extends SubmissionsEvent {
+  final String submissionId;
+  final String formId;
+  const SubmissionDelete({required this.submissionId, required this.formId});
+
+  @override
+  List<Object> get props => [submissionId, formId];
 }

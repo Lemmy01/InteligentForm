@@ -19,25 +19,20 @@ class SectionCard extends StatelessWidget {
       color: Theme.of(context).colorScheme.onPrimary,
       child: Padding(
         padding: EdgeInsets.all(3.5.w),
-        child: GestureDetector(
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  '${AppStringConstants.section}  ${section.content}...',
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                '${AppStringConstants.section}  ${section.content}...',
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
-              const Spacer(),
-              const Text(
-                AppStringConstants.clickForDetailes,
-              ),
-            ],
-          ),
-          onTap: () {
-            //TODO: Add onTap(Navigate to SectionPages)
-          },
+            ),
+            const Spacer(),
+            const Text(
+              AppStringConstants.clickForDetailes,
+            ),
+          ],
         ),
       ),
     );

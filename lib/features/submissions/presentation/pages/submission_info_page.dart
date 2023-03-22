@@ -30,7 +30,6 @@ class SubmissionInfoPage extends StatelessWidget {
                   size: 10.w,
                 ),
                 onPressed: () async {
-                  //TODO: Implement PDF generation with block
                   await createPDF(submission.content);
                   if (context.mounted) showMySnackBar(context, "PDF generated");
                 },

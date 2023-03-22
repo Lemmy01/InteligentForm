@@ -18,6 +18,7 @@ class SubmissionsBloc extends Bloc<SubmissionsEvent, SubmissionsState> {
     on<SubmissionsRequested>(_onSubmissionsRequested);
 
     on<SubmissionsUpdateList>(_onSubmissionsChangedDate);
+    on<SubmissionDelete>(_onSubmissionDelete);
   }
 
   Future<void> _onSubmissionsRequested(
@@ -74,5 +75,23 @@ class SubmissionsBloc extends Bloc<SubmissionsEvent, SubmissionsState> {
     }
 
     return filteredList;
+  }
+
+  Future<void> _onSubmissionDelete(
+    SubmissionDelete event,
+    Emitter<SubmissionsState> emit,
+  ) async {
+    emit(const SubmissionsLoading());
+    (await submissionUsecase.deleteSubmission(
+      event.submissionId,
+    ))
+        .fold(
+      (failure) => emit(SubmissionsError(
+        message: failure.failureMessage,
+      )),
+      (submissions) => add(
+        SubmissionsRequested(formId: event.formId),
+      ),
+    );
   }
 }

@@ -5,9 +5,10 @@ import 'package:inteligent_forms/core/utils/logger.dart';
 
 import '../../../../core/constants/string_constants.dart';
 import '../../domain/repositories/authentication_repo.dart';
+import '../datasources/remote/authentication_firestore_api.dart';
 
 class AuthenticationRepoImpl extends AuthenticationRepo {
-  final authFirestoreApi;
+  final AuthenticationFirestoreApi authFirestoreApi;
 
   AuthenticationRepoImpl({required this.authFirestoreApi});
 

@@ -5,11 +5,10 @@ import 'package:inteligent_forms/core/constants/firestore_constants.dart';
 import 'package:inteligent_forms/features/submissions/domain/entities/submission.dart';
 
 class SubmisionModel extends Submission {
-  final String id;
   final String formId;
 
   SubmisionModel({
-    required this.id,
+    required super.id,
     required this.formId,
     required super.dateWhenSubmitted,
     required super.dateWhenToBeDeleted,

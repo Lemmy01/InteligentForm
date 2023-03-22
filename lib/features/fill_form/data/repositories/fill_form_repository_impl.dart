@@ -1,4 +1,4 @@
-import 'dart:developer';
+import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:inteligent_forms/features/create_form/domain/entities/field.dart';
@@ -81,5 +81,23 @@ class FillFormRepositoryImpl implements FillFormRepository {
       fields = [];
     }
     return Right(sectionWithFields);
+  }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> uploadImageToFirebase({
+    required File file,
+  }) async {
+    try {
+      final resultMap = await datasource.analizeDocument(
+        file: file,
+      );
+      return Right(resultMap);
+    } on MediumFailure catch (e) {
+      return Left(
+        MediumFailure(
+          failureMessage: e.failureMessage,
+        ),
+      );
+    }
   }
 }

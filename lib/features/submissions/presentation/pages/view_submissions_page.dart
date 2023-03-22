@@ -179,6 +179,7 @@ class _ViewSubmissionsPageState extends State<ViewSubmissionsPage> {
                         itemBuilder: (context, index) {
                           return SubmissionCard(
                             submission: state.filteredSubmissions[index],
+                            formId: widget.form.id,
                           );
                         },
                         gridDelegate:
