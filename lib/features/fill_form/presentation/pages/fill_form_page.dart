@@ -10,9 +10,11 @@ class FillFormPage extends StatelessWidget {
   const FillFormPage({
     super.key,
     required this.sections,
+    required this.formId,
   });
 
   final List<SectionWithField> sections;
+  final String formId;
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +43,11 @@ class FillFormPage extends StatelessWidget {
             children: [
               FillFormInfoPage(
                 listOfSections: sections,
+                formId: formId,
               ),
-              const PreviewDocumentPage(),
+              PreviewDocumentPage(
+                formId: formId,
+              ),
             ],
           ),
         ),

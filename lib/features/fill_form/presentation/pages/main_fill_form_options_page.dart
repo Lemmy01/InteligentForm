@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:inteligent_forms/core/constants/app_icons.dart';
@@ -37,6 +38,7 @@ class MainFillFormOptionsPage extends HookWidget {
                   MaterialPageRoute(
                     builder: (context) => FillFormPage(
                       sections: state.sections,
+                      formId: state.formId,
                     ),
                   ),
                 );
@@ -55,30 +57,51 @@ class MainFillFormOptionsPage extends HookWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      MyButtonWithChild(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              AppStringConstants.scanCode,
-                              style: TextStyle(
-                                  fontSize: FontConstants.mediumFontSize,
+                      BlocBuilder<FillFormBloc, FillFormState>(
+                        builder: (context, state) {
+                          return MyButtonWithChild(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  AppStringConstants.scanCode,
+                                  style: TextStyle(
+                                      fontSize: FontConstants.mediumFontSize,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onPrimary),
+                                ),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                Icon(
+                                  AppIcons.scanCode,
+                                  size: FontConstants.mediumFontSize,
                                   color:
-                                      Theme.of(context).colorScheme.onPrimary),
+                                      Theme.of(context).colorScheme.onPrimary,
+                                ),
+                              ],
                             ),
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            Icon(
-                              AppIcons.scanCode,
-                              size: FontConstants.mediumFontSize,
-                              color: Theme.of(context).colorScheme.onPrimary,
-                            ),
-                          ],
-                        ),
-                        onPressed: () {
-                          //TODO George Luta : scan code
+                            onPressed: () async {
+                              //TODO George Luta : scan code
+                              //   Navigator.of(context).push(
+                              //     MaterialPageRoute(
+                              //         builder: (context) => const ScanWidget()),
+
+                              //   );
+                              String barcodeScanRes =
+                                  await FlutterBarcodeScanner.scanBarcode(
+                                      '#ff6666', 'Cancel', true, ScanMode.QR);
+                              if (context.mounted) {
+                                context.read<FillFormBloc>().add(
+                                      CheckIfFormExistsEvent(
+                                        barcodeScanRes.trim(),
+                                      ),
+                                    );
+                              }
+                            },
+                          );
                         },
                       ),
                       AppSizedBoxes.kMediumBox(),
@@ -108,11 +131,13 @@ class MainFillFormOptionsPage extends HookWidget {
                                 width: 40.w,
                                 text: AppStringConstants.fillFormFromUrl,
                                 onPressed: () {
+                                  FocusScope.of(context).unfocus();
                                   context.read<FillFormBloc>().add(
                                         CheckIfFormExistsEvent(
                                           urlController.text.trim(),
                                         ),
                                       );
+                                  urlController.clear();
                                 },
                               );
                             },

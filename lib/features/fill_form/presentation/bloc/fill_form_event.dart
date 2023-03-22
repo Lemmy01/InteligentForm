@@ -24,3 +24,53 @@ class CheckIfFormExistsEvent extends FillFormEvent {
   @override
   List<Object> get props => [url];
 }
+
+class AddSumbisionEvent extends FillFormEvent {
+  final String formId;
+  final String content;
+  final DateTime dateWhenSubmited;
+  final DateTime dateToBeDeleted;
+  final List<String> listOfFields;
+
+  const AddSumbisionEvent({
+    required this.formId,
+    required this.content,
+    required this.dateWhenSubmited,
+    required this.dateToBeDeleted,
+    required this.listOfFields,
+  });
+
+  @override
+  List<Object> get props => [
+        formId,
+        content,
+        dateWhenSubmited,
+        dateToBeDeleted,
+        listOfFields,
+      ];
+}
+
+class AddSubmissionLoadingState extends FillFormState {
+  const AddSubmissionLoadingState();
+
+  @override
+  List<Object> get props => [];
+}
+
+class AddSubmissionErrorState extends FillFormState {
+  final String message;
+
+  const AddSubmissionErrorState(this.message);
+
+  @override
+  List<Object> get props => [message];
+}
+
+class AddSubmissionLoadedState extends FillFormState {
+  final String message;
+
+  const AddSubmissionLoadedState(this.message);
+
+  @override
+  List<Object> get props => [message];
+}

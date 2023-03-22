@@ -8,3 +8,11 @@ String concatinateStringsComma(List<String> strings) {
   }
   return result;
 }
+
+String concatinateStrings(List<String> strings) {
+  String result = '';
+  for (int i = 0; i < strings.length; i++) {
+    result += strings[i];
+  }
+  return result;
+}
