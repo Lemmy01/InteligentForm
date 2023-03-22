@@ -40,8 +40,9 @@ class ProfilePage extends StatelessWidget {
             ),
             child: BlocConsumer<ProfileBloc, ProfileState>(
               listener: (context, state) {
-                if (state is ProfileError)
+                if (state is ProfileError) {
                   showMySnackBar(context, state.message);
+                }
               },
               builder: (context, state) {
                 return Column(
@@ -52,6 +53,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                     if (state is ProfileLoaded)
                       Card(
+                        color: Theme.of(context).colorScheme.tertiary,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
                             AppNumberConstants.longTileRadius,

@@ -9,8 +9,8 @@ class MyEditSlidable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MySlidableAction(
-      backgroundColor: Theme.of(context).colorScheme.tertiary,
-      foregroundColor: Theme.of(context).colorScheme.onTertiary,
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      foregroundColor: Theme.of(context).colorScheme.onPrimary,
       icon: Icons.edit,
       onPressed: onPressed,
     );

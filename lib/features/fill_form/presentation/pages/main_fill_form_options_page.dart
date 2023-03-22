@@ -90,12 +90,6 @@ class MainFillFormOptionsPage extends HookWidget {
                               ],
                             ),
                             onPressed: () async {
-                              //TODO George Luta : scan code
-                              //   Navigator.of(context).push(
-                              //     MaterialPageRoute(
-                              //         builder: (context) => const ScanWidget()),
-
-                              //   );
                               String barcodeScanRes =
                                   await FlutterBarcodeScanner.scanBarcode(
                                       '#ff6666', 'Cancel', true, ScanMode.QR);
@@ -133,6 +127,7 @@ class MainFillFormOptionsPage extends HookWidget {
                           BlocBuilder<FillFormBloc, FillFormState>(
                             builder: (context, state) {
                               return MyButton(
+                                color: Theme.of(context).colorScheme.secondary,
                                 isLoading: state is UrlExistsLoadingState,
                                 width: 40.w,
                                 text: AppStringConstants.fillFormFromUrl,

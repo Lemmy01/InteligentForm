@@ -82,9 +82,9 @@ class InteligentFrormsApp extends StatelessWidget {
       colorScheme: ColorScheme.fromSwatch(
         primarySwatch: Colors.teal,
       ).copyWith(
-        primary: const Color(0XFF01949A),
-        secondary: const Color(0XFF004369),
-      ),
+          primary: const Color(0XFF01949A),
+          secondary: const Color(0XFF004369),
+          tertiary: const Color(0XFFE5DDC8)),
     );
     return MultiBlocProvider(
       providers: [
