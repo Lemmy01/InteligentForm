@@ -4,6 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:inteligent_forms/core/constants/font_constants.dart';
 import 'package:inteligent_forms/core/constants/string_constants.dart';
 import 'package:inteligent_forms/core/shared_widgets/app_sized_boxes.dart';
+import 'package:inteligent_forms/core/shared_widgets/my_delete_slidable.dart';
 import 'package:inteligent_forms/features/submissions/domain/entities/Submission.dart';
 import 'package:sizer/sizer.dart';
 
@@ -26,17 +27,11 @@ class SubmissionCard extends StatelessWidget {
       endActionPane: ActionPane(
         motion: const ScrollMotion(),
         children: [
-          SlidableAction(
-            // An action can be bigger than the others.
-            flex: 2,
-            onPressed: (_) {
+          MyDeleteSlidable(
+            onPressed: () {
               context.read<SubmissionsBloc>().add(SubmissionDelete(
                   submissionId: submission.id, formId: formId));
             },
-            backgroundColor: Colors.red,
-            foregroundColor: Colors.white,
-            icon: Icons.delete,
-            label: 'Delete',
           ),
         ],
       ),
