@@ -18,7 +18,7 @@ class FieldTypeConstants {
   static const String singleChoice = 'SingleChoice';
   static const String multipleChoice = 'MultipleChoice';
 }
-
+/**Eu <nume> am cnp-ul <cnp> un nr decimal e <decimal> ,valabilitatea <valabilitate> si am ales optiunea single <optini> si cele multiple <optiunim> */
 List<String> fieldTypeList = [
   FieldTypeConstants.text,
   FieldTypeConstants.number,

@@ -100,14 +100,6 @@ class FillContentBloc extends Bloc<FillContentEvent, FillContentState> {
     UploadFileEvent event,
     Emitter<FillContentState> emit,
   ) async {
-    //deschide camera foto
-    //face scan
-    //ia rezultatul scanului intr-o mapa
-
-    //pentru fiecare cheie gasita (document keyword)
-    //fa o functie care sa adauge in mapa de parametrii cheia si valoarea
-    //ceva gen add(ChangeParametersMap(parametersMap: {documentKeyword: scanResult}));
-
     emit(
       state.copyWith(isLoading: true),
     );

@@ -53,7 +53,6 @@ class ProfilePage extends StatelessWidget {
                       ),
                     if (state is ProfileLoaded)
                       Card(
-                        color: Theme.of(context).colorScheme.tertiary,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
                             AppNumberConstants.longTileRadius,

@@ -108,7 +108,7 @@ class PreviewDocumentPage extends StatelessWidget {
                       isLoading: formState is FillFormLoadingState,
                       width: 50.w,
                       color: Theme.of(context).colorScheme.secondary,
-                      text: AppCreateFormString.createForm,
+                      text: AppCreateFormString.submitForm,
                       onPressed: () {
                         context.read<FillFormBloc>().add(
                               AddSumbisionEvent(
@@ -126,7 +126,14 @@ class PreviewDocumentPage extends StatelessWidget {
                                           i < 5;
                                       i++)
                                     stateContent.parametersMap.values
-                                        .elementAt(i)
+                                                .elementAt(i)
+                                                .runtimeType ==
+                                            DateTime
+                                        ? stateContent.parametersMap.values
+                                            .elementAt(i)
+                                            .toString()
+                                            .substring(0, 10)
+                                        : "${stateContent.parametersMap.values.elementAt(i)}"
                                 ],
                               ),
                             );

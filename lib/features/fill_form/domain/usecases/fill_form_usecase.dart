@@ -6,6 +6,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:inteligent_forms/core/errors/failures.dart';
 import 'package:inteligent_forms/features/fill_form/domain/entities/section_with_field.dart';
 
+import '../../../../core/utils/date_time_functions.dart';
+import '../../../../core/utils/lists.dart';
 import '../repositories/fill_form_repository.dart';
 
 class GetFormUsecase {
@@ -53,31 +55,44 @@ class GetFormUsecase {
         ))
             .fold((l) => l, (r) {
           if (r.containsKey('analyzeResult')) {
-            log(r['analyzeResult'].toString());
             if (r['analyzeResult'].containsKey('keyValuePairs')) {
-              log('222');
               for (final field in section.fields) {
-                log('333');
                 for (final documentKeword in field.docKeys) {
-                  log('444');
-
+                  //
+                  //
+                  //
                   for (final pair in r['analyzeResult']['keyValuePairs']) {
-                    log('555');
                     if (pair.containsKey('key') && pair.containsKey('value')) {
-                      log('666');
                       if (pair['key'].containsKey('content') &&
                           pair['value'].containsKey('content')) {
-                        log('------');
-                        log(pair['key']['content']);
-                        log(documentKeword);
-                        log('------');
-                        for (final apiDocKey in makeListFromString(
-                            pair['key']['content'], '/')) {
-                          log('keyValue: $apiDocKey');
+                        //
+                        //
+                        //de aici verifici daca documentKeword e bun , verifici field type-ul ,
+                        //si daca e bun, adaugi in filteredResult
+
+                        //aici cu DateTimeFunctions().makeListFromString fac un
+                        //split pe / si verific daca documentKeword e in lista
+                        for (final apiDocKey in DateTimeFunctions()
+                            .makeListFromString(pair['key']['content'], '/')) {
                           if (apiDocKey == documentKeword) {
-                            log('888');
-                            filteredResult[field.placeholderKeyWord] =
-                                pair['value']['content'];
+                            log('$apiDocKey == $documentKeword');
+
+                            //aici verifici daca field.type e bun
+                            if (field.fieldType == FieldTypeConstants.date) {
+                              //aici faci ceva cu data
+                              filteredResult[field.placeholderKeyWord] =
+                                  DateTimeFunctions().parseDateFromApiString(
+                                pair['value']['content'],
+                              );
+                            } else if (field.fieldType !=
+                                    FieldTypeConstants.singleChoice &&
+                                field.fieldType !=
+                                    FieldTypeConstants.multipleChoice) {
+                              //aici faci ceva cu text
+                              filteredResult[field.placeholderKeyWord] =
+                                  pair['value']['content'];
+                            }
+                            break;
                           }
                         }
                       }
@@ -103,14 +118,4 @@ class GetFormUsecase {
       );
     }
   }
-}
-
-List<String> makeListFromString(String string, String separator) {
-  List<String> list = [];
-  if (string.contains(separator)) {
-    list = string.split(separator);
-  } else {
-    list.add(string);
-  }
-  return list;
 }

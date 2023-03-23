@@ -190,4 +190,6 @@ class AppCreateFormString {
   static const String numberOfSections = "Number of Sections";
 
   static const String numberOfDynamicFields = "Number of Dynamic Fields";
+
+  static const String submitForm = "Submit Form";
 }

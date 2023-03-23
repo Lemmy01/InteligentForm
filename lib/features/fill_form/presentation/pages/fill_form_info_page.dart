@@ -40,10 +40,6 @@ class FillFormInfoPage extends StatefulWidget {
 class _FillFormInfoPageState extends State<FillFormInfoPage> {
   @override
   void initState() {
-    context.read<FillContentBloc>().add(
-          ResetFillContent(),
-        );
-
     String concatinatedString = "";
     for (final SectionWithField section in widget.listOfSections) {
       concatinatedString += "${section.content}\n\n";
@@ -91,7 +87,7 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                     key: formKey,
                     onChanged: () {
                       formKey.currentState!.save();
-                      log(formKey.currentState!.value.toString());
+                      log('formKey.currentState!.value  ${formKey.currentState!.value}');
                     },
                     child: Column(
                       children: [
@@ -145,7 +141,9 @@ class _FillFormInfoPageState extends State<FillFormInfoPage> {
                                 Column(
                                   children: [
                                     if (field.fieldType ==
-                                        FieldTypeConstants.number)
+                                            FieldTypeConstants.number ||
+                                        field.fieldType ==
+                                            FieldTypeConstants.decimal)
                                       FormBuilderTextField(
                                         name: field.placeholderKeyWord,
                                         validator: (value) {
